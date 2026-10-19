@@ -102,7 +102,16 @@ jobs:
 
           should_build="true"
           reason=""
-          state_file=".docs-state/site/build-info.json"
+          # 状态文件路径 = gh-pages 分支的**根目录**，不是 site/ 子目录。
+          # peaceiris/actions-gh-pages 的 publish_dir: ./site 发布的是该目录的**内容**，
+          # 目录本身不发布：构建期写进 site/build-info.json 的文件，落到 gh-pages 上会被
+          # **拍平**成根目录的 build-info.json。实测 gh-pages 根下确有 build-info.json，
+          # 且**没有** site/ 这一层。
+          # "Fetch previous build-info from gh-pages" 步骤把 gh-pages 检出到 .docs-state，
+          # 因此该文件在此呈现为 .docs-state/build-info.json。
+          # 曾经写成 .docs-state/site/build-info.json —— 那是把「构建期路径」误当成
+          # 「发布后路径」，永远读不到，prev_sha 恒空 → 每次都 fail-open 重建，闸门失效。
+          state_file=".docs-state/build-info.json"
 
           # 源仓库当前 HEAD：优先从浅检出的 .docs-src 取（不占 API 配额），取不到再走 API。
           src_head="$(git -C .docs-src rev-parse HEAD 2>/dev/null || true)"
