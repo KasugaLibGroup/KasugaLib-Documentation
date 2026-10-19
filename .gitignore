@@ -1,0 +1,24 @@
+# Sources fetched by CI from the main repository at build time.
+# They are a copy of KasugaLibNext/doc/ and must never be committed here —
+# this repository only holds the site configuration.
+.docs-src/
+
+# Previous-build state pulled from the gh-pages branch by the deploy workflow
+# (a second checkout rooted here). Same reason as `.docs-src/`: it is a CI
+# checkout path, never repository content.
+.docs-state/
+
+# MkDocs build output. Published to the `gh-pages` branch instead of being
+# committed to this one. Also where the workflow drops build-info.json.
+site/
+
+# Local virtualenv used to run mkdocs by hand.
+.venv/
+
+# Python bytecode caches left behind by running mkdocs locally.
+__pycache__/
+
+# Scratch documents kept on a developer machine only (drafts, notes, local
+# experiments). Anything in here is deliberately not part of the published
+# site or of the repository.
+/doc/local/

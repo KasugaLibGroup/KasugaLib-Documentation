@@ -1,0 +1,347 @@
+# =============================================================================
+# KasugaLib Documentation — MkDocs site configuration
+# =============================================================================
+# This repository is a DEPLOY-ONLY repository: it holds the site configuration
+# and nothing else. CI fetches the prose (the `doc/` tree of the main
+# repository) into `.docs-src/` on every run, builds the site here, and pushes
+# the result to the `gh-pages` branch.
+#
+#   prose source of truth : https://github.com/KasugaLibGroup/KasugaLibNext → doc/
+#   rendered site          : gh-pages branch
+#
+# The documentation is bilingual: every page exists twice, as `X.md` (Chinese)
+# and `X.en.md` (English), side by side in the same directory.
+# =============================================================================
+
+# --- Layout (fixed interface; the CI checkout step writes into this path) ----
+
+# Where the fetched sources are read from. Not `docs/` — the source repository
+# stores its documentation under `doc/`.
+docs_dir: .docs-src/doc
+
+# Build output. Git-ignored here; published via the gh-pages branch instead.
+site_dir: site
+
+# --- Site identity -----------------------------------------------------------
+
+# Chinese is the default language and is what this label is written in; the
+# i18n plugin overrides it with `KasugaLibNext Documentation` for the English
+# build (see `plugins.i18n.languages`).
+site_name: KasugaLibNext 文档
+
+# INFERRED, NOT VERIFIED: GitHub Pages for an organisation-owned repository is
+# a *project* page, served from https://<org>.github.io/<repo>/. Pages is not
+# enabled yet, so the final URL has not been observed. This value feeds the
+# canonical URL, `sitemap.xml` and every absolute link Material emits — once
+# Pages is live, check the real URL and correct this if it differs.
+site_url: https://kasugalibgroup.github.io/KasugaLib-Documentation/
+
+# "Edit this page" links point back at the *source* repository, which is where
+# the Markdown actually lives. Note the docs root is `doc/` (not `docs/`) and
+# the tracked branch is `master`.
+repo_url: https://github.com/KasugaLibGroup/KasugaLibNext
+edit_uri: edit/master/doc/
+
+# --- Theme -------------------------------------------------------------------
+
+theme:
+  name: material
+  # Default language of the site. The i18n plugin rewrites this per locale
+  # during the build, so the English tree gets `en` without extra config.
+  language: zh
+  features:
+    # Every section directory ships a README.md that acts as that section's
+    # landing page. With this feature the section heading itself links to it,
+    # instead of the section showing a child entry with a duplicated title.
+    # (Material treats README.md as an index page, same as index.md.)
+    - navigation.indexes
+    # NOT enabled on purpose: `navigation.instant`. Instant loading is
+    # incompatible with the i18n plugin's language switcher — the plugin
+    # logs a WARNING if both are used.
+
+# --- Plugins -----------------------------------------------------------------
+
+plugins:
+  # Declaring `plugins:` REPLACES MkDocs' default plugin list, which contains
+  # `search`, so it has to be re-declared or the search box disappears.
+  - search
+
+  - i18n:
+      # `X.md` + `X.en.md` in the same directory IS the suffix layout. Do not
+      # convert this to `zh/` + `en/` folders — the source repository is not
+      # laid out that way and the pages are exact-name pairs.
+      docs_structure: suffix
+      # A page with no `.en.md` counterpart falls back to the Chinese file
+      # rather than 404ing, which keeps the English nav tree complete.
+      fallback_to_default: true
+      # Let the plugin re-point Material's own `lang`, language switcher and
+      # `extra.alternates` per locale. This is the plugin default; spelled out
+      # because the switcher is the only way users reach `/en/`.
+      reconfigure_material: true
+
+      languages:
+        # Default language → built at the site root `/`.
+        - locale: zh
+          default: true
+          name: 中文
+          build: true
+          site_name: KasugaLibNext 文档
+
+        # Second language → built at `/en/`.
+        - locale: en
+          name: English
+          build: true
+          site_name: KasugaLibNext Documentation
+          # Maps the Chinese nav labels written in `nav:` below to their
+          # English counterparts. Every value is copied verbatim from the H1 of
+          # the corresponding `*.en.md` page, so the English nav reads as
+          # "the page's own title", not as a translation of a translation.
+          nav_translations:
+            KasugaLibNext 文档: KasugaLibNext Documentation
+
+            入门: Getting Started
+            依赖与运行环境: Dependencies and Runtime Environment
+            安装与部署: Installation and Deployment
+            最小示例工程: Minimal Example Project
+
+            指南: Guides
+            数据驱动上手：从空目录到方块动起来: "Data-driven getting started: from an empty directory to a moving block"
+            路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）: "Path 1: adding content with data-driven files (organization and best practices)"
+            扩展指南：写 Java 才能做到的事（How-to）: "Extension guide: what you have to write Java for (How-to)"
+            离屏输出与多机位渲染: Offscreen Output and Multi-Camera Rendering
+            构建与验证入口: Build and Verification Entries
+            真实素材换装与 MC 装备示例: Real-Asset Wardrobe Swap and MC Equipment Example
+
+            API Reference: API Reference
+            数据驱动注册专题: Data-Driven Registration
+            数据驱动 JSON 格式规范（schema）: Data-driven JSON format specification (schema)
+            数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）: "Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)"
+            数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）: "Data-driven extension API (TypeHandler, BuildContext, and property parsers)"
+            数据驱动诊断 API（Diagnostics、命令与错误分类）: "Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)"
+            数据驱动重载 API（含可断言的纯函数面与调用示例）: "Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)"
+            Formula 模块: Formula Module
+            Modelling 模块: Modelling Module
+            Anchor 与 Minecraft 装备挂接: Anchor and Minecraft equipment attachment
+            摄像机控制与动画轨道: Camera Control and Animation Tracks
+            Player / Free / Fixed Camera: Player / Free / Fixed Camera
+            配置项: Configuration Options
+            Kasuga 自定义渲染规范: Kasuga Custom Rendering Specification
+            托管效果与后处理: Managed Effects and Post-Processing
+            扩展点目录: Extension Point Catalog
+            MC 最终画面离屏输出: MC final frame offscreen output
+            状态机与动画剪辑 JSON 参考: State Machine and Animation Clip JSON Reference
+            生命周期与初始化顺序: Lifecycle and Initialization Order
+            Minecraft 穿搭资源与实例切换 API: Minecraft outfit resources and instance switching API
+            PMX 与 glTF 布娃娃配置: PMX and glTF Ragdoll Configuration
+            Model 组装与穿搭缓存 API: Model assembly and outfit cache API
+            通用模型姿态与动画 API: Generic model posing and animation API
+            多机位输出契约: Multi-camera output contract
+            模型变体选择（Multiplexer）参考: Model Variant Selection (Multiplexer) Reference
+            KasugaLib PMX → PBR 转换: KasugaLib PMX → PBR Conversion
+            Physics、IK 与 ModelTickLoop API: Physics, IK, and ModelTickLoop API
+            模型材质 Alpha 渲染参考: Model Material Alpha Rendering Reference
+            模型渲染调度（Render Scheduling）: Model render scheduling (Render Scheduling)
+            渲染后端接入参考: Rendering backend integration reference
+            Java Shader DSL 参考: Java Shader DSL Reference
+            侧边模型: Sidedness Model
+            Skeleton Dynamics API Reference: Skeleton Dynamics API Reference
+            UML 渲染 framework 与后端接口: UML rendering framework and backend interfaces
+            天空体积云与积雨云实例: Sky Volumetric Clouds and Cumulonimbus Instances
+
+            原理与设计: Explanations and Design
+            摄像机与共享动画时间轴原理: How cameras and the shared animation timeline work
+            数据驱动注册原理: How data-driven registration works
+            自定义渲染管线原理: How custom render pipelines work
+            最终画面输出原理: How final frame output works
+            分层动画状态机原理: How the layered animation state machine works
+            MMD 与 glTF 布娃娃适配原理: How MMD and glTF Ragdoll Adaptation Works
+            Model 子系统的格式边界: How Model subsystem format boundaries work
+            模型变体选择原理: How model variant selection works
+            离屏、多机位与共享输出原理: How offscreen rendering, multi-camera, and shared output work
+            PMX 风格化 PBR 烘焙原理: How PMX stylized PBR baking works
+            原生物理与姿态管线原理: How Native Physics and the Pose Pipeline Work
+            模型材质 Alpha 渲染: How model material alpha rendering works
+            模型可见性与渲染调度原理: How model visibility and render scheduling work
+            渲染模块与图形 API 的边界: How the boundary between rendering modules and the graphics API works
+            通用骨骼物理、IK 与闭环约束原理: How generic skeleton physics, IK, and closure constraints work
+            线程模型: Threading Model
+            UML 渲染框架与资源所有权原理: How the UML render framework and resource ownership work
+            多层体积云渲染原理: How multi-layer volumetric cloud rendering works
+
+            项目与版本信息: Project and Version Information
+            更新日志与版本策略: Changelog and Version Policy
+            版本兼容矩阵: Version Compatibility Matrix
+            贡献者文档: Contributor Documentation
+            中英术语对照: Chinese-English Glossary
+            许可证与再分发: License and Redistribution
+            已知限制: Known Limitations
+            迁移指南: Migration Guide
+            使用方: Consumers
+            换装示例验证记录与性能基线: Wardrobe Example Verification Record and Performance Baseline
+
+# --- Markdown extensions -----------------------------------------------------
+#
+# Declaring `markdown_extensions:` REPLACES MkDocs' built-in default list
+# (['toc', 'tables', 'fenced_code']), so anything the prose relies on has to be
+# re-declared here or it silently degrades.
+#
+# Only extensions for syntax the prose actually uses are listed — no
+# admonition, footnotes, content tabs, math, images, inline HTML, front matter
+# or attr_list appear anywhere in the 152 pages.
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      # Load-bearing and non-obvious. Markdown's stock slugifier DROPS
+      # non-ASCII characters, so a heading like `## 验证入口` produces an empty
+      # slug and falls back to `_1`, `_2`, … — every Chinese anchor link in the
+      # docs would break. The 16 in-page anchor links (8 Chinese, 8 English)
+      # were authored against a Unicode-preserving slugifier, so it is swapped
+      # in explicitly here.
+      slugify: !!python/name:markdown.extensions.toc.slugify_unicode
+
+  # Pipe tables are used throughout the prose; this is the re-declaration of
+  # the default that would otherwise be dropped (see above).
+  - tables
+
+  # NOTE — `fenced_code` is deliberately ABSENT, and that is not an oversight.
+  # The obvious move is to re-declare it alongside `tables`, but it must not be
+  # listed: PyMdown's usage notes state that SuperFences *replaces*
+  # `markdown.extensions.fenced_code` and that the two "cannot be loaded at the
+  # same time" — listing both is undefined behaviour.
+  # (https://facelessuser.github.io/pymdown-extensions/usage_notes/)
+  # SuperFences, configured below, is what actually renders the 592 fenced code
+  # blocks, including the Pygments syntax highlighting they rely on. So code
+  # fences are covered; only the *extension name* differs from the default.
+
+  # SuperFences turns the 28 ```mermaid fences (flowchart / sequenceDiagram)
+  # into real diagrams. Material for MkDocs ships the Mermaid runtime and
+  # renders any element carrying the `mermaid` class, so no extra JavaScript
+  # needs to be wired up.
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # Task lists (`- [ ] …`) are used in guides/data-driven/guide-extension.md and
+  # its English counterpart; without this they render as literal "[ ]" text.
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+# --- Link validation ---------------------------------------------------------
+#
+# There is deliberately NO `validation:` block. MkDocs' link and anchor checks
+# are left at their defaults (INFO level) so a stale anchor can never fail the
+# build. Do NOT promote `validation.links.anchors` or
+# `validation.links.unrecognized_links` to `warn`, and do not run CI with
+# `mkdocs build --strict` — the build must not gate on link hygiene.
+
+# --- Navigation --------------------------------------------------------------
+#
+# Hand-maintained on purpose (the project decided against a plugin-generated
+# nav). Rules applied here:
+#
+#   * Paths are the CHINESE files (`X.md`). Never write `X.en.md` — the i18n
+#     plugin maps the path to the English file automatically.
+#   * Every label is the page's real H1, copied verbatim. Do not "improve" a
+#     label; if a heading is renamed upstream, this file has to follow.
+#   * Every section title is likewise the H1 of that directory's README.md,
+#     which `navigation.indexes` turns into the clickable section landing page.
+#   * All 76 Chinese pages appear exactly once.
+#
+# `guides/data-driven/` is the one sub-directory with no index page, so its
+# three pages are listed directly under 指南 instead of being wrapped in a
+# title-less group.
+#
+# The English tree reuses this structure and swaps labels via
+# `plugins.i18n.languages[en].nav_translations` above.
+
+nav:
+  - KasugaLibNext 文档: README.md
+
+  - 入门:
+      - getting-started/README.md
+      - 依赖与运行环境: getting-started/dependencies.md
+      - 安装与部署: getting-started/installation.md
+      - 最小示例工程: getting-started/minimal-example.md
+
+  - 指南:
+      - guides/README.md
+      - 数据驱动上手：从空目录到方块动起来: guides/data-driven/intro.md
+      - 路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）: guides/data-driven/guide-content.md
+      - 扩展指南：写 Java 才能做到的事（How-to）: guides/data-driven/guide-extension.md
+      - 离屏输出与多机位渲染: guides/offline-rendering.md
+      - 构建与验证入口: guides/verification.md
+      - 真实素材换装与 MC 装备示例: guides/wardrobe-example.md
+
+  - API Reference:
+      - reference/README.md
+      - Anchor 与 Minecraft 装备挂接: reference/anchors.md
+      - 摄像机控制与动画轨道: reference/camera-animation.md
+      - Player / Free / Fixed Camera: reference/cameras.md
+      - 配置项: reference/configuration.md
+      - 数据驱动注册专题:
+          - reference/data-driven/README.md
+          - 数据驱动 JSON 格式规范（schema）: reference/data-driven/schema.md
+          - 数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）: reference/data-driven/api-registration.md
+          - 数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）: reference/data-driven/api-extension.md
+          - 数据驱动诊断 API（Diagnostics、命令与错误分类）: reference/data-driven/api-diagnostics.md
+          - 数据驱动重载 API（含可断言的纯函数面与调用示例）: reference/data-driven/api-reload.md
+      - Kasuga 自定义渲染规范: reference/effect-rendering.md
+      - 托管效果与后处理: reference/effects-and-postfx.md
+      - 扩展点目录: reference/extensions.md
+      - Formula 模块: reference/formula/README.md
+      - MC 最终画面离屏输出: reference/frame-output.md
+      - 状态机与动画剪辑 JSON 参考: reference/fsm.md
+      - 生命周期与初始化顺序: reference/lifecycle.md
+      - Minecraft 穿搭资源与实例切换 API: reference/minecraft-model-assembly.md
+      - PMX 与 glTF 布娃娃配置: reference/mmd-ragdoll.md
+      - Model 组装与穿搭缓存 API: reference/model-assembly.md
+      - 通用模型姿态与动画 API: reference/model-posing.md
+      - Modelling 模块: reference/modelling/README.md
+      - 多机位输出契约: reference/multi-camera-output.md
+      - 模型变体选择（Multiplexer）参考: reference/multiplexer.md
+      - KasugaLib PMX → PBR 转换: reference/pbr.md
+      - Physics、IK 与 ModelTickLoop API: reference/physics.md
+      - 模型材质 Alpha 渲染参考: reference/render-alpha-passes.md
+      - 模型渲染调度（Render Scheduling）: reference/render-scheduling.md
+      - 渲染后端接入参考: reference/rendering-backends.md
+      - Java Shader DSL 参考: reference/shader-dsl.md
+      - 侧边模型: reference/sidedness.md
+      - Skeleton Dynamics API Reference: reference/skeleton-dynamics.md
+      - UML 渲染 framework 与后端接口: reference/uml-render-framework.md
+      - 天空体积云与积雨云实例: reference/volumetric-clouds.md
+
+  - 原理与设计:
+      - explanation/README.md
+      - 摄像机与共享动画时间轴原理: explanation/camera-animation.md
+      - 数据驱动注册原理: explanation/data-driven-registration.md
+      - 自定义渲染管线原理: explanation/effect-rendering.md
+      - 最终画面输出原理: explanation/frame-output.md
+      - 分层动画状态机原理: explanation/fsm.md
+      - MMD 与 glTF 布娃娃适配原理: explanation/mmd-ragdoll.md
+      - Model 子系统的格式边界: explanation/model-subsystems.md
+      - 模型变体选择原理: explanation/multiplexer.md
+      - 离屏、多机位与共享输出原理: explanation/offline-rendering-and-multi-cam.md
+      - PMX 风格化 PBR 烘焙原理: explanation/pbr.md
+      - 原生物理与姿态管线原理: explanation/physics.md
+      - 模型材质 Alpha 渲染: explanation/render-alpha-passes.md
+      - 模型可见性与渲染调度原理: explanation/render-scheduling.md
+      - 渲染模块与图形 API 的边界: explanation/rendering-backends.md
+      - 通用骨骼物理、IK 与闭环约束原理: explanation/skeleton-dynamics.md
+      - 线程模型: explanation/threads.md
+      - UML 渲染框架与资源所有权原理: explanation/uml-render-framework.md
+      - 多层体积云渲染原理: explanation/volumetric-clouds.md
+
+  - 项目与版本信息:
+      - meta/README.md
+      - 更新日志与版本策略: meta/changelog.md
+      - 版本兼容矩阵: meta/compatibility.md
+      - 贡献者文档: meta/contributing.md
+      - 中英术语对照: meta/glossary.md
+      - 许可证与再分发: meta/licensing.md
+      - 已知限制: meta/limitations.md
+      - 迁移指南: meta/migration.md
+      - 使用方: meta/users.md
+      - 换装示例验证记录与性能基线: meta/wardrobe-benchmarks.md

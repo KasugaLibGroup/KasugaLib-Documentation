@@ -1,0 +1,47 @@
+# MkDocs build dependencies for KasugaLib-Documentation.
+#
+# Everything is pinned with `==` on purpose. This file drives a CI build, not a
+# library: a surprise minor bump here changes the published site, and an
+# upstream release that is simply *newer* is not automatically *compatible*.
+#
+# Why each pin is load-bearing:
+#
+# * mkdocs — upstream is in flux. MkDocs 1.x and a ground-up MkDocs 2.0 rewrite
+#   (TOML config, no plugin system, explicitly incompatible with Material) are
+#   being published from the same project, with 2.0 already available as a
+#   pre-release. An unpinned `pip install` could resolve to something that
+#   cannot build this site at all.
+# * mkdocs-static-i18n — frozen at 1.3.1 by project decision.
+# * mkdocs-material — in critical-maintenance-only mode; upstream has extended
+#   support through 2027-05-05 but is not adding features. Fewer releases means
+#   fewer chances for a bad interaction to be caught, so the exact tested
+#   version is what gets shipped.
+# * pymdown-extensions — pinned because it is the extension pack the theme's
+#   Markdown features (incl. SuperFences) are built on; its major releases
+#   change extension behaviour.
+#
+# Versions and constraints below were read from the PyPI JSON API
+# (https://pypi.org/pypi/<package>/json), not from memory:
+#
+#   mkdocs              1.6.1   released 2024-08-30  (latest stable; requires Python >=3.8)
+#   mkdocs-material     9.7.7   released 2026-07-17  (requires mkdocs>=1.6,<2 and pymdown-extensions>=10.2)
+#   mkdocs-static-i18n  1.3.1   released 2026-02-20  (requires mkdocs>=1.5.2)
+#   pymdown-extensions  12.3    released 2026-10-14  (requires Python >=3.10)
+#
+# CAVEAT, not verified by a build: mkdocs-static-i18n 1.3.1 declares
+# `mkdocs-material<9.7.2` for its *optional* `material` extra. We do not
+# install that extra — Material is pinned directly here. 9.7.7 was chosen
+# because it is the current release and the first one carrying the fix for
+# CVE-2026-73295 (DOM XSS in the `search.suggest` feature, present in
+# 7.2.0–9.7.6). The consequence is that the plugin's language-switcher
+# integration runs one minor version ahead of what its author declared as
+# tested. If the `/en/` language switcher ever misbehaves, this is the first
+# thing to suspect, and the fallback is to drop to `mkdocs-material==9.7.1`.
+#
+# Python: 3.10 or newer is REQUIRED (pymdown-extensions 12.x dropped 3.8/3.9).
+# The CI workflow's setup-python step has to select 3.10+.
+
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+mkdocs-static-i18n==1.3.1
+pymdown-extensions==12.3

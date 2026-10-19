@@ -1,0 +1,203 @@
+# =============================================================================
+# 文档站点发布流水线：KasugaLibGroup/KasugaLibNext@master 的 doc/ → gh-pages
+# =============================================================================
+# 本仓库（KasugaLibGroup/KasugaLib-Documentation）是**纯部署仓库**：不放文档正文，
+# 只放站点配置（mkdocs.yml、requirements.txt）与本工作流。每次运行时：
+#   拉源文档 → 变更闸 → MkDocs 构建 → 写 build-info.json → 推 gh-pages。
+#
+# ── 触发 ─────────────────────────────────────────────────────────────────────
+# 只有本仓库的 schedule + workflow_dispatch；主仓库不做任何触发（用户明确要求，
+# 所以这里没有 repository_dispatch / push 触发器）。
+# ⚠️ GitHub 规则「Scheduled workflows will only run on the default branch」——本文件
+#    必须落在默认分支 main 上，写在别的分支上定时不会跑。
+#
+# ── 密钥 ─────────────────────────────────────────────────────────────────────
+# 只用 GitHub 自动注入的 GITHUB_TOKEN。两个仓库都是公开的：源仓库未认证公开读即可，
+# 推送 gh-pages 用 GITHUB_TOKEN 是 peaceiris/actions-gh-pages 官方支持的合法路径。
+# 不引入 PAT、不引入 GitHub App、不引入任何自定义 secret。
+#
+# ── 保活 ─────────────────────────────────────────────────────────────────────
+# **不做**。公开仓库 60 天无活动时 GitHub 会自动停用定时工作流；用户接受该风险，
+# 明确不加 keepalive / 空提交 / re-enable 步骤。停用后的回填手段是 workflow_dispatch。
+#
+# ── 状态与 force_orphan 的关系 ───────────────────────────────────────────────
+# 发布用 force_orphan: true（gh-pages 每次只留最新一个提交），所以上一版的
+# build-info.json 会被连同旧提交一起抹掉，**不会**出现在后续 run 的工作区里。
+# 因此闸门用的上一版状态是**单独取**的（见 "Fetch previous build-info from gh-pages"
+# 步骤：另做一次 checkout 指到 gh-pages 分支）。取不到即 fail-open（当作有更新）。
+#
+# ── 首次部署的已知行为（不是 bug） ───────────────────────────────────────────
+# peaceiris/actions-gh-pages 官方说明：首次用 GITHUB_TOKEN 推 Pages 分支通常会失败，
+# 需先去仓库 Settings → Pages 把 Source 选成 gh-pages / (root)，再部署一次。但这里
+# 有个鸡生蛋：Pages 想选 gh-pages，可该分支还不存在。可行顺序：
+#   1) 手动跑一次 workflow_dispatch —— 部署步骤会红，但 gh-pages 分支已被推出来；
+#   2) Settings → Pages → Source = "Deploy from a branch" → gh-pages / (root)；
+#   3) 再手动跑一次 workflow_dispatch —— 站点上线。
+# 同一原因，首次运行时 "Fetch previous build-info from gh-pages" 也会红（gh-pages
+# 还不存在）；它带 continue-on-error，已降级为「没有状态文件」，闸门随即 fail-open。
+# =============================================================================
+
+name: Deploy docs
+
+on:
+  schedule:
+    # 约每 6 小时一次，落在 UTC 00:17 / 06:17 / 12:17 / 18:17。
+    # 选 :17 而不是 :00 —— GitHub 自己建议避开整点（整点是全站负载高峰，定时任务可能
+    # 被推迟）。`17 */6 * * *` = 每 6 小时一跑、分钟固定 17。
+    - cron: '17 */6 * * *'
+  # 手动兜底：定时被 60 天无活动规则停用、或需要立刻回填积压时用。
+  workflow_dispatch:
+
+permissions:
+  # peaceiris/actions-gh-pages 需要写 gh-pages 分支，否则 GITHUB_TOKEN 推不动。
+  contents: write
+
+concurrency:
+  # 串行化：两次运行撞车会让 gh-pages 的 force-orphan 推送互相覆盖。
+  group: deploy-docs
+  cancel-in-progress: false
+
+env:
+  SOURCE_REPO: KasugaLibGroup/KasugaLibNext
+  SOURCE_REF: master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deployment repo
+        uses: actions/checkout@v7
+
+      - name: Fetch previous build-info from gh-pages
+        # force_orphan 会把 gh-pages 压成单提交，上一版的 build-info.json 在工作区里
+        # 根本不存在——必须在部署之前**单独取一次**（这就是本步骤存在的全部理由）。
+        # gh-pages 尚不存在（首次运行）或网络故障时本步会红，continue-on-error 把它
+        # 降级为「没有状态文件」，闸门随即 fail-open 构建。
+        continue-on-error: true
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: .docs-state
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Checkout source docs
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ env.SOURCE_REF }}
+          # 拉到 .docs-src/doc/**，与 mkdocs.yml 里 docs_dir: .docs-src/doc 对齐。
+          path: .docs-src
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Gate (skip when doc/ unchanged)
+        id: gate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 变更闸：决定本次要不要重建。失败姿态一律 fail-open（当作有更新）。
+          # 故意不 set -e：任何一步出错都要走到「按有更新处理」，而不是把 job 判失败。
+          set -uo pipefail
+
+          should_build="true"
+          reason=""
+          state_file=".docs-state/site/build-info.json"
+
+          # 源仓库当前 HEAD：优先从浅检出的 .docs-src 取（不占 API 配额），取不到再走 API。
+          src_head="$(git -C .docs-src rev-parse HEAD 2>/dev/null || true)"
+          if [ -z "${src_head}" ]; then
+            src_head="$(curl -fsSL \
+                -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/${SOURCE_REPO}/commits/${SOURCE_REF}" 2>/dev/null \
+              | jq -r '.sha // empty' 2>/dev/null || true)"
+          fi
+
+          # 上一版记录的 source_sha（单独取来的，见上一个步骤）。
+          prev_sha=""
+          if [ -f "${state_file}" ]; then
+            prev_sha="$(jq -r '.source_sha // empty' "${state_file}" 2>/dev/null || true)"
+          fi
+
+          if [ -z "${prev_sha}" ]; then
+            # fail-open ① 状态文件缺失  ② 首次运行（没有 source_sha 可读）
+            reason="没有上一版的 source_sha（gh-pages 上无 build-info.json，或字段为空）"
+          elif [ -z "${src_head}" ]; then
+            # fail-open ③ 连源仓库 HEAD 都拿不到
+            reason="拿不到源仓库 HEAD（git 与 API 均失败）"
+          elif [ "${prev_sha}" = "${src_head}" ]; then
+            should_build="false"
+            reason="源 HEAD 与上次构建一致（${src_head}），无改动"
+          else
+            echo "source_sha(上次构建)=${prev_sha}"
+            echo "source HEAD(本次)  =${src_head}"
+            compare_json="$(curl -fsSL \
+                -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/${SOURCE_REPO}/compare/${prev_sha}...${src_head}" 2>/dev/null \
+              || true)"
+            if [ -z "${compare_json}" ] || ! printf '%s' "${compare_json}" | jq -e . >/dev/null 2>&1; then
+              # fail-open ③ compare 查询失败（404 / 422 / 网络 / 响应非 JSON）
+              reason="compare API 调用失败（${prev_sha}...${src_head}）"
+            else
+              file_count="$(printf '%s' "${compare_json}" | jq -r '[.files[]?] | length')"
+              doc_count="$(printf '%s' "${compare_json}" | jq -r '[.files[]?.filename | select(startswith("doc/"))] | length')"
+              if [ "${file_count}" -ge 300 ]; then
+                # fail-open ④ 分页截断：compare 的 files 上限 300，达到即按截断处理
+                reason="compare 响应可能被截断（files=${file_count}，已达 300 上限）"
+              elif [ "${doc_count}" -gt 0 ]; then
+                reason="doc/ 下有 ${doc_count} 个改动文件（本次对比共 ${file_count} 个改动文件）"
+              else
+                should_build="false"
+                reason="对比成功：共 ${file_count} 个改动文件，无一落在 doc/ 下"
+              fi
+            fi
+          fi
+
+          echo "should_build=${should_build}" >> "${GITHUB_OUTPUT}"
+          echo "source_sha=${src_head}"     >> "${GITHUB_OUTPUT}"
+
+          # 跳过时**不静默**：明确打出结论与理由。
+          if [ "${should_build}" = "true" ]; then
+            echo "::notice::变更闸结论：构建 —— ${reason}"
+          else
+            echo "::notice::变更闸结论：跳过构建 —— ${reason}"
+          fi
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_build == 'true'
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_build == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Build site
+        if: steps.gate.outputs.should_build == 'true'
+        # 不加 --strict（按任务口径）；也**不加 --dirty**（会让导航不准确）。
+        run: mkdocs build
+
+      - name: Write build-info.json
+        if: steps.gate.outputs.should_build == 'true'
+        env:
+          SOURCE_SHA: ${{ steps.gate.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          # 必须写在 mkdocs build **之后**：mkdocs 会清理 site_dir 里的陈旧文件。
+          mkdir -p site
+          built_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          jq -n --arg source_sha "${SOURCE_SHA}" --arg built_at "${built_at}" \
+            '{source_sha: $source_sha, built_at: $built_at}' > site/build-info.json
+          echo "写入 site/build-info.json:"
+          cat site/build-info.json
+
+      - name: Deploy to gh-pages
+        if: steps.gate.outputs.should_build == 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
