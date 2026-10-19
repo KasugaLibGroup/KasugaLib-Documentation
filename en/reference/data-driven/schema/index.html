@@ -1,0 +1,4721 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/data-driven/schema/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../api-registration/">
+      
+      
+        
+          <link rel="alternate" href="../../../../reference/data-driven/schema/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Data-driven JSON format specification (schema) - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-driven-json-format-specification-schema" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data-driven JSON format specification (schema)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../reference/data-driven/schema/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-terms-and-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Terms and scope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Terms and scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-three-concepts-you-must-keep-apart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Three concepts you must keep apart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-what-this-page-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 What this page covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-index-file-index-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The index file (index manifest)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The index file (index manifest)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-location-and-discovery-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Location and discovery rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-sources-is-removed-breaking-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 sources is removed (breaking change)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-field-level-rules-d1d6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Field-level rules D1–D6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-path-entry-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Path entry rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-merging-multiple-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Merging multiple manifests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-registration-phase-content-files-listed-under-on_register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Registration-phase content files (listed under on_register)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Registration-phase content files (listed under on_register)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-file-top-level-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 File top-level structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-registry_groups-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 registry_groups entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-blocks-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 blocks entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-items-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 items entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-block_entities-embedded-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 block_entities (embedded type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-inner-keys-of-properties-item_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Inner keys of properties / item_properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-unknown-keys-inside-an-object-vs-unknown-top-level-file-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Unknown keys inside an object vs unknown top-level file keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-an-embedded-type-written-as-a-top-level-field-by-mistake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 An embedded type written as a top-level field by mistake
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-duplicate-ids-and-last-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Duplicate ids and last-wins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Duplicate ids and last-wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-determining-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Determining identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-what-last-means-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 What "last" means exactly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-reload-phase-content-files-listed-under-on_reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Reload-phase content files (listed under on_reload)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Reload-phase content files (listed under on_reload)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-two-content-types-and-how-they-are-discovered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The two content types and how they are discovered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-state_machines-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 state_machines wrapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-animation_clips-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 animation_clips wrapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-file-level-strictness-element-level-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 File-level strictness, element-level tolerance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-reload-domain-routing-and-the-reverse-d9-hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Reload domain routing and the reverse D9 hint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-extending-to-a-new-reload-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Extending to a new reload type
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-classification-and-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Error classification and outlets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Error classification and outlets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-errors-error-log-bucket-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Errors (error log + bucket entry)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-warnings-warn-no-bucket-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Warnings (warn, no bucket entry)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-reading-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Reading diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-d9-hint-text-content-listed-under-the-wrong-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 D9 hint text (content listed under the wrong domain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rule-to-source-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Rule-to-source table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-boundaries-with-other-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Boundaries with other documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-not-covered-to-be-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Not covered / to be confirmed
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-terms-and-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Terms and scope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Terms and scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-three-concepts-you-must-keep-apart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Three concepts you must keep apart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-what-this-page-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 What this page covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-index-file-index-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The index file (index manifest)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The index file (index manifest)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-location-and-discovery-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Location and discovery rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-sources-is-removed-breaking-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 sources is removed (breaking change)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-field-level-rules-d1d6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Field-level rules D1–D6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-path-entry-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Path entry rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-merging-multiple-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Merging multiple manifests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-registration-phase-content-files-listed-under-on_register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Registration-phase content files (listed under on_register)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Registration-phase content files (listed under on_register)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-file-top-level-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 File top-level structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-registry_groups-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 registry_groups entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-blocks-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 blocks entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-items-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 items entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-block_entities-embedded-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 block_entities (embedded type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-inner-keys-of-properties-item_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Inner keys of properties / item_properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-unknown-keys-inside-an-object-vs-unknown-top-level-file-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Unknown keys inside an object vs unknown top-level file keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-an-embedded-type-written-as-a-top-level-field-by-mistake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 An embedded type written as a top-level field by mistake
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-duplicate-ids-and-last-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Duplicate ids and last-wins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Duplicate ids and last-wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-determining-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Determining identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-what-last-means-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 What "last" means exactly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-reload-phase-content-files-listed-under-on_reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Reload-phase content files (listed under on_reload)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Reload-phase content files (listed under on_reload)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-two-content-types-and-how-they-are-discovered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The two content types and how they are discovered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-state_machines-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 state_machines wrapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-animation_clips-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 animation_clips wrapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-file-level-strictness-element-level-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 File-level strictness, element-level tolerance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-reload-domain-routing-and-the-reverse-d9-hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Reload domain routing and the reverse D9 hint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-extending-to-a-new-reload-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Extending to a new reload type
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-classification-and-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Error classification and outlets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Error classification and outlets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-errors-error-log-bucket-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Errors (error log + bucket entry)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-warnings-warn-no-bucket-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Warnings (warn, no bucket entry)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-reading-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Reading diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-d9-hint-text-content-listed-under-the-wrong-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 D9 hint text (content listed under the wrong domain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rule-to-source-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Rule-to-source table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-boundaries-with-other-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Boundaries with other documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-not-covered-to-be-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Not covered / to be confirmed
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-driven-json-format-specification-schema">Data-driven JSON format specification (schema)<a class="headerlink" href="#data-driven-json-format-specification-schema" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Type: Reference (information-oriented, for looking things up).
+Applies to: Minecraft 1.21.1, NeoForge 21.1.203, Parchment 2024.11.17, Java 21. The format described on this page holds only within this version range.
+Code baseline: <code>KasugaLibNext</code> branch <code>model-loader</code>, verification date 2026-10-04, baseline commit <code>ec864a1</code>. Line numbers in this page refer to the current working tree (the uncommitted data-driven reimplementation).
+Authoritative source: the rules on this page come from the current code and tests. The old <code>sources</code> layout has been migrated to the index manifest; each rule gives the class, line number, or test name so you can check it yourself.</p>
+</blockquote>
+<hr />
+<h2 id="0-terms-and-scope">0. Terms and scope<a class="headerlink" href="#0-terms-and-scope" title="Permanent link">&para;</a></h2>
+<h3 id="01-three-concepts-you-must-keep-apart">0.1 Three concepts you must keep apart<a class="headerlink" href="#01-three-concepts-you-must-keep-apart" title="Permanent link">&para;</a></h3>
+<ul>
+<li>registration phase: the phase during mod startup and construction in which objects are written into MC registries (such as <code>BuiltInRegistries.BLOCK</code>); the source it reads is the mod jar, it completes once, and it cannot hot reload.</li>
+<li>reload phase: the resource re-read triggered by <code>/reload</code>; the source it reads is the pack stack, and data packs can override it.</li>
+<li>index file (index manifest): a <code>.json</code> under <code>data/&lt;namespace&gt;/kasuga_lib/data_driven/</code> that declares only which content files belong to which domain; it contains no registration objects of its own.</li>
+</ul>
+<p>A mod's index files can declare only the registration domain, only the reload domain, or both.</p>
+<h3 id="02-what-this-page-covers">0.2 What this page covers<a class="headerlink" href="#02-what-this-page-covers" title="Permanent link">&para;</a></h3>
+<p>Covered: the index file format; the registration-phase content file format (<code>registry_groups</code> / <code>blocks</code> / <code>items</code> / embedded <code>block_entity</code>); duplicate id rules; the wrapper format of reload-phase content files; the classification and outlets of errors.</p>
+<p>Not covered: the concrete effect of each <code>properties</code> key in the registry (see <code>guide-content.md</code>); the complete codec fields inside state machine definitions and animation clip elements (see <code>../../reference/fsm.md</code> and the codecs under <code>uml/</code>); <code>TypeHandler</code> extensions on the Java side (see <code>guide-extension.md</code>).</p>
+<h2 id="1-the-index-file-index-manifest">1. The index file (index manifest)<a class="headerlink" href="#1-the-index-file-index-manifest" title="Permanent link">&para;</a></h2>
+<h3 id="11-location-and-discovery-rules">1.1 Location and discovery rules<a class="headerlink" href="#11-location-and-discovery-rules" title="Permanent link">&para;</a></h3>
+<p>The index directory is fixed at a <strong>4-segment path</strong>:</p>
+<div class="highlight"><pre><span></span><code>data/&lt;namespace&gt;/kasuga_lib/data_driven/
+</code></pre></div>
+<ul>
+<li>Pinned by <code>JsonTreeBuilder.indexDirectorySegments(modId)</code>, which returns <code>{"data", modId, "kasuga_lib", "data_driven"}</code> (<code>JsonTreeBuilder.java:745-747</code>).</li>
+<li>Note that <code>kasuga_lib</code> is a fixed spelling and <code>data_driven</code> uses an underscore. Writing <code>kasuga-lib</code>, or dropping the <code>kasuga_lib</code> level, leads to <strong>silently loading 0 entries</strong>; that risk is pinned by <code>JsonTreeBuilderIndexPathTest.indexDirectorySegmentsMatchCanonicalLayout()</code> with <code>assertArrayEquals</code> (<code>JsonTreeBuilderIndexPathTest.java:27-33</code>).</li>
+<li><strong>Every</strong> <code>.json</code> file in the directory is treated as an index and read in ascending filename order (<code>JsonTreeBuilder.listIndexFiles</code>, <code>:762-774</code>; <code>resolveIndexManifests</code> aggregates in the order passed in). There is no filename convention; <code>index.json</code> is only a habit.</li>
+<li>A missing directory only logs DEBUG and does not count as an error (<code>JsonTreeBuilder.java:77</code>).</li>
+<li>The reload side reuses the same path segments when it reads the same directory (<code>ReloadOrchestrator.indexResourcePath</code>, <code>:290</code>).</li>
+</ul>
+<h3 id="12-top-level-fields">1.2 Top-level fields<a class="headerlink" href="#12-top-level-fields" title="Permanent link">&para;</a></h3>
+<p>An index file has <strong>only two</strong> top-level fields, each a string array:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Domain</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>on_register</code></td>
+<td><code>string[]</code></td>
+<td>registration phase</td>
+<td>Lists the content files parsed during mod construction and written into MC registries</td>
+</tr>
+<tr>
+<td><code>on_reload</code></td>
+<td><code>string[]</code></td>
+<td>reload phase</td>
+<td>Lists the content files parsed on <code>/reload</code> and written into the reload bucket</td>
+</tr>
+</tbody>
+</table>
+<p>Both are <strong>optional</strong>, but at least one must appear (D1/D2). The field constants are in <code>JsonTreeBuilder.java:40,42</code>; parsing is in <code>parseIndexManifest</code> (<code>:222-250</code>).</p>
+<p>A legal index declaring both domains:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"on_register"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/blocks.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/groups.json"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"on_reload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"state_machines/panel.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"animation_clips/wheel.json"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="13-sources-is-removed-breaking-change">1.3 <code>sources</code> is removed (breaking change)<a class="headerlink" href="#13-sources-is-removed-breaking-change" title="Permanent link">&para;</a></h3>
+<p><strong><code>sources</code> is now an illegal field.</strong> It is no longer recognized and has no alias any more; it goes down the "unknown top-level field" path: an error is logged plus a bucket entry, and the file thereby "declares nothing" (which logs another "neither is declared" error).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"kasuga_lib_content/blocks.json"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The example above produces <strong>two</strong> errors: (1) <code>contains unsupported field 'sources'</code>; (2) <code>declares neither 'on_register' nor 'on_reload'</code>. For the code see <code>JsonTreeBuilder.parseIndexManifest</code> (<code>:226-230</code> unknown field, <code>:240-244</code> neither declared); it is pinned by <code>JsonTreeBuilderIndexSchemaTest.legacySourcesFieldIsReportedAsUnknown()</code>.</p>
+<p>The old <code>sources</code> field and the old flat layout <code>data/&lt;namespace&gt;/kasugalib/</code> were both removed by a hard migration, with no compatibility window. If the old directory exists on disk and there is no new index directory, one WARN is logged plus a bucket entry, hinting at migration to <code>on_register</code> (<code>JsonTreeBuilder.java:65-79</code>).</p>
+<h3 id="14-field-level-rules-d1d6">1.4 Field-level rules D1–D6<a class="headerlink" href="#14-field-level-rules-d1d6" title="Permanent link">&para;</a></h3>
+<p>The <strong>executable version</strong> of these rules is <code>JsonTreeBuilderIndexSchemaTest</code> (8 cases, see section 6). The rules are implemented in <code>parseIndexManifest</code> (single file) and <code>resolveIndexManifests</code> (aggregation across files).</p>
+<ul>
+<li><strong>D1 Declare at least one field</strong>: neither field appears (an empty file, or a file with unknown fields only) → error + bucket entry, and the file contributes no paths. An empty file (GSON parses it as <code>null</code>) is reported too (<code>JsonTreeBuilder.java:240-244</code>; tests <code>declaringNeitherDomainIsReportedAndConsumesNothing</code> / <code>emptyFileIsReportedInsteadOfSilentlyIgnored</code>).</li>
+<li><strong>D2 An empty array is legal</strong>: <code>{"on_register": []}</code> is legal and <strong>counts as declared</strong> (<code>JsonTreeBuilder.java:237</code>; test <code>emptyArrayIsValidAndCountsAsDeclared</code>).</li>
+<li><strong>D3 A failure in one field does not implicate its sibling</strong>: when <code>on_register</code> is not an array only that field is reported and <code>on_reload</code> is still read, and the other way round (<code>readPathArray</code>, <code>:256-277</code>; test <code>nonArrayFieldDoesNotAbortTheSibling</code>). A non-string element in the array is reported and skipped, and the remaining elements are kept (<code>:268-274</code>).</li>
+<li><strong>D4 The aggregate warning branches on "was anything ever declared"</strong>: a pure reload mod that declares only <code>on_reload</code> does <strong>not</strong> raise "registration domain not declared"; only when <strong>no file declares either field</strong> does the aggregation stage record one WARN + one bucket entry (<code>resolveIndexManifests</code>, <code>:323-326</code>; test <code>pureReloadModDoesNotRaiseTheAggregateError</code>). When every file at the single-file level fails its declaration, the aggregate error is still raised (test <code>allBrokenSchemaStillRaisesTheAggregateError</code>).</li>
+<li><strong>D5 <code>sources</code> is an unknown field</strong>, not an alias (<code>:226-230</code>; test <code>legacySourcesFieldIsReportedAsUnknown</code>).</li>
+<li><strong>D6 A path listed in both arrays fails closed</strong>: the same path (within one file or across files) appearing in both arrays → error + bucket entry, and that path is <strong>consumed by neither domain</strong> (it is deleted from both lists). The check spans <strong>all</strong> index files of that mod (<code>resolveIndexManifests</code>, <code>:308-316</code>; test <code>crossListedPathIsConsumedByNeitherDomain</code>).</li>
+</ul>
+<h3 id="15-path-entry-rules">1.5 Path entry rules<a class="headerlink" href="#15-path-entry-rules" title="Permanent link">&para;</a></h3>
+<p>Array elements are paths relative to <code>data/&lt;namespace&gt;/</code> and <strong>must</strong> carry the <code>.json</code> suffix. Validation is in <code>JsonTreeBuilder.validateSourcePath</code> (<code>:383-392</code>), and the reload side reuses the same function (<code>ReloadOrchestrator.collectIndex</code>, <code>:369</code>). Violating any rule → error + bucket entry, and that entry is skipped:</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Message fragment when violated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-empty</td>
+<td><code>path is empty</code></td>
+</tr>
+<tr>
+<td>Does not start with <code>/</code> (must be relative)</td>
+<td><code>path must be relative</code></td>
+</tr>
+<tr>
+<td>Ends with <code>.json</code></td>
+<td><code>path must include the '.json' suffix</code></td>
+</tr>
+<tr>
+<td>No empty segment (<code>//</code>)</td>
+<td><code>path contains an empty segment</code></td>
+</tr>
+<tr>
+<td>No <code>.</code> or <code>..</code> segment</td>
+<td><code>path must not contain '.' or '..'</code></td>
+</tr>
+</tbody>
+</table>
+<p>Also:</p>
+<ul>
+<li>The fact that a path <strong>cannot cross namespaces</strong> is structural: <code>parseSource</code> always joins the path under <code>data/&lt;modId&gt;/</code> (<code>JsonTreeBuilder.java:414-420</code>). For the same reason, an entry pointing at <code>assets/</code> can never take effect.</li>
+<li>The same path listed in several places within the same mod → <strong>silently deduplicated</strong>, parsed only once (<code>parsedSources</code> in <code>parseSource</code>, <code>:404</code>), with no error.</li>
+<li>The reload side additionally requires the path to form a legal <code>ResourceLocation</code> (only <code>[a-z0-9/._-]</code> is allowed); illegal characters such as uppercase are reported separately (<code>ReloadOrchestrator.java:369</code>).</li>
+<li>An illegal path, a missing file, and an unreadable JSON file all produce error + bucket entry (<code>parseSource</code>, <code>:395-436</code>).</li>
+</ul>
+<h3 id="16-merging-multiple-manifests">1.6 Merging multiple manifests<a class="headerlink" href="#16-merging-multiple-manifests" title="Permanent link">&para;</a></h3>
+<p>All index files of the same mod are <strong>fully read in</strong> first and then consumed together: paths are concatenated by "ascending index filename → array writing order within the file" (<code>JsonTreeBuilder.java:92-96,296-301</code>). That is why D6's double-listing check works across files, and why each content file is parsed at most once per load round.</p>
+<h2 id="2-registration-phase-content-files-listed-under-on_register">2. Registration-phase content files (listed under <code>on_register</code>)<a class="headerlink" href="#2-registration-phase-content-files-listed-under-on_register" title="Permanent link">&para;</a></h2>
+<h3 id="21-file-top-level-structure">2.1 File top-level structure<a class="headerlink" href="#21-file-top-level-structure" title="Permanent link">&para;</a></h3>
+<p>In a content file the <strong>top-level field name is the top-level registration type</strong>, and the value must be an <strong>array of objects</strong>. There are currently 3 top-level types:</p>
+<table>
+<thead>
+<tr>
+<th>Top-level field</th>
+<th>handler</th>
+<th>phase</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>registry_groups</code></td>
+<td><code>RegistryGroupHandler</code></td>
+<td>0</td>
+<td>Establish property groups (parent/child)</td>
+</tr>
+<tr>
+<td><code>blocks</code></td>
+<td><code>BlockTypeHandler</code></td>
+<td>1</td>
+<td>Register blocks</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>ItemTypeHandler</code></td>
+<td>1</td>
+<td>Register standalone items</td>
+</tr>
+</tbody>
+</table>
+<p><code>block_entities</code> is <strong>not</strong> a top-level field; it is an embedded type, written as in section 2.5.</p>
+<p>One content file can contain several top-level fields at once (for example one <code>registry_groups</code> set and one <code>blocks</code> set), dispatched one by one by <code>dispatchContent</code> (<code>JsonTreeBuilder.java:461</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"registry_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:panels"</span><span class="p">,</span><span class="w"> </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"no_occlusion"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:panel"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"destroy_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"item_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"tab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:main"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Validation of top-level fields:</p>
+<ul>
+<li>Unknown top-level field → error + bucket entry, and <strong>the remaining fields in the same file dispatch as usual</strong> (partial apply; <code>JsonTreeBuilder.java:475-490</code>).</li>
+<li>A known field whose value is not an array → error + bucket entry, the remaining fields proceed as usual (<code>:504-510</code>).</li>
+<li>An array element that is not a JSON object → error + bucket entry, that element is skipped, the remaining elements proceed as usual (<code>:504-516</code>).</li>
+</ul>
+<h3 id="22-registry_groups-entries">2.2 <code>registry_groups</code> entries<a class="headerlink" href="#22-registry_groups-entries" title="Permanent link">&para;</a></h3>
+<p>Parsing is in <code>RegistryGroupHandler.parse</code> (<code>RegistryGroupHandler.java:26-33</code>), application in <code>store</code> (<code>:54-90</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Group id. <strong>Matched by the raw string</strong>, with no namespace normalization</td>
+</tr>
+<tr>
+<td><code>parent</code></td>
+<td>string</td>
+<td>no</td>
+<td><code>null</code> → attached to the root group</td>
+<td>Parent group id; when the parent does not exist it falls back to the root group (<code>:58-63</code>)</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td>object</td>
+<td>no</td>
+<td>—</td>
+<td>Block properties passed down to child content (see section 2.6)</td>
+</tr>
+<tr>
+<td><code>item_properties</code></td>
+<td>object</td>
+<td>no</td>
+<td>—</td>
+<td>Item properties passed down to child content; <code>tab</code> is singled out as this group's creative tab (<code>:73-76</code>)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A group has <strong>no <code>type</code> field</strong>.</li>
+<li>Blocks and items look their group up through <code>registry_group</code> using the raw string; therefore <code>id</code> is not normalized and <code>mymod:panels</code> and <code>panels</code> are two different groups (<code>RegistryGroupHandler.resolveIdentity</code>, <code>:49-52</code>).</li>
+<li>Before applying, a topological sort is done by <code>parent</code>: parents before children; a cycle only gets a WARN, not an error, and falls back to the original order (<code>JsonTreeBuilder.topoSortGroupDefs</code>, <code>:869</code>).</li>
+</ul>
+<h3 id="23-blocks-entries">2.3 <code>blocks</code> entries<a class="headerlink" href="#23-blocks-entries" title="Permanent link">&para;</a></h3>
+<p>Parsing is in <code>BlockTypeHandler.parse</code> (<code>BlockTypeHandler.java:25-34</code>), generic application in <code>RegTypeHandler.apply</code> (<code>RegTypeHandler.java:62-112</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Block id, either <code>namespace:path</code> or a bare path</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Factory name, looked up in <code>FactoryRegistry.BlockFactory</code> (<code>BlockTypeHandler.createRegistration</code>, <code>:59-64</code>)</td>
+</tr>
+<tr>
+<td><code>registry_group</code></td>
+<td>string</td>
+<td>no</td>
+<td><code>null</code> → attached to the root group</td>
+<td>Owning group id (raw-string match)</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td>object</td>
+<td>no</td>
+<td>—</td>
+<td>Block properties, see section 2.6</td>
+</tr>
+<tr>
+<td><code>item_properties</code></td>
+<td>object</td>
+<td>no</td>
+<td>—</td>
+<td>Item properties for the block's item; <code>tab</code> decides the creative tab (<code>BlockTypeHandler.resolveCreativeTab</code>, <code>:51-57</code>)</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>object</td>
+<td>no</td>
+<td><code>null</code></td>
+<td>Passed to the factory verbatim by <code>create(path, params)</code></td>
+</tr>
+<tr>
+<td><code>state_machine</code></td>
+<td>string</td>
+<td>no</td>
+<td>—</td>
+<td>Forwarded into the BE params only when the entry contains a <code>block_entity</code> (see section 2.5)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When <code>id</code> or <code>type</code> is missing, <code>parse</code> throws (<code>json.get("id").getAsString()</code>); the registration phase's element-level tolerance catches that exception → error + bucket entry, so <strong>only that entry is lost while sibling entries in the same file register as usual</strong> (<code>JsonTreeBuilder</code> produces <code>entry &lt;i&gt; in '&lt;key&gt;' failed to parse: &lt;msg&gt;; entry skipped</code>). Missing values for the other fields fall back to their defaults.</li>
+<li><code>type</code> finds no matching factory → only a WARN is logged, the entry is skipped, and <strong>it does not go into the bucket</strong> (<code>RegTypeHandler.java:70-74</code>).</li>
+<li><strong>Unknown keys inside the object are silently ignored</strong> (parse reads known keys only), the opposite of the error for an unknown top-level file key; see section 2.7.</li>
+</ul>
+<h3 id="24-items-entries">2.4 <code>items</code> entries<a class="headerlink" href="#24-items-entries" title="Permanent link">&para;</a></h3>
+<p>Parsing is in <code>ItemTypeHandler.parse</code> (<code>ItemTypeHandler.java:22-30</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Item id</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Factory name, looked up in <code>FactoryRegistry.ItemFactory</code> (<code>:56-60</code>)</td>
+</tr>
+<tr>
+<td><code>registry_group</code></td>
+<td>string</td>
+<td>no</td>
+<td>attached to the root group</td>
+<td>Owning group id</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td>object</td>
+<td>no</td>
+<td>—</td>
+<td>Item properties, see section 2.6; <code>tab</code> decides the creative tab (<code>:48-53</code>)</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>object</td>
+<td>no</td>
+<td><code>null</code></td>
+<td>Passed to the factory</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-block_entities-embedded-type">2.5 <code>block_entities</code> (embedded type)<a class="headerlink" href="#25-block_entities-embedded-type" title="Permanent link">&para;</a></h3>
+<p><strong>A block entity has no id of its own</strong>; it is carried by its host block, and the way to write one is to put a <code>block_entity</code> object inside that block's entry:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:be_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"block_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_be"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"tick_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>The top-level field name is <code>block_entities</code>, but the embedded key name is <code>block_entity</code> (<code>BlockEntityTypeHandler.getTypeName</code> :21, <code>getParentTypeName</code> :27, <code>getEmbeddedKeyName</code> :30).</li>
+<li>Extraction logic: <code>BlockEntityTypeHandler.extractEmbedded</code> (<code>:33-44</code>) injects the host block's <code>id</code> into the embedded object's <code>_parent_block</code>; if the host block has a top-level <code>state_machine</code> of JSON primitive type (string / number / boolean), it is forwarded into the embedded object's <code>params.state_machine</code> (<code>:37-42</code>). The test is <code>isJsonPrimitive()</code>, so number and boolean pass too, converted to text by <code>getAsString()</code> before being stored in <code>params</code>; objects, arrays, and null are ignored.</li>
+</ul>
+<p>Fields of the embedded <code>block_entity</code> object:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>yes</td>
+<td>—</td>
+<td>Block entity factory name, looked up in <code>FactoryRegistry.BlockEntityFactory</code></td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>object</td>
+<td>no</td>
+<td><code>null</code></td>
+<td>Passed to the factory; the common keys <code>model</code> / <code>state_machine</code> are interpreted by the concrete factory</td>
+</tr>
+<tr>
+<td><code>_parent_block</code></td>
+<td>string</td>
+<td>—</td>
+<td>injected</td>
+<td><strong>Do not write this by hand</strong>; it is injected by <code>extractEmbedded</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Duplicate detection: two BE entries attached to the <strong>same host block</strong> count as duplicates (<code>resolveIdentity</code>, <code>:66-68</code>, using the host block's effective id).</li>
+<li>Host block not found / unknown BE factory → only a WARN, no bucket entry (<code>BlockEntityTypeHandler.apply</code>, <code>:75-86</code>).</li>
+</ul>
+<h3 id="26-inner-keys-of-properties-item_properties">2.6 Inner keys of <code>properties</code> / <code>item_properties</code><a class="headerlink" href="#26-inner-keys-of-properties-item_properties" title="Permanent link">&para;</a></h3>
+<p>A top-level field's <code>properties</code> and <code>item_properties</code> are open objects whose keys are claimed by two parsers; an unknown key only gets a WARN and is ignored, never an error.</p>
+<p><strong>Block properties <code>properties</code></strong> (<code>JsonPropertyParser.buildCompilers</code>, <code>JsonPropertyParser.java:148-174</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value type</th>
+<th>Key</th>
+<th>Value type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>no_occlusion</code></td>
+<td>bool</td>
+<td><code>light_emission</code></td>
+<td>int</td>
+</tr>
+<tr>
+<td><code>no_collision</code> / <code>no_collission</code> (spelling alias)</td>
+<td>bool</td>
+<td><code>friction</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>requires_correct_tool</code></td>
+<td>bool</td>
+<td><code>speed_factor</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>replaceable</code></td>
+<td>bool</td>
+<td><code>jump_factor</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>dynamic_shape</code></td>
+<td>bool</td>
+<td><code>destroy_time</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>random_ticks</code></td>
+<td>bool</td>
+<td><code>explosion_resistance</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>no_loot_table</code></td>
+<td>bool</td>
+<td><code>strength</code></td>
+<td>float or a <code>[destroy, resist]</code> two-element array</td>
+</tr>
+<tr>
+<td><code>ignited_by_lava</code></td>
+<td>bool</td>
+<td><code>map_color</code></td>
+<td><code>DyeColor</code> name (lowercase)</td>
+</tr>
+<tr>
+<td><code>liquid</code></td>
+<td>bool</td>
+<td><code>sound_type</code></td>
+<td>sound type name (see below)</td>
+</tr>
+<tr>
+<td><code>force_solid_on</code></td>
+<td>bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>air</code></td>
+<td>bool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>no_terrain_particles</code></td>
+<td>bool</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The legal values of <code>sound_type</code> come from <code>JsonPropertyParser.buildSoundTypeMap</code> (<code>:97-146</code>), such as <code>stone</code> / <code>wood</code> / <code>metal</code> / <code>glass</code>; an unknown value only warns.</li>
+<li><code>map_color</code> uses MC <code>DyeColor</code> names; an unknown value only warns.</li>
+</ul>
+<p><strong>Item properties <code>item_properties</code> (block entries) / <code>properties</code> (item entries)</strong> (<code>JsonItemParser</code>, <code>JsonItemParser.java:20-36</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stacks_to</code></td>
+<td>int</td>
+<td>Maximum stack size</td>
+</tr>
+<tr>
+<td><code>rarity</code></td>
+<td>string</td>
+<td><code>COMMON</code> / <code>UNCOMMON</code> / <code>RARE</code> / <code>EPIC</code> (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>fire_resistant</code></td>
+<td>bool</td>
+<td>Fire resistance</td>
+</tr>
+<tr>
+<td><code>durability</code></td>
+<td>int</td>
+<td>Durability</td>
+</tr>
+<tr>
+<td><code>no_repair</code></td>
+<td>bool</td>
+<td>Cannot be repaired</td>
+</tr>
+<tr>
+<td><code>tab</code></td>
+<td>string</td>
+<td>Creative tab <code>ResourceLocation</code>; consumed separately by the loader and not passed into the modifiers above</td>
+</tr>
+</tbody>
+</table>
+<p>Properties are inherited along the parent chain, and a child entry overrides its parent (<code>RegTypeHandler.apply</code> sets <code>registry_group</code> as the parent, <code>Reg.applyProperties</code> applies parents before children).</p>
+<h3 id="27-unknown-keys-inside-an-object-vs-unknown-top-level-file-keys">2.7 Unknown keys inside an object vs unknown top-level file keys<a class="headerlink" href="#27-unknown-keys-inside-an-object-vs-unknown-top-level-file-keys" title="Permanent link">&para;</a></h3>
+<p>The two positions differ in strictness, which is the difference easiest to trip over:</p>
+<ul>
+<li>An unknown <strong>top-level file</strong> field → error + bucket entry (<code>dispatchContent</code>, <code>JsonTreeBuilder.java:475-490</code>). A misspelled <code>blokcs</code> is caught.</li>
+<li>An unknown key <strong>inside an object</strong> → silently ignored (each handler's <code>parse</code> reads known keys only), with no error. For example, an extra <code>foo</code> in a block entry produces no diagnostic at all.</li>
+</ul>
+<h3 id="28-an-embedded-type-written-as-a-top-level-field-by-mistake">2.8 An embedded type written as a top-level field by mistake<a class="headerlink" href="#28-an-embedded-type-written-as-a-top-level-field-by-mistake" title="Permanent link">&para;</a></h3>
+<p>Writing <code>block_entities</code> as a top-level field (instead of putting it in the <code>block_entity</code> key of a <code>blocks</code> entry) goes down the "unknown top-level field" path: error + bucket entry, with the message naming the <code>block_entity</code> key of a <code>blocks</code> entry as where it belongs, and <strong>the rest of the file's <code>blocks</code> dispatch as usual</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"block_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_be"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:ok"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The behavior is pinned by <code>JsonTreeBuilderEmbeddedTypeDispatchTest.topLevelEmbeddedTypeIsReportedAndTheRestOfTheFileStillDispatches()</code>. This covers only the case of writing an embedded type as a top-level field; if the embedded object itself fails to parse from a missing field, the exception is likewise caught by element-level tolerance, so <strong>only that embedded element is lost while the rest of the file's entries proceed as usual</strong> (the same as a missing <code>id</code>/<code>type</code> in section 2.3).</p>
+<h2 id="3-duplicate-ids-and-last-wins">3. Duplicate ids and last-wins<a class="headerlink" href="#3-duplicate-ids-and-last-wins" title="Permanent link">&para;</a></h2>
+<p>Deduplication happens <strong>before any registration side effect</strong>: once parsing has finished entirely the conflict is adjudicated first, and a loser never reaches <code>apply</code> at all (<code>JsonTreeBuilder.resolveDuplicates</code>, <code>:652</code>). This is because MC's <code>MappedRegistry.register</code> does not reject duplicate keys, and applying a duplicate would leave inconsistent entries (<code>DuplicateIdResolver.java:11-14</code>).</p>
+<h3 id="31-determining-identity">3.1 Determining identity<a class="headerlink" href="#31-determining-identity" title="Permanent link">&para;</a></h3>
+<p>The conflict space is <code>(typeName, identity)</code>; the same id under different types is not a conflict. The identity of each type (<code>TypeHandler.resolveIdentity</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>identity</th>
+<th>Normalization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>blocks</code> / <code>items</code></td>
+<td><code>EffectiveId.of(modId, id)</code></td>
+<td>No namespace or a <code>minecraft:</code> prefix → <code>&lt;modId&gt;:path</code>; other namespaces are kept verbatim</td>
+</tr>
+<tr>
+<td><code>block_entities</code></td>
+<td>the host block's effective id</td>
+<td>same as above</td>
+</tr>
+<tr>
+<td><code>registry_groups</code></td>
+<td>the raw <code>id</code> string</td>
+<td><strong>not normalized</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>EffectiveId.of</code> is at <code>EffectiveId.java:39-52</code>, with the table test <code>EffectiveIdTest</code> (<code>unnamespacedIdsResolveUnderTheModNamespace</code> / <code>explicitMinecraftNamespaceResolvesToTheOwningMod</code> / <code>otherNamespacesAreKeptVerbatim</code>).</p>
+<h3 id="32-what-last-means-exactly">3.2 What "last" means exactly<a class="headerlink" href="#32-what-last-means-exactly" title="Permanent link">&para;</a></h3>
+<p>The "last" in last-wins is a <strong>position in the load sequence</strong>, not a path's lexicographic order:</p>
+<ol>
+<li>Between index files: ascending filename order;</li>
+<li>Within one index file: the writing order of the <code>on_register</code> array;</li>
+<li>Within one content file: the writing order of the type-field arrays;</li>
+<li>Embedded BEs: they follow the position of the host <code>blocks</code> entry.</li>
+</ol>
+<p>Rationale: <code>JsonTreeBuilder</code> builds the candidate sequence in the order above (<code>:105-110,655</code>), and <code>DuplicateIdResolver.resolve</code> takes the last one purely by <strong>the index passed in</strong> (<code>:73-100</code>). <code>DuplicateIdResolverTest.lastMeansLastInSequenceNotLexicographicallyLastSource()</code> pins the case where a source that comes earlier lexicographically but later in load order still wins.</p>
+<h3 id="33-result">3.3 Result<a class="headerlink" href="#33-result" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The winner reaches <code>apply</code>; the loser is discarded whole, and its embedded BE is isolated along with it (<code>JsonTreeBuilder.java:678</code>).</li>
+<li>Each conflict records a <strong>WARN log line plus one loading-error bucket entry</strong> (<code>:667-670</code>). Note that the log level is WARN, but it <strong>lands in the error bucket</strong>.</li>
+<li>When there are conflicts, one summary WARN is recorded as well (<code>:672-674</code>).</li>
+<li>The diagnostic message contains the type field, the id, and the source paths of the winner and the loser (<code>DuplicateIdResolver.describe</code>, <code>:109-115</code>).</li>
+</ul>
+<h2 id="4-reload-phase-content-files-listed-under-on_reload">4. Reload-phase content files (listed under <code>on_reload</code>)<a class="headerlink" href="#4-reload-phase-content-files-listed-under-on_reload" title="Permanent link">&para;</a></h2>
+<h3 id="41-the-two-content-types-and-how-they-are-discovered">4.1 The two content types and how they are discovered<a class="headerlink" href="#41-the-two-content-types-and-how-they-are-discovered" title="Permanent link">&para;</a></h3>
+<p><code>ReloadOrchestrator</code> is the only orchestrator in the reload domain (<code>ReloadOrchestrator.java:121</code>), and it knows no type name itself: the <code>typeName()</code> of every registered <code>ReloadHandler</code> is a legal top-level key, and the orchestrator walks <code>ReloadHandlerRegistry</code> to obtain the key set. The two handlers currently registered on the modelling side are <code>state_machines</code> and <code>animation_clips</code> (<code>FsmReloadHandler</code> / <code>FsmClipsReloadHandler</code>, see section 4.6).</p>
+<table>
+<thead>
+<tr>
+<th>Content</th>
+<th>Top-level key</th>
+<th>Discovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State machine definitions</td>
+<td><code>state_machines</code></td>
+<td><strong>directory glob</strong> <code>data/&lt;ns&gt;/state_machines/*.json</code> <strong>+</strong> listed in <code>on_reload</code></td>
+</tr>
+<tr>
+<td>Animation clips</td>
+<td><code>animation_clips</code></td>
+<td><strong>only</strong> listed in <code>on_reload</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>state_machines/</code> has a directory glob: <code>FsmReloadHandler.globDirectories()</code> (<code>FsmReloadHandler.java:69-71</code>) declares <code>StateMachineDefinitionLoader.PATH</code> (<code>StateMachineDefinitionLoader.java:39</code>), enumerated by <code>ReloadOrchestrator.collectGlob</code> (<code>:348-367</code>) with <code>ResourceManager.listResources</code>. A state machine file is read even when no index lists it.</li>
+<li><code>animation_clips/</code> <strong>has no directory glob</strong>. A clip file that no index lists is <strong>never read</strong> (<code>AnimationClipLoader.java:28-29</code>; <code>FsmClipsReloadHandler.globDirectories</code> keeps the default empty set).</li>
+<li><code>state_machines/</code> files listed by an index are skipped by the glob entry point, to avoid reading them twice (<code>ReloadOrchestrator.collectGlob</code>, <code>:348-367</code>).</li>
+<li>Application order: glob-discovered first, index-listed second; on the same id the latter wins (class docs <code>:77-91</code>; <code>register</code>, <code>:507-526</code>).</li>
+</ul>
+<h3 id="42-state_machines-wrapper">4.2 <code>state_machines</code> wrapper<a class="headerlink" href="#42-state_machines-wrapper" title="Permanent link">&para;</a></h3>
+<p>Each file is a wrapper object <strong>carrying</strong> the <code>state_machines</code> top-level key, whose value must be an array of definitions (extra top-level keys no longer reject the file, see section 4.4):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"state_machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:panel"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"initial_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idle"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"states"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idle"</span><span class="p">,</span><span class="w"> </span><span class="nt">"duration_ticks"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>One file can hold several definitions, and <strong>the array order is the in-file last-wins order</strong> (<code>StateMachineDefinitionLoader.java:14-33</code>).</li>
+<li>The element schema is decided by <code>StateMachineDefinition.CODEC</code>; this page specifies only the wrapper, and element fields are in <code>../../reference/fsm.md</code> and the corresponding codec.</li>
+</ul>
+<h3 id="43-animation_clips-wrapper">4.3 <code>animation_clips</code> wrapper<a class="headerlink" href="#43-animation_clips-wrapper" title="Permanent link">&para;</a></h3>
+<p>Likewise a wrapper object carrying the <code>animation_clips</code> top-level key:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"animation_clips"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:wheel_spin"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"duration_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"bones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"bone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wheel_r"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"keyframes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"transform"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"rotate"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>The element carries its own <code>id</code> (the very id <code>states[].clip</code> references), and the loader does not extract an id additionally (<code>AnimationClipLoader.java:21-27</code>).</li>
+<li>Keys in the element that the codec does not name are ignored, and can serve as comments or editor metadata (<code>:26-27</code>).</li>
+<li>The file takes effect only in <code>on_reload</code> and registers into the reload bucket; a SCRIPT clip of the same name is not overridden by the file (<code>AnimationClipLoader.register</code>, <code>:113-121</code>).</li>
+</ul>
+<h3 id="44-file-level-strictness-element-level-tolerance">4.4 File-level strictness, element-level tolerance<a class="headerlink" href="#44-file-level-strictness-element-level-tolerance" title="Permanent link">&para;</a></h3>
+<p>The two decoders isolate failures identically (<code>StateMachineDefinitionLoader.decodeFile</code> :67-100; <code>AnimationClipLoader.decodeFile</code> :69-102):</p>
+<ul>
+<li><strong>File level</strong>: a non-object body, a missing top-level key, or a non-array value → <strong>the whole file is rejected</strong>, with one error + bucket entry. <code>{"state_machines": {}}</code> is rejected as a whole (<code>StateMachineDefinitionLoaderTest.nonArrayValueRejectsWholeFile</code>).</li>
+<li><strong>File level (genuinely unknown key)</strong>: a top-level key claimed by no reload type → one <code>unsupported top-level field 'extra'</code> + bucket entry, but <strong>known keys still contribute as usual</strong> (partial apply, no longer a whole-file rejection). In <code>{"state_machines": [...], "extra": 1}</code>, <code>state_machines</code> registers as usual (<code>StateMachineDefinitionLoaderTest.extraTopLevelKeyDoesNotAffectThisType()</code>; <code>AnimationClipLoaderTest.ignoresAnExtraTopLevelKey()</code>).</li>
+<li><strong>Multiple top-level keys are legal</strong>: one file can carry both <code>state_machines</code> and <code>animation_clips</code>, and the two decoders each read their own key and each contribute their own entries (<code>AnimationClipReloadTest.mixedTopLevelKeysAreConsumedByBothHandlers</code>).</li>
+<li><strong>Element level</strong>: an array element that is not an object, or that cannot be decoded for a missing field → only that element is skipped, its siblings proceed as usual, and each one is reported. See <code>StateMachineDefinitionLoaderTest.badElementIsSkippedWhileSiblingsDecode()</code> and <code>AnimationClipLoaderTest.skipsAMalformedElementAndKeepsItsSiblings()</code> / <code>skipsAnElementWithoutAnId()</code>.</li>
+<li>An empty array is legal (<code>AnimationClipLoaderTest.emptyClipArrayIsValid()</code>).</li>
+</ul>
+<h3 id="45-reload-domain-routing-and-the-reverse-d9-hint">4.5 Reload domain routing and the reverse D9 hint<a class="headerlink" href="#45-reload-domain-routing-and-the-reverse-d9-hint" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The domain is decided by the <strong>index array</strong>, and the content type by the <strong>top-level key</strong>.</li>
+<li>An unknown top-level key in a reload file → error + bucket entry, with a <strong>reverse hint</strong> attached: if these fields are registration content (such as <code>blocks</code>/<code>items</code>/<code>registry_groups</code>), list the file under <code>on_register</code> instead (<code>ReloadOrchestrator.java:439-446</code>).</li>
+<li>One file can carry both content types at once: the two handlers each claim their own top-level key and each contribute their own entries (<code>ReloadOrchestrator.dispatch</code>, <code>:429-470</code>). Unknown top-level keys are determined by <code>ContentStructure.unknownKeys</code>, and there is no longer a "single top-level key" check.</li>
+<li>The reload wrap-up re-checks the clips referenced by state machines; a dangling reference only records a WARN + bucket entry, and does not affect registration (<code>FsmReloadHandler.afterReload</code>, <code>:95-116</code>).</li>
+</ul>
+<h3 id="46-extending-to-a-new-reload-type">4.6 Extending to a new reload type<a class="headerlink" href="#46-extending-to-a-new-reload-type" title="Permanent link">&para;</a></h3>
+<p>Reload types are not hardcoded: extend or implement <code>ReloadHandler&lt;T&gt;</code> and register it by calling <code>ReloadHandlerRegistry.register(handler)</code> from a <code>@Context</code> bean's <code>@PostConstruct</code>, with no need to change the orchestrator. <code>typeName()</code> is the top-level key this type claims, and doubles as the deduplication collision space. For detailed steps and a minimal example see <a href="../../../guides/data-driven/guide-extension/">guide-extension.md</a> §6, and for interface signatures see <a href="../api-reload/">api-reload.md</a> §13.</p>
+<h2 id="5-error-classification-and-outlets">5. Error classification and outlets<a class="headerlink" href="#5-error-classification-and-outlets" title="Permanent link">&para;</a></h2>
+<h3 id="51-errors-error-log-bucket-entry">5.1 Errors (error log + bucket entry)<a class="headerlink" href="#51-errors-error-log-bucket-entry" title="Permanent link">&para;</a></h3>
+<p>Format errors in the registration and reload phases are basically all in this list:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown index field / field not an array / element not a string</td>
+<td><code>JsonTreeBuilder.java:226-274</code></td>
+</tr>
+<tr>
+<td>A single file declares neither domain; every file declares neither</td>
+<td><code>:240-244</code> (error) / <code>:323-326</code> (WARN + bucket)</td>
+</tr>
+<tr>
+<td>The same path listed in both arrays</td>
+<td><code>:308-316</code></td>
+</tr>
+<tr>
+<td>Failure reading an index file or directory</td>
+<td><code>:188</code>, <code>:767-771</code></td>
+</tr>
+<tr>
+<td>Unknown top-level field in a content file, field not an array, element not an object</td>
+<td><code>:475-516</code></td>
+</tr>
+<tr>
+<td>Illegal content file path / missing file / parse exception</td>
+<td><code>:396-436</code></td>
+</tr>
+<tr>
+<td>handler <code>apply</code> throws</td>
+<td><code>:712</code></td>
+</tr>
+<tr>
+<td>Duplicate id conflict</td>
+<td><code>:667-670</code> (WARN log + bucket entry)</td>
+</tr>
+<tr>
+<td>Reload side: manifest read failure, illegal path, missing file, wrapper shape violation, unknown top-level key</td>
+<td><code>ReloadOrchestrator.java:307,369,405-470</code></td>
+</tr>
+<tr>
+<td>Duplicate id on the reload side</td>
+<td><code>:545-556</code> (WARN log + bucket entry)</td>
+</tr>
+<tr>
+<td>Dangling clip reference at reload wrap-up</td>
+<td><code>FsmReloadHandler.java:111-116</code> (WARN log + bucket entry)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-warnings-warn-no-bucket-entry">5.2 Warnings (warn, no bucket entry)<a class="headerlink" href="#52-warnings-warn-no-bucket-entry" title="Permanent link">&para;</a></h3>
+<p>The following cases only log and do not write a bucket entry, because the entry is downgraded rather than malformed:</p>
+<ul>
+<li>Unknown factory <code>type</code> → the entry is skipped (<code>RegTypeHandler.java:70-74</code>).</li>
+<li>Unknown <code>properties</code> / <code>item_properties</code> key → that key is ignored (<code>JsonPropertyParser.java:50-52</code>; <code>JsonItemParser.java:63</code>).</li>
+<li>Unknown <code>map_color</code> / <code>sound_type</code> (<code>JsonPropertyParser.java:80-82,90-92</code>).</li>
+<li>BE host block not found / unknown BE factory (<code>BlockEntityTypeHandler.java:77,83</code>).</li>
+<li>A cycle in group references (<code>JsonTreeBuilder.java:823-825</code>).</li>
+</ul>
+<h3 id="53-reading-diagnostics">5.3 Reading diagnostics<a class="headerlink" href="#53-reading-diagnostics" title="Permanent link">&para;</a></h3>
+<p>All errors are bucketed by <strong>mod id</strong>. The reading API:</p>
+<ul>
+<li><code>JsonTreeBuilder.getLoadingErrors(modId)</code> / <code>getLoadingErrorsByMod()</code> / <code>getLoadingErrors()</code> (<code>JsonTreeBuilder.java:743-775</code>).</li>
+<li>The unified facade <code>Diagnostics</code>: <code>Diagnostics.errors(modId)</code>, <code>Diagnostics.errors(Domain, key)</code>, <code>Diagnostics.summarize()</code> (<code>Diagnostics.java:64-166</code>). The mod dimension delegates verbatim to <code>JsonTreeBuilder</code>'s bucket (registration phase); the domain × source dimension <strong>already has writers</strong>: the reload phase uses <code>Domain.RELOAD_DATA</code> with the key = namespace (<code>Diagnostics.java:21-31,96-105</code>).</li>
+<li>The contract the tests assert: <code>assertEquals(List.of(), JsonTreeBuilder.getLoadingErrors(modId))</code>.</li>
+</ul>
+<h3 id="54-d9-hint-text-content-listed-under-the-wrong-domain">5.4 D9 hint text (content listed under the wrong domain)<a class="headerlink" href="#54-d9-hint-text-content-listed-under-the-wrong-domain" title="Permanent link">&para;</a></h3>
+<p>Conditional hints in both directions; the error message strings are a public contract:</p>
+<ul>
+<li><strong>Registration side</strong>: <code>on_register</code> lists a reload-domain file (with <code>state_machines</code> or the like at the top level) → it goes down the unknown-field path, and the message ends with "list this file under <code>'on_reload'</code> instead". The key names in the example are enumerated from <code>ReloadHandlerRegistry</code> at runtime rather than written literally; when the registry is empty (pure JVM unit tests) the example is omitted. The constraint still holds that data-driven does not depend on modelling: both registries are owned by data-driven, and handlers are registered by the modelling side, see <code>JsonTreeBuilder.java:559-570</code> and section 4.6; test <code>JsonTreeBuilderReloadHintTest.reloadDomainContentUnderOnRegisterIsReportedWithOnReloadHint()</code>.</li>
+<li><strong>Reload side</strong>: <code>on_reload</code> lists a registration-domain file → the message ends with "list the file under <code>'on_register'</code> instead", see <code>ReloadOrchestrator.java:441-446</code>.</li>
+</ul>
+<p>Partial-apply guarantee: listing content under the wrong domain still leaves the other domain in the same file processed as usual (<code>JsonTreeBuilderReloadHintTest.halfApplyStillDispatchesSiblingRegistrationFields()</code>).</p>
+<h2 id="6-rule-to-source-table">6. Rule-to-source table<a class="headerlink" href="#6-rule-to-source-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Source (class:line / test method)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-segment index path</td>
+<td><code>JsonTreeBuilder.indexDirectorySegments</code> <code>:745-747</code>; <code>JsonTreeBuilderIndexPathTest.indexDirectorySegmentsMatchCanonicalLayout</code></td>
+</tr>
+<tr>
+<td>Only <code>on_register</code>/<code>on_reload</code> at the top level</td>
+<td><code>JsonTreeBuilder.java:40,42,226-230</code>; <code>JsonTreeBuilderIndexSchemaTest.legacySourcesFieldIsReportedAsUnknown</code></td>
+</tr>
+<tr>
+<td>D1 at least one domain declared</td>
+<td><code>:240-244</code>; <code>declaringNeitherDomainIsReportedAndConsumesNothing</code> / <code>emptyFileIsReportedInsteadOfSilentlyIgnored</code></td>
+</tr>
+<tr>
+<td>D2 an empty array is legal</td>
+<td><code>:237</code>; <code>emptyArrayIsValidAndCountsAsDeclared</code></td>
+</tr>
+<tr>
+<td>D3 siblings are not implicated</td>
+<td><code>:256-277</code>; <code>nonArrayFieldDoesNotAbortTheSibling</code></td>
+</tr>
+<tr>
+<td>D4 a pure reload mod is not falsely reported</td>
+<td><code>:323-326</code>; <code>pureReloadModDoesNotRaiseTheAggregateError</code> / <code>allBrokenSchemaStillRaisesTheAggregateError</code></td>
+</tr>
+<tr>
+<td>D5 <code>sources</code> is illegal</td>
+<td><code>:226-230</code>; <code>legacySourcesFieldIsReportedAsUnknown</code></td>
+</tr>
+<tr>
+<td>D6 listing in both arrays fails closed</td>
+<td><code>:308-316</code>; <code>crossListedPathIsConsumedByNeitherDomain</code></td>
+</tr>
+<tr>
+<td>Path entry rules</td>
+<td><code>validateSourcePath</code> <code>:383-392</code></td>
+</tr>
+<tr>
+<td>Top-level type table</td>
+<td><code>JsonTreeBuilder.java:461-470</code>; each <code>*TypeHandler.getTypeName</code></td>
+</tr>
+<tr>
+<td><code>blocks</code> fields</td>
+<td><code>BlockTypeHandler.parse</code> <code>:25-34</code></td>
+</tr>
+<tr>
+<td><code>items</code> fields</td>
+<td><code>ItemTypeHandler.parse</code> <code>:22-30</code></td>
+</tr>
+<tr>
+<td><code>registry_groups</code> fields</td>
+<td><code>RegistryGroupHandler.parse</code> <code>:26-33</code></td>
+</tr>
+<tr>
+<td>Embedded <code>block_entity</code></td>
+<td><code>BlockEntityTypeHandler</code> <code>:21-68</code>; <code>JsonTreeBuilder.java:528-535</code></td>
+</tr>
+<tr>
+<td>An embedded type written at the top level applies partially</td>
+<td><code>JsonTreeBuilder.java:475-490</code>; <code>JsonTreeBuilderEmbeddedTypeDispatchTest</code></td>
+</tr>
+<tr>
+<td>last-wins identity determination</td>
+<td><code>EffectiveId.of</code> <code>:39-52</code>; <code>RegTypeHandler.resolveIdentity</code> <code>:58-60</code>; <code>RegistryGroupHandler.resolveIdentity</code> <code>:50-52</code>; <code>BlockEntityTypeHandler.resolveIdentity</code> <code>:66-68</code></td>
+</tr>
+<tr>
+<td>last-wins order</td>
+<td><code>JsonTreeBuilder.java:105-110,655</code>; <code>DuplicateIdResolver.resolve</code> <code>:73-100</code>; <code>DuplicateIdResolverTest.lastMeansLastInSequenceNotLexicographicallyLastSource</code></td>
+</tr>
+<tr>
+<td>Conflict diagnostics</td>
+<td><code>DuplicateIdResolver.describe</code> <code>:109-115</code>; <code>JsonTreeBuilder.java:667-674</code></td>
+</tr>
+<tr>
+<td>The two reload wrappers</td>
+<td><code>StateMachineDefinitionLoader</code> <code>:36-102</code>; <code>AnimationClipLoader</code> <code>:42-121</code></td>
+</tr>
+<tr>
+<td>Directory glob vs index-only</td>
+<td><code>ReloadOrchestrator.collectGlob</code> <code>:348-367</code>; <code>AnimationClipLoader.java:29</code>; <code>FsmReloadHandler.globDirectories</code> <code>:69-71</code></td>
+</tr>
+<tr>
+<td>File-level strictness / element-level tolerance</td>
+<td>all cases in <code>StateMachineDefinitionLoaderTest</code> / <code>AnimationClipLoaderTest</code></td>
+</tr>
+<tr>
+<td>D9 hints in both directions</td>
+<td><code>JsonTreeBuilder.java:559-570</code>; <code>ReloadOrchestrator.java:439-446</code></td>
+</tr>
+<tr>
+<td>Diagnostic buckets and the facade</td>
+<td><code>JsonTreeBuilder.java:806-866</code>; <code>Diagnostics.java:64-166</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-boundaries-with-other-documents">7. Boundaries with other documents<a class="headerlink" href="#7-boundaries-with-other-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li>This page (schema.md): the authoritative reference for the JSON format, covering fields, types, requiredness, path rules, and error classification.</li>
+<li><strong><code>intro.md</code></strong>: an introductory explanation that answers "what is this, and why use it".</li>
+<li><strong><code>guide-content.md</code></strong>: a task-oriented guide that answers "how do I build my first content file"; its property key semantics and troubleshooting checklist take this page's format as authoritative.</li>
+<li><strong><code>guide-extension.md</code></strong>: Java-side extensions (custom <code>TypeHandler</code> / factories / property compilers).</li>
+<li><strong><code>api-registration.md</code> / <code>api-extension.md</code> / <code>api-diagnostics.md</code> / <code>api-reload.md</code></strong>: Java API references; where their index chapters still say <code>sources</code>, this page is authoritative.</li>
+<li><strong><code>../../reference/fsm.md</code></strong>: the codec fields <strong>inside</strong> state machine definition and animation clip elements.</li>
+</ul>
+<h2 id="appendix-a-not-covered-to-be-confirmed">Appendix A: Not covered / to be confirmed<a class="headerlink" href="#appendix-a-not-covered-to-be-confirmed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The <strong>complete field table and defaults</strong> of <code>state_machines</code> / <code>animation_clips</code> elements: this page specifies only the wrapper. For the element schema, treat the corresponding codec (<code>StateMachineDefinition.CODEC</code> / <code>AnimationClip.CODEC</code>) as the final authority; this page does not check it field by field.</li>
+<li>The runtime behavior when <code>tab</code> points at a creative tab that does not exist: the code only parses the string into a <code>ResourceLocation</code> (<code>BlockTypeHandler.resolveCreativeTab</code>) and does not validate at the format level whether that tab exists.</li>
+<li>Data pack indexes (data packs carrying <code>on_register</code> data) are not done this round; the registration phase reads the mod jar only, and a data pack's <code>on_register</code> section is not consumed. Whether a "snapshot comparison WARN" is needed is not implemented yet.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

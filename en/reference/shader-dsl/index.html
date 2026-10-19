@@ -1,0 +1,3668 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/shader-dsl/">
+      
+      
+        <link rel="prev" href="../rendering-backends/">
+      
+      
+        <link rel="next" href="../sidedness/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/shader-dsl/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Java Shader DSL Reference - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#java-shader-dsl-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Java Shader DSL Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/shader-dsl/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#java-shader-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Shader DSL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-adjustable-shader-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-Adjustable Shader Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-from-glsl-to-the-java-shader-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration from GLSL to the Java Shader DSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration from GLSL to the Java Shader DSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-and-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types and Expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globals-stage-inputs-and-stage-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Globals, Stage Inputs, and Stage Outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-variables-and-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Variables and Control Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-and-link-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming and Link Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-uniforms-and-samplers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Uniforms and Samplers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-glsl-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw GLSL Escape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradle-shader-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle Shader Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#java-shader-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Shader DSL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-adjustable-shader-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-Adjustable Shader Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-from-glsl-to-the-java-shader-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration from GLSL to the Java Shader DSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration from GLSL to the Java Shader DSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-and-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types and Expressions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globals-stage-inputs-and-stage-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Globals, Stage Inputs, and Stage Outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-variables-and-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Variables and Control Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-and-link-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming and Link Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-uniforms-and-samplers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Uniforms and Samplers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-glsl-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw GLSL Escape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradle-shader-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle Shader Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="java-shader-dsl-reference">Java Shader DSL Reference<a class="headerlink" href="#java-shader-dsl-reference" title="Permanent link">&para;</a></h1>
+<h2 id="java-shader-dsl">Java Shader DSL<a class="headerlink" href="#java-shader-dsl" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>The DSL does not parse a Java AST and does not decompile a lambda. A builder lambda runs immediately in Java and creates typed shader IR.</p>
+</li>
+<li>
+<p>Java conditions and loops control only IR construction. The final shader does not contain these Java structures. Use the shader builder for conditions and loops that must stay dynamic in GLSL.</p>
+</li>
+<li>
+<p>The backend inserts an expression from a Java variable at each use location. The expression does not automatically create a GLSL local variable.</p>
+</li>
+<li>
+<p>A <code>let*</code> call creates an initialized GLSL local variable. For later assignments, use a <code>local*</code> call that returns <code>ShaderVariable</code>.</p>
+</li>
+<li>
+<p>A fullscreen program contains only a fragment module and uses the built-in fullscreen vertex stage.</p>
+</li>
+<li>
+<p>A graphics program contains a vertex module and a fragment module. <code>position(...)</code> writes to <code>gl_Position</code>.</p>
+</li>
+<li>
+<p>Each fragment input must have a vertex output with the same name and type. Otherwise, program construction fails.</p>
+</li>
+<li>
+<p>A uniform or sampler with the same name in both stages must have an identical declaration. An identical declaration occurs only one time in the Minecraft shader JSON.</p>
+</li>
+<li>
+<p>A program ID must use the lowercase <code>namespace:path</code> resource-ID format.</p>
+</li>
+<li>
+<p>The current profile supports float, int, bool, vec2, vec3, vec4, mat2, mat3, mat4, and sampler2D. The profile also supports float uniform arrays and named structs. The profile supports stage inputs and outputs, local variables, structured control flow, common mathematical operations, and texture sampling.</p>
+</li>
+<li>
+<p>The current backend generates GLSL 150 and Minecraft core-shader JSON.</p>
+</li>
+<li>
+<p>During loading, a runtime-generated bundle has priority for its own <code>.vsh</code>, <code>.fsh</code>, and <code>.json</code> files. For a missing resource or import, loading uses the current client <code>ResourceProvider</code>.</p>
+</li>
+<li>
+<p>The DSL checks the stage interface of a graphics program during Java construction. The caller must match the <code>RenderShaderDescriptor</code> vertex format to the attributes.</p>
+</li>
+</ul>
+<h2 id="user-adjustable-shader-parameters">User-Adjustable Shader Parameters<a class="headerlink" href="#user-adjustable-shader-parameters" title="Permanent link">&para;</a></h2>
+<p>A shader does not expose all uniforms automatically. Register each user-adjustable parameter. Each parameter has a fixed <code>name</code>, <code>description</code>, <code>ShaderParameterType</code>, inclusive <code>range</code>, and <code>defaultValues</code>. The parameter name is also the GLSL uniform name. The name must be a valid, non-reserved GLSL identifier.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ShaderParameter</span><span class="w"> </span><span class="n">EXPOSURE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderParameter</span><span class="p">.</span><span class="na">floatParameter</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"Exposure"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"Controls the final output exposure"</span><span class="p">,</span>
+<span class="w">        </span><span class="mf">1.0f</span><span class="p">,</span><span class="w">  </span><span class="c1">// default</span>
+<span class="w">        </span><span class="mf">0.0f</span><span class="p">,</span><span class="w">  </span><span class="c1">// minimum</span>
+<span class="w">        </span><span class="mf">4.0f</span><span class="w">   </span><span class="c1">// maximum</span>
+<span class="p">);</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ShaderParameter</span><span class="w"> </span><span class="n">TINT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderParameter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">                </span><span class="s">"Tint"</span><span class="p">,</span>
+<span class="w">                </span><span class="s">"Multiplies the output color"</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ShaderParameterType</span><span class="p">.</span><span class="na">COLOR_RGB</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">defaultValues</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<p>In a generated shader, use the applicable <code>expose*</code> call to declare a uniform and register the parameter specification. A <code>uniform*</code> call keeps the uniform internal. The call does not add the uniform to the public schema.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ShaderProgram</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderProgram</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="s">"example:adjustable"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">FloatExpr</span><span class="w"> </span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">exposeFloat</span><span class="p">(</span><span class="n">EXPOSURE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vec3Expr</span><span class="w"> </span><span class="n">tint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">exposeVec3</span><span class="p">(</span><span class="n">TINT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vec3Expr</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">sampler2D</span><span class="p">(</span><span class="s">"SceneSampler"</span><span class="p">).</span><span class="na">sample</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">texCoord</span><span class="p">()).</span><span class="na">rgb</span><span class="p">();</span>
+<span class="w">    </span><span class="n">shader</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="na">mul</span><span class="p">(</span><span class="n">tint</span><span class="p">).</span><span class="na">mul</span><span class="p">(</span><span class="n">exposure</span><span class="p">),</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">)));</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>A resource shader or custom factory cannot use the DSL. Register the same specification on <code>RenderShaderDescriptor</code>. The resource uniform must match the parameter <code>name</code> and basic GLSL type. The first bind fails if the uniform is missing.</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderShaderDescriptor</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RenderShaderDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">resource</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">expose</span><span class="p">(</span><span class="n">EXPOSURE</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">expose</span><span class="p">(</span><span class="n">TINT</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<p><code>RenderShaderHandle.parameters()</code> supplies the default runtime parameter block for the registration. <code>ShaderParameterBlock</code> validates each change for component count, numeric type, finite values, and range. A parameter change does not regenerate or compile the shader. <code>reset(name)</code> uses the declared default. <code>resetAll()</code> restores all declared defaults.</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderShaderHandle</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registration</span><span class="p">.</span><span class="na">handle</span><span class="p">();</span>
+<span class="n">handle</span><span class="p">.</span><span class="na">parameters</span><span class="p">().</span><span class="na">setFloat</span><span class="p">(</span><span class="n">EXPOSURE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.35f</span><span class="p">);</span>
+<span class="n">handle</span><span class="p">.</span><span class="na">parameters</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">TINT</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.55</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+</code></pre></div>
+<p>When a fullscreen method receives a handle, Kasuga uploads the default parameter block before the draw. The applicable methods are <code>PostProcessContext.fullscreen(...)</code> and <code>PostProcessGraphContext.fullscreen(...)</code>. Kasuga cannot infer a registration from a direct <code>ShaderInstance</code>. Use <code>.parameters(block)</code> to bind a parameter block. Use <code>handle.createParameterBlock()</code> for each independent configuration of one shader.</p>
+<p>The current <code>ShaderParameterType</code> values include float, integer, boolean, vec2, vec3, vec4, RGB color, and RGBA color. <code>ShaderParameterType</code> also includes mat2, mat3, and mat4. The range applies to all components. Boolean parameters always use <code>[0, 1]</code>.</p>
+<p>To open the parameter panel:</p>
+<ol>
+<li>Enter <code>/kasuga_effects</code> in the client.</li>
+<li>Select <code>Parameters</code>.</li>
+</ol>
+<p>The schema generates the parameter panel. The panel is not specific to one effect. The panel shows each shader that exposes parameters. A boolean parameter uses a switch. Other parameter types use component sliders.</p>
+<p>Vectors, colors, and matrices use the applicable component names. A parameter change applies during the next draw. The change does not regenerate or recompile the shader.</p>
+<p>Kasuga saves the default parameter blocks asynchronously in <code>config/kasuga_lib/shader-parameters.json</code>. After a client restart, Kasuga restores values by shader ID and parameter name. An independent block from <code>createParameterBlock()</code> contains effect-instance state. Kasuga does not store this block in the global configuration.</p>
+<p>The configuration stores only values that override schema defaults. A reset permits a later schema default to apply. Use <code>isDefault(name)</code> and <code>hasOverrides()</code> to examine the current state.</p>
+<p>The following client commands examine, change, and reset exposed shader parameters. Use a command when a slider cannot set a large integer accurately. Also use a command to enter a complete vector or matrix:</p>
+<div class="highlight"><pre><span></span><code>/kasuga_effects parameter list &lt;shader-id&gt;
+/kasuga_effects parameter set &lt;shader-id&gt; &lt;name&gt; &lt;value...&gt;
+/kasuga_effects parameter reset &lt;shader-id&gt; &lt;name&gt;
+</code></pre></div>
+<p>Spaces or commas separate vector and matrix components. The built-in black-hole example exposes <code>LensingScale</code>, <code>DiskBrightness</code>, and <code>ChromaticScale</code>. The screen, time, and per-effect packed uniforms stay internal.</p>
+<p>The following example builds and registers a fullscreen shader from Java expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ShaderProgram</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderProgram</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="s">"example:screen_tint"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">sampler2D</span><span class="p">(</span><span class="s">"SceneSampler"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">tint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">uniformVec3</span><span class="p">(</span><span class="s">"Tint"</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scene</span><span class="p">.</span><span class="na">sample</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">texCoord</span><span class="p">());</span>
+<span class="w">    </span><span class="n">shader</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="na">rgb</span><span class="p">().</span><span class="na">mul</span><span class="p">(</span><span class="n">tint</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="p">.</span><span class="na">a</span><span class="p">()));</span>
+<span class="p">});</span>
+
+<span class="n">ShaderRegistration</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">shader</span><span class="p">(</span>
+<span class="w">        </span><span class="n">RenderShaderDescriptor</span><span class="p">.</span><span class="na">generated</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">withPreload</span><span class="p">(</span><span class="n">ShaderPreloadPolicy</span><span class="p">.</span><span class="na">DEFERRED</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">whenReady</span><span class="p">().</span><span class="na">thenAccept</span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rebuildDependentResources</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">handle</span><span class="p">()));</span>
+</code></pre></div>
+<h2 id="migration-from-glsl-to-the-java-shader-dsl">Migration from GLSL to the Java Shader DSL<a class="headerlink" href="#migration-from-glsl-to-the-java-shader-dsl" title="Permanent link">&para;</a></h2>
+<p>A builder lambda represents the body of the GLSL <code>main()</code> function. The lambda does not calculate pixel results. The lambda records declarations, expressions, and statements in call order. The backend then generates GLSL 150.</p>
+<h3 id="types-and-expressions">Types and Expressions<a class="headerlink" href="#types-and-expressions" title="Permanent link">&para;</a></h3>
+<p>The Java DSL uses expression-wrapper types in place of GLSL operators. Use <code>var</code> for an intermediate expression when the expression type is clear. The Java compiler checks the exact type.</p>
+<table>
+<thead>
+<tr>
+<th>GLSL</th>
+<th>Java DSL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>float</code>, <code>int</code>, <code>bool</code></td>
+<td><code>FloatExpr</code>, <code>IntExpr</code>, <code>BoolExpr</code></td>
+</tr>
+<tr>
+<td><code>vec2</code>, <code>vec3</code>, <code>vec4</code></td>
+<td><code>Vec2Expr</code>, <code>Vec3Expr</code>, <code>Vec4Expr</code></td>
+</tr>
+<tr>
+<td><code>mat2</code>, <code>mat3</code>, <code>mat4</code></td>
+<td><code>Mat2Expr</code>, <code>Mat3Expr</code>, <code>Mat4Expr</code></td>
+</tr>
+<tr>
+<td><code>sampler2D</code></td>
+<td><code>Sampler2DExpr</code></td>
+</tr>
+<tr>
+<td><code>struct Material</code></td>
+<td><code>ShaderStructType</code>, <code>StructExpr</code></td>
+</tr>
+<tr>
+<td><code>1.0</code>, <code>1</code>, <code>true</code></td>
+<td><code>shader.f32(1)</code>, <code>shader.i32(1)</code>, <code>shader.bool(true)</code></td>
+</tr>
+<tr>
+<td><code>vec2(x, y)</code></td>
+<td><code>shader.vec2(x, y)</code></td>
+</tr>
+<tr>
+<td><code>vec4(rgb, alpha)</code></td>
+<td><code>shader.vec4(rgb, alpha)</code></td>
+</tr>
+<tr>
+<td><code>a + b</code>, <code>a - b</code></td>
+<td><code>a.add(b)</code>, <code>a.sub(b)</code></td>
+</tr>
+<tr>
+<td><code>a * b</code>, <code>a / b</code></td>
+<td><code>a.mul(b)</code>, <code>a.div(b)</code></td>
+</tr>
+<tr>
+<td><code>a &lt; b</code>, <code>a &gt;= b</code>, <code>a == b</code></td>
+<td><code>a.lt(b)</code>, <code>a.gte(b)</code>, <code>a.equalTo(b)</code></td>
+</tr>
+<tr>
+<td><code>a &amp;&amp; b</code>, <code>a || b</code>, <code>!a</code></td>
+<td><code>a.and(b)</code>, <code>a.or(b)</code>, <code>a.not()</code></td>
+</tr>
+<tr>
+<td><code>texture(image, uv)</code></td>
+<td><code>image.sample(uv)</code></td>
+</tr>
+<tr>
+<td><code>normalize(v)</code>, <code>length(v)</code></td>
+<td><code>v.normalize()</code>, <code>v.length()</code></td>
+</tr>
+<tr>
+<td><code>mix(x, y, t)</code></td>
+<td><code>x.mix(y, t)</code></td>
+</tr>
+<tr>
+<td><code>atan(y, x)</code></td>
+<td><code>y.atan2(x)</code></td>
+</tr>
+<tr>
+<td><code>matrix * vector</code></td>
+<td><code>matrix.transform(vector)</code></td>
+</tr>
+<tr>
+<td><code>left * right</code> (matrix)</td>
+<td><code>left.mul(right)</code></td>
+</tr>
+<tr>
+<td><code>value.rgb</code>, <code>value.a</code></td>
+<td><code>value.rgb()</code>, <code>value.a()</code></td>
+</tr>
+<tr>
+<td><code>Values[index]</code></td>
+<td><code>values.get(index)</code></td>
+</tr>
+<tr>
+<td><code>float(integer)</code></td>
+<td><code>integer.toFloat()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Only a method from the applicable <code>Expr</code> type can generate code. For example, the current <code>Vec2Expr</code> supplies <code>normalize()</code>. Other vector wrappers do not always supply the same method. If an expression does not accept a Java number, use <code>f32()</code>, <code>i32()</code>, or an applicable primitive overload.</p>
+<h3 id="globals-stage-inputs-and-stage-outputs">Globals, Stage Inputs, and Stage Outputs<a class="headerlink" href="#globals-stage-inputs-and-stage-outputs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>uniformFloat</code>, <code>uniformInt</code>, <code>uniformBool</code>, <code>uniformVec*</code>, and <code>uniformMat*</code> declare GLSL uniforms. Supplied values become defaults in the Minecraft shader JSON. A matrix overload without a default uses an identity matrix.</p>
+</li>
+<li>
+<p><code>uniformFloatArray</code> is the only current method for uniform arrays. The length must be greater than 1. Use an <code>IntExpr</code> to index an element.</p>
+</li>
+<li>
+<p><code>sampler2D</code> declares <code>uniform sampler2D</code>.</p>
+</li>
+<li>
+<p><code>inputFloat</code>, <code>inputInt</code>, and <code>inputVec*</code> declare <code>in</code> values for the current stage.</p>
+</li>
+<li>
+<p>In a vertex stage, <code>outputFloat</code> and <code>outputVec*</code> declare <code>out</code> values. <code>position(...)</code> writes to <code>gl_Position</code>.</p>
+</li>
+<li>
+<p>In a fragment stage, <code>fragmentColor(...)</code> writes to the generated <code>fragColor</code>.</p>
+</li>
+<li>
+<p>A fullscreen fragment can use <code>texCoord()</code> to read the texture coordinates from the built-in vertex stage.</p>
+</li>
+<li>
+<p>A graphics fragment must use a method such as <code>inputVec2</code> to declare the fragment inputs. A call to <code>texCoord()</code> fails.</p>
+</li>
+<li>
+<p>A vertex program must call <code>position(...)</code> at least one time. A fragment program must call <code>fragmentColor(...)</code> at least one time. Validation only confirms that the IR contains a write. The shader author must write to the required output on all runtime paths.</p>
+</li>
+</ul>
+<p>The two stages in a graphics program represent the <code>.vsh</code> and <code>.fsh</code> files:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ShaderProgram</span><span class="w"> </span><span class="n">particle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderProgram</span><span class="p">.</span><span class="na">graphics</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"example:particle"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">vertex</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">inputVec3</span><span class="p">(</span><span class="s">"Position"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">inputVec2</span><span class="p">(</span><span class="s">"UV0"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">inputVec4</span><span class="p">(</span><span class="s">"Color"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">modelView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">uniformMat4</span><span class="p">(</span><span class="s">"ModelViewMat"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">uniformMat4</span><span class="p">(</span><span class="s">"ProjMat"</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">vertex</span><span class="p">.</span><span class="na">outputVec2</span><span class="p">(</span><span class="s">"particleUv"</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">);</span>
+<span class="w">            </span><span class="n">vertex</span><span class="p">.</span><span class="na">outputVec4</span><span class="p">(</span><span class="s">"particleColor"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">);</span>
+<span class="w">            </span><span class="n">vertex</span><span class="p">.</span><span class="na">position</span><span class="p">(</span><span class="n">projection</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span><span class="n">modelView</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">vertex</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">            </span><span class="p">)));</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">fragment</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fragment</span><span class="p">.</span><span class="na">inputVec2</span><span class="p">(</span><span class="s">"particleUv"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fragment</span><span class="p">.</span><span class="na">inputVec4</span><span class="p">(</span><span class="s">"particleColor"</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">radial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fragment</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="na">sub</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">uv</span><span class="p">.</span><span class="na">sub</span><span class="p">(</span><span class="n">fragment</span><span class="p">.</span><span class="na">vec2</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">)).</span><span class="na">length</span><span class="p">().</span><span class="na">mul</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="na">min</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span><span class="n">fragment</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">fragment</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">color</span><span class="p">.</span><span class="na">rgb</span><span class="p">().</span><span class="na">mul</span><span class="p">(</span><span class="n">radial</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="na">a</span><span class="p">().</span><span class="na">mul</span><span class="p">(</span><span class="n">radial</span><span class="p">)</span>
+<span class="w">            </span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">RenderShaderDescriptor</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RenderShaderDescriptor</span><span class="p">.</span><span class="na">generated</span><span class="p">(</span>
+<span class="w">        </span><span class="n">particle</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DefaultVertexFormat</span><span class="p">.</span><span class="na">POSITION_TEX_COLOR</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>The <code>Position</code>, <code>UV0</code>, and <code>Color</code> input names and types must match the supplied Minecraft <code>VertexFormat</code>. The DSL checks the vertex-to-fragment interface, but it does not check the <code>VertexFormat</code>.</p>
+<h3 id="local-variables-and-control-flow">Local Variables and Control Flow<a class="headerlink" href="#local-variables-and-control-flow" title="Permanent link">&para;</a></h3>
+<p>A Java variable holds one IR expression. In this example, <code>brightness</code> does not create a GLSL local variable. The backend inserts the <code>brightness</code> expression at the use location:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">brightness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="na">rgb</span><span class="p">().</span><span class="na">mul</span><span class="p">(</span><span class="n">intensity</span><span class="p">);</span>
+<span class="n">shader</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">brightness</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="na">a</span><span class="p">()));</span>
+</code></pre></div>
+<p><code>letFloat/letVec*</code>, <code>letMat*</code>, and <code>letStruct</code> create GLSL local variables that are read-only in the DSL. For later assignments, use the applicable <code>local*</code> method. <code>get()</code> reads the variable. <code>set()</code> writes the variable.</p>
+<p>This GLSL:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">float</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Count</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Values</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">fragColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</code></pre></div>
+<p>The equivalent Java DSL is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">uniformInt</span><span class="p">(</span><span class="s">"Count"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">uniformFloatArray</span><span class="p">(</span><span class="s">"Values"</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">localFloat</span><span class="p">(</span><span class="s">"sum"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">forRange</span><span class="p">(</span><span class="s">"index"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">shader</span><span class="p">.</span><span class="na">ifThen</span><span class="p">(</span><span class="n">index</span><span class="p">.</span><span class="na">gte</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span><span class="w"> </span><span class="n">shader</span><span class="p">::</span><span class="n">breakLoop</span><span class="p">);</span>
+<span class="w">    </span><span class="n">shader</span><span class="p">.</span><span class="na">ifThen</span><span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">index</span><span class="p">).</span><span class="na">lte</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span><span class="w"> </span><span class="n">shader</span><span class="p">::</span><span class="n">continueLoop</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sum</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">sum</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">index</span><span class="p">)));</span>
+<span class="p">});</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">sum</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">sum</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">sum</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mi">1</span><span class="p">)));</span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>ifThen</code> and <code>ifThenElse</code> generate shader branches. A Java <code>if</code> runs one time during IR construction.</p>
+</li>
+<li>
+<p><code>forRange(name, start, end, body)</code> generates an integer loop. The loop increments by 1 and uses <code>&lt; end</code> as the end condition.</p>
+</li>
+<li>
+<p><code>whileLoop(condition, body)</code> generates <code>while</code>. <code>doWhile(condition, body)</code> generates <code>do while</code>.</p>
+</li>
+<li>
+<p><code>breakLoop()</code> can exit only the innermost loop. You can use <code>continueLoop()</code> in a loop.</p>
+</li>
+<li>
+<p>A Java <code>for</code> can unroll an expression for constant values. The Java loop does not generate a GLSL loop.</p>
+</li>
+<li>
+<p>If a shader value changes across branches or loops in a Java lambda, use <code>ShaderVariable</code>. Do not rebind a Java local variable to represent a shader assignment.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">localInt</span><span class="p">(</span><span class="s">"cursor"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">whileLoop</span><span class="p">(</span><span class="n">cursor</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">lt</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cursor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">cursor</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="n">shader</span><span class="p">.</span><span class="na">ifThen</span><span class="p">(</span><span class="n">cursor</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">gte</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">64</span><span class="p">)),</span><span class="w"> </span><span class="n">shader</span><span class="p">::</span><span class="n">breakLoop</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">doWhile</span><span class="p">(</span><span class="n">cursor</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">gt</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">cursor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">cursor</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">sub</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">i32</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="structs">Structs<a class="headerlink" href="#structs" title="Permanent link">&para;</a></h3>
+<p>A struct is a named type. The <code>ShaderStructType.Builder</code> that creates a field owns the field key. You cannot use the field key with a different struct. This restriction applies when the other struct has a field with the same name and type.</p>
+<p>Declare a dependency struct before you declare the struct that contains the dependency. The current DSL supports structs for typed locals, construction, field reads, and field assignments. The DSL does not support structs for uniforms, stage inputs, or stage outputs.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">materialBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShaderStructType</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">"Material"</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">tint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">materialBuilder</span><span class="p">.</span><span class="na">vec3Field</span><span class="p">(</span><span class="s">"tint"</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">materialBuilder</span><span class="p">.</span><span class="na">floatField</span><span class="p">(</span><span class="s">"roughness"</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">materialType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">materialBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">declareStruct</span><span class="p">(</span><span class="n">materialType</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">material</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">localStruct</span><span class="p">(</span><span class="s">"material"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">structValue</span><span class="p">(</span>
+<span class="w">        </span><span class="n">materialType</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">vec3</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">),</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="n">shader</span><span class="p">.</span><span class="na">setStructField</span><span class="p">(</span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="n">roughness</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">));</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">finalTint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">field</span><span class="p">(</span><span class="n">tint</span><span class="p">);</span>
+</code></pre></div>
+<p><code>structValue</code> arguments must follow the order of field declarations. The builder checks the argument count and types during Java construction.</p>
+<h3 id="switch-statements">Switch Statements<a class="headerlink" href="#switch-statements" title="Permanent link">&para;</a></h3>
+<p><code>switchOn</code> accepts an <code>IntExpr</code>. <code>caseOf</code> keeps declaration order and does not insert <code>break</code>. Therefore, <code>caseOf</code> permits GLSL fallthrough. Call <code>breakSwitch()</code> to end a case. The generated output puts <code>defaultCase</code> after all cases.</p>
+<div class="highlight"><pre><span></span><code><span class="n">shader</span><span class="p">.</span><span class="na">switchOn</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">cases</span>
+<span class="w">        </span><span class="p">.</span><span class="na">caseOf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">intensity</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">));</span>
+<span class="w">            </span><span class="n">shader</span><span class="p">.</span><span class="na">breakSwitch</span><span class="p">();</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="p">.</span><span class="na">caseOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">intensity</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">0.75f</span><span class="p">)))</span><span class="w"> </span><span class="c1">// fallthrough</span>
+<span class="w">        </span><span class="p">.</span><span class="na">defaultCase</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">intensity</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">)))</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>For <code>breakLoop()</code> and <code>breakSwitch()</code>, the applicable structure must be the innermost break target. This rule prevents an invalid bare <code>break</code>. A case in a loop can call <code>breakSwitch()</code>. The case cannot call <code>breakLoop()</code> directly. To exit the outer loop, set a boolean local variable. Test the variable after the switch.</p>
+<h3 id="naming-and-link-rules">Naming and Link Rules<a class="headerlink" href="#naming-and-link-rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>A shader program ID must use lowercase <code>namespace:path</code>.</p>
+</li>
+<li>
+<p>A shader identifier must match <code>[A-Za-z_][A-Za-z0-9_]*</code>. It must not start with <code>gl_</code>, and it must not be a reserved GLSL word.</p>
+</li>
+<li>
+<p>Globals, locals, and loop indexes in one stage share one name set. A name cannot occur more than one time in the complete stage. Separate code blocks do not create reusable name scopes.</p>
+</li>
+<li>
+<p>A fragment input must have a vertex output with the same name and type. A vertex can have additional outputs that the fragment does not read.</p>
+</li>
+<li>
+<p>If both stages use a uniform or sampler with the same name, its storage, type, array length, and default value must be identical.</p>
+</li>
+<li>
+<p>Names are case-sensitive. The final GLSL and Minecraft JSON use these names without changes.</p>
+</li>
+</ul>
+<h3 id="runtime-uniforms-and-samplers">Runtime Uniforms and Samplers<a class="headerlink" href="#runtime-uniforms-and-samplers" title="Permanent link">&para;</a></h3>
+<p>F3+T replaces the current <code>ShaderInstance</code>. For a long-life object:</p>
+<ol>
+<li>Store only a <code>RenderShaderHandle</code>.</li>
+<li>
+<p>During each render, access the current generation through the handle or pass context.</p>
+</li>
+<li>
+<p>On the render thread, update a uniform through <code>currentShader.safeGetUniform(name).set(...)</code>.</p>
+</li>
+<li>
+<p>In a fullscreen pass, use <code>colorSampler</code>, <code>depthSampler</code>, or <code>textureSampler</code> to bind a sampler.</p>
+</li>
+</ol>
+<p>To upload a float array:</p>
+<ol>
+<li>Set the <code>float[]</code> capacity to the length in the shader declaration.</li>
+<li>
+<p>Upload the complete <code>float[]</code>.</p>
+</li>
+<li>
+<p>A uniform default in the DSL generates a JSON default. It does not overwrite a current value that Java uploads each frame.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">context</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">main</span><span class="p">(),</span><span class="w"> </span><span class="n">shaderHandle</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">colorSampler</span><span class="p">(</span><span class="s">"SceneSampler"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">scene</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">uniforms</span><span class="p">(</span><span class="n">active</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">active</span><span class="p">.</span><span class="na">safeGetUniform</span><span class="p">(</span><span class="s">"Tint"</span><span class="p">).</span><span class="na">set</span><span class="p">(</span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="raw-glsl-escape">Raw GLSL Escape<a class="headerlink" href="#raw-glsl-escape" title="Permanent link">&para;</a></h3>
+<p>Use a raw escape for GLSL that the typed API cannot represent. All raw entry points have <code>@DelicateShaderApi</code>. This annotation identifies code for additional review. The annotation does not guarantee API stability. The Java compiler does not validate raw GLSL.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@DelicateShaderApi</span>
+<span class="kd">static</span><span class="w"> </span><span class="n">ShaderProgram</span><span class="w"> </span><span class="nf">derivativeShader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ShaderProgram</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="s">"example:derivative"</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">rawPreamble</span><span class="p">(</span><span class="s">"#extension GL_ARB_gpu_shader5 : enable"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">rawDeclaration</span><span class="p">(</span><span class="s">"""</span>
+<span class="s">                float saturate(float value) {</span>
+<span class="s">                    return clamp(value, 0.0, 1.0);</span>
+<span class="s">                }</span>
+<span class="s">                """</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">rawFloat</span><span class="p">(</span><span class="s">"dFdx(texCoord.x)"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">rawStatement</span><span class="p">(</span><span class="s">"if (edge &lt; 0.0) discard;"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">shader</span><span class="p">.</span><span class="na">fragmentColor</span><span class="p">(</span><span class="n">shader</span><span class="p">.</span><span class="na">vec4</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span><span class="w"> </span><span class="n">edge</span><span class="p">,</span><span class="w"> </span><span class="n">edge</span><span class="p">,</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">f32</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">)));</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>rawPreamble</code> inserts text after <code>#version 150</code>. Use it for extensions and macros.</p>
+</li>
+<li>
+<p><code>rawDeclaration</code> inserts text after globals and before <code>main()</code>. Use it for user functions and backend-specific declarations.</p>
+</li>
+<li>
+<p><code>rawStatement</code> copies the statement text into the current block. The method does not parse or change the text.</p>
+</li>
+<li>
+<p><code>rawFloat</code>, <code>rawInt</code>, <code>rawBool</code>, <code>rawVec*</code>, <code>rawMat*</code>, and <code>rawStruct</code> wrap source text in caller-declared expression types.</p>
+</li>
+</ul>
+<p>The raw API rejects only empty strings. The raw API does not parse source text. The raw API does not track types, identifiers, uniforms, stage interfaces, or control flow. The caller is responsible for the declared type of a raw expression. The caller is also responsible for raw-uniform JSON entries and GLSL driver support. Use the typed API when the typed API supports the required feature.</p>
+<p>The typed API does not currently supply user functions, struct uniforms, struct stage inputs, or struct stage outputs. The typed API also excludes non-float uniform arrays, arbitrary swizzles, <code>discard</code>, derivatives, and advanced texture sampling. A raw escape can supply these features. A resource shader or custom factory can also supply these features. Extend the typed IR and backend for cross-backend support, link validation, or a long-life public API. Do not use a raw string as a permanent interface.</p>
+<h2 id="gradle-shader-generation">Gradle Shader Generation<a class="headerlink" href="#gradle-shader-generation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="s1">'builder.kasuga.shader'</span>
+<span class="o">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p>The <code>builder.kasuga.shader</code> plugin creates the <code>shader</code> source set. The plugin reads <code>src/shader/java</code> and <code>src/shader/resources</code>. The plugin also adds the shader DSL dependency.</p>
+</li>
+<li>
+<p><code>generateKasugaShaders</code> runs before <code>processResources</code>. The task first clears the generated-output directory. The task then runs the shader providers.</p>
+</li>
+<li>
+<p>A provider must be a non-abstract public class that implements <code>ShaderProgramProvider</code>. The provider must have a public no-argument constructor. The generation task fails if the provider does not meet these conditions.</p>
+</li>
+<li>
+<p>The task sorts providers by class name before execution. The task converts each returned program to <code>.vsh</code>, <code>.fsh</code>, and <code>.json</code> resources.</p>
+</li>
+<li>
+<p>If two programs generate the same path, the task fails. The task does not overwrite generated output.</p>
+</li>
+<li>
+<p>The plugin adds the generated directory to the main resources. Therefore, the final JAR contains the generated content.</p>
+</li>
+</ul>
+<blockquote>
+<p>Other pages of this topic: <a href="../effect-rendering/">Custom Rendering Specification</a> and <a href="../effects-and-postfx/">Managed Effects and Post-Processing</a>.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

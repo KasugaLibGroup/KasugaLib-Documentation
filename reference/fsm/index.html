@@ -1,0 +1,4878 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/fsm/">
+      
+      
+        <link rel="prev" href="../frame-output/">
+      
+      
+        <link rel="next" href="../lifecycle/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/reference/fsm/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>状态机与动画剪辑 JSON 参考 - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#状态机与动画剪辑-json-参考" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              状态机与动画剪辑 JSON 参考
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/reference/fsm/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-两个文件三种读者" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 两个文件、三种读者
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-文件位置与发现方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 文件位置与发现方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-state_machines-文件-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. state_machines 文件 wrapper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. state_machines 文件 wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-顶层键-state_machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 顶层键 state_machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-合法示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 合法示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-旧的无-wrapper-形状会被拒绝破坏性变更" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 旧的无 wrapper 形状会被拒绝（破坏性变更）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-多余顶层键不再拒绝文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 多余顶层键不再拒绝文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-animation_clips-文件-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. animation_clips 文件 wrapper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-文件级严格-vs-元素级容错" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 文件级严格 vs 元素级容错
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-state_machines-元素字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. state_machines 元素字段
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. state_machines 元素字段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-定义顶层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 定义顶层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-state_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 state_vars[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 layers[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 states[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 transitions[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-pose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 pose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-行为函数引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 行为函数引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 clip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-animation_clips-元素字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. animation_clips 元素字段
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. animation_clips 元素字段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-剪辑顶层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 剪辑顶层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-bones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 bones[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-morphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 morphs[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 frames[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 functions[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-easing-名称" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 easing 名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-元素内未知键被忽略" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 元素内未知键被忽略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-两条发现路径的差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 两条发现路径的差异
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-编排者-reloadorchestrator-与两个-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 编排者 ReloadOrchestrator 与两个 handler
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 编排者 ReloadOrchestrator 与两个 handler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-reload-的-stage-顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 reload() 的 stage 顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-类型由注册表驱动不硬编码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 类型由注册表驱动，不硬编码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-last-wins-与败者无副作用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 last-wins 与「败者无副作用」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-四层异常守卫-兜底" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 四层异常守卫 + 兜底
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-两个-handler-的职责分工" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 两个 handler 的职责分工
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-诊断走域源键维domainreload_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 诊断走域/源键维（Domain.RELOAD_DATA）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-clip-引用与悬空引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. clip 引用与悬空引用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-script-wins分桶" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. script-wins（分桶）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-反例汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 反例汇总
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-绑定到方块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 绑定到方块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-延伸阅读" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 延伸阅读
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a规则出处对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：规则出处对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-b待确认" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 B：待确认
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-两个文件三种读者" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 两个文件、三种读者
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-文件位置与发现方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 文件位置与发现方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-state_machines-文件-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. state_machines 文件 wrapper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. state_machines 文件 wrapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-顶层键-state_machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 顶层键 state_machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-合法示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 合法示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-旧的无-wrapper-形状会被拒绝破坏性变更" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 旧的无 wrapper 形状会被拒绝（破坏性变更）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-多余顶层键不再拒绝文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 多余顶层键不再拒绝文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-animation_clips-文件-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. animation_clips 文件 wrapper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-文件级严格-vs-元素级容错" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 文件级严格 vs 元素级容错
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-state_machines-元素字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. state_machines 元素字段
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. state_machines 元素字段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-定义顶层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 定义顶层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-state_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 state_vars[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 layers[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 states[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 transitions[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-pose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 pose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-行为函数引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 行为函数引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 clip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-animation_clips-元素字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. animation_clips 元素字段
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. animation_clips 元素字段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-剪辑顶层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 剪辑顶层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-bones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 bones[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-morphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 morphs[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 frames[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 functions[]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-easing-名称" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 easing 名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-元素内未知键被忽略" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 元素内未知键被忽略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-两条发现路径的差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 两条发现路径的差异
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-编排者-reloadorchestrator-与两个-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 编排者 ReloadOrchestrator 与两个 handler
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 编排者 ReloadOrchestrator 与两个 handler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-reload-的-stage-顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 reload() 的 stage 顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-类型由注册表驱动不硬编码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 类型由注册表驱动，不硬编码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-last-wins-与败者无副作用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 last-wins 与「败者无副作用」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-四层异常守卫-兜底" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 四层异常守卫 + 兜底
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-两个-handler-的职责分工" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 两个 handler 的职责分工
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-诊断走域源键维domainreload_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 诊断走域/源键维（Domain.RELOAD_DATA）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-clip-引用与悬空引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. clip 引用与悬空引用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-script-wins分桶" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. script-wins（分桶）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-反例汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 反例汇总
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-绑定到方块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 绑定到方块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-延伸阅读" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 延伸阅读
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a规则出处对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：规则出处对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-b待确认" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 B：待确认
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="状态机与动画剪辑-json-参考">状态机与动画剪辑 JSON 参考<a class="headerlink" href="#状态机与动画剪辑-json-参考" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>类型：Reference（信息向，供查阅）。
+适用版本：Minecraft 1.21.1、NeoForge 21.1.203、Parchment 2024.11.17、Java 21。本页字段只在该版本区间内成立。
+行号仅作定位提示，可能随源码变化；以类名、方法名和测试名为准。
+权威来源：元素字段来自 codec（<code>StateMachineDefinition.CODEC</code>、<code>AnimationClip.CODEC</code> 及其子 codec）；wrapper 与发现规则来自 <code>StateMachineDefinitionLoader</code> / <code>AnimationClipLoader</code> / <code>ReloadOrchestrator</code> / <code>FsmReloadHandler</code> / <code>FsmClipsReloadHandler</code>。每条规则给出处；本页不沿用重写前的旧结论。
+边界：本页只讲<strong>状态机定义与动画剪辑的元素格式、文件 wrapper、reload 编排</strong>。索引文件与注册期内容文件见 <a href="../data-driven/schema/"><code>data-driven/schema.md</code></a>；Java API 签名见 <a href="../data-driven/"><code>data-driven/README.md</code></a>；内容组织实践见 <a href="../../guides/data-driven/guide-content/"><code>data-driven/guide-content.md</code></a>。</p>
+</blockquote>
+<h2 id="0-两个文件三种读者">0. 两个文件、三种读者<a class="headerlink" href="#0-两个文件三种读者" title="Permanent link">&para;</a></h2>
+<p>动画状态机（FSM，finite state machine）是 Mecanim 风格的分层状态机：多个 layer（状态层）并行运行，每 tick 合成各 layer 的 pose 写进模型。FSM 与它播放的动画剪辑（animation clip，一段按时间轴采样的骨骼 / morph / 材质帧轨道）都以 JSON 定义。</p>
+<p>reload 期（<code>/reload</code> 触发的资源重读）只有<strong>一个编排者</strong>：<code>ReloadOrchestrator</code>（data-driven 模块，包 <code>lib.kasuga.registration.data_driven.reload</code>）。它读<strong>包栈</strong>（pack stack，而非 jar），所以数据包可以覆盖这些文件。类型不是它硬编码的：每个已注册 <code>ReloadHandler</code> 的 <code>typeName()</code> 是一个合法顶层键；modelling 侧注册了两个 handler，对应两个顶层键：</p>
+<table>
+<thead>
+<tr>
+<th>顶层键</th>
+<th>handler（modelling）</th>
+<th>转调的解码器</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state_machines</code></td>
+<td><code>FsmReloadHandler</code></td>
+<td><code>StateMachineDefinitionLoader.decodeFile</code></td>
+<td>状态机定义</td>
+</tr>
+<tr>
+<td><code>animation_clips</code></td>
+<td><code>FsmClipsReloadHandler</code></td>
+<td><code>AnimationClipLoader.decodeFile</code></td>
+<td>动画剪辑元素</td>
+</tr>
+</tbody>
+</table>
+<p>两个解码器（<code>StateMachineDefinitionLoader</code> / <code>AnimationClipLoader</code>）都是<strong>纯文件层组件</strong>，留在 modelling，不再各自持有 reload 监听器或清桶逻辑。两个 <code>ReloadHandler</code> 是围绕它们的一层：认领顶层键、声明 glob 目录、写桶、跑收尾校验，由 <code>FsmReloadHandlerRegistrar</code> 在 context 启动时按 <strong>fsm → clips</strong> 顺序登记进 <code>ReloadHandlerRegistry</code>。reload 周期（清桶 / 发现 / 注册 / 复核）全部由 <code>ReloadOrchestrator</code> 拥有，编排器本身不认识 <code>state_machines</code> 或 <code>animation_clips</code> 任何一个名字。</p>
+<h2 id="1-文件位置与发现方式">1. 文件位置与发现方式<a class="headerlink" href="#1-文件位置与发现方式" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>位置</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态机</td>
+<td><code>data/&lt;namespace&gt;/state_machines/&lt;path&gt;.json</code>，<strong>或</strong>任意被 <code>on_reload</code> 列出的路径</td>
+<td><strong>目录 glob + 索引</strong>双入口</td>
+</tr>
+<tr>
+<td>动画剪辑</td>
+<td>任意被 <code>on_reload</code> 列出的路径（惯例放 <code>animation_clips/</code>）</td>
+<td><strong>仅索引</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>state_machines/</code> 有目录 glob：<code>FsmReloadHandler.globDirectories()</code> 声明 <code>StateMachineDefinitionLoader.PATH = "state_machines"</code>（<code>FsmReloadHandler.java:69-71</code>），由 <code>ReloadOrchestrator.collectGlob</code>（<code>:348-367</code>）用 <code>ResourceManager.listResources</code> 按资源位置排序列举该命名空间的 <code>.json</code>。<strong>即使文件没被任何索引列出也会被读</strong>。</li>
+<li><code>animation_clips/</code> <strong>没有目录 glob</strong>（<code>AnimationClipLoader.java:29</code>；<code>FsmClipsReloadHandler</code> 保持 <code>globDirectories()</code> 默认空集）。一个没被索引列出的剪辑文件<strong>永远不被读</strong>。测试：<code>AnimationClipReloadTest.animationClipsDirectoryIsNotGlobDiscovered</code>。</li>
+<li>索引列出的 <code>state_machines/</code> 文件会被 glob 入口跳过，保证只读一次（<code>collectGlob</code>，<code>ReloadOrchestrator.java:348-367</code>；测试 <code>ReloadOrchestratorTest.globAndIndexListingTheSameFileReadItOnce</code>）。</li>
+</ul>
+<blockquote>
+<p>文件路径与定义 <code>id</code> <strong>不需要一致</strong>：<code>id</code> 由元素自身的 <code>id</code> 字段决定（见 §5.1、§6.1）。裸路径（不含冒号）按 <code>Id.parse</code> 补默认命名空间 <code>minecraft</code>（<code>Id.java:49-71</code>）。</p>
+</blockquote>
+<h2 id="2-state_machines-文件-wrapper">2. <code>state_machines</code> 文件 wrapper<a class="headerlink" href="#2-state_machines-文件-wrapper" title="Permanent link">&para;</a></h2>
+<h3 id="21-顶层键-state_machines">2.1 顶层键 <code>state_machines</code><a class="headerlink" href="#21-顶层键-state_machines" title="Permanent link">&para;</a></h3>
+<p>每个 <code>state_machines</code> 文件是一个 JSON 对象，其中 <code>state_machines</code> 键的值必须是数组：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"state_machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&lt;de</span><span class="kc">f</span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>规则（<code>StateMachineDefinitionLoader.decodeFile</code>，<code>:67-100</code>）：</p>
+<ul>
+<li>body 必须是 JSON 对象；</li>
+<li>必须有顶层键 <code>state_machines</code>（常量 <code>FIELD_STATE_MACHINES = "state_machines"</code>，<code>:42</code>）；</li>
+<li>该键的值必须是数组。</li>
+</ul>
+<p><strong>多顶层键合法</strong>：文件可以同时携带其它顶层键（如 <code>animation_clips</code>），本解码器只读自己的键、忽略其余，不再因此拒绝文件。其中不被任何 reload 类型认领的键（真未知键）由编排器报一条 <code>unsupported top-level field</code>，但<strong>不影响</strong> <code>state_machines</code> 的贡献（见 §2.4）。</p>
+<p>三种违规——非对象 body、缺键、值非数组——<strong>拒绝整个文件</strong>，返回一条 error，不注册任何定义。逐条文案见 <code>decodeFile</code>（<code>:67-100</code>）；缺键诊断会把期望形状 <code>{"state_machines": [ &lt;definition&gt;, ... ]}</code> 原样引用出来（<code>EXPECTED_SHAPE</code>，<code>:45</code>）。</p>
+<h3 id="22-合法示例">2.2 合法示例<a class="headerlink" href="#22-合法示例" title="Permanent link">&para;</a></h3>
+<p>下面是一个当前 loader 可解析的完整文件（<code>id = example:lamp</code>，两个状态、一条触发器转移 + 一条守卫转移）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"state_machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:lamp"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"state_vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lit"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w"> </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"ephemeral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"initial_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"states"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"pose"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"morphs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"glow"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">"transitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off_to_on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w"> </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"trigger_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lit"</span><span class="p">,</span><span class="w"> </span><span class="nt">"cross_fade_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on_to_off"</span><span class="p">,</span><span class="w"> </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w"> </span><span class="nt">"when"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"example:not_lit"</span><span class="p">],</span><span class="w"> </span><span class="nt">"cross_fade_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>trigger_on: "lit"</code> 指向本机 <code>state_vars</code> 里声明的布尔变量名；<code>when: ["example:not_lit"]</code> 指向代码侧注册的守卫函数。两者未注册只会在构建机器时警告，不影响文件解码（见 §5.7）。</p>
+<h3 id="23-旧的无-wrapper-形状会被拒绝破坏性变更">2.3 旧的无 wrapper 形状会被拒绝（破坏性变更）<a class="headerlink" href="#23-旧的无-wrapper-形状会被拒绝破坏性变更" title="Permanent link">&para;</a></h3>
+<p><strong>旧格式把定义直接放在顶层</strong>（没有 <code>state_machines</code> 包裹）。这是当前实现的 legacy 形状，<strong>整文件被拒</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:lamp"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"state_vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lit"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="nt">"initial_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>照这份写会得到 <code>missing top-level key 'state_machines'</code>，<strong>0 条注册</strong>。重写前的 <code>fsm.md</code> 给出的正是这种格式，二者直接相反。</p>
+<p>可执行证据：</p>
+<ul>
+<li><code>StateMachineDefinitionLoaderTest.legacyShapeIsRejectedAndReportsExpectedShape</code>（<code>:77-83</code>）：断言解码结果为空定义列表，且 error 文本包含 <code>state_machines</code>；</li>
+<li><code>ReloadOrchestratorTest.legacyShapeRegistersNothing</code>（<code>:244-247</code>）：走完整 reload 周期后该 id 为 <code>null</code>。</li>
+</ul>
+<h3 id="24-多余顶层键不再拒绝文件">2.4 多余顶层键不再拒绝文件<a class="headerlink" href="#24-多余顶层键不再拒绝文件" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"state_machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:lamp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="nt">"initial_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"extra"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>extra</code> 不被任何 reload 类型认领，编排器对它报一条 <code>unsupported top-level field 'extra'</code>（并附反向 D9 提示）；但 <code>state_machines</code> 照常解码、照常注册。判定不再依赖「顶层键数量」，而是逐个未知键检查（<code>ReloadOrchestrator.dispatch</code>；<code>ContentStructure.unknownKeys</code>）。测试 <code>StateMachineDefinitionLoaderTest.extraTopLevelKeyDoesNotAffectThisType</code>（<code>:96-102</code>）、<code>ReloadOrchestratorTest.extraTopLevelKeyIsReportedButDoesNotRejectTheFile</code>（<code>:265-275</code>）。</p>
+<blockquote>
+<p>早先版本在 <code>decodeFile</code> 里检查 <code>root.size() != 1</code>，多一个键就整文件拒绝；该检查已删除。</p>
+</blockquote>
+<h2 id="3-animation_clips-文件-wrapper">3. <code>animation_clips</code> 文件 wrapper<a class="headerlink" href="#3-animation_clips-文件-wrapper" title="Permanent link">&para;</a></h2>
+<p>形状对称，认领的顶层键为 <code>animation_clips</code>（常量 <code>AnimationClipLoader.FIELD_ANIMATION_CLIPS = "animation_clips"</code>，<code>:45</code>）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"animation_clips"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&lt;clip&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>完全相同的三种文件级违规、同样的整文件拒绝语义（<code>AnimationClipLoader.decodeFile</code>，<code>:69-102</code>）。测试 <code>AnimationClipLoaderTest</code>：<code>rejectsANonObjectBody</code> / <code>rejectsAMissingTopLevelKey</code> / <code>ignoresAnExtraTopLevelKey</code> / <code>rejectsANonArrayValue</code>。</p>
+<p>多顶层键合法：一个文件<strong>可以同时</strong>声明 <code>state_machines</code> 和 <code>animation_clips</code>，两个 handler 各自认领自己的键、各贡献各的条目，互不影响（<code>ReloadOrchestrator.dispatch</code>，<code>:429-470</code>；测试 <code>AnimationClipReloadTest.mixedTopLevelKeysAreConsumedByBothHandlers</code>）。真未知键（不被任何 handler 认领）才报 <code>unsupported top-level field</code>，且不阻断已知键。</p>
+<h2 id="4-文件级严格-vs-元素级容错">4. 文件级严格 vs 元素级容错<a class="headerlink" href="#4-文件级严格-vs-元素级容错" title="Permanent link">&para;</a></h2>
+<p>两个解码器共享同一套失败隔离，边界是<strong>文件</strong>与<strong>元素</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>违规</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件级</td>
+<td>非对象 body / 缺顶层键 / 值非数组</td>
+<td><strong>整个文件拒绝</strong>，一条 error，0 条注册</td>
+</tr>
+<tr>
+<td>文件级</td>
+<td>顶层有真未知键（不被任何 handler 认领）</td>
+<td><strong>报一条 <code>unsupported top-level field</code></strong>，已知键照常贡献（半应用）</td>
+</tr>
+<tr>
+<td>元素级</td>
+<td>数组元素不是对象</td>
+<td><strong>只跳过该元素</strong>，报 <code>key[i] must be an object ...; element skipped</code></td>
+</tr>
+<tr>
+<td>元素级</td>
+<td>元素是对象但 codec 解码失败（缺必填字段 / 类型不对 / 枚举 token 未知）</td>
+<td><strong>只跳过该元素</strong>，报 <code>key[i] failed to decode ...; element skipped</code>，兄弟照常</td>
+</tr>
+<tr>
+<td>元素级</td>
+<td>元素对象里有 codec <strong>没命名</strong>的键</td>
+<td><strong>不报错，被忽略</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>分界由 <code>decodeFile</code> 的两段逻辑实现：形状检查先做、整文件返回；通过后才逐个 <code>CODEC.parse(...).resultOrPartial(...)</code>（<code>StateMachineDefinitionLoader.java:88-98</code>；<code>AnimationClipLoader.java:90-100</code>）。</li>
+<li>元素级容错的测试：<code>StateMachineDefinitionLoaderTest.badElementIsSkippedWhileSiblingsDecode</code>（<code>:85-94</code>，数组里夹一个数字和一个缺 <code>layers</code> 的对象，两个好元素仍解码）、<code>AnimationClipLoaderTest.skipsAMalformedElementAndKeepsItsSiblings</code>（<code>:104-114</code>）与 <code>skipsAnElementWithoutAnId</code>（<code>:117-126</code>）。</li>
+<li>元素内未知键被忽略：<code>AnimationClipLoaderTest.ignoresKeysTheClipRecordDoesNotName</code>（<code>:132-144</code>）。<strong>这是元素层与文件层的最大差异</strong>——文件顶层的真未知键会被报告（但文内已知键照常生效），元素对象里多一个键则完全无声忽略。状态机元素同理（<code>StateMachineDefinition.CODEC</code> 也是 <code>RecordCodecBuilder</code>），但该点目前只有剪辑侧有专项测试。</li>
+<li>空数组合法：<code>{"animation_clips": []}</code> 干净通过（<code>AnimationClipLoaderTest.emptyClipArrayIsValid</code>，<code>:53-59</code>）。</li>
+</ul>
+<h2 id="5-state_machines-元素字段">5. <code>state_machines</code> 元素字段<a class="headerlink" href="#5-state_machines-元素字段" title="Permanent link">&para;</a></h2>
+<p>元素 schema 由 <code>StateMachineDefinition.CODEC</code> 决定（<code>StateMachineDefinition.java:21-25</code>），<strong>与 wrapper 无关</strong>——wrapper 只存在于文件层，内联 / 脚本注册、内容哈希、程序化注册都不受影响（<code>StateMachineDefinitionLoader</code> 类 Javadoc <code>:14-33</code>）。</p>
+<h3 id="51-定义顶层">5.1 定义顶层<a class="headerlink" href="#51-定义顶层" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string（<code>namespace:path</code>）</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>机器标识，方块 / BE 用它绑定；由 <code>Id.CODEC</code> 解析（<code>Id.java:112</code>）</td>
+</tr>
+<tr>
+<td><code>state_vars</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>类型化变量声明</td>
+</tr>
+<tr>
+<td><code>layers</code></td>
+<td>数组</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>并行状态层</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>StateMachineDefinition.CODEC</code>（<code>StateMachineDefinition.java:21-25</code>）。<code>id</code> 缺失或非法 → 该元素解码失败、被跳过。</p>
+<h3 id="52-state_vars">5.2 <code>state_vars[]</code><a class="headerlink" href="#52-state_vars" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>本机内引用名；<code>trigger_on</code> 按它解析（先查本机声明，再查注册表）</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>"float"</code></td>
+<td>内置类型 token，见下</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>任意 JSON</td>
+<td>否</td>
+<td>该类型的零值</td>
+<td>与 <code>type</code> 的 codec 匹配的默认值</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>string</td>
+<td>否</td>
+<td>—</td>
+<td><code>namespace:path</code>，引用已注册变量；给了它则忽略 <code>type</code> / <code>default</code></td>
+</tr>
+<tr>
+<td><code>ephemeral</code></td>
+<td>bool</td>
+<td>否</td>
+<td><code>false</code></td>
+<td><code>true</code> = tick 末自动清除，用作触发器</td>
+</tr>
+<tr>
+<td><code>external_writable</code></td>
+<td>bool</td>
+<td>否</td>
+<td><code>true</code></td>
+<td><code>false</code> = 派生参数，仅机器内部可写</td>
+</tr>
+<tr>
+<td><code>sync</code></td>
+<td>bool</td>
+<td>否</td>
+<td><code>false</code></td>
+<td><code>true</code> = 走 FSM 同步通道（服务端权威）</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>StateVarDefinition.CODEC</code>（<code>StateVarDefinition.java:51-59</code>）；字段语义见该类 Javadoc（<code>:12-27</code>）。</p>
+<p>内置 <code>type</code> token 目录（<code>StateVarType</code>，<code>StateVarType.java:24-28</code>）：<code>bool</code> / <code>int</code> / <code>float</code> / <code>string</code> / <code>vec3</code>。注意三点：</p>
+<ul>
+<li><strong><code>type</code> 与 <code>default</code> 是构建期才解析的</strong>：<code>StateVarDefinition.CODEC</code> 把它们当字符串 / 原始 JSON 存下来，<code>type</code> 未知或 <code>default</code> 解错<strong>不会拒绝文件</strong>。解析在 <code>DefinitionStateMachineFactory.resolveInline</code>（<code>:124-138</code>）：未知 <code>type</code> 会由 <code>StateVarType.byToken</code> 抛异常；<code>default</code> 解码失败只 WARN 并回落到该类型零值（<code>decodeOrDefault</code>，<code>:140-146</code>）。</li>
+<li><code>reference</code> 模式解析见 <code>resolveReference</code>（<code>:112-121</code>）：引用的 id 不存在 → WARN，该变量不生效。</li>
+<li>重写前的文档把 <code>resource</code> 也列为内置类型。当前 <code>StateVarType</code> 目录里<strong>没有</strong> <code>resource</code>，全仓也搜不到 <code>StateVarType.register(...)</code> 调用；<code>resource</code> 目前只在 scripting 的 Javadoc 里被称作内置（<code>AnimatorBuilderApi.java:192</code>）。见附录 B「待确认」。</li>
+</ul>
+<h3 id="53-layers">5.3 <code>layers[]</code><a class="headerlink" href="#53-layers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>层标识</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>"base"</code></td>
+<td><code>base</code>（底层）/ <code>additive</code>（累加）/ <code>override</code>（覆盖）</td>
+</tr>
+<tr>
+<td><code>weight</code></td>
+<td>float</td>
+<td>否</td>
+<td><code>1.0</code></td>
+<td>该层权重</td>
+</tr>
+<tr>
+<td><code>bone_mask</code></td>
+<td>string</td>
+<td>否</td>
+<td>全部</td>
+<td>骨骼掩码（只影响指定骨骼组）；解析见 <code>LayerDefinition.resolvedMask</code></td>
+</tr>
+<tr>
+<td><code>states</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>状态节点</td>
+</tr>
+<tr>
+<td><code>transitions</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>转移边</td>
+</tr>
+<tr>
+<td><code>initial_state</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>初始状态 id</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>LayerDefinition.CODEC</code>（<code>LayerDefinition.java:24-32</code>）。<code>mode</code> 由 <code>BlendMode.CODEC</code> 解析（<code>BlendMode.java:18-23</code>），<strong>未知值直接报 decode error</strong>，导致该定义元素整条被跳过。</p>
+<p>层合成语义（<code>BlendMode</code> Javadoc，<code>BlendMode.java:10-17</code>）：<code>base</code> 是底层、其 pose 即基准；<code>additive</code> 在基准上累加；<code>override</code> 对掩码选中的通道做覆盖。</p>
+<blockquote>
+<p>这里的 <code>BlendMode</code>（层合成：base / additive / override）与 <code>MorphInstance.BlendMode</code>（单 morph 的颜色乘加）是两条不同的轴（<code>BlendMode.java:6-9</code>）。</p>
+</blockquote>
+<h3 id="54-states">5.4 <code>states[]</code><a class="headerlink" href="#54-states" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>状态标识</td>
+</tr>
+<tr>
+<td><code>duration_ticks</code></td>
+<td>int</td>
+<td>否</td>
+<td>无</td>
+<td>状态持续 tick 数；配 <code>when_complete</code> 转移自动结束</td>
+</tr>
+<tr>
+<td><code>pose</code></td>
+<td>object</td>
+<td>否</td>
+<td>空 pose</td>
+<td>该状态对模型施加的静态 pose（见 §5.6）</td>
+</tr>
+<tr>
+<td><code>on_enter</code> / <code>on_exit</code> / <code>on_update</code></td>
+<td>id[]</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>动作函数 id（见 §5.7）</td>
+</tr>
+<tr>
+<td><code>clip</code></td>
+<td>string 或 object</td>
+<td>否</td>
+<td>无</td>
+<td>动画剪辑引用（见 §5.8）</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>StateDefinition.CODEC</code>（<code>StateDefinition.java:25-33</code>）。</p>
+<h3 id="55-transitions">5.5 <code>transitions[]</code><a class="headerlink" href="#55-transitions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>转移标识</td>
+</tr>
+<tr>
+<td><code>from</code> / <code>to</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>起 / 止状态 id</td>
+</tr>
+<tr>
+<td><code>trigger_on</code></td>
+<td>string</td>
+<td>否</td>
+<td>无</td>
+<td>触发器：指向布尔变量名 / id，置位时触发</td>
+</tr>
+<tr>
+<td><code>when_complete</code></td>
+<td>bool</td>
+<td>否</td>
+<td><code>false</code></td>
+<td><code>from</code> 状态到 <code>duration_ticks</code> 时触发</td>
+</tr>
+<tr>
+<td><code>cross_fade_seconds</code></td>
+<td>float</td>
+<td>否</td>
+<td><code>0</code></td>
+<td>淡入淡出秒数；0 = 立即切换</td>
+</tr>
+<tr>
+<td><code>when</code></td>
+<td>id[]</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>守卫函数 id，全真才允许转移</td>
+</tr>
+<tr>
+<td><code>on_fire</code></td>
+<td>id[]</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>转移触发时执行的动作函数 id</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>TransitionDefinition.CODEC</code>（<code>TransitionDefinition.java:25-34</code>）。<code>trigger_on</code> 要求变量是布尔类型；非 <code>ephemeral</code> 的变量只 WARN 并按 tick 语义处理（<code>DefinitionStateMachineFactory.resolveTrigger</code>，<code>:231-248</code>）。<code>from</code> / <code>to</code> 指向不存在的状态时，该转移在构建期被跳过（<code>buildLayer</code>，<code>:175-180</code>）。</p>
+<h3 id="56-pose">5.6 <code>pose</code><a class="headerlink" href="#56-pose" title="Permanent link">&para;</a></h3>
+<p><code>pose</code> 是状态对模型施加的通用静态姿态：morph 权重、骨骼变换、材质帧与 IK 开关。
+同一 Pose 也可通过 <a href="../model-posing/">ModelPosing</a> 使用，公共运行时不要求目标模型来自某种文件格式。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>morphs</code></td>
+<td>object（string→float）</td>
+<td>否</td>
+<td><code>{}</code></td>
+<td>morph 名 → 权重</td>
+</tr>
+<tr>
+<td><code>bones</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>骨骼变换列表</td>
+</tr>
+<tr>
+<td><code>frames</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>材质帧列表</td>
+</tr>
+<tr>
+<td><code>ik_enabled</code></td>
+<td>object（string→bool）</td>
+<td>否</td>
+<td><code>{}</code></td>
+<td>通用 IK 链名到启用状态，见 <a href="../model-posing/#pose-的-ik-通道">Pose IK 通道</a></td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>PoseDefinition.CODEC</code>。IK 通道遵循相同的姿态混合与写入所有权规则，停止驱动或切换到缺少该通道的姿态后恢复默认启用状态。</p>
+<p><code>bones[]</code>（<code>PoseDefinition.BoneDefinition.CODEC</code>，<code>:31-35</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>object</td>
+<td><strong>是</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>"replace"</code>（<code>replace</code> / <code>add</code> / <code>multiply</code>；未知值回落到 <code>replace</code>，<code>ApplyMode.byName</code>，<code>ApplyMode.java:28-38</code>）</td>
+</tr>
+</tbody>
+</table>
+<p><code>transform</code>（<code>TransformDefinition.CODEC</code>，<code>TransformDefinition.java:26-30</code>）：<code>translate</code> / <code>rotate</code> / <code>scale</code> 都是<strong>恰好 3 个 float</strong> 的数组（<code>VEC3F_CODEC</code>，<code>:19-22</code>），缺省分别 <code>[0,0,0]</code> / <code>[0,0,0]</code> / <code>[1,1,1]</code>；<code>rotate</code> 单位为<strong>度</strong>。</p>
+<p><code>frames[]</code>（<code>PoseDefinition.FrameDefinition.CODEC</code>，<code>:42-45</code>）：<code>material</code>（string，必填）、<code>frame</code>（int，必填）。</p>
+<h3 id="57-行为函数引用">5.7 行为函数引用<a class="headerlink" href="#57-行为函数引用" title="Permanent link">&para;</a></h3>
+<p><code>when</code> / <code>on_enter</code> / <code>on_exit</code> / <code>on_update</code> / <code>on_fire</code> 里的 id 由<strong>代码侧</strong>（Java 或脚本）用 <code>FsmFunctionLibrary</code> 注册：守卫用 <code>registerCondition</code>，动作用 <code>registerAction</code>（<code>FsmFunctionLibrary.java:19-25</code>）。JSON 只存 id。</p>
+<p>未注册的函数<strong>不影响文件解码</strong>：构建机器时统一汇总成一条 WARN，缺失条件降级为 <code>false</code>、缺失动作是 no-op（<code>DefinitionStateMachineFactory.validateDefinition</code> Javadoc，<code>:321-326</code>）。</p>
+<h3 id="58-clip">5.8 <code>clip</code><a class="headerlink" href="#58-clip" title="Permanent link">&para;</a></h3>
+<p><code>states[].clip</code> 引用一个已注册的动画剪辑，有两种写法（<code>StateDefinition.ClipDefinition.CODEC</code>，<code>StateDefinition.java:47-50</code>）：</p>
+<ul>
+<li>对象：<code>{ "id": "ns:clip", "loop": true }</code>，<code>loop</code> 默认 <code>false</code>（<code>:40-45</code>）；</li>
+<li>字符串简写：<code>"ns:clip"</code>，等价于 <code>loop: false</code>。</li>
+</ul>
+<p>引用解析与悬空处理见 §9。真实夹具 <code>fan_machine_data_driven.json</code> 的四个状态都用对象形式引同一个剪辑并置 <code>loop: true</code>。</p>
+<h2 id="6-animation_clips-元素字段">6. <code>animation_clips</code> 元素字段<a class="headerlink" href="#6-animation_clips-元素字段" title="Permanent link">&para;</a></h2>
+<p>元素 schema 由 <code>AnimationClip.CODEC</code> 决定（<code>AnimationClip.java:47-54</code>）。元素<strong>自带 <code>id</code></strong>（就是 <code>states[].clip</code> 引用的那个 id），loader 不额外抽取 id（<code>AnimationClipLoader</code> 类 Javadoc <code>:20-26</code>）。</p>
+<h3 id="61-剪辑顶层">6.1 剪辑顶层<a class="headerlink" href="#61-剪辑顶层" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string（<code>namespace:path</code>）</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>剪辑标识</td>
+</tr>
+<tr>
+<td><code>duration_seconds</code></td>
+<td>float</td>
+<td>否</td>
+<td><code>1.0</code></td>
+<td>剪辑时长（秒）</td>
+</tr>
+<tr>
+<td><code>bones</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>骨骼关键帧轨道</td>
+</tr>
+<tr>
+<td><code>morphs</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>morph 值轨道</td>
+</tr>
+<tr>
+<td><code>frames</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>材质帧轨道</td>
+</tr>
+<tr>
+<td><code>functions</code></td>
+<td>数组</td>
+<td>否</td>
+<td><code>[]</code></td>
+<td>公式轨道（每帧求值）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-bones">6.2 <code>bones[]</code><a class="headerlink" href="#62-bones" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bone</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>keyframes</code></td>
+<td>数组</td>
+<td><strong>是</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>keyframes[]</code>（<code>Keyframe.CODEC</code>，<code>AnimationClip.java:71-75</code>）：<code>time</code>（float，必填）、<code>transform</code>（<code>TransformDefinition</code>，必填，字段同 §5.6）、<code>easing</code>（string，选填，默认 <code>"linear"</code>）。</p>
+<h3 id="63-morphs">6.3 <code>morphs[]</code><a class="headerlink" href="#63-morphs" title="Permanent link">&para;</a></h3>
+<p><code>morph</code>（string，必填）+ <code>keyframes</code>（必填）；关键帧为 <code>{ "time": float, "value": float, "easing": string? }</code>（<code>MorphKeyframe.CODEC</code>，<code>:93-97</code>）。</p>
+<h3 id="64-frames">6.4 <code>frames[]</code><a class="headerlink" href="#64-frames" title="Permanent link">&para;</a></h3>
+<p><code>material</code>（string，必填）+ <code>keyframes</code>（必填）；关键帧为 <code>{ "time": float, "frame": int }</code>（<code>FrameKeyframe.CODEC</code>，<code>:111-114</code>）。材质帧轨道按最近关键帧取整，不做插值（<code>FrameTrack</code> Javadoc，<code>:100</code>）。</p>
+<h3 id="65-functions">6.5 <code>functions[]</code><a class="headerlink" href="#65-functions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bone</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td>目标骨骼</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>string</td>
+<td><strong>是</strong></td>
+<td>—</td>
+<td><code>rotate</code> / <code>translate</code> / <code>scale</code>；未知值回落到 <code>rotate</code>（<code>CHANNEL_CODEC</code>，<code>:133-145</code>）</td>
+</tr>
+<tr>
+<td><code>x</code> / <code>y</code> / <code>z</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>""</code></td>
+<td>各轴公式表达式；空串 = 该轴保持单位值（rotate 0 / translate 0 / scale 1）</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>FunctionTrack.CODEC</code>（<code>AnimationClip.java:147-153</code>）；表达式在运行期按 <code>lib.kasuga.formula</code> 命名空间逐帧求值。真实夹具（<code>fan_fsm_data_driven.json</code>）就是这样三条公式轨道：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"animation_clips"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:fan"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"duration_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"bone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group"</span><span class="p">,</span><span class="w"> </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rotate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query.angle"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>编码时，取值等于默认值的字段会被省略。真实夹具 <code>fan_fsm_data_driven.json</code> 里三条公式轨道的空轴（<code>x</code> / <code>z</code>）不写出来，正是 <code>AnimationClip.CODEC</code> 的规范编码形态；<code>FanDataDrivenClipTest.clipFileIsInCanonicalEncodedShape</code> 锁定该文件逐字等于 codec 的编码结果。</p>
+</blockquote>
+<h3 id="66-easing-名称">6.6 easing 名称<a class="headerlink" href="#66-easing-名称" title="Permanent link">&para;</a></h3>
+<p><code>easing</code> 由字符串映射到内置缓动（<code>EASING_CODEC</code>，<code>AnimationClip.java:39-45</code>）。<strong>未知名称不报错，回落到 <code>linear</code></strong>。可用名称是 <code>Easing.NAMED</code>（<code>Easing.java:232-246</code>）：</p>
+<p><code>linear</code>、<code>ease_in_quad</code>、<code>ease_out_quad</code>、<code>ease_in_out_quad</code>、<code>ease_in_cubic</code>、<code>ease_out_cubic</code>、<code>ease_in_out_cubic</code>、<code>ease_in_sine</code>、<code>ease_out_sine</code>、<code>ease_in_out_sine</code>、<code>back</code>、<code>elastic</code>、<code>bounce</code>。</p>
+<h3 id="67-元素内未知键被忽略">6.7 元素内未知键被忽略<a class="headerlink" href="#67-元素内未知键被忽略" title="Permanent link">&para;</a></h3>
+<p><code>AnimationClip</code> 记录<strong>没有命名</strong>的键被 codec 忽略，作者可以加注释类字段而不破坏加载（<code>AnimationClipLoader</code> 类 Javadoc <code>:24-26</code>；测试 <code>AnimationClipLoaderTest.ignoresKeysTheClipRecordDoesNotName</code>，<code>:132-144</code>）。</p>
+<h2 id="7-两条发现路径的差异">7. 两条发现路径的差异<a class="headerlink" href="#7-两条发现路径的差异" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>state_machines</code></th>
+<th><code>animation_clips</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目录 glob</td>
+<td>有（<code>data/&lt;ns&gt;/state_machines/*.json</code>）</td>
+<td><strong>无</strong></td>
+</tr>
+<tr>
+<td>索引 <code>on_reload</code> 列出</td>
+<td>支持</td>
+<td><strong>唯一入口</strong></td>
+</tr>
+<tr>
+<td>未列索引时</td>
+<td>仍会被 glob 读到</td>
+<td><strong>永远不读</strong></td>
+</tr>
+<tr>
+<td>两类入口同时列出同一文件</td>
+<td>glob 入口跳过，读一次</td>
+<td>不适用</td>
+</tr>
+</tbody>
+</table>
+<p>出处：<code>FsmReloadHandler.globDirectories()</code>（<code>FsmReloadHandler.java:69-71</code>）声明 <code>StateMachineDefinitionLoader.PATH</code>（<code>StateMachineDefinitionLoader.java:39</code>）；glob 列举在 <code>ReloadOrchestrator.collectGlob</code>（<code>:348-367</code>）；<code>AnimationClipLoader</code> 类 Javadoc（<code>:29</code>）；<code>ReloadOrchestrator</code> 类 Javadoc（<code>:77-91</code>）。测试 <code>AnimationClipReloadTest.animationClipsDirectoryIsNotGlobDiscovered</code>、<code>ReloadOrchestratorTest.globAndIndexListingTheSameFileReadItOnce</code>。</p>
+<blockquote>
+<p>glob 只管<strong>发现</strong>，<strong>路由</strong>永远按文件的顶层键走。一个落在 <code>state_machines/</code> 目录、顶上却写 <code>animation_clips</code> 的文件，仍由剪辑 handler 处理（<code>ReloadOrchestrator.collectGlob</code> Javadoc，<code>:340-347</code>）。</p>
+</blockquote>
+<h2 id="8-编排者-reloadorchestrator-与两个-handler">8. 编排者 <code>ReloadOrchestrator</code> 与两个 handler<a class="headerlink" href="#8-编排者-reloadorchestrator-与两个-handler" title="Permanent link">&para;</a></h2>
+<h3 id="81-reload-的-stage-顺序">8.1 <code>reload()</code> 的 stage 顺序<a class="headerlink" href="#81-reload-的-stage-顺序" title="Permanent link">&para;</a></h3>
+<p><code>reload(ResourceManager)</code>（<code>:186-193</code>）包住私有 <code>runCycle</code>（<code>:198-248</code>），一轮顺序固定、类型无关（遍历注册表，而非硬编码两个类型）：</p>
+<ol>
+<li><strong>构周期</strong>：对 <code>ReloadHandlerRegistry.all()</code> 里每个 handler 各建一个 <code>HandlerCycle</code>（<code>:199-201</code>）。</li>
+<li><strong>清桶</strong>：逐 handler 调 <code>runClear(entry)</code> → <code>clearBucket()</code>，<strong>一轮恰好一次</strong>（<code>runClear</code>，<code>:250-261</code>；调用点 <code>:213-215</code>）。<code>clearBucket()</code> 抛异常会被 <code>runClear</code> 就地捕获、记入 <code>Domain.RELOAD_DATA</code> 诊断，其余 handler 照常清桶（per-handler 守卫，与收尾阶段同款）。<code>FsmReloadHandler</code> 只清 <code>FsmDefinitions</code> 的 RESOURCE 半区、<code>FsmClipsReloadHandler</code> 只清 <code>FsmAnimationClips</code> 的 RESOURCE 半区（script wins，见 §10）。</li>
+<li><strong>聚合 glob 目录</strong>：收齐每个 handler 的 <code>globDirectories()</code>（<code>:222-225</code>）；<code>state_machines</code> 贡献 <code>state_machines/</code>，clips 贡献空。</li>
+<li><strong>列命名空间</strong>并排序，<strong>每命名空间双路发现</strong>（<code>collectNamespace</code>，<code>:266-288</code>）：先 <code>readReloadPaths</code>（<code>:307</code>）读索引清单的 <code>on_reload</code>，再 <code>collectGlob</code>（<code>:348-367</code>）扫聚合 glob 目录（跳过已列路径），最后 <code>collectIndex</code>（<code>:369</code>）读 <code>on_reload</code> 指向的文件。</li>
+<li><strong>注册</strong>：逐 handler 调 <code>register(entry)</code>（<code>:507-526</code>），glob 候选在前、索引候选在后（<code>HandlerCycle.candidates()</code>，<code>:595-599</code>）→ 去重并写桶。</li>
+<li><strong>收尾复核</strong>：逐 handler 调 <code>runAfterReload(entry)</code>（<code>:530-538</code>），只对本轮实际注册的条目、且在所有 register 之后。<code>FsmReloadHandler.afterReload</code> 在此跑悬空 clip 检查。</li>
+</ol>
+<p>索引侧复用注册域的 <code>JsonTreeBuilder.parseIndexManifest</code> / <code>resolveIndexManifests</code>，因此 D6 的「同一路径双列 → 两域都不消费」在 reload 侧同样生效（<code>readReloadPaths</code>，<code>:307</code>）。</p>
+<h3 id="82-类型由注册表驱动不硬编码">8.2 类型由注册表驱动，不硬编码<a class="headerlink" href="#82-类型由注册表驱动不硬编码" title="Permanent link">&para;</a></h3>
+<p>编排器不知道任何 reload 类型名：顶层键集合由 <code>knownTypeNames()</code>（<code>:473-486</code>）从 <code>ReloadHandlerRegistry.all()</code> 派生，分派（<code>dispatch</code>，<code>:429-470</code>）按每个 handler 的 <code>typeName()</code> 路由。新增一种 reload 类型 = 实现一个 <code>ReloadHandler</code> 并在 <code>@Context</code> bean 里 <code>ReloadHandlerRegistry.register</code>，<strong>不改编排器</strong>。这就是 §4.6 所说的「reload 侧与注册期对称」；两个 FSM 类型由 <code>FsmReloadHandlerRegistrar</code>（<code>:23-31</code>）按 <strong>fsm → clips</strong> 顺序登记，顺序决定 dispatch/注册顺序，进而决定跨类型 last-wins。</p>
+<p>要理解一个 handler 的具体职责分工，看 §8.5。</p>
+<h3 id="83-last-wins-与败者无副作用">8.3 last-wins 与「败者无副作用」<a class="headerlink" href="#83-last-wins-与败者无副作用" title="Permanent link">&para;</a></h3>
+<p>跨两个入口按加载序列取最后一个同 id 候选为胜者（glob 在前、索引在后；文件内按数组书写顺序）。裁决用共享的 <code>DuplicateIdResolver</code>，<strong>败者根本不进 handler 的 <code>register</code></strong>，因此不会触发覆盖通知；每个冲突记 WARN + 一条桶条目（<code>resolveAndReport</code>，<code>:545-556</code>）。测试：<code>ReloadOrchestratorTest.indexEntryWinsOverTheGlobEntryAndTheLoserIsNotRegistered</code>、<code>duplicateIdWithinFileLastWins</code>；剪辑侧 <code>AnimationClipReloadTest.laterClipFileWinsForTheSameId</code>。</p>
+<h3 id="84-四层异常守卫-兜底">8.4 四层异常守卫 + 兜底<a class="headerlink" href="#84-四层异常守卫-兜底" title="Permanent link">&para;</a></h3>
+<p><code>reload()</code> 在 reload 监听器路径上，抛异常会中止整包重载、且桶已半清空，所以任何失败都必须就地转成「日志 + 桶」诊断：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>位置</th>
+<th>计费对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逐 handler（清桶）</td>
+<td><code>runClear</code> <code>:250-261</code></td>
+<td>库 mod（<code>KasugaLib.MODID</code>）</td>
+</tr>
+<tr>
+<td>逐文件（读 / 解码）</td>
+<td><code>readAndDispatch</code> <code>:405-415</code></td>
+<td>文件所在命名空间</td>
+</tr>
+<tr>
+<td>逐命名空间（发现机制）</td>
+<td><code>collectNamespace</code> <code>:266-288</code></td>
+<td>该命名空间</td>
+</tr>
+<tr>
+<td>逐条目（注册）</td>
+<td><code>register</code> <code>:507-526</code></td>
+<td>条目所在命名空间</td>
+</tr>
+<tr>
+<td>逐 handler（收尾复核）</td>
+<td><code>runAfterReload</code> <code>:530-538</code></td>
+<td>库 mod（无更细归属时）</td>
+</tr>
+<tr>
+<td>兜底（无归属可计）</td>
+<td><code>reload()</code> <code>:186-193</code></td>
+<td>库 mod（<code>KasugaLib.MODID</code>）</td>
+</tr>
+</tbody>
+</table>
+<p>测试 <code>ReloadOrchestratorExceptionBoundaryTest</code>：<code>uppercaseIndexPathIsRejectedAndTheCycleContinues</code>、<code>throwingFileIsIsolatedAndTheNextFileStillLoads</code>、<code>wholeCycleFailureIsCaughtAndRecordedAgainstTheLibraryMod</code>。整轮全部失败时桶保持空——空是真实结果，错误留在桶里（类 Javadoc <code>:106-114</code>）。</p>
+<h3 id="85-两个-handler-的职责分工">8.5 两个 handler 的职责分工<a class="headerlink" href="#85-两个-handler-的职责分工" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>FsmReloadHandler</code></th>
+<th><code>FsmClipsReloadHandler</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>typeName()</code></td>
+<td><code>state_machines</code></td>
+<td><code>animation_clips</code></td>
+</tr>
+<tr>
+<td><code>globDirectories()</code></td>
+<td><code>{state_machines}</code></td>
+<td>默认空 = index-only</td>
+</tr>
+<tr>
+<td><code>describeFile()</code></td>
+<td><code>"state machine file"</code></td>
+<td><code>"animation clip file"</code></td>
+</tr>
+<tr>
+<td><code>clearBucket()</code></td>
+<td><code>definitions.clearResource()</code></td>
+<td><code>clips.clearResource()</code></td>
+</tr>
+<tr>
+<td><code>decode()</code></td>
+<td>转调 <code>StateMachineDefinitionLoader.decodeFile</code></td>
+<td>转调 <code>AnimationClipLoader.decodeFile</code></td>
+</tr>
+<tr>
+<td><code>register()</code></td>
+<td><code>definitions.registerResource(id, def)</code></td>
+<td><code>AnimationClipLoader.register(clips, clip)</code></td>
+</tr>
+<tr>
+<td><code>afterReload()</code></td>
+<td>跑悬空 clip 检查（见 §9）</td>
+<td>未覆写（默认空）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="86-诊断走域源键维domainreload_data">8.6 诊断走域/源键维（<code>Domain.RELOAD_DATA</code>）<a class="headerlink" href="#86-诊断走域源键维domainreload_data" title="Permanent link">&para;</a></h3>
+<p><code>ReloadOrchestrator.reportError</code>（<code>:566-573</code>）与两个 handler 的 <code>reportError</code> / <code>reportWarning</code> 都调 <code>Diagnostics.report(Diagnostics.Domain.RELOAD_DATA, namespace, ...)</code>，<code>namespace</code> = 出错文件所在的命名空间。reload 期的诊断走<strong>域/源键维</strong>（<code>Domain.RELOAD_DATA</code>，键 = 命名空间），与注册期的 mod 维分开；<code>runCycle</code> 开头按轮清空该维，不累积（<code>Diagnostics.clear(Domain.RELOAD_DATA)</code>，<code>:208</code>）。读取用 <code>/kasuga_data errors [mod]</code>（同时列出两维）；细节见 <a href="../data-driven/"><code>data-driven/README.md</code></a> 第 6、13 节。</p>
+<blockquote>
+<p>reload 期还会对<strong>未知顶层键</strong>给出反向提示：若这些字段其实是注册内容（如 <code>blocks</code> / <code>items</code> / <code>registry_groups</code>），把文件改列到 <code>on_register</code>（<code>dispatch</code>，<code>:439-446</code>）。提示里的注册类型示例运行时从 <code>TypeHandlerRegistry</code> 派生。</p>
+</blockquote>
+<h2 id="9-clip-引用与悬空引用">9. clip 引用与悬空引用<a class="headerlink" href="#9-clip-引用与悬空引用" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>构建期</strong>：<code>states[].clip</code> 在 <code>FsmAnimationClips</code> 里按 id 解析；不存在 → WARN，状态降级为静态 pose（<code>configureState</code>，<code>:184</code>）。</li>
+<li><strong>reload 收尾</strong>：<code>FsmReloadHandler.afterReload</code>（<code>:95-116</code>）对本轮<strong>实际落地</strong>的定义逐个跑 <code>DefinitionStateMachineFactory.unknownClipReferences</code>（<code>:303-323</code>），把悬空引用（层 id + 状态 id + 缺失的剪辑 id）汇总成一条 WARN + 桶条目。</li>
+<li>悬空引用<strong>只记账，不阻止注册</strong>，也不改变构建期的降级行为（<code>ReloadOrchestrator</code> 类 Javadoc <code>:100-104</code>；<code>FsmReloadHandler.afterReload</code>）。</li>
+<li>已被脚本同 id 定义遮蔽的候选会跳过复核——它已不是桶里的活条目（<code>FsmReloadHandler.java:99-104</code>）。</li>
+<li>测试：<code>AnimationClipReloadTest.missingClipFileIsReportedAfterTheLoad</code>、<code>wrongClipIdInTheClipFileIsReported</code>；同一规则也喂给构建期的聚合警告（<code>unknownClipReferences</code> 的 Javadoc <code>:289-302</code>）。</li>
+</ul>
+<h2 id="10-script-wins分桶">10. script-wins（分桶）<a class="headerlink" href="#10-script-wins分桶" title="Permanent link">&para;</a></h2>
+<p>两个桶都把条目按<strong>来源</strong>分半：</p>
+<table>
+<thead>
+<tr>
+<th>桶</th>
+<th>SCRIPT 入口</th>
+<th>RESOURCE 入口</th>
+<th>清桶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FsmAnimationClips</code></td>
+<td><code>register</code>（<code>FsmAnimationClips.java:53-59</code>）</td>
+<td><code>registerResource</code>（<code>:66-74</code>）</td>
+<td><code>clearResource</code>（<code>:100-102</code>）只丢 RESOURCE；<code>clear()</code> = <code>clearResource</code>（<code>:117-119</code>）；<code>clearAll</code>（<code>:108-110</code>）全清</td>
+</tr>
+<tr>
+<td><code>FsmDefinitions</code></td>
+<td><code>register</code>（<code>FsmDefinitions.java:59-67</code>）</td>
+<td><code>registerResource</code>（<code>:71-81</code>）</td>
+<td><code>clearResource</code>（<code>:84-92</code>）只丢 RESOURCE</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>写入侧</strong>不变量：<code>register</code>（SCRIPT）会覆盖 RESOURCE（带 WARN，"script wins"）；<code>registerResource</code>（文件）<strong>不覆盖</strong> SCRIPT 条目。</li>
+<li>所以 <code>AnimationClipLoader.register</code> 永远走 <code>registerResource</code>（<code>:113-121</code>）：文件剪辑永远不能遮蔽脚本 / 内容测试 / 游戏测试注册的同 id 剪辑。</li>
+<li>每轮 reload 的 <code>clips.clearResource()</code> 只丢文件来源，脚本注册的剪辑跨 reload 存活。</li>
+<li>测试：<code>AnimationClipReloadTest.scriptClipWinsOverTheFileVersion</code>、<code>secondCycleReplaysClipFilesWithoutLeftovers</code>；桶单测 <code>FsmAnimationClipsTest</code>。</li>
+</ul>
+<h2 id="11-反例汇总">11. 反例汇总<a class="headerlink" href="#11-反例汇总" title="Permanent link">&para;</a></h2>
+<p>以下片段列在这里是为了让读者一眼认出「照旧文档抄出来的写法」，其中两条在新契约下已<strong>不再非法</strong>：</p>
+<ol>
+<li><strong>无 wrapper 的顶层定义</strong>（§2.3）→ <code>missing top-level key 'state_machines'</code>，整文件拒绝。</li>
+<li><strong>真未知顶层键</strong>（§2.4）→ 报一条 <code>unsupported top-level field '...'</code> 并附反向 D9 提示，但<strong>已知键照常贡献</strong>（不再是「整文件拒绝」）。</li>
+<li><strong>顶层键值写成对象</strong>（如 <code>{"state_machines": {}}</code>）→ <code>must be an array</code>，整文件拒绝（<code>StateMachineDefinitionLoaderTest.nonArrayValueRejectsWholeFile</code>；<code>ReloadOrchestratorTest.NON_ARRAY_JSON</code>）。</li>
+<li><strong>一个文件同时写两类内容</strong>（§3）→ 现在<strong>合法</strong>：两个 handler 各认领自己的键、各贡献条目，0 诊断。</li>
+<li><strong>元素缺 <code>layers</code></strong>（§4）→ 只跳过该元素，兄弟照常。</li>
+</ol>
+<h2 id="12-绑定到方块">12. 绑定到方块<a class="headerlink" href="#12-绑定到方块" title="Permanent link">&para;</a></h2>
+<p>数据驱动注册的方块通过工厂 <code>fsm_block</code> / <code>fsm_be</code> 绑定一个机器 id：<code>fsm_block</code> 造方块（带默认方块物品），<code>fsm_be</code> 造 <code>AnimationBlockEntity</code>，从 <code>params</code> 读 <code>state_machine</code> / <code>model</code>（<code>FsmBlockEntityFactories.java:27-30,48-74</code>）。方块条目顶层的字符串 <code>state_machine</code> 会被转发进内嵌 BE 的 <code>params.state_machine</code>（<code>BlockEntityTypeHandler.extractEmbedded</code>，见 schema.md §2.5）。</p>
+<p>这部分属于<strong>注册期内容文件</strong>，格式见 <a href="../data-driven/schema/"><code>data-driven/schema.md</code></a> 的 <code>blocks</code> 与内嵌 <code>block_entity</code> 章节；一个可跑通的端到端例子见 <a href="../../guides/data-driven/guide-content/"><code>data-driven/guide-content.md</code></a>。</p>
+<h2 id="13-延伸阅读">13. 延伸阅读<a class="headerlink" href="#13-延伸阅读" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>你想要</th>
+<th>去哪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>索引文件、注册期内容文件、错误分类</td>
+<td><a href="../data-driven/schema/"><code>data-driven/schema.md</code></a></td>
+</tr>
+<tr>
+<td>Java 类 / 方法签名、加载时序</td>
+<td><a href="../data-driven/"><code>data-driven/README.md</code></a></td>
+</tr>
+<tr>
+<td>从零搭第一个内容文件</td>
+<td><a href="../../guides/data-driven/guide-content/"><code>data-driven/guide-content.md</code></a></td>
+</tr>
+<tr>
+<td>数据驱动总览</td>
+<td><a href="../../guides/data-driven/intro/"><code>data-driven/intro.md</code></a></td>
+</tr>
+<tr>
+<td>自定义 <code>type</code> 工厂 / TypeHandler</td>
+<td><a href="../../guides/data-driven/guide-extension/"><code>data-driven/guide-extension.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="附录-a规则出处对照">附录 A：规则出处对照<a class="headerlink" href="#附录-a规则出处对照" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>出处（类:行 / 方法 / 测试名）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state_machines</code> 顶层键、三种文件级违规</td>
+<td><code>StateMachineDefinitionLoader.decodeFile</code> <code>:67-100</code>；<code>StateMachineDefinitionLoaderTest</code></td>
+</tr>
+<tr>
+<td>legacy 无 wrapper 被拒</td>
+<td><code>StateMachineDefinitionLoaderTest.legacyShapeIsRejectedAndReportsExpectedShape</code>；<code>ReloadOrchestratorTest.legacyShapeRegistersNothing</code></td>
+</tr>
+<tr>
+<td><code>animation_clips</code> wrapper</td>
+<td><code>AnimationClipLoader.decodeFile</code> <code>:69-102</code>；<code>AnimationClipLoaderTest</code></td>
+</tr>
+<tr>
+<td>文件级严格 / 元素级容错</td>
+<td><code>StateMachineDefinitionLoaderTest.badElementIsSkippedWhileSiblingsDecode</code>；<code>AnimationClipLoaderTest.skipsAMalformedElementAndKeepsItsSiblings</code> / <code>skipsAnElementWithoutAnId</code></td>
+</tr>
+<tr>
+<td>元素内未知键忽略</td>
+<td><code>AnimationClipLoaderTest.ignoresKeysTheClipRecordDoesNotName</code>（剪辑侧）</td>
+</tr>
+<tr>
+<td>状态机元素字段</td>
+<td><code>StateMachineDefinition.CODEC</code> <code>StateMachineDefinition.java:21-25</code>；子 codec <code>StateVarDefinition</code> / <code>LayerDefinition</code> / <code>StateDefinition</code> / <code>TransitionDefinition</code> / <code>PoseDefinition</code> / <code>TransformDefinition</code></td>
+</tr>
+<tr>
+<td><code>state_vars</code> 内置类型</td>
+<td><code>StateVarType.java:24-28</code>；构建期解析 <code>DefinitionStateMachineFactory.resolveInline</code> <code>:124-146</code></td>
+</tr>
+<tr>
+<td>剪辑元素字段</td>
+<td><code>AnimationClip.CODEC</code> <code>AnimationClip.java:47-54</code> 及子 codec；easing <code>Easing.java:232-246</code></td>
+</tr>
+<tr>
+<td>目录 glob vs index-only</td>
+<td><code>ReloadOrchestrator.collectGlob</code> <code>:348-367</code>；<code>AnimationClipLoader.java:29</code>；<code>FsmReloadHandler.globDirectories</code> <code>:69-71</code></td>
+</tr>
+<tr>
+<td>reload stage 顺序 / 双入口</td>
+<td><code>ReloadOrchestrator.reload</code> <code>:186-193</code>、<code>runCycle</code> <code>:198-248</code>、<code>collectNamespace</code> <code>:266-288</code></td>
+</tr>
+<tr>
+<td>last-wins</td>
+<td><code>ReloadOrchestrator.resolveAndReport</code> <code>:545-556</code>；<code>DuplicateIdResolver</code></td>
+</tr>
+<tr>
+<td>四层异常守卫 + 兜底（+ 清桶守卫）</td>
+<td><code>ReloadOrchestrator</code> <code>:250-261,405-415,266-288,507-526,530-538,186-193</code>；<code>ReloadOrchestratorExceptionBoundaryTest</code></td>
+</tr>
+<tr>
+<td>诊断走域/源键维</td>
+<td><code>ReloadOrchestrator.reportError</code> <code>:566-573</code>；<code>FsmReloadHandler.reportWarning</code> <code>:127-130</code>；<code>Diagnostics</code></td>
+</tr>
+<tr>
+<td>类型由注册表驱动</td>
+<td><code>ReloadOrchestrator.knownTypeNames</code> <code>:473-486</code>、<code>dispatch</code> <code>:429-470</code>；<code>ReloadHandlerRegistry</code>；<code>FsmReloadHandlerRegistrar</code> <code>:23-31</code></td>
+</tr>
+<tr>
+<td>script-wins 分桶</td>
+<td><code>FsmAnimationClips.java:53-119</code>；<code>FsmDefinitions.java:59-92</code>；<code>AnimationClipLoader.register</code> <code>:113-121</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="附录-b待确认">附录 B：待确认<a class="headerlink" href="#附录-b待确认" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>resource</code> 类型 token</strong>：<code>StateVarType</code> 目录里没有它，全仓也没有 <code>StateVarType.register(...)</code> 调用；但 scripting 的 <code>AnimatorBuilderApi.java:192</code> Javadoc 把它列为内置 token 之一。两者矛盾，暂按「当前不可用」写。若下游有注册，需补。</li>
+<li><strong>状态机元素内未知键是否同样被静默忽略</strong>：从 <code>StateMachineDefinition.CODEC</code>（<code>RecordCodecBuilder</code>）推断应忽略，但只有剪辑侧有专项测试。</li>
+<li>本页的 JSON 示例只做了语法校验（<code>JSON.parse</code>）与逐字段核对 codec，未执行 Java loader；<code>state_vars[].type</code> 等<strong>构建期</strong>字段的解码不在文件层验证范围内。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

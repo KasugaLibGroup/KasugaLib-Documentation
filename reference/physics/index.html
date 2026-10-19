@@ -1,0 +1,3730 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/physics/">
+      
+      
+        <link rel="prev" href="../pbr/">
+      
+      
+        <link rel="next" href="../render-alpha-passes/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/reference/physics/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Physics、IK 与 ModelTickLoop API - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#physicsik-与-modeltickloop-api" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Physics、IK 与 ModelTickLoop API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/reference/physics/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-每帧求值顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 每帧求值顺序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-通用刚体-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 通用刚体 API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 通用刚体 API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-shape-与-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Shape 与 body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-world-生命周期与固定步长" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 World 生命周期与固定步长
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#221-通用关节类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 通用关节类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-impulseforce-与-body-控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Impulse、force 与 body 控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-collisioncontact-与-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Collision、contact 与 query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-ray-drag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Ray drag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pmx-与-gltf-ragdoll-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PMX 与 glTF ragdoll API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ik-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IK API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modeltickloop-模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ModelTickLoop 模块
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ModelTickLoop 模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activeragdollmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 ActiveRagdollModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anchormodule-与显示子物体" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 AnchorModule 与显示子物体
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gltf-动画兼容" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. glTF 动画兼容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-minecraft-physics-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Minecraft physics block
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-当前限制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 当前限制
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-每帧求值顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 每帧求值顺序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-通用刚体-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 通用刚体 API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 通用刚体 API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-shape-与-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Shape 与 body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-world-生命周期与固定步长" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 World 生命周期与固定步长
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#221-通用关节类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 通用关节类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-impulseforce-与-body-控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Impulse、force 与 body 控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-collisioncontact-与-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Collision、contact 与 query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-ray-drag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Ray drag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pmx-与-gltf-ragdoll-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PMX 与 glTF ragdoll API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ik-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IK API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modeltickloop-模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ModelTickLoop 模块
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ModelTickLoop 模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activeragdollmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 ActiveRagdollModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anchormodule-与显示子物体" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 AnchorModule 与显示子物体
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gltf-动画兼容" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. glTF 动画兼容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-minecraft-physics-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Minecraft physics block
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-当前限制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 当前限制
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="physicsik-与-modeltickloop-api">Physics、IK 与 ModelTickLoop API<a class="headerlink" href="#physicsik-与-modeltickloop-api" title="Permanent link">&para;</a></h1>
+<p>接口、配置和调用参考。原理说明见 <a href="../../explanation/physics/">physics.md</a>。</p>
+<p>Kasuga modelling 的原生物理由官方 Box3D C17 引擎负责。Java 层只处理对象映射、固定步长、Minecraft
+碰撞数据、动画目标与骨骼写回；没有 Java 备用积分器或接触求解器。</p>
+<p>当前 vendored 版本固定为 Box3D 官方 <code>main</code> 提交
+<code>30c67b5e6d0a3a66f0f506c69ce9e9e0587e3b7c</code>。源码与许可证分别位于
+<code>modules/modelling/src/main/native/box3d</code> 和 <code>modules/modelling/THIRD_PARTY_NOTICES.md</code>。</p>
+<p>CMake 与 Box3D 原生库都是可选能力。构建机找不到 CMake 时，Gradle 会输出 warning、跳过
+Box3D JNI 编译并继续生成不含原生物理的 modelling 包。运行时可通过
+<code>NativeBox3D.available()</code> 查询能力；缺少原生库时，高层 <code>enablePhysics</code>/<code>attach</code> API 返回
+<code>null</code>，部署与方块生成 API 返回空结果，物理命令显示禁用原因，其余模型加载、渲染与动画功能不受影响。</p>
+<h2 id="1-每帧求值顺序">1. 每帧求值顺序<a class="headerlink" href="#1-每帧求值顺序" title="Permanent link">&para;</a></h2>
+<p>所有程序化阶段都挂在 <code>ModelTickLoop</code> 这一条有序管线上。框架通过标准槽位提供排序，
+物理、IK 等模块只实现自身内部逻辑：</p>
+<div class="highlight"><pre><span></span><code>kasuga:apply -&gt; [user pre-IK modules] -&gt; kasuga:ik -&gt; [user post-IK modules]
+  -&gt; kasuga:physics -&gt; [user post-physics modules] -&gt; kasuga:anchor
+</code></pre></div>
+<p>带物理的模型一帧内的完整数据流：</p>
+<div class="highlight"><pre><span></span><code>PoseDriver.sample(partialTick)
+  -&gt; SkeletonApplyModule（flush pending transforms）
+  -&gt; pre-IK modules（写 transient IK target；需要 flush pending 的模块应放在 apply 前）
+  -&gt; IkModule（层级求值 + 通用 Caliko IK；物理接管姿态时跳过）
+  -&gt; post-IK modules（读同帧 IK 结果、提交 controller force）
+  -&gt; RagdollModule（Box3D fixed steps + bone writeback）
+  -&gt; post-physics modules（观察最终姿态）
+  -&gt; AnchorModule（重算显示子物体锚点世界变换）
+  -&gt; renderer upload
+</code></pre></div>
+<p><code>MinecraftRagdollRuntime</code> 在 <code>RenderFrame.Pre</code> 中先采样动画再推进物理，backend 随后的 <code>sample</code> 会消费
+本帧已准备标记，不会用动画重新覆盖物理结果。动画/IK 目标按输入 mutation epoch 求值和缓存，
+输入不变时，fixed steps 复用同一动画目标；原生的力累计与 fixed-step 执行仍由 world 管理。</p>
+<p>手动模式可以调用：</p>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="na">animate</span><span class="p">(</span><span class="n">gameTickSeconds</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">sample</span><span class="p">(</span><span class="n">partialTick</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">simulatePhysics</span><span class="p">(</span><span class="n">frameSeconds</span><span class="p">);</span><span class="w">   </span><span class="c1">// 内部走 tickLoop.tick(dt)</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">tick</span><span class="p">(</span><span class="n">frameSeconds</span><span class="p">);</span><span class="w">              </span><span class="c1">// 直接推进整条管线</span>
+</code></pre></div>
+<p>需要一次完成动画采样和物理推进时使用：</p>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="na">evaluatePhysicsFrame</span><span class="p">(</span><span class="n">partialTick</span><span class="p">,</span><span class="w"> </span><span class="n">frameSeconds</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="2-通用刚体-api">2. 通用刚体 API<a class="headerlink" href="#2-通用刚体-api" title="Permanent link">&para;</a></h2>
+<p>主要包：</p>
+<div class="highlight"><pre><span></span><code>lib.kasuga.rendering.models.uml.dynamic.physics.core
+</code></pre></div>
+<h3 id="21-shape-与-body">2.1 Shape 与 body<a class="headerlink" href="#21-shape-与-body" title="Permanent link">&para;</a></h3>
+<p><code>BodyShape</code> 是 body-local 的 sealed API：</p>
+<ul>
+<li><code>BodyShape.Sphere(center, radius)</code></li>
+<li><code>BodyShape.Box(center, rotation, halfExtents)</code></li>
+<li><code>BodyShape.Capsule(centerA, centerB, radius)</code></li>
+</ul>
+<p><code>SimBody.collisionShapes()</code> 可返回任意数量的 child shape，因此一个 native body 可以是 compound body。
+兼容字段 <code>shape()</code> 与 <code>shapeSizeRef()</code> 仍会自动映射成一个居中 primitive。</p>
+<p><code>GenericRigidBody</code> 是非 PMX 内容的默认实现：</p>
+<div class="highlight"><pre><span></span><code><span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">sphere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">sphere</span><span class="p">(</span><span class="mf">0.3f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">at</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">4f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">friction</span><span class="p">(</span><span class="mf">0.7f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">restitution</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">damping</span><span class="p">(</span><span class="mf">0.05f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">compound</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">)),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">))</span>
+<span class="p">),</span><span class="w"> </span><span class="mf">4f</span><span class="p">);</span>
+
+<span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">movingPlatform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">kinematic</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">))</span>
+<span class="p">));</span>
+</code></pre></div>
+<p>运行时状态方法包括 <code>position()</code>、<code>rotation()</code>、<code>teleport(...)</code>、<code>setLinearVelocity(...)</code> 和
+<code>setAngularVelocity(...)</code>。<code>SimBody</code> 的 <code>*Ref()</code> 方法返回内部可变存储，只供高频适配与状态同步使用。</p>
+<h3 id="22-world-生命周期与固定步长">2.2 World 生命周期与固定步长<a class="headerlink" href="#22-world-生命周期与固定步长" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RigidBodyWorld</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">(</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span><span class="w"> </span><span class="n">compound</span><span class="p">),</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(),</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">.</span><span class="na">DEFAULT_SUBSTEP_COUNT</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">setSimulationHertz</span><span class="p">(</span><span class="mi">120</span><span class="n">f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">setGravity</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.80665f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">));</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">addGroundPlane</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">step</span><span class="p">(</span><span class="n">deltaSeconds</span><span class="p">,</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">.</span><span class="na">KinematicDriver</span><span class="p">.</span><span class="na">none</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>对象与关节管理：</p>
+<ul>
+<li><code>add(SimBody)</code> / <code>remove(SimBody)</code></li>
+<li><code>add(BallJoint)</code> / <code>remove(BallJoint)</code>（PMX/gltf ragdoll 使用的球关节）</li>
+<li><code>add(PhysicsJoint)</code> / <code>remove(PhysicsJoint)</code>（weld/distance/revolute/prismatic，见 2.2.1）</li>
+<li><code>bodies()</code> / <code>joints()</code> / <code>physicsJoints()</code></li>
+<li><code>excludePair(bodyA, bodyB)</code></li>
+<li><code>close()</code></li>
+</ul>
+<p>移除 body 时，挂在它上面的两类关节都会自动销毁。</p>
+<h3 id="221-通用关节类型">2.2.1 通用关节类型<a class="headerlink" href="#221-通用关节类型" title="Permanent link">&para;</a></h3>
+<p>Box3D 的四种常用关节已通过 JNI 完整移植（约束求解全部在 native 内）：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Weld：把两个 prop 刚性粘接（0 hertz = 最硬），可调软硬度</span>
+<span class="n">WeldJoint</span><span class="w"> </span><span class="n">weld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeldJoint</span><span class="p">.</span><span class="na">atCurrentPose</span><span class="p">(</span><span class="n">blockA</span><span class="p">,</span><span class="w"> </span><span class="n">blockB</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="n">world</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">weld</span><span class="p">);</span>
+
+<span class="c1">// Distance：绳/弹簧/绞盘，支持 spring、长度限制和 motor</span>
+<span class="n">DistanceJoint</span><span class="w"> </span><span class="n">rope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">length</span><span class="p">(</span><span class="mf">1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">spring</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">3f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="n">f</span><span class="p">)</span><span class="w">      </span><span class="c1">// 绞盘收绳</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="c1">// Revolute：铰链（门、盖、风车），可带角度限制与电机</span>
+<span class="n">RevoluteJoint</span><span class="w"> </span><span class="n">hinge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RevoluteJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">door</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">hingeAxis</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6f</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="n">f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="c1">// Prismatic：滑轨（活塞、抽屉），可带行程限制与电机</span>
+<span class="n">PrismaticJoint</span><span class="w"> </span><span class="n">piston</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">rail</span><span class="p">,</span><span class="w"> </span><span class="n">slider</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">slideAxis</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.2f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="n">f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<p>运行时调参走各关节的 setter（<code>setLimits</code>、<code>setMotor</code>、<code>setSpring</code>、<code>setLength</code>）；
+未绑定到 world 的关节调用 setter 会抛出 <code>IllegalStateException</code>。</p>
+<p><code>KinematicDriver.beginStep(world)</code> 在每个 fixed step 前执行；<code>kinematicTarget(body)</code> 返回同一步的目标
+位置和旋转。<code>lastFixedStepCount()</code>、<code>droppedSimulationTime()</code> 与 <code>interpolationAlpha()</code> 用于诊断固定步长。</p>
+<p>主要调参：</p>
+<ul>
+<li><code>setSimulationHertz(10..1000)</code></li>
+<li><code>setSubstepCount(1..50)</code></li>
+<li><code>setMaxFixedStepsPerUpdate(1..1000)</code></li>
+<li><code>setConstraintTuning(hertz, dampingRatio)</code></li>
+<li><code>setSpeedLimits(linear, angular)</code>；当前 Box3D 只提供 world linear speed 映射</li>
+<li><code>setRestitutionThreshold(value)</code></li>
+<li><code>setSleepingEnabled(boolean)</code> / <code>setSleepingThresholds(...)</code> / <code>wake()</code></li>
+<li><code>setContinuousCollisionEnabled(boolean)</code></li>
+<li><code>setCollisionsEnabled(boolean)</code></li>
+<li><code>setSelfCollisionsEnabled(boolean)</code></li>
+</ul>
+<p><code>setSolverIterations</code> 是旧配置兼容入口。Box3D 不公开同名迭代数，因此它只校验和保存值。</p>
+<h3 id="23-impulseforce-与-body-控制">2.3 Impulse、force 与 body 控制<a class="headerlink" href="#23-impulseforce-与-body-控制" title="Permanent link">&para;</a></h3>
+<p>所有向量均为世界坐标：</p>
+<div class="highlight"><pre><span></span><code><span class="n">world</span><span class="p">.</span><span class="na">applyImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">impulse</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">impulse</span><span class="p">,</span><span class="w"> </span><span class="n">worldPoint</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyAngularImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">angularImpulse</span><span class="p">);</span>
+
+<span class="n">world</span><span class="p">.</span><span class="na">applyForce</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyForce</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="p">,</span><span class="w"> </span><span class="n">worldPoint</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyTorque</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">torque</span><span class="p">);</span>
+
+<span class="n">world</span><span class="p">.</span><span class="na">setGravityScale</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">);</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">gravityScale</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">setAwake</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">awake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">awake</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</code></pre></div>
+<p>Impulse 立即改变速度；force/torque 由下一个 native Box3D step 积分。方法在 body 不属于该 world、
+body 不是 dynamic 或输入非有限数时返回 <code>false</code>。负 gravity scale 会反转该 body 的重力。</p>
+<h3 id="24-collisioncontact-与-query">2.4 Collision、contact 与 query<a class="headerlink" href="#24-collisioncontact-与-query" title="Permanent link">&para;</a></h3>
+<p>静态环境入口：</p>
+<ul>
+<li><code>addPlaneCollider(normal, offset, friction, restitution)</code></li>
+<li><code>addGroundPlane(y, friction, restitution)</code></li>
+<li><code>addStaticBoxCollider(minimum, maximum, friction, restitution)</code></li>
+<li><code>addEnvironmentMesh(friction, restitution)</code></li>
+<li><code>setCollisionEnvironment(CollisionEnvironment)</code></li>
+</ul>
+<p><code>StaticEnvironmentMesh</code> 通过 <code>putCell/removeCell</code> 增量同步 Minecraft terrain，Java 不做碰撞求解。</p>
+<p>查询：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Optional</span><span class="o">&lt;</span><span class="n">RayHit</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">raycast</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span><span class="w"> </span><span class="n">maximumDistance</span><span class="p">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">BodyContact</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">contacts</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</code></pre></div>
+<p><code>RayHit</code> 返回 Java <code>SimBody</code>、世界命中点与距离。<code>BodyContact</code> 字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td>查询视角中的 body</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>另一 Java body；native static terrain 时为空</td>
+</tr>
+<tr>
+<td><code>point</code></td>
+<td>世界接触点</td>
+</tr>
+<tr>
+<td><code>normal</code></td>
+<td>从 <code>other</code> 指向 <code>body</code> 的单位法线</td>
+</tr>
+<tr>
+<td><code>separation</code></td>
+<td>负值为穿透</td>
+</tr>
+<tr>
+<td><code>normalImpulse</code></td>
+<td>当前 solver point 的 normal impulse</td>
+</tr>
+<tr>
+<td><code>totalNormalImpulse</code></td>
+<td>包含累计 warm-start 的 normal impulse</td>
+</tr>
+<tr>
+<td><code>normalVelocity</code></td>
+<td>pre-solve normal velocity</td>
+</tr>
+<tr>
+<td><code>touching()</code></td>
+<td>分离量或 impulse 表明当前接触</td>
+</tr>
+</tbody>
+</table>
+<p>汇总计数可用 <code>selfContactCount()</code> 与 <code>staticContactBodyCount()</code>。</p>
+<h3 id="25-ray-drag">2.5 Ray drag<a class="headerlink" href="#25-ray-drag" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">world</span><span class="p">.</span><span class="na">setDragSettings</span><span class="p">(</span><span class="n">DragSettings</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">beginDrag</span><span class="p">(</span><span class="n">hit</span><span class="p">);</span><span class="w">                 </span><span class="c1">// 或 beginDrag(body, worldPoint)</span>
+<span class="n">world</span><span class="p">.</span><span class="na">updateDragTarget</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">frameSeconds</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">endDrag</span><span class="p">();</span>
+</code></pre></div>
+<p>拖拽在 native Box3D 中创建 kinematic anchor 与 spherical joint，不 teleport body，也不运行 Java 稳定器。
+当前一个 world 同时只有一个 drag target。</p>
+<h2 id="3-pmx-与-gltf-ragdoll-api">3. PMX 与 glTF ragdoll API<a class="headerlink" href="#3-pmx-与-gltf-ragdoll-api" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">SkeletonRagdoll</span><span class="w"> </span><span class="n">ragdoll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">enablePhysics</span><span class="p">();</span>
+<span class="c1">// 或只生成 profile 中注册的主体胶囊</span>
+<span class="n">SkeletonRagdoll</span><span class="w"> </span><span class="n">profiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">enablePhysics</span><span class="p">(</span><span class="n">profile</span><span class="p">);</span>
+</code></pre></div>
+<p>查询：</p>
+<ul>
+<li><code>bodies()</code> / <code>joints()</code></li>
+<li><code>body(definitionIndex)</code>：通用 bodies 列表索引；MMD Reader 保持原刚体顺序，glTF Reader 保持 node 顺序</li>
+<li><code>body(Bone)</code> / <code>body(boneName)</code></li>
+<li><code>animationTarget(body)</code>：本帧 animation + IK 后、physics 前的 body 目标</li>
+<li><code>raycast(...)</code></li>
+</ul>
+<p><code>SkeletonRagdoll</code> 直接转发通用 impulse、force、torque、gravity、collision、drag、fixed-step、sleep 与
+environment 控制。<code>Body</code> 另提供 <code>position()</code>、<code>rotation()</code>、<code>shapeSize()</code>、速度、<code>toWorldPoint(...)</code>、
+<code>toLocalPoint(...)</code>、<code>teleport(...)</code> 和速度 setter。</p>
+<p>模式语义：</p>
+<ul>
+<li>PMX mode 0：kinematic，跟随动画骨骼。</li>
+<li>PMX mode 1：dynamic，完整物理写回。</li>
+<li>PMX mode 2：dynamic，保留动画平移并写回物理旋转。</li>
+<li>profile ragdoll：PMX 与 glTF 都可按公共 UML 骨骼段生成胶囊和语义质量；默认关闭内部
+  self-collision。PMX 可通过 <code>include_secondary_bodies</code> 保留作者制作的裙摆/头发刚体链；这些
+  次级刚体在独立的 collision group/mask 命名空间中保留 PMX 内部过滤关系，并通过 kinematic
+  proxy 单向挂到主体，不继承主体的负 group 过滤，也不会反向拖动主体。glTF 必须提供显式 profile，
+  不会从骨骼名猜测人体拓扑。</li>
+</ul>
+<p>配置格式、profile role 与 Minecraft 部署详见 <a href="../mmd-ragdoll/">mmd-ragdoll.md</a>。</p>
+<p>MMD/glTF ragdoll 使用每实例的 double 世界锚点和 origin-local float 物理坐标。Minecraft 方块网格、
+射线、鼠标拖拽和实体挂点都会先减去该锚点；渲染也使用 double 的相机相对位移。这避免在十万格到
+世界边界范围内把小型碰撞体、骨骼段和关节误差放大到厘米甚至整格。</p>
+<h2 id="4-ik-api">4. IK API<a class="headerlink" href="#4-ik-api" title="Permanent link">&para;</a></h2>
+<p><code>SkeletonInstance</code> 支持持久外部目标：</p>
+<div class="highlight"><pre><span></span><code><span class="n">skeleton</span><span class="p">.</span><span class="na">setIkTarget</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="n">worldTarget</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">clearIkTarget</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">clearIkTargets</span><span class="p">();</span>
+
+<span class="n">skeleton</span><span class="p">.</span><span class="na">setIkEnabled</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">resetIkEnabled</span><span class="p">();</span>
+</code></pre></div>
+<p><code>weight</code> 范围为 <code>[0,1]</code>，在该链 controller 位置与外部世界目标之间混合。名称表示通用 IK 链名，
+未定义链返回 <code>false</code>。完整构造、限位、闭环与诊断见 <a href="../skeleton-dynamics/">Skeleton Dynamics API</a>。</p>
+<p><code>setFrameIkTarget(...)</code> 与 <code>clearFrameIkTargets()</code> 是 tick loop 的瞬态入口。<code>ModelTickLoop.tick</code>
+在每次求值开始时清空，pre-IK 模块重新写入后供同一次求值中的 IK 与物理共同消费；普通调用方通常应使用
+<code>IkTargetModule</code> 而不是直接管理生命周期。</p>
+<h2 id="5-modeltickloop-模块">5. ModelTickLoop 模块<a class="headerlink" href="#5-modeltickloop-模块" title="Permanent link">&para;</a></h2>
+<p>每个 <code>ModelInstance</code> 自带一条 <code>ModelTickLoop</code> 管线（<code>instance.getTickLoop()</code>），默认安装四个内置模块：</p>
+<table>
+<thead>
+<tr>
+<th>槽位</th>
+<th>模块</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kasuga:apply</code></td>
+<td><code>SkeletonApplyModule</code></td>
+<td>把 pending transforms flush 进骨架；identity 槽位跳过，不覆盖动画写好的骨骼</td>
+</tr>
+<tr>
+<td><code>kasuga:ik</code></td>
+<td><code>IkModule</code></td>
+<td>层级求值 + 通用 Caliko IK；物理启用时由物理接管姿态，此槽自动跳过</td>
+</tr>
+<tr>
+<td><code>kasuga:physics</code></td>
+<td><code>RagdollModule</code></td>
+<td>推进 SkeletonRagdoll（Box3D）并写回；未启用物理时 no-op</td>
+</tr>
+<tr>
+<td><code>kasuga:anchor</code></td>
+<td><code>AnchorModule</code></td>
+<td>重算锚点世界变换并通知显示子物体</td>
+</tr>
+</tbody>
+</table>
+<p>用户模块用类型化助手挂到标准槽位之间，排序完全由管线提供：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ModelTickLoop</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">();</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPreIk</span><span class="p">(</span><span class="s">"my-target"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span>      <span class="err">//</span> <span class="nc">默认</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="n">之后</span><span class="err">、</span><span class="n">IK</span><span class="w"> </span><span class="n">之前</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPostIk</span><span class="p">(</span><span class="s">"my-controller"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span> <span class="err">//</span> <span class="nc">IK</span><span class="w"> </span><span class="n">之后</span><span class="err">、</span><span class="n">物理之前</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPostPhysics</span><span class="p">(</span><span class="s">"my-observer"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span> <span class="err">//</span> <span class="nc">物理之后</span><span class="err">、</span><span class="n">锚点之前</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">module</span><span class="p">(</span><span class="n">ModelTickLoop</span><span class="p">.</span><span class="na">SLOT_ANCHOR</span><span class="p">,</span><span class="w"> </span><span class="n">AnchorModule</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"> </span><span class="c1">// 取内置模块实例</span>
+</code></pre></div>
+<p>需要写 pending transforms 并让默认 apply 消费时，用
+<code>loop.getPipeline().addBefore(ModelTickLoop.SLOT_APPLY, "my-pose", module)</code>。
+也可以通过 <code>loop.getPipeline()</code> 使用 <code>addFirst/addLast/addBefore/addAfter/remove</code> 做任意插入。
+<code>tick()</code> 开始时会清空 transient IK targets，因此它们的生命周期精确为一 tick。</p>
+<h3 id="51-iktargetmodule">5.1 <code>IkTargetModule</code><a class="headerlink" href="#51-iktargetmodule" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">IkTargetModule</span><span class="w"> </span><span class="n">hand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkTargetModule</span><span class="p">(</span><span class="s">"右手ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">().</span><span class="na">addPreIk</span><span class="p">(</span><span class="s">"hand"</span><span class="p">,</span><span class="w"> </span><span class="n">hand</span><span class="p">);</span>
+
+<span class="n">hand</span><span class="p">.</span><span class="na">setTarget</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1.2f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">));</span>
+<span class="n">hand</span><span class="p">.</span><span class="na">setTarget</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">);</span>
+<span class="n">hand</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>它只在 pre-IK 阶段写瞬态世界目标，不修改 authored animation 数据。</p>
+<h3 id="52-activeragdollmodule">5.2 <code>ActiveRagdollModule</code><a class="headerlink" href="#52-activeragdollmodule" title="Permanent link">&para;</a></h3>
+<p>该 controller 在 post-IK 阶段将 dynamic body 拉向同帧动画/IK body target：先调用
+<code>SkeletonRagdoll.evaluateAnimationTarget()</code> 刷新 kinematic target，再计算 PD spring 的 force/torque；
+积分、碰撞、joint、sleep 仍全部由 Box3D 在 physics 阶段执行。</p>
+<p>控制全部 dynamic body：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ActiveRagdollModule</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActiveRagdollModule</span><span class="p">(</span>
+<span class="w">        </span><span class="mf">5f</span><span class="p">,</span><span class="w">    </span><span class="c1">// frequency Hz</span>
+<span class="w">        </span><span class="mf">1f</span><span class="p">,</span><span class="w">    </span><span class="c1">// damping ratio</span>
+<span class="w">        </span><span class="mi">800</span><span class="n">f</span><span class="p">,</span><span class="w">  </span><span class="c1">// maximum force</span>
+<span class="w">        </span><span class="mi">250</span><span class="n">f</span><span class="w">   </span><span class="c1">// maximum torque</span>
+<span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">().</span><span class="na">addPostIk</span><span class="p">(</span><span class="s">"active-ragdoll"</span><span class="p">,</span><span class="w"> </span><span class="n">active</span><span class="p">);</span>
+</code></pre></div>
+<p>只控制指定骨骼 body：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">upperBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActiveRagdollModule</span><span class="p">(</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"上半身"</span><span class="p">,</span><span class="w"> </span><span class="s">"首"</span><span class="p">,</span><span class="w"> </span><span class="s">"頭"</span><span class="p">),</span><span class="w"> </span><span class="mf">6f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7f</span><span class="p">);</span>
+</code></pre></div>
+<p>运行时可使用 <code>setWeight</code>、<code>setSettings</code> 与 <code>setEnabled</code>。空骨骼集合表示全部 dynamic body。</p>
+<p><code>IkTargetModule</code> 与 <code>ActiveRagdollModule</code> 可以同时使用：前者先修改目标，Caliko 求解通用 IK 链，后者再让
+Box3D body 追随 IK 后姿态。这是 animation、IK 与 active physics 的推荐组合。</p>
+<h3 id="53-anchormodule-与显示子物体">5.3 <code>AnchorModule</code> 与显示子物体<a class="headerlink" href="#53-anchormodule-与显示子物体" title="Permanent link">&para;</a></h3>
+<p>模型库中的 <code>Anchor</code>（<code>uml.structure.skeleton.Anchor</code>）是绑定在蒙皮骨骼上的显示子物体锚点，
+例如玩家手中拿的剑。<code>SkeletonInstance.anchorTransform(name)</code> 按 BDEF 蒙皮同样的规则混合
+绑定骨骼的 bind→current delta 得到锚点世界变换：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 每帧把手部锚点的世界变换交给宿主渲染逻辑</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">attachToAnchor</span><span class="p">(</span><span class="s">"hand_r"</span><span class="p">,</span><span class="w"> </span><span class="n">worldTransform</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">worldTransform</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 锚点失效，隐藏持物 */</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">placeHeldItem</span><span class="p">(</span><span class="n">worldTransform</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(),</span><span class="w"> </span><span class="n">worldTransform</span><span class="p">.</span><span class="na">getRotation</span><span class="p">());</span>
+<span class="p">});</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">detachFromAnchor</span><span class="p">(</span><span class="s">"hand_r"</span><span class="p">,</span><span class="w"> </span><span class="n">attachment</span><span class="p">);</span>
+</code></pre></div>
+<p><code>AnchorModule</code> 在每条管线的最后阶段（<code>kasuga:anchor</code>）推送这些变换，因此锚点永远跟随最终姿态
+（含 IK 与物理）。也可以直接调 <code>instance.anchorTransform(name)</code> 立即查询。</p>
+<h2 id="6-gltf-动画兼容">6. glTF 动画兼容<a class="headerlink" href="#6-gltf-动画兼容" title="Permanent link">&para;</a></h2>
+<p><code>.glb</code> 与 <code>.gltf</code> 已注册为内置资源管线。parser API 位于
+<code>lib.kasuga.rendering.models.uml.typo.gltf</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="n">GltfAsset</span><span class="w"> </span><span class="n">asset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w">                    </span><span class="c1">// 不读动画 track</span>
+<span class="n">GltfAsset</span><span class="w"> </span><span class="n">animated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"walk"</span><span class="p">));</span>
+<span class="n">GltfAsset</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">loadAllAnimations</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="n">Model</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfModelConverter</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="n">all</span><span class="p">);</span>
+</code></pre></div>
+<p><code>GltfModelConverter</code> 将全部 glTF node 合并到统一 UML Skeleton，并把每个 skin 的 <code>JOINTS_0</code> 重映射到
+全局 Bone，所以现有 CPU/GPU skinning 与 tick loop 模块可直接使用。Minecraft 资源管线会把 embedded
+base-color 图片放入现有 texture atlas。</p>
+<div class="highlight"><pre><span></span><code><span class="n">ModelInstance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getPosing</span><span class="p">();</span>
+<span class="n">animation</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">"walk"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>通用入口见 <a href="../model-posing/">ModelPosing</a>，glTF sampler 支持 translation/rotation/scale/weights、STEP、LINEAR 与 CUBIC_SPLINE。资源包流式 <code>.gltf</code> 只支持
+embedded/data URI；需要外部 <code>.bin</code> 或图片 URI 时使用 <code>Path</code> API，或打包为 <code>.glb</code>。</p>
+<p>Minecraft 中可在模型旁放置 <code>&lt;model&gt;.gltf.json</code> manifest：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"model_scale"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"ragdoll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:ragdolls/character.json"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>model_scale</code> 同时作用于顶点、骨骼和生成的 ragdoll；<code>ragdoll</code> 指向 profile/模拟配置。部署逻辑只读
+manifest，不按文件名或模型名称选择 profile。通用命令为：</p>
+<div class="highlight"><pre><span></span><code>/kasuga_ragdoll deploy example:models/character.glb
+</code></pre></div>
+<h2 id="7-minecraft-physics-block">7. Minecraft physics block<a class="headerlink" href="#7-minecraft-physics-block" title="Permanent link">&para;</a></h2>
+<p><code>MinecraftBlockRigidBody</code> 将 <code>BlockState#getCollisionShape</code> 的每个 voxel AABB 转成一个
+body-local <code>BodyShape.Box</code>，而不是统一使用完整单位方块。因此 slab、fence、柱体和组合形状会保留真实
+碰撞空隙。visual 仍由 vanilla block renderer 绘制。</p>
+<p><code>MinecraftBlockPhysics</code> 使用一个共享 Box3D world：</p>
+<ul>
+<li>physics blocks 之间发生真实 native collision；</li>
+<li>terrain 由 <code>MinecraftBlockRagdollEnvironment</code> 增量同步为 static Box3D boxes；</li>
+<li>碰撞分组：props 位于 group 1；local player AABB 是一个 group 15 的 dynamic proxy，并通过
+  non-collision mask 排除 group 0（terrain 与其它默认 body），因此玩家与地形之间的求解噪音不会
+  经由 proxy 传给贴地的 prop。spectator 与死亡玩家不创建 proxy；</li>
+<li>地面手感由接触回写合成：修正量只取最深接触的 MTV（按朝向拆分——顶面接触只做垂直抬升、
+  不产生水平漂移；侧面接触像真实墙体一样挡住行走），proxy 自身的求解位移不反馈给玩家，
+  避免行走时被求解器反推"打滑"；支撑成立时每帧重设 onGround 并清零 fallDistance
+  （vanilla 每 tick 会因脚下无真实方块而清除该状态），使地面摩擦、跳跃与摔落伤害判定与
+  真实方块一致；</li>
+<li>默认上限 <code>MAX_PROPS = 256</code>，掉出世界或切换维度自动释放；</li>
+<li>空 collision shape 的 block 不会生成。</li>
+</ul>
+<p>调试命令：</p>
+<div class="highlight"><pre><span></span><code>/kasuga_physics block [1-32]
+/kasuga_physics status
+/kasuga_physics clear
+</code></pre></div>
+<p>这是客户端 playground。它对本地玩家表现为可推、可站立的 collision prop，但不是服务端注册的
+Block/Entity，不参与服务端权威碰撞、保存、区块序列化或多人同步。若需要“像正常方块”包含这些网络和
+存档语义，应在上层增加服务端 entity 与同步协议；不要把当前 local collision bridge 当作反作弊安全边界。</p>
+<h2 id="8-当前限制">8. 当前限制<a class="headerlink" href="#8-当前限制" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Box3D 没有内建 Minecraft 流体体积/浮力 API；旧 Java 浮力模型已删除。</li>
+<li>PMX 六轴 joint 当前映射为 spherical joint；旋转盒近似为 cone/twist，三轴平移收紧为固定 anchor。</li>
+<li>一个 world 当前只有一个 drag constraint。</li>
+<li>glTF morph targets 已转换 POSITION / NORMAL 及其权重动画；TANGENT、TEXCOORD / COLOR target、第二套 skin weights、非 triangle primitive 与材质扩展尚未转换。</li>
+<li>glTF parser 保存 metallic/roughness factor，但当前 Minecraft adapter 只直接上传 base-color；Kasuga 的
+  stylized PBR 转换仍使用 <a href="../pbr/">pbr.md</a> 中的独立规则和 atlas baker。</li>
+</ul>
+<p>渲染 pipeline、shader 与 effect API 见 <a href="../effect-rendering/">effect-rendering.md</a>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

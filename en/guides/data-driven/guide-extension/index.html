@@ -1,0 +1,4849 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/guides/data-driven/guide-extension/">
+      
+      
+        <link rel="prev" href="../guide-content/">
+      
+      
+        <link rel="next" href="../../offline-rendering/">
+      
+      
+        
+          <link rel="alternate" href="../../../../guides/data-driven/guide-extension/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Extension guide: what you have to write Java for (How-to) - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extension-guide-what-you-have-to-write-java-for-how-to" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extension guide: what you have to write Java for (How-to)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../guides/data-driven/guide-extension/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-decide-first-does-this-need-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Decide first: does this need Java?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-a-top-level-type-typehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding a top-level type (TypeHandler)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding a top-level type (TypeHandler)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pick-a-shape-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Pick a shape first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-skeleton-reg-shaped-lifted-from-the-regtypehandler-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Skeleton (Reg-shaped, lifted from the RegTypeHandler template)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-how-parse-and-apply-divide-the-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 How parse and apply divide the work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-choosing-a-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Choosing a phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-registering-the-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Registering the handler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-the-matching-json-and-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 The matching JSON and index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-deduplication-identity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Deduplication identity (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-embedded-types-types-that-hang-off-a-parent-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Embedded types: types that hang off a parent entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Embedded types: types that hang off a parent entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-how-the-three-methods-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 How the three methods work together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-differences-from-top-level-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Differences from top-level types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-why-a-stray-top-level-write-does-not-abort-the-whole-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Why a stray top-level write does not abort the whole file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-registering-factories-factoryregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Registering factories (FactoryRegistry)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Registering factories (FactoryRegistry)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-goal-and-choosing-a-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Goal and choosing a table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bean-wiring-context-postconstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Bean wiring: @Context + @PostConstruct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-the-params-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 The params contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-when-a-factory-is-missing-warn-and-skip-not-an-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 When a factory is missing: warn and skip, not an error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extending-property-parsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Extending property parsing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Extending property parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-block-properties-jsonpropertyparserregistercompiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Block properties: JsonPropertyParser.registerCompiler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-item-properties-jsonitemparserregisterparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Item properties: JsonItemParser.registerParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wiring-into-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Wiring into diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Wiring into diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-two-dimensions-and-what-each-one-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Two dimensions, and what each one covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-which-channel-a-handler-error-should-take" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Which channel a handler error should take
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-an-easy-trap-regtypehandler-swallows-exceptions-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 An easy trap: RegTypeHandler swallows exceptions internally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-the-reload-domain-uses-the-domain-dimension-domainreload_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 The reload domain uses the domain dimension (Domain.RELOAD_DATA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-the-read-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 The read side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adding-a-reload-phase-content-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Adding a reload-phase content type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Adding a reload-phase content type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-goal-and-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Goal and prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-implementing-and-registering-a-reloadhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Implementing and registering a ReloadHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-lifecycle-when-the-four-callbacks-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Lifecycle: when the four callbacks run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-directory-glob-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Directory glob (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-hard-rules-on-file-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Hard rules on file shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-differences-from-extending-a-registration-phase-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Differences from extending a registration-phase type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing-your-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Testing your extension
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing your extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-pure-jvm-use-parsecontentbody" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Pure JVM: use parseContentBody
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-recording-fake-factories-test-the-whole-parse-apply-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Recording fake factories: test the whole parse → apply chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-registration-assertions-under-the-fml-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Registration assertions under the FML gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-unit-testing-the-factory-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Unit-testing the factory itself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pitfall-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Pitfall checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-wrap-up-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Wrap-up checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-known-shortcomings-of-the-current-extension-points-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Known shortcomings of the current extension points (observations)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-what-this-page-leaves-to-the-data-driven-api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: what this page leaves to the data-driven API reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-decide-first-does-this-need-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Decide first: does this need Java?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-a-top-level-type-typehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding a top-level type (TypeHandler)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding a top-level type (TypeHandler)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pick-a-shape-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Pick a shape first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-skeleton-reg-shaped-lifted-from-the-regtypehandler-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Skeleton (Reg-shaped, lifted from the RegTypeHandler template)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-how-parse-and-apply-divide-the-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 How parse and apply divide the work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-choosing-a-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Choosing a phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-registering-the-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Registering the handler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-the-matching-json-and-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 The matching JSON and index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-deduplication-identity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Deduplication identity (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-embedded-types-types-that-hang-off-a-parent-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Embedded types: types that hang off a parent entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Embedded types: types that hang off a parent entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-how-the-three-methods-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 How the three methods work together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-differences-from-top-level-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Differences from top-level types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-why-a-stray-top-level-write-does-not-abort-the-whole-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Why a stray top-level write does not abort the whole file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-registering-factories-factoryregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Registering factories (FactoryRegistry)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Registering factories (FactoryRegistry)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-goal-and-choosing-a-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Goal and choosing a table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bean-wiring-context-postconstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Bean wiring: @Context + @PostConstruct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-the-params-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 The params contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-when-a-factory-is-missing-warn-and-skip-not-an-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 When a factory is missing: warn and skip, not an error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extending-property-parsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Extending property parsing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Extending property parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-block-properties-jsonpropertyparserregistercompiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Block properties: JsonPropertyParser.registerCompiler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-item-properties-jsonitemparserregisterparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Item properties: JsonItemParser.registerParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wiring-into-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Wiring into diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Wiring into diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-two-dimensions-and-what-each-one-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Two dimensions, and what each one covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-which-channel-a-handler-error-should-take" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Which channel a handler error should take
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-an-easy-trap-regtypehandler-swallows-exceptions-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 An easy trap: RegTypeHandler swallows exceptions internally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-the-reload-domain-uses-the-domain-dimension-domainreload_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 The reload domain uses the domain dimension (Domain.RELOAD_DATA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-the-read-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 The read side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adding-a-reload-phase-content-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Adding a reload-phase content type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Adding a reload-phase content type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-goal-and-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Goal and prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-implementing-and-registering-a-reloadhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Implementing and registering a ReloadHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-lifecycle-when-the-four-callbacks-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Lifecycle: when the four callbacks run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-directory-glob-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Directory glob (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-hard-rules-on-file-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Hard rules on file shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-differences-from-extending-a-registration-phase-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Differences from extending a registration-phase type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-why-it-is-designed-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Why it is designed this way
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing-your-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Testing your extension
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing your extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-pure-jvm-use-parsecontentbody" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Pure JVM: use parseContentBody
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-recording-fake-factories-test-the-whole-parse-apply-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Recording fake factories: test the whole parse → apply chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-registration-assertions-under-the-fml-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Registration assertions under the FML gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-unit-testing-the-factory-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Unit-testing the factory itself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pitfall-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Pitfall checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-wrap-up-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Wrap-up checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-known-shortcomings-of-the-current-extension-points-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Known shortcomings of the current extension points (observations)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-what-this-page-leaves-to-the-data-driven-api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: what this page leaves to the data-driven API reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="extension-guide-what-you-have-to-write-java-for-how-to">Extension guide: what you have to write Java for (How-to)<a class="headerlink" href="#extension-guide-what-you-have-to-write-java-for-how-to" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>For mod developers who want to give data-driven new capabilities. Readers need a working path first (see <code>intro.md</code>) and a basic grasp of the JSON format (see <code>schema.md</code>).
+This page covers only the extension points that <strong>have to land in Java</strong>, and every section is organized as "goal → code → why": adding a top-level type, an embedded type, registering a factory, extending property parsing, wiring into diagnostics, adding a reload content type, and how to write tests.
+Boundaries: for per-class and per-method signatures see <code>api-registration.md</code> / <code>api-extension.md</code> / <code>api-diagnostics.md</code> / <code>api-reload.md</code>; for content organization expressible in pure JSON (groups, blocks, items, index writing, the property cheat sheet) see <code>guide-content.md</code>; for field-level JSON rules and D1–D6 see <code>schema.md</code>. This page repeats neither the signature tables nor the JSON field rules.</p>
+<p>Version baseline: Minecraft 1.21.1 / NeoForge 21.1.203 / mojmap + Parchment 2024.11.17 / Java 21. Line numbers in the text correspond to the file contents in the current working tree (the uncommitted data-driven reimplementation), baseline commit <code>ec864a1</code>; signatures follow <code>api-registration.md</code> / <code>api-extension.md</code> / <code>api-diagnostics.md</code> / <code>api-reload.md</code>.</p>
+</blockquote>
+<h2 id="0-decide-first-does-this-need-java">0. Decide first: does this need Java?<a class="headerlink" href="#0-decide-first-does-this-need-java" title="Permanent link">&para;</a></h2>
+<p>Data-driven has two extension surfaces: JSON content, and capabilities JSON cannot recognize. Only the latter needs Java. Match your case in the table below:</p>
+<pre class="mermaid"><code>flowchart TD
+    A["What do you want to add?"] --&gt;|"A different block/item/entity under an existing top-level type"| B["Register a factory&lt;br/&gt;FactoryRegistry"]
+    A --&gt;|"A new key for properties / item_properties"| C["Register a property compiler&lt;br/&gt;JsonPropertyParser / JsonItemParser"]
+    A --&gt;|"A brand-new top-level field in a content file"| D["Add a TypeHandler&lt;br/&gt;TypeHandlerRegistry"]
+    A --&gt;|"One more content type at reload time"| E["Implement and register a ReloadHandler"]
+    A --&gt;|"None of the above, you just want to write more blocks"| F["No Java needed&lt;br/&gt;see guide-content.md"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>Your goal</th>
+<th>Extension point</th>
+<th>Does the result need to go into a Minecraft registry</th>
+<th>Where in this page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"type": "my_door"</code> produces a block</td>
+<td><code>FactoryRegistry.register</code></td>
+<td>Yes</td>
+<td>§3</td>
+</tr>
+<tr>
+<td><code>"type": "my_material"</code> produces an item</td>
+<td><code>FactoryRegistry.registerItem</code></td>
+<td>Yes</td>
+<td>§3</td>
+</tr>
+<tr>
+<td><code>"type": "my_be"</code> attaches a block entity</td>
+<td><code>FactoryRegistry.registerBlockEntity</code></td>
+<td>Yes</td>
+<td>§3</td>
+</tr>
+<tr>
+<td>A custom non-MC-registry object (effect, definition, ...)</td>
+<td><code>FactoryRegistry.registerGeneric</code> + a custom <code>TypeHandler</code></td>
+<td>No</td>
+<td>§1, §3</td>
+</tr>
+<tr>
+<td><code>mymod:my_key</code> appears in <code>properties</code></td>
+<td><code>JsonPropertyParser.registerCompiler</code></td>
+<td>—</td>
+<td>§4</td>
+</tr>
+<tr>
+<td><code>"my_things": [...]</code> appears at the top level of a content file</td>
+<td>Implement and register a <code>TypeHandler</code></td>
+<td>Depends on the definition</td>
+<td>§1</td>
+</tr>
+<tr>
+<td>A block embeds <code>"my_attach": {...}</code></td>
+<td>Embedded <code>TypeHandler</code></td>
+<td>—</td>
+<td>§2</td>
+</tr>
+<tr>
+<td>One more <code>"xxx": [...]</code> file is read after reload</td>
+<td>Implement and register a <code>ReloadHandler</code></td>
+<td>—</td>
+<td>§6</td>
+</tr>
+<tr>
+<td>Expose an extension's failures to ops/tests</td>
+<td><code>Diagnostics</code> / <code>JsonTreeBuilder.addLoadingError</code></td>
+<td>—</td>
+<td>§5</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The factory classes used as examples, <code>DataDrivenTestFactories</code> and <code>FanDataDrivenFactories</code>, both live in their modules' <code>contentTesting</code> source set. Such content <strong>loads as a mod at test runtime but does not go into the published jar</strong>; a real mod puts its factories in its own <code>src/main/java</code>. See §8.</p>
+</blockquote>
+<h2 id="1-adding-a-top-level-type-typehandler">1. Adding a top-level type (TypeHandler)<a class="headerlink" href="#1-adding-a-top-level-type-typehandler" title="Permanent link">&para;</a></h2>
+<h3 id="11-goal">1.1 Goal<a class="headerlink" href="#11-goal" title="Permanent link">&para;</a></h3>
+<p>Let a new top-level field appear in a content file, for example <code>"my_definitions": [ {...}, {...} ]</code>, interpreted by your Java code. The system dispatches arrays to the matching <code>TypeHandler</code> by top-level field name: in the registration phase this happens in <code>JsonTreeBuilder.dispatchContent</code>, which walks <code>TypeHandlerRegistry.all()</code> (<code>JsonTreeBuilder.java:492-513</code>), and the field name is <code>getTypeName()</code>.</p>
+<h3 id="12-pick-a-shape-first">1.2 Pick a shape first<a class="headerlink" href="#12-pick-a-shape-first" title="Permanent link">&para;</a></h3>
+<p>Two shapes; decide which one you are taking:</p>
+<ul>
+<li><strong>It produces a <code>Reg</code> (goes into an MC registry)</strong>: extend <code>RegTypeHandler&lt;T&gt;</code> (<code>handler/RegTypeHandler.java:15</code>). It bakes in the template "split the id → look up the factory → attach namespace/group/creative tab → store into the context" (<code>RegTypeHandler.apply:63-112</code>), so you implement only two abstract methods. <code>blocks</code> / <code>items</code> are written this way.</li>
+<li><strong>It produces no <code>Reg</code> (a pure data definition, or an object obtained through <code>FactoryRegistry.registerGeneric</code>)</strong>: implement <code>TypeHandler&lt;T&gt;</code> directly (<code>TypeHandler.java:8</code>) and handle things yourself in <code>apply</code>. <code>TestGenericFactory</code> in the tests takes this route (<code>TestGenericFactory.java:51-73</code>).</li>
+</ul>
+<h3 id="13-skeleton-reg-shaped-lifted-from-the-regtypehandler-template">1.3 Skeleton (Reg-shaped, lifted from the <code>RegTypeHandler</code> template)<a class="headerlink" href="#13-skeleton-reg-shaped-lifted-from-the-regtypehandler-template" title="Permanent link">&para;</a></h3>
+<p>The class below compiles as-is (<code>EffectDef</code> is only a placeholder definition). It is shaped after <code>BlockTypeHandler</code> (<code>handler/BlockTypeHandler.java:16-64</code>), with just the factory lookup step swapped for a Generic factory. To save space, code blocks from here on omit imports, and every symbol involved is given a source:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.mymod.data</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.google.gson.JsonObject</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.registration.Reg</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.registration.data_driven.handler.RegTypeHandler</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.registration.factory.FactoryRegistry</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EffectTypeHandler</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RegTypeHandler</span><span class="o">&lt;</span><span class="n">EffectTypeHandler</span><span class="p">.</span><span class="na">EffectDef</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/** The product of parse: an immutable definition object. Fields come from JSON, no side effects. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">EffectDef</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getTypeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"effects"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// the top-level field name this handler claims</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPhase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">PHASE_CONTENT</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">     </span><span class="c1">// see 1.5</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">EffectDef</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EffectDef</span><span class="p">(</span>
+<span class="w">                </span><span class="n">json</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"id"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">json</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"type"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">json</span><span class="p">.</span><span class="na">has</span><span class="p">(</span><span class="s">"params"</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="na">getAsJsonObject</span><span class="p">(</span><span class="s">"params"</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveRawId</span><span class="p">(</span><span class="n">EffectDef</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">definition</span><span class="p">.</span><span class="na">id</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/** Diagnostics show the JSON `type` value (such as my_effect), not the top-level field name effects. */</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveType</span><span class="p">(</span><span class="n">EffectDef</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">definition</span><span class="p">.</span><span class="na">type</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">createRegistration</span><span class="p">(</span><span class="n">EffectDef</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">GenericFactory</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">getGeneric</span><span class="p">(</span><span class="n">definition</span><span class="p">.</span><span class="na">type</span><span class="p">());</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">factory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">    </span><span class="c1">// returning null means "no factory"; the framework warns and skips (see §3.4)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">factory</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">definition</span><span class="p">.</span><span class="na">params</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>path</code> has already been stripped out of the id by the template and carries no namespace (<code>RegTypeHandler.resolvePath:43-46</code>); do not prepend a namespace again in the factory.</p>
+<p>The pure-data shape can be shorter. It stores the definition in the <code>BuildContext</code> metadata slot for other handlers to look up (<code>BuildContext.putMeta:22</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyDefinitionHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">TypeHandler</span><span class="o">&lt;</span><span class="n">MyDefinition</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getTypeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"my_definitions"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPhase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">PHASE_GROUPS</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// referenced by other content, so apply it first</span>
+
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">MyDefinition</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyDefinition</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"id"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">MyDefinition</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">context</span><span class="p">.</span><span class="na">putMeta</span><span class="p">(</span><span class="n">getTypeName</span><span class="p">(),</span><span class="w"> </span><span class="n">definition</span><span class="p">.</span><span class="na">id</span><span class="p">(),</span><span class="w"> </span><span class="n">definition</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/** Only a non-null result takes part in duplicate-id deduplication; the default null opts out. */</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveIdentity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">MyDefinition</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">definition</span><span class="p">.</span><span class="na">id</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="14-how-parse-and-apply-divide-the-work">1.4 How parse and apply divide the work<a class="headerlink" href="#14-how-parse-and-apply-divide-the-work" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>parse(JsonObject)</code> takes one JSON object from the array and returns your definition object. It should <strong>be a pure function</strong>: no registration, no mutation of global state, no dependence on call order.</li>
+<li><code>apply(T, BuildContext)</code> is what performs registration. It is batched by <code>getPhase()</code> and called <strong>after every file has been parsed</strong> (<code>JsonTreeBuilder.buildForMod:61</code>).</li>
+</ul>
+<p>Splitting it this way has two concrete reasons:</p>
+<ol>
+<li><strong>Duplicate ids are decided before apply.</strong> All entries are parsed first, <code>resolveDuplicates</code> uses <code>resolveIdentity</code> to find duplicates, and only the winner enters apply (<code>JsonTreeBuilder:119, 652</code>). The losing entries <strong>have also been parsed</strong>. So if parse has side effects, the losing entries take effect with their side effects.</li>
+<li><strong>The same data may be referenced by several files/manifests</strong>; parse is the collection stage, apply the execution stage. Separating them lets deduplication and diagnostics happen inside one "side-effect-free window".</li>
+</ol>
+<h3 id="15-choosing-a-phase">1.5 Choosing a phase<a class="headerlink" href="#15-choosing-a-phase" title="Permanent link">&para;</a></h3>
+<p><code>apply</code> does not follow file order; it is batched in ascending <code>getPhase()</code> order (<code>JsonTreeBuilder:119-121</code>). The three constants are defined in <code>TypeHandler.java:11-17</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Use</th>
+<th>Reference implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PHASE_GROUPS</code></td>
+<td>0</td>
+<td>Objects created first and referenced later</td>
+<td><code>RegistryGroupHandler</code> (<code>getPhase:23</code>)</td>
+</tr>
+<tr>
+<td><code>PHASE_CONTENT</code></td>
+<td>1</td>
+<td>Regular content (blocks, items)</td>
+<td><code>BlockTypeHandler</code> (<code>:22</code>) / <code>ItemTypeHandler</code> (<code>:19</code>)</td>
+</tr>
+<tr>
+<td><code>PHASE_EMBEDDED</code></td>
+<td>2</td>
+<td>Embedded types attached to a parent object</td>
+<td><code>BlockEntityTypeHandler</code> (<code>:24</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Almost every new type uses <code>PHASE_CONTENT</code>. If it gets looked up by id from later content, the way a group does, use <code>PHASE_GROUPS</code>; if it has to land after a parent object, the way a block entity does, use <code>PHASE_EMBEDDED</code>, together with §2.</p>
+<p>Within the same phase the order is registration order (a stable <code>Comparator</code> sort); across phases the value order always holds. So do not guess "who comes first" from file order — guarantee it through <code>getPhase</code> or through lookups in <code>BuildContext</code>.</p>
+<h3 id="16-registering-the-handler">1.6 Registering the handler<a class="headerlink" href="#16-registering-the-handler" title="Permanent link">&para;</a></h3>
+<p><code>TypeHandlerRegistry</code> is a global static table, written with <code>register</code> and indexed by <code>getTypeName()</code> (<code>TypeHandlerRegistry.java:11-17</code>). The four built-in handlers are lazily registered once by <code>JsonTreeBuilder.ensureHandlersRegistered()</code> (<code>JsonTreeBuilder:49-56</code>); your handler must register itself, and it has to do so <strong>before</strong> the index is read:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Context</span><span class="w">                                        </span><span class="c1">// Micronaut eagerly initializes this</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyModDataDriven</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PostConstruct</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TypeHandlerRegistry</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">EffectTypeHandler</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>@Context</code> + <code>@PostConstruct</code> timing is safe: the <code>JsonTreeIntegration</code> that reads the index calls <code>buildForMod</code> only during startup dispatch, through a lazy <code>RegisterContextRegistry</code> callback, which is later than the construction of every <code>@Context</code> bean (see <code>FanDataDrivenFactories.java:39-43</code> for a note on the same timing). If you register too late, the framework finds no handler for the field and reports that field as an "unknown top-level field" (<code>JsonTreeBuilder:475-490</code>).</p>
+<h3 id="17-the-matching-json-and-index">1.7 The matching JSON and index<a class="headerlink" href="#17-the-matching-json-and-index" title="Permanent link">&para;</a></h3>
+<p>The field name is <code>getTypeName()</code>, the value must be an <strong>array</strong>, and each element must be an object (<code>JsonTreeBuilder:500-506</code> enforces both):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"effects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:burn"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_effect"</span><span class="p">,</span><span class="w"> </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>For this content file to be read, an index manifest has to list it. The manifest has only two array fields, <code>on_register</code> and <code>on_reload</code>; the old <code>sources</code> field is retired, and writing it is recorded as a loading error since it counts as an unknown field (<code>schema.md</code> §1.3). Registration-phase content goes under <code>on_register</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"on_register"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"mymod_content/effects.json"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>For manifest and content-file paths, syntax, and the D1–D6 rules see <code>schema.md</code> §1 and §2; for how to organize several content files see <code>guide-content.md</code>. The manifest location is fixed at <code>data/&lt;mod_id&gt;/kasuga_lib/data_driven/</code> (<code>JsonTreeBuilder.indexDirectorySegments:745-747</code>).</p>
+<h3 id="18-deduplication-identity-optional">1.8 Deduplication identity (optional)<a class="headerlink" href="#18-deduplication-identity-optional" title="Permanent link">&para;</a></h3>
+<p><code>resolveIdentity(modId, definition)</code> (<code>TypeHandler.java:64</code>) returns a string meaning "the identity of this definition within the same type field". Two definitions with equal identities count as duplicates, and <strong>the later write wins</strong> (last-wins). The default returns <code>null</code>, meaning this type never takes part in deduplication.</p>
+<ul>
+<li>When you extend <code>RegTypeHandler</code> this is already implemented: <code>EffectiveId</code> normalizes the id into its actual namespace so that <code>"foo"</code> and <code>"minecraft:foo"</code> correctly collide (<code>RegTypeHandler:58-60</code>).</li>
+<li>When you implement <code>TypeHandler</code> directly, override it yourself. If your definition has no registration id (a pure effect list, say), just keep the default <code>null</code>; do not invent a fake id.</li>
+<li>An exception thrown while resolving the identity degrades to "no identity": the entry is not deduplicated, and loading does not crash (<code>JsonTreeBuilder.identityOf:691</code>).</li>
+</ul>
+<h3 id="19-why-it-is-designed-this-way">1.9 Why it is designed this way<a class="headerlink" href="#19-why-it-is-designed-this-way" title="Permanent link">&para;</a></h3>
+<p>The reason for the three phases is plain: one content file can declare both groups and blocks, and a block has to attach to a group that already exists; applying in file order would fail when the block is written first. The phase encodes "who must precede whom" as a declaration instead of leaving it to the author's file ordering. Splitting parse and apply lets deduplication and diagnostics finish before registration, so a duplicate id never actually reaches the registry (the <code>DuplicateIdResolver</code> class comment explains why the registrar layer cannot be the backstop).</p>
+<h2 id="2-embedded-types-types-that-hang-off-a-parent-entry">2. Embedded types: types that hang off a parent entry<a class="headerlink" href="#2-embedded-types-types-that-hang-off-a-parent-entry" title="Permanent link">&para;</a></h2>
+<h3 id="21-goal">2.1 Goal<a class="headerlink" href="#21-goal" title="Permanent link">&para;</a></h3>
+<p>Some content hangs off a parent object instead of standing as its own entry, for example <code>block_entity</code> written inside a block (the <code>block_entity.type</code> in modelling contentTesting's <code>fsm_blocks.json</code>). Such a type takes no top-level field and can only be pulled out of the parent object.</p>
+<h3 id="22-how-the-three-methods-work-together">2.2 How the three methods work together<a class="headerlink" href="#22-how-the-three-methods-work-together" title="Permanent link">&para;</a></h3>
+<p>Override <code>getParentTypeName</code>, <code>getEmbeddedKeyName</code>, and <code>extractEmbedded</code> (<code>TypeHandler.java:38-50</code>). The implementation below is taken from <code>BlockEntityTypeHandler</code> (<code>handler/BlockEntityTypeHandler.java:27-53</code>), with <code>block_entity</code> swapped for the key you want to use:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AttachmentTypeHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">TypeHandler</span><span class="o">&lt;</span><span class="n">AttachmentTypeHandler</span><span class="p">.</span><span class="na">AttachmentDef</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">AttachmentDef</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">parentBlockId</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getTypeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"attachments"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// for the registry index only</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPhase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">PHASE_EMBEDDED</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">       </span><span class="c1">// apply after the parent object</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getParentTypeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"blocks"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// lives inside blocks entries</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getEmbeddedKeyName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"attachment"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// the key name inside the parent entry</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">JsonObject</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">extractEmbedded</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">blockJson</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">blockJson</span><span class="p">.</span><span class="na">has</span><span class="p">(</span><span class="s">"attachment"</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">      </span><span class="c1">// no embedded data</span>
+<span class="w">        </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">attachment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockJson</span><span class="p">.</span><span class="na">getAsJsonObject</span><span class="p">(</span><span class="s">"attachment"</span><span class="p">).</span><span class="na">deepCopy</span><span class="p">();</span>
+<span class="w">        </span><span class="n">attachment</span><span class="p">.</span><span class="na">addProperty</span><span class="p">(</span><span class="s">"_parent_block"</span><span class="p">,</span><span class="w"> </span><span class="n">blockJson</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"id"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">attachment</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AttachmentDef</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AttachmentDef</span><span class="p">(</span>
+<span class="w">                </span><span class="n">json</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"type"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">(),</span>
+<span class="w">                </span><span class="n">json</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"_parent_block"</span><span class="p">).</span><span class="na">getAsString</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">AttachmentDef</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">BuildContext</span><span class="w"> </span><span class="n">baseContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RegBuildContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">RegBuildContext</span><span class="p">)</span><span class="w"> </span><span class="n">baseContext</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockReg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getBlockReg</span><span class="p">(</span><span class="n">definition</span><span class="p">.</span><span class="na">parentBlockId</span><span class="p">());</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">blockReg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">                        </span><span class="c1">// parent block does not exist; skip (a warn is optional)</span>
+<span class="w">        </span><span class="c1">// ... build your embedded object from blockReg and attach it</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The contracts of the three methods:</p>
+<ul>
+<li>A non-null <code>getParentTypeName()</code> declares "I am an embedded type", and its value is the parent type's <code>getTypeName()</code>.</li>
+<li><code>getEmbeddedKeyName()</code> is used for diagnostics only. When an author writes an embedded type as a top-level field by mistake, the error message names "should be written in the <code>&lt;this key&gt;</code> of a <code>&lt;parent type&gt;</code> entry" (<code>JsonTreeBuilder.dispatchContent:475-490</code>). Without the override you lose that hint (it returns <code>null</code>).</li>
+<li><code>extractEmbedded(JsonObject parentJson)</code> receives one parent entry and returns a list of embedded objects (<code>null</code> for zero). <code>_parent_block</code> is not a field name the framework enforces; it is the convention this repository's <code>BlockEntityTypeHandler</code> uses. You can define your own, as long as your <code>parse</code> recognizes the key.</li>
+</ul>
+<h3 id="23-differences-from-top-level-types">2.3 Differences from top-level types<a class="headerlink" href="#23-differences-from-top-level-types" title="Permanent link">&para;</a></h3>
+<ul>
+<li>An embedded type <strong>takes no part in top-level field dispatch</strong>. <code>dispatchContent</code> filters the embedded handlers out first (<code>JsonTreeBuilder:461-467</code>) and checks <code>root.has(getTypeName())</code> only for top-level handlers (<code>:500-506</code>); embedded data is extracted separately inside the parent loop (<code>:528-535</code>).</li>
+<li>Consequently an embedded type's <code>getTypeName()</code> is <strong>not a legal top-level field</strong>. Writing <code>"block_entities": [...]</code> at the top level goes down the unknown-field path, reports an error, and hints at the correct key name.</li>
+</ul>
+<h3 id="24-why-a-stray-top-level-write-does-not-abort-the-whole-file">2.4 Why a stray top-level write does not abort the whole file<a class="headerlink" href="#24-why-a-stray-top-level-write-does-not-abort-the-whole-file" title="Permanent link">&para;</a></h3>
+<p>An unknown top-level field records one diagnostic and processing continues with the other fields (the loop in <code>JsonTreeBuilder:475-490</code> does not <code>throw</code>), and the file's legal fields parse as usual. This is deliberate "partial apply" semantics: one misplaced embedded type should not take the same file's healthy blocks/items down with it. The test <code>JsonTreeBuilderEmbeddedTypeDispatchTest.topLevelEmbeddedTypeIsReportedAndTheRestOfTheFileStillDispatches</code> (<code>:46-67</code>) pins down both "one error is reported" and "the sibling fields still dispatch".</p>
+<p>A parent type can currently carry only one embedded child type: <code>TypeHandlerRegistry.findByParent</code> scans linearly and returns the first match (<code>TypeHandlerRegistry.java:23-30</code>).</p>
+<h2 id="3-registering-factories-factoryregistry">3. Registering factories (FactoryRegistry)<a class="headerlink" href="#3-registering-factories-factoryregistry" title="Permanent link">&para;</a></h2>
+<h3 id="31-goal-and-choosing-a-table">3.1 Goal and choosing a table<a class="headerlink" href="#31-goal-and-choosing-a-table" title="Permanent link">&para;</a></h3>
+<p><code>type</code> is the seam between JSON and Java. One factory builds one kind of object. <code>FactoryRegistry</code> provides four independent tables, each with its own <code>register*</code>/<code>get*</code>/<code>contains*</code> (<code>modules/core/.../factory/FactoryRegistry.java</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Your JSON</th>
+<th>Registration method</th>
+<th>Factory signature</th>
+<th>Consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code> in <code>blocks</code></td>
+<td><code>register(type, BlockFactory)</code> (<code>:44</code>)</td>
+<td><code>create(String id, @Nullable JsonObject params)</code> (<code>:18-20</code>)</td>
+<td><code>BlockTypeHandler.createRegistration:60-64</code></td>
+</tr>
+<tr>
+<td><code>type</code> in <code>items</code></td>
+<td><code>registerItem(type, ItemFactory)</code> (<code>:58</code>)</td>
+<td><code>create(String id, @Nullable JsonObject params)</code> (<code>:23-25</code>)</td>
+<td><code>ItemTypeHandler.createRegistration:56-60</code></td>
+</tr>
+<tr>
+<td><code>block_entity.type</code></td>
+<td><code>registerBlockEntity(type, BlockEntityFactory)</code> (<code>:74</code>)</td>
+<td><code>create(String id, Supplier&lt;Block[]&gt; validBlocks, @Nullable JsonObject params)</code> (<code>:28-30</code>)</td>
+<td><code>BlockEntityTypeHandler.apply:92</code></td>
+</tr>
+<tr>
+<td>A custom top-level type</td>
+<td><code>registerGeneric(type, GenericFactory)</code> (<code>:93</code>)</td>
+<td><code>create(String id, JsonObject params)</code> (<code>:33-35</code>)</td>
+<td>your custom handler</td>
+</tr>
+</tbody>
+</table>
+<p>A Generic factory's <code>params</code> carries no <code>@Nullable</code> annotation, so the implementation either accepts null or does its own null check.</p>
+<h3 id="32-bean-wiring-context-postconstruct">3.2 Bean wiring: <code>@Context</code> + <code>@PostConstruct</code><a class="headerlink" href="#32-bean-wiring-context-postconstruct" title="Permanent link">&para;</a></h3>
+<p>Factories have to be registered before the index is read, so they go in a <code>@Context</code> bean's <code>@PostConstruct</code>. The code below is taken from <code>FanDataDrivenFactories</code> (<code>modules/modelling/src/contentTesting/java/test/kasuga/modelling/FanDataDrivenFactories.java:45-115</code>) and <code>DataDrivenTestFactories</code> (<code>modules/data-driven/src/contentTesting/java/test/kasuga/data_driven/DataDrivenTestFactories.java:21-55</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Context</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyModFactories</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PostConstruct</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// block factory: id holds the path only; the handler has already stripped the namespace</span>
+<span class="w">        </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="s">"my_door"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">blockWithItem</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">MyDoorBlock</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// the same factory reads params to make variants</span>
+<span class="w">        </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="s">"my_window"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">.</span><span class="na">has</span><span class="p">(</span><span class="s">"height"</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">?</span><span class="w"> </span><span class="n">params</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"height"</span><span class="p">).</span><span class="na">getAsInt</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">blockWithItem</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyWindowBlock</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// item factory</span>
+<span class="w">        </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">registerItem</span><span class="p">(</span><span class="s">"my_material"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ItemReg</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">::</span><span class="k">new</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// block entity factory: validBlocks is a lazy Supplier; store it, do not call get() now</span>
+<span class="w">        </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">registerBlockEntity</span><span class="p">(</span><span class="s">"my_be"</span><span class="p">,</span><span class="w"> </span><span class="n">MyModFactories</span><span class="p">::</span><span class="n">createBeReg</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">"unchecked"</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">blockWithItem</span><span class="p">(</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">BlockBehaviour</span><span class="p">.</span><span class="na">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockSupplier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">BlockReg</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">blockSupplier</span><span class="p">).</span><span class="na">withDefaultBlockItem</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">createBeReg</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Block</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">validBlocks</span><span class="p">,</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BlockEntityReg</span><span class="o">&lt;</span><span class="n">MyBlockEntity</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BlockEntityReg</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">id</span><span class="p">,</span>
+<span class="w">                </span><span class="n">r</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyBlockEntity</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="na">getEntry</span><span class="p">(),</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">));</span>
+<span class="w">        </span><span class="n">reg</span><span class="p">.</span><span class="na">withProperty</span><span class="p">(</span><span class="n">Collection</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">                </span><span class="n">col</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">col</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">validBlocks</span><span class="p">.</span><span class="na">get</span><span class="p">()));</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">col</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">reg</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Symbol sources: for the use of <code>BlockReg.of(...).withDefaultBlockItem(id)</code> see <code>DataDrivenTestFactories.java:27</code> and <code>FanDataDrivenFactories.java:92</code> (<code>withDefaultBlockItem</code> is defined in <code>BlockReg.java:108</code>); <code>ItemReg.of</code> is in <code>ItemReg.java:79</code>; <code>new BlockEntityReg&lt;&gt;(id, supplier)</code> in <code>BlockEntityReg.java:59</code>; <code>Reg.withProperty(Class, Function)</code> in <code>Reg.java:97</code>.</p>
+<h3 id="33-the-params-contract">3.3 The params contract<a class="headerlink" href="#33-the-params-contract" title="Permanent link">&para;</a></h3>
+<p><code>params</code> is the raw JSON object of the definition's <code>params</code> field, it may be <code>null</code>, and its meaning is <strong>defined entirely by the factory</strong>. The built-in <code>fsm_be</code> reads <code>state_machine</code> / <code>model</code> / <code>model_name</code> from params and degrades an absent value to a warn rather than an exception (<code>FsmBlockEntityFactories.java:63-76</code>). A custom factory should do the same: warn on a missing parameter and let the object exist in a degraded shape instead of failing the whole entry.</p>
+<p><code>BlockEntityFactory.validBlocks</code> is a <code>Supplier&lt;Block[]&gt;</code> evaluated lazily; the factory should store it in a supplier rather than calling <code>get()</code> at <code>create</code> time (<code>api-extension.md</code> §10).</p>
+<h3 id="34-when-a-factory-is-missing-warn-and-skip-not-an-error">3.4 When a factory is missing: warn and skip, not an error<a class="headerlink" href="#34-when-a-factory-is-missing-warn-and-skip-not-an-error" title="Permanent link">&para;</a></h3>
+<p>If JSON's <code>type</code> has no matching factory, <code>RegTypeHandler.createRegistration</code> returns <code>null</code> by convention and the template immediately logs a WARN and returns (<code>RegTypeHandler.apply:70-74</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createRegistration</span><span class="p">(</span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">LOGGER</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"No factory for type '{}' (id '{}')"</span><span class="p">,</span><span class="w"> </span><span class="n">resolveType</span><span class="p">(</span><span class="n">definition</span><span class="p">),</span><span class="w"> </span><span class="n">rawId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This WARN <strong>goes into the log only, not into the diagnostics bucket</strong> (<code>api-diagnostics.md</code> §12 lists it in the "log only" column). The reason is that "the factory may not be registered yet" is a common state during development, and treating it as a loading error would make the bucket too noisy. The cost is that <strong>a missing factory means the block/item is silently skipped, and at runtime you see only one WARN</strong>. When you are chasing "my block does not show up", look at this log line first.</p>
+<p>An embedded block entity has a further precondition: when the parent block is missing or the BE type is unknown, <code>BlockEntityTypeHandler.apply:75-86</code> also warns and skips.</p>
+<h3 id="35-why-it-is-designed-this-way">3.5 Why it is designed this way<a class="headerlink" href="#35-why-it-is-designed-this-way" title="Permanent link">&para;</a></h3>
+<p>Factories are separate from handlers because the same <code>type</code> (say <code>my_door</code>) is decided jointly by "who creates it" and "which registry it goes into", while different mods may reuse the same set of handlers. Factories register into a global static table backed by a <code>ConcurrentHashMap</code> (<code>FactoryRegistry.java:37-40</code>), and registering the same <code>type</code> twice overwrites silently (<code>FactoryRegistryTest.registerDuplicateOverwrites</code>). That also means <code>type</code> names are globally shared; a mod prefix is worth adding to lower the odds of a collision.</p>
+<h2 id="4-extending-property-parsing">4. Extending property parsing<a class="headerlink" href="#4-extending-property-parsing" title="Permanent link">&para;</a></h2>
+<h3 id="41-goal">4.1 Goal<a class="headerlink" href="#41-goal" title="Permanent link">&para;</a></h3>
+<p>Let custom keys appear in <code>properties</code> (blocks/groups) or <code>item_properties</code> (items/blocks/groups). This layer only changes "how a key is compiled into a mutation function for <code>Properties</code>"; it touches no other field of the content file.</p>
+<h3 id="42-block-properties-jsonpropertyparserregistercompiler">4.2 Block properties: <code>JsonPropertyParser.registerCompiler</code><a class="headerlink" href="#42-block-properties-jsonpropertyparserregistercompiler" title="Permanent link">&para;</a></h3>
+<p><code>JsonPropertyParser</code> is a singleton (<code>INSTANCE:23</code> or <code>getInstance():217</code>). Two ways to register:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Option 1: exact key match (recommended)</span>
+<span class="n">JsonPropertyParser</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">registerCompiler</span><span class="p">(</span><span class="s">"mymod:hardness_per_axis"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">hardness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="na">getAsFloat</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="na">strength</span><span class="p">(</span><span class="n">hardness</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="c1">// Option 2: custom matching logic</span>
+<span class="n">JsonPropertyParser</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">registerCompiler</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">PropertyCompiler</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"mymod:"</span><span class="p">),</span><span class="w">          </span><span class="c1">// BiPredicate: is this key mine to handle?</span>
+<span class="w">        </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="na">strength</span><span class="p">(</span><span class="mf">1.0F</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// compile into a mutation function</span>
+<span class="p">));</span>
+</code></pre></div>
+<p>For signatures see <code>JsonPropertyParser.registerCompiler:197/201</code>; for the <code>PropertyCompiler</code> constructor see <code>compiler/PropertyCompiler.java:16</code>. Both <strong>append to the end</strong> of the compiler list (<code>addCompiler:187-190</code>).</p>
+<p>Matching rule: <code>valid(key, value)</code> is tried one by one in list order, and <strong>the first hit wins</strong> (<code>parseBlockProperty:44-49</code>). Built-in keys come first (<code>buildCompilers:148-174</code>), so a custom compiler <strong>cannot override a built-in key</strong> — registering <code>"strength"</code> has no effect, for instance, because the built-in <code>strength</code> is hit first. Use a prefixed key name instead; built-in entries cannot be pulled out, because <code>removeCompiler</code> needs a <code>PropertyCompiler</code> instance and the built-in instances are not exposed (see §10).</p>
+<p>When no compiler matches, <code>Unknown block property: &lt;key&gt;</code> is logged as a WARN and the key is ignored (<code>:50-52</code>); a value that fails to parse logs a WARN and returns null (<code>:54-57</code>). Neither goes into the diagnostics bucket.</p>
+<h3 id="43-item-properties-jsonitemparserregisterparser">4.3 Item properties: <code>JsonItemParser.registerParser</code><a class="headerlink" href="#43-item-properties-jsonitemparserregisterparser" title="Permanent link">&para;</a></h3>
+<p><code>JsonItemParser</code> is likewise a singleton (<code>INSTANCE:15</code>), and keys are matched <strong>verbatim</strong> (<code>Map&lt;String, ItemPropertyParser&gt;</code>, <code>registerParser:67</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">JsonItemParser</span><span class="p">.</span><span class="na">INSTANCE</span><span class="p">.</span><span class="na">registerParser</span><span class="p">(</span><span class="s">"mymod:durability_bonus"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bonus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="na">getAsInt</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="na">durability</span><span class="p">(</span><span class="n">bonus</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">props</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>ItemPropertyParser</code> is the functional interface <code>parse(String, JsonElement) → Function&lt;Item.Properties, Item.Properties&gt;</code> (<code>JsonItemParser.java:71-74</code>). Two things to note: keys are <strong>case-sensitive</strong> (unlike block properties, whose keys pass through <code>RLCompiler</code> and get lowercased, <code>RLCompiler.java:17-23</code>); <code>tab</code> is a reserved key that the parser stage skips outright (<code>JsonItemParser.parseItemProperty:52</code>), since the handler layer translates it into a creative tab binding — your parser never sees it.</p>
+<h3 id="44-lifecycle">4.4 Lifecycle<a class="headerlink" href="#44-lifecycle" title="Permanent link">&para;</a></h3>
+<p>Both parsers are process-level singletons, and a custom compiler <strong>persists</strong> once registered: it is not cleared across mods or across <code>/reload</code> (<code>clearCompilers</code> is <code>protected</code>, <code>JsonPropertyParser.java:205</code>). So:</p>
+<ul>
+<li>Use keys that carry your mod namespace (<code>mymod:xxx</code>) to lower the chance of colliding with other mods. When you use <code>registerCompiler(String, ...)</code> for a block property, the key is parsed as a ResourceLocation, and a bare key lands under the <code>minecraft:</code> namespace.</li>
+<li>Register at the same time as factories: <code>@Context</code> + <code>@PostConstruct</code>, earlier than content parsing.</li>
+</ul>
+<h3 id="45-why-it-is-designed-this-way">4.5 Why it is designed this way<a class="headerlink" href="#45-why-it-is-designed-this-way" title="Permanent link">&para;</a></h3>
+<p>Once a property is compiled into a <code>Function&lt;Properties, Properties&gt;</code>, the <code>Reg</code> property chain stacks them parents-first and children-last (<code>Reg.applyProperties</code>, <code>Reg.java:103-110</code>), so the block level applies last and therefore wins. This "chain of overrides, whole-key replacement" lets a group supply a default and a block level override it without any field-merging logic (detail in <code>api-extension.md</code> §11.3).</p>
+<h2 id="5-wiring-into-diagnostics">5. Wiring into diagnostics<a class="headerlink" href="#5-wiring-into-diagnostics" title="Permanent link">&para;</a></h2>
+<h3 id="51-two-dimensions-and-what-each-one-covers">5.1 Two dimensions, and what each one covers<a class="headerlink" href="#51-two-dimensions-and-what-each-one-covers" title="Permanent link">&para;</a></h3>
+<p><code>Diagnostics</code> (<code>diagnostics/Diagnostics.java</code>) is the single facade, and error addresses come in two dimensions that never mix:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Write</th>
+<th>Read</th>
+<th>Who uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>By mod id</td>
+<td><code>report(String modId, Throwable)</code> (<code>:64</code>)</td>
+<td><code>errors(modId)</code> (<code>:73</code>)</td>
+<td>the whole registration domain</td>
+</tr>
+<tr>
+<td>By domain + source key</td>
+<td><code>report(Domain, String key, Throwable)</code> (<code>:96</code>)</td>
+<td><code>errors(Domain, key)</code> (<code>:107</code>)</td>
+<td>the reload domain uses <code>Domain.RELOAD_DATA</code> (key = namespace); the assets / config domains are still reserved</td>
+</tr>
+</tbody>
+</table>
+<p><code>report(modId, ...)</code> delegates verbatim to <code>JsonTreeBuilder.addLoadingError(modId, error)</code> (<code>JsonTreeBuilder:844</code>), and <code>errors(modId)</code> on the read side delegates to <code>getLoadingErrors(modId)</code> (<code>:806</code>). So the existing contract "assert <code>getLoadingErrors(modId)</code> is empty" is unaffected by the facade (<code>DiagnosticsTest.modDimensionIsTheExistingBucket</code>).</p>
+<h3 id="52-which-channel-a-handler-error-should-take">5.2 Which channel a handler error should take<a class="headerlink" href="#52-which-channel-a-handler-error-should-take" title="Permanent link">&para;</a></h3>
+<p>When you extend a handler, the three failure channels have different consequences:</p>
+<table>
+<thead>
+<tr>
+<th>Where you throw</th>
+<th>Handler</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Throw inside <code>apply</code> (and you do not catch it yourself)</td>
+<td><code>JsonTreeBuilder.applyUnchecked:712</code></td>
+<td>ERROR log + recorded into that mod's bucket; <strong>the remaining entries proceed</strong></td>
+</tr>
+<tr>
+<td>Throw inside <code>parse</code></td>
+<td><code>JsonTreeBuilder</code> element-level tolerance in the registration phase</td>
+<td>one bucket entry <code>entry &lt;i&gt; in '&lt;key&gt;' failed to parse: &lt;msg&gt;; entry skipped</code>; <strong>only that element is lost</strong>, sibling entries in the same file proceed as usual</td>
+</tr>
+<tr>
+<td>Do not throw, just <code>LOGGER.warn</code></td>
+<td>you</td>
+<td>log only, no trace in the bucket</td>
+</tr>
+</tbody>
+</table>
+<p>The convention that follows: <strong>be tolerant in parse</strong> (supply defaults for missing fields, do not throw), because the parse stage has no context and its diagnostics come out less complete than apply's. When you really do want to drop an entry, throwing from <code>parse</code> and throwing from <code>apply</code> now both affect only that entry, with the framework keeping accounts and continuing with the entries after it; a throw from <code>apply</code> carries the type name, mod id, and original cause in its diagnostic, which is more informative and generally the better choice. The test <code>JsonTreeBuilderLoadingErrorTest.failingHandlerApplyIsRecordedInTheBucket</code> (<code>:168-181</code>) pins down that a throw from apply records the type name, mod id, and original cause into the bucket.</p>
+<p>When you need a soft hint that <strong>does not go into the bucket</strong> (a missing factory, a missing optional parameter, ...), just log a WARN as in <code>RegTypeHandler.apply:70-74</code>; §3.4 has explained that this is a deliberate degradation.</p>
+<p>If you really want a non-fatal record in the bucket, call <code>Diagnostics.report(context.getModId(), new IllegalStateException("..."))</code> directly: <code>apply</code> receives the <code>BuildContext</code>, whose <code>getModId()</code> is available (<code>BuildContext.java:17</code>). Note that <code>parse</code> <strong>cannot</strong> get the modId or the context, so a soft diagnostic from the parse stage can only be added during apply. §10 lists this as a design shortcoming.</p>
+<h3 id="53-an-easy-trap-regtypehandler-swallows-exceptions-internally">5.3 An easy trap: <code>RegTypeHandler</code> swallows exceptions internally<a class="headerlink" href="#53-an-easy-trap-regtypehandler-swallows-exceptions-internally" title="Permanent link">&para;</a></h3>
+<p>If a custom handler extends <code>RegTypeHandler</code>, the template method <code>apply</code> comes with its own try/catch that logs a WARN and returns after catching (<code>RegTypeHandler.apply:107-111</code>). This means <strong>an exception you throw in <code>createRegistration</code> or <code>configureTypeSpecific</code> never reaches <code>applyUnchecked</code>, and therefore never reaches the bucket</strong>. If you want the failure recorded in the diagnostics bucket, either implement <code>TypeHandler</code> directly (letting the exception escape <code>apply</code>), or call <code>Diagnostics.report</code> explicitly at a layer that catch does not cover.</p>
+<h3 id="54-the-reload-domain-uses-the-domain-dimension-domainreload_data">5.4 The reload domain uses the domain dimension (<code>Domain.RELOAD_DATA</code>)<a class="headerlink" href="#54-the-reload-domain-uses-the-domain-dimension-domainreload_data" title="Permanent link">&para;</a></h3>
+<p>Errors on the reload side are reported through <code>ReloadOrchestrator.reportError</code> (<code>:566-573</code>) and each handler's <code>reportError</code> / <code>reportWarning</code> (for example <code>FsmReloadHandler.java:118-130</code>); both call <code>Diagnostics.report(Domain.RELOAD_DATA, namespace, ...)</code>, where <code>namespace</code> is the <strong>namespace</strong> the failing file sits in. In other words reload errors land in the <strong>domain / source-key dimension</strong> (<code>Domain.RELOAD_DATA</code>, key = namespace), separate from the registration phase's mod dimension. The two dimensions are told apart by different labels in <code>/kasuga_data errors</code> output (mod dimension <code>[&lt;mod&gt;] &lt;error&gt;</code>, reload dimension <code>[RELOAD_DATA[&lt;namespace&gt;]] &lt;error&gt;</code>); the reload dimension is cleared at the start of every cycle (<code>Diagnostics.clear(Domain.RELOAD_DATA)</code> in <code>runCycle</code>, <code>:208</code>), so consecutive <code>/reload</code>s do not accumulate.</p>
+<p>All four constants of <code>Diagnostics.Domain</code> and the <code>errorsBySource</code> table are in place, and the reload domain already writes <code>RELOAD_DATA</code> (<code>Diagnostics.java:40-49, 55</code>). A new extension picks its dimension by attribution: attribute to a mod with <code>report(modId, ...)</code>; a failure that "belongs to a source rather than a mod" uses <code>report(Domain, key, ...)</code>. The assets / config domains are still reserved.</p>
+<h3 id="55-the-read-side">5.5 The read side<a class="headerlink" href="#55-the-read-side" title="Permanent link">&para;</a></h3>
+<ul>
+<li>In game: <code>/kasuga_data errors [mod]</code>. With no argument it prints one summary line per non-empty bucket (<code>Diagnostics.summarize():143</code>); with a mod id it lists that mod's failures entry by entry across both dimensions (the mod dimension and the <code>RELOAD_DATA[&lt;namespace&gt;]</code> source dimension). The command tree is defined in <code>DataDiagnosticsCommands.kasugaDataCommand:45</code> and registered in <code>onRegisterCommands:57</code>; permission level 2 is required.</li>
+<li>In tests: assert <code>JsonTreeBuilder.getLoadingErrors(modId)</code> is empty, or use <code>Diagnostics.errors(modId)</code> (equivalent).</li>
+<li>Summary line format (<code>summarize</code>): mod buckets print <code>&lt;mod&gt;: N error(s)</code>, source buckets print <code>&lt;DOMAIN&gt;[&lt;key&gt;]: N error(s)</code>, in a deterministic order that makes assertions easy (<code>DiagnosticsTest.summarizePrintsOneLinePerNonEmptyBucketDeterministically</code>).</li>
+</ul>
+<h2 id="6-adding-a-reload-phase-content-type">6. Adding a reload-phase content type<a class="headerlink" href="#6-adding-a-reload-phase-content-type" title="Permanent link">&para;</a></h2>
+<h3 id="61-goal-and-prerequisites">6.1 Goal and prerequisites<a class="headerlink" href="#61-goal-and-prerequisites" title="Permanent link">&para;</a></h3>
+<p>Reload-phase content (read from the pack stack on <code>/reload</code>, overridable by data packs) is orchestrated by <code>ReloadOrchestrator</code> (<code>ReloadOrchestrator.java:121</code>). The orchestrator itself <strong>knows no type name</strong>: it walks <code>ReloadHandlerRegistry</code> and treats every registered <code>ReloadHandler</code>'s <code>typeName()</code> as a legal top-level key, routing, deduplicating, and registering file by file. So to add a reload content type you <strong>implement and register one <code>ReloadHandler</code> and change no framework class</strong>.</p>
+<p>The interface mirrors the registration phase's <code>TypeHandler</code>: one <code>TypeHandler</code> handles the parse/apply of one registration type, one <code>ReloadHandler</code> handles the decode/register of one reload type. Their separate registries (<code>TypeHandlerRegistry</code> / <code>ReloadHandlerRegistry</code>) are both owned by data-driven, so data-driven <strong>still does not depend on modelling</strong> (see §8 item 1).</p>
+<p>Prerequisite: <strong>the handler implementation has to live in a module that can import data-driven</strong>. <code>ReloadHandler</code> / <code>ReloadHandlerRegistry</code> / <code>Decoded</code> / <code>Reloaded</code> all sit in data-driven's <code>lib.kasuga.registration.data_driven.reload</code> package; this repository's two FSM handlers live in modelling (the consuming module), and the dependency direction is still modelling → data-driven. The data-driven side offers only reusable pure functions (<code>JsonTreeBuilder.parseIndexManifest</code> / <code>resolveIndexManifests</code> / <code>validateSourcePath</code>, <code>DuplicateIdResolver</code>).</p>
+<h3 id="62-implementing-and-registering-a-reloadhandler">6.2 Implementing and registering a <code>ReloadHandler</code><a class="headerlink" href="#62-implementing-and-registering-a-reloadhandler" title="Permanent link">&para;</a></h3>
+<p>The shortest example is <code>FsmClipsReloadHandler</code> (index-only, no cross-type validation). Write yours to its shape: <code>typeName()</code> claims the top-level key, <code>decode</code> decodes purely, <code>register</code> writes into its own bucket. The class below demonstrates every callback of the interface (<code>MyThing</code> / <code>MyThingCodec</code> / <code>MyBucket</code> are the author's own placeholder types, not framework API; <code>bucket.clearResource()</code> / <code>registerResource(...)</code> is the bucket this handler owns, modeled on <code>FsmAnimationClips</code>' <code>clearResource</code> / <code>registerResource</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.mymod.reload</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.google.gson.JsonObject</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.registration.data_driven.reload.Decoded</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.registration.data_driven.reload.ReloadHandler</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyThingsReloadHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ReloadHandler</span><span class="o">&lt;</span><span class="n">MyThing</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MyBucket</span><span class="w"> </span><span class="n">bucket</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyThingsReloadHandler</span><span class="p">(</span><span class="n">MyBucket</span><span class="w"> </span><span class="n">bucket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bucket</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">typeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"my_things"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">        </span><span class="c1">// the top-level key claimed, also the dedup collision space</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">describeFile</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">"my thing file"</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// the noun used in decode diagnostics (default "reload-domain file")</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">clearBucket</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">bucket</span><span class="p">.</span><span class="na">clearResource</span><span class="p">();</span><span class="w">   </span><span class="c1">// drops reload-sourced entries only; script/code registrations survive reload</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Decoded</span><span class="o">&lt;</span><span class="n">MyThing</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Pure decode: reads no file (the orchestrator owns I/O); malformed content comes back as errors, not an exception.</span>
+<span class="w">        </span><span class="c1">// Delegate to your own pure decoder, wrapping each entry as Decoded.Entry(id, payload).</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">MyThingCodec</span><span class="p">.</span><span class="na">decode</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">MyThing</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">bucket</span><span class="p">.</span><span class="na">registerResource</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="na">id</span><span class="p">(),</span><span class="w"> </span><span class="n">payload</span><span class="p">);</span><span class="w">  </span><span class="c1">// the last-wins winner lands here</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A <code>@Context</code> bean registers it in <code>@PostConstruct</code>, at the same time as factories/handlers (before any reload):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Context</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyModReloadHandlers</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@PostConstruct</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ReloadHandlerRegistry</span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MyThingsReloadHandler</span><span class="p">(</span><span class="n">MyBucket</span><span class="p">.</span><span class="na">GLOBAL</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>ReloadHandlerRegistry.register</code> indexes by <code>typeName()</code> and keeps order with a <code>LinkedHashMap</code>: registering the same name twice <strong>replaces in place and keeps the position</strong>, so re-running the bean in tests is idempotent. <strong>Registration order matters</strong> — the orchestrator decides dispatch/register order by registration order, which also decides cross-type last-wins and which handler's <code>afterReload</code> can see entries another handler has already landed. For this reason the FSM side uses a separate bean <code>FsmReloadHandlerRegistrar</code> (<code>:22-31</code>) to register <code>FsmReloadHandler</code> → <code>FsmClipsReloadHandler</code> in that order.</p>
+<h3 id="63-lifecycle-when-the-four-callbacks-run">6.3 Lifecycle: when the four callbacks run<a class="headerlink" href="#63-lifecycle-when-the-four-callbacks-run" title="Permanent link">&para;</a></h3>
+<p>Within one reload cycle the orchestrator calls, for <strong>every</strong> handler in turn:</p>
+<ol>
+<li><code>clearBucket()</code> — once per cycle, before discovery. The implementation must drop only the reload source ("script wins"), so it delegates to the bucket's <code>clearResource()</code> rather than clearing everything. A thrown exception is isolated in place by the orchestrator (<code>runClear</code>, <code>:250-261</code>) and recorded under <code>Domain.RELOAD_DATA</code>, while the other handlers proceed as usual.</li>
+<li><code>decode(JsonObject)</code> — called for every file whose top-level key hits <code>typeName()</code>. <strong>It does not read files</strong> (the orchestrator does the I/O) and <strong>does not throw on malformed content</strong> (shape violations come back as <code>Decoded.errors()</code>, and the orchestrator pairs them with a log line + a diagnostics bucket entry). A <code>Decoded.Entry(id, payload)</code> binds the payload to its identity for deduplication — the handler picks the identity (both existing types use their own <code>id</code>).</li>
+<li><code>register(payload)</code> — called only for the <strong>last-wins winner</strong>, and only after the whole discovery round has finished. A registration failure should throw; the orchestrator isolates it and attributes it to the namespace the entry sits in.</li>
+<li><code>afterReload(List&lt;Reloaded&lt;T&gt;&gt;)</code> — after <strong>every</strong> handler's register stage has run, called only for the entries actually registered this round. Cross-type validation belongs here: <code>FsmReloadHandler</code>'s dangling clip check has to wait until the clip handler's bucket has landed. <code>Reloaded</code> carries a <code>modId</code>, letting the handler attribute a diagnostic to the namespace that produced the entry.</li>
+</ol>
+<h3 id="64-directory-glob-optional">6.4 Directory glob (optional)<a class="headerlink" href="#64-directory-glob-optional" title="Permanent link">&para;</a></h3>
+<p>The directories returned by <code>globDirectories()</code> have their <code>*.json</code> pulled into discovery by the orchestrator (the default is the empty set = <strong>index only</strong>: a file no manifest lists is never read). <code>FsmReloadHandler</code> returns <code>Set.of("state_machines")</code>, so <code>state_machines/</code> has a glob; <code>FsmClipsReloadHandler</code> keeps the default, so <code>animation_clips/</code> has no glob. When you declare several directories, use an ordered set to preserve discovery order. If a file is hit by both a glob and an index, the orchestrator skips the glob copy and reads it once through the index — the handler does not have to deduplicate the two entry points itself.</p>
+<h3 id="65-hard-rules-on-file-shape">6.5 Hard rules on file shape<a class="headerlink" href="#65-hard-rules-on-file-shape" title="Permanent link">&para;</a></h3>
+<p>The two existing decoders <strong>no longer require a file to have exactly one top-level key</strong>: an extra key does not reject the whole file. A decoder validates only the shape of its own key (the body is an object, the key exists, the value is an array, the elements are objects), and the remaining top-level keys go to the orchestrator for judgment and routing (shape rules are centralized in the shared <code>ContentStructure</code>). So a file can declare <code>state_machines</code> alone, or declare <code>state_machines</code> and <code>animation_clips</code> together, with each handler contributing its own entries. <code>ReloadOrchestrator.dispatch</code> records an ERROR for a <strong>genuinely unknown top-level key</strong> (one no handler claims) and gives the reverse D9 hint pointing out "if this is registration content, list it under <code>on_register</code> instead" (<code>:439-446</code>); that error does not block the contributions of the known keys.</p>
+<h3 id="66-differences-from-extending-a-registration-phase-type">6.6 Differences from extending a registration-phase type<a class="headerlink" href="#66-differences-from-extending-a-registration-phase-type" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Registration phase (§1)</th>
+<th>Reload phase (this section)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extension mechanism</td>
+<td>register with <code>TypeHandlerRegistry.register</code>, no framework class changes</td>
+<td>register with <code>ReloadHandlerRegistry.register</code>, no framework class changes</td>
+</tr>
+<tr>
+<td>Read source</td>
+<td>the mod jar (<code>IModFile.findResource</code>)</td>
+<td>the pack stack (<code>ResourceManager</code>)</td>
+</tr>
+<tr>
+<td>When it takes effect</td>
+<td>once, during mod construction</td>
+<td>on every <code>/reload</code></td>
+</tr>
+<tr>
+<td>Data pack override</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>all through <code>on_register</code></td>
+<td>the <code>on_reload</code> index, or a directory glob declared by the handler through <code>globDirectories()</code></td>
+</tr>
+<tr>
+<td>Where entries live</td>
+<td><code>BuildContext</code> (one <code>buildForMod</code>)</td>
+<td>the bucket (process-level, survives reloads, split into RESOURCE/SCRIPT halves)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="67-why-it-is-designed-this-way">6.7 Why it is designed this way<a class="headerlink" href="#67-why-it-is-designed-this-way" title="Permanent link">&para;</a></h3>
+<p>The reload and registration domains share a <strong>contract</strong> (manifest syntax, identity and conflict semantics, error outlets, failure isolation) but <strong>not an implementation</strong> (SDD §3.2–3.3): the registration domain reads the jar, once during mod construction; the reload domain reads the pack stack, at <code>/reload</code> time, which is why data packs can override it and hot reload works. Both domains now follow the same "registry + handler" shape, with the registry provided by data-driven and the handler registered by the consumer, which makes them symmetric without creating a cycle.</p>
+<h2 id="7-testing-your-extension">7. Testing your extension<a class="headerlink" href="#7-testing-your-extension" title="Permanent link">&para;</a></h2>
+<h3 id="71-pure-jvm-use-parsecontentbody">7.1 Pure JVM: use <code>parseContentBody</code><a class="headerlink" href="#71-pure-jvm-use-parsecontentbody" title="Permanent link">&para;</a></h3>
+<p><code>JsonTreeBuilder.parseContentBody(modId, contentLabel, JsonObject)</code> (<code>:557-571</code>) is the in-memory half of the content pipeline: it runs the full dispatch, extraction, and parse, returns the results grouped by type name, and records diagnostics into that mod's bucket — <strong>with no mod jar and no NeoForge runtime needed</strong>. Use it to test top-level field dispatch, unknown-field diagnostics, and embedded extraction. Examples: <code>JsonTreeBuilderEmbeddedTypeDispatchTest</code> (<code>:46</code>) and <code>JsonTreeBuilderReloadHintTest</code> (<code>:40</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">clearLoadingErrors</span><span class="p">(</span><span class="n">MOD</span><span class="p">);</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">collected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">parseContentBody</span><span class="p">(</span>
+<span class="w">        </span><span class="n">MOD</span><span class="p">,</span><span class="w"> </span><span class="s">"test:my.json"</span><span class="p">,</span><span class="w"> </span><span class="n">JsonParser</span><span class="p">.</span><span class="na">parseString</span><span class="p">(</span><span class="n">CONTENT</span><span class="p">).</span><span class="na">getAsJsonObject</span><span class="p">());</span>
+
+<span class="n">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">collected</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="s">"effects"</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">()).</span><span class="na">size</span><span class="p">());</span>
+<span class="n">assertEquals</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(),</span><span class="w"> </span><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">getLoadingErrors</span><span class="p">(</span><span class="n">MOD</span><span class="p">));</span><span class="w">   </span><span class="c1">// clean load</span>
+</code></pre></div>
+<p>Note: <code>parseContentBody</code> only parses, it does not apply. So it verifies "claiming the field, parsing, diagnostics" and not the registration side effects.</p>
+<h3 id="72-recording-fake-factories-test-the-whole-parse-apply-chain">7.2 Recording fake factories: test the whole parse → apply chain<a class="headerlink" href="#72-recording-fake-factories-test-the-whole-parse-apply-chain" title="Permanent link">&para;</a></h3>
+<p>To verify that your handler passes factory parameters through verbatim from extraction, use a "recording fake factory": register a factory that captures its parameters and returns a minimal <code>Reg</code>, then build a <code>RegBuildContext</code> by hand to drive <code>extractEmbedded → parse → apply</code>. The example is <code>FactoryParamsForwardingTest</code> (now in modelling's <code>test</code> source set: <code>modules/modelling/src/test/java/lib/kasuga/test/registration/data_driven/FactoryParamsForwardingTest.java</code>; <code>registerRecordingFactory:47-56</code>, <code>shippedBlockForwardsStateMachineAndModelIntoFactoryParams:66-103</code>, <code>buildContext:124-129</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">capturedParams</span><span class="p">;</span>
+
+<span class="nd">@BeforeAll</span>
+<span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerRecordingFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">registerBlockEntity</span><span class="p">(</span><span class="s">"my_be"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">validBlocks</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">capturedParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FakeBlockEntityReg</span><span class="p">();</span><span class="w">     </span><span class="c1">// a minimal Reg whose getEntry returns itself</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="n">RegBuildContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RegBuildContext</span><span class="p">(</span><span class="s">"mymod"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonRegistryGroup</span><span class="p">(</span><span class="s">"mymod:json_root"</span><span class="p">));</span>
+<span class="n">context</span><span class="p">.</span><span class="na">putReg</span><span class="p">(</span><span class="s">"blocks"</span><span class="p">,</span><span class="w"> </span><span class="n">parentBlockId</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FakeBlockReg</span><span class="p">());</span>
+<span class="n">handler</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">def</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">);</span>
+<span class="n">assertSame</span><span class="p">(</span><span class="n">expectedParams</span><span class="p">,</span><span class="w"> </span><span class="n">capturedParams</span><span class="p">);</span><span class="w">   </span><span class="c1">// the object apply passes to the factory is not rebuilt</span>
+</code></pre></div>
+<p>This makes the "factory parameter contract" assertable in a pure JVM, with no real modelling factory on the classpath.</p>
+<h3 id="73-registration-assertions-under-the-fml-gate">7.3 Registration assertions under the FML gate<a class="headerlink" href="#73-registration-assertions-under-the-fml-gate" title="Permanent link">&para;</a></h3>
+<p>Real registration (into <code>BuiltInRegistries</code>) can only be verified in a runtime that has a mod list. Guard it with <code>Assumptions.assumeTrue</code>: a pure JVM skips it, and the FML test runtime really runs it. Example <code>FanDataDrivenRegistrationTest</code> (<code>:45-73</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Test</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">dataDrivenIndexLoadsWithoutErrors</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Assumptions</span><span class="p">.</span><span class="na">assumeTrue</span><span class="p">(</span><span class="n">neoForgeRuntimeLoaded</span><span class="p">(),</span><span class="w"> </span><span class="s">"NeoForge runtime / mod list not available"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">clearLoadingErrors</span><span class="p">(</span><span class="n">MOD_ID</span><span class="p">);</span>
+<span class="w">    </span><span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">buildForMod</span><span class="p">(</span><span class="n">MOD_ID</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">assertNotNull</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(),</span><span class="w"> </span><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">getLoadingErrors</span><span class="p">(</span><span class="n">MOD_ID</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">neoForgeRuntimeLoaded</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ModList</span><span class="w"> </span><span class="n">modList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ModList</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">modList</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">modList</span><span class="p">.</span><span class="na">getModFiles</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Throwable</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The division of labor between the two gates: modelling's <code>modelUnitTest</code> task filters <code>junit-fml-*</code> off the classpath (<code>modules/modelling/build.gradle:49-56</code>), runs in a pure JVM with no <code>ModList</code>, and skips via <code>assumeTrue</code>; data-driven's <code>test</code> task, through <code>neoForge.unitTest.enable()</code> (<code>modules/data-driven/build.gradle:99-102</code>), runs under the FML wrapper (<code>build.gradle:21-29</code> notes that this is not a separate <code>unitTest</code> Gradle task), where the assertions really take effect.</p>
+<h3 id="74-unit-testing-the-factory-itself">7.4 Unit-testing the factory itself<a class="headerlink" href="#74-unit-testing-the-factory-itself" title="Permanent link">&para;</a></h3>
+<p><code>FactoryRegistryTest</code> demonstrates three kinds of assertion: <code>contains</code>/<code>get</code> agree after registration (<code>registerAndGet:12-18</code>), an unregistered type returns null (<code>unknownTypeReturnsNull:26-28</code>), and a duplicate registration overwrites (<code>registerDuplicateOverwrites:31-37</code>). <code>factoryCreatesRegInstance:39-46</code> and <code>factoryWithParams:48-67</code> assert that a real factory can be fetched and reads params — the latter depends on <code>simple_block</code> / <code>params_block</code> registered in contentTesting.</p>
+<h2 id="8-pitfall-checklist">8. Pitfall checklist<a class="headerlink" href="#8-pitfall-checklist" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>data-driven must not depend on modelling.</strong> The dependency direction is modelling → data-driven (<code>modules/modelling/build.gradle:330</code> comments "one-way edge and creates no cycle"). So both registries belong to data-driven (<code>TypeHandlerRegistry</code> and <code>ReloadHandlerRegistry</code>), and handlers are registered from the modelling side. The registration-phase D9 hint's mention of reload key names is also <strong>no longer a literal hard-coded string</strong> — it enumerates from <code>ReloadHandlerRegistry</code> at runtime (<code>JsonTreeBuilder.java:559-570</code>), so data-driven avoids importing modelling while the hint still updates automatically as reload types are added. If your new type's definition class belongs to modelling, then it can only live in modelling; putting it in data-driven would create a cycle.</li>
+<li><strong>contentTesting is "a mod but not published".</strong> <code>DataDrivenTestFactories</code> / <code>FanDataDrivenFactories</code> load as a mod at test runtime through <code>@Context</code>, but <code>jar</code>/<code>shadowJar</code> take only <code>sourceSets.main.output</code>, so they never enter the published jar. A real mod has to put its factories and handlers in <code>src/main/java</code>, or downstream gets "missing factory, silently skipped".</li>
+<li><strong>Registration must happen before the index is read.</strong> Both factories and handlers register early through a <code>@Context</code> bean's <code>@PostConstruct</code>. Late registration shows up as a missing-factory WARN, or a top-level field judged an "unknown field".</li>
+<li><strong>parse has no side effects, and losing entries call it too.</strong> Duplicate ids are decided before apply, and the losing entries were parsed as well (<code>JsonTreeBuilder:119</code>). Registering an object inside parse makes an eliminated duplicate id really take effect.</li>
+<li><strong><code>TypeHandlerRegistry</code> is a global static table with no namespace isolation and silent overwrite on a name clash</strong> (<code>TypeHandlerRegistry.register:11-13</code>); <code>FactoryRegistry</code> is the same (a duplicate <code>type</code> overwrites). A mod prefix on <code>type</code> names and top-level field names is worth adding.</li>
+<li><strong>A parent type can currently have only one embedded child type</strong> (<code>findByParent</code> returns the first match, <code>TypeHandlerRegistry.java:23-30</code>).</li>
+<li><strong><code>getRegistryGroup</code> / <code>getBlockReg</code> sit on <code>RegBuildContext</code>, not on <code>BuildContext</code>.</strong> The <code>apply</code> parameter type is <code>BuildContext</code>, while the registration path actually passes a <code>RegBuildContext</code> (<code>JsonTreeBuilder:82</code>), so a cast is needed; if a test passes a bare <code>BuildContext</code>, the cast fails.</li>
+<li><strong><code>RegTypeHandler</code> swallows exceptions internally</strong> (§5.3), so failures do not reach the bucket. For bucket visibility, implement <code>TypeHandler</code> directly or call <code>Diagnostics.report</code> explicitly.</li>
+<li><strong>The domain dimension of <code>Diagnostics</code> is already written by the reload domain</strong> (<code>Domain.RELOAD_DATA</code>, §5.4). An extension's failures pick their dimension by attribution: the mod dimension for the registration phase, the domain dimension for failures that "belong to a source rather than a mod".</li>
+<li><strong>A property compiler cannot override a built-in key</strong> (§4.2); use a new key name.</li>
+<li><strong>The handler implementation for a reload type has to live in modelling or further downstream</strong> (a module that can import data-driven). data-driven itself cannot depend on modelling in reverse, while <code>ReloadHandlerRegistry</code> is a registration point usable from either side (§6.1, §10).</li>
+</ol>
+<h2 id="9-wrap-up-checklist">9. Wrap-up checklist<a class="headerlink" href="#9-wrap-up-checklist" title="Permanent link">&para;</a></h2>
+<p>Check these off one by one once the extension is done:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The handler's <code>getTypeName()</code> matches the top-level field in the content file, and the value is an array.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>parse</code> has no side effects; registration happens in <code>apply</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The <code>getPhase()</code> choice matches the dependency relations (referenced → smaller phase).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Both handler and factory are registered in a <code>@Context</code> bean's <code>@PostConstruct</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The content file is listed by the index manifest under <code>on_register</code> (registration phase) or <code>on_reload</code> (reload phase).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> A pure-JVM test runs <code>parseContentBody</code>; registration side effects have an assertion under the FML gate.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>getLoadingErrors(modId)</code> is empty (a clean load).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> If downstream is to use it, the factory/handler is in <code>src/main/java</code> rather than <code>contentTesting</code>.</li>
+</ul>
+<h2 id="10-known-shortcomings-of-the-current-extension-points-observations">10. Known shortcomings of the current extension points (observations)<a class="headerlink" href="#10-known-shortcomings-of-the-current-extension-points-observations" title="Permanent link">&para;</a></h2>
+<p>The gaps below were found while reading the code. They are recorded only; this page offers no fixes:</p>
+<ol>
+<li>~~<strong>There is no extension registry on the reload side.</strong>~~ <strong>Resolved.</strong> The reload side is now symmetric with the registration phase: there is a <code>ReloadHandlerRegistry</code> to hook into, and extending means implementing a <code>ReloadHandler</code> + calling <code>register</code> in a <code>@Context</code> bean's <code>@PostConstruct</code>, with <strong>no framework class changed</strong> (see §6). The two FSM types are the two handlers of this registry (<code>FsmReloadHandler</code> / <code>FsmClipsReloadHandler</code>, registered by <code>FsmReloadHandlerRegistrar</code>).</li>
+<li><strong>The cost remains</strong>: wiring it up means writing a <code>@Context</code> bean that calls <code>register</code> (there is no SPI auto-scan), and the handler implementation has to live in a module that can import data-driven. So it is "no framework class changed", not "zero code for a third-party mod".</li>
+<li><strong><code>TypeHandlerRegistry</code> is a global static table</strong> with no namespace isolation, silent overwrite on a same-name <code>put</code> (<code>TypeHandlerRegistry.register:11-13</code>), and no unregister entry point. A custom handler registered in a test stays alive in the same JVM until the process ends (the <code>TestEffect</code> registered by <code>TestGenericFactory</code>, for example).</li>
+<li><strong><code>parse</code> cannot get the <code>BuildContext</code> or the modId</strong>, so it cannot record a non-fatal diagnostic during parsing; a soft error from the parse stage can only be added during apply (§5.2).</li>
+<li><strong><code>RegTypeHandler</code> swallows exceptions internally</strong> (<code>apply:107-111</code>), so a handler extending it does not get its failures into the diagnostics bucket (§5.3).</li>
+<li><strong><code>RegTypeHandler.resolveItemProperties</code> is declared but has no call site</strong> (<code>RegTypeHandler.java:34</code>; <code>api-extension.md</code> §8.4 mentions it too). An implementation resolves properties in its own <code>configureTypeSpecific</code> instead.</li>
+<li><strong>A parent type can carry at most one embedded child type</strong>: <code>TypeHandlerRegistry.findByParent</code> returns the first match (<code>TypeHandlerRegistry.java:23-30</code>).</li>
+<li><strong>A property compiler can only be appended, never override a built-in key</strong>: matching is "first hit wins" with the built-ins first (§4.2); <code>removeCompiler</code> needs the exact instance, and the built-in instances are not exposed.</li>
+<li><strong>The two kinds of property parser disagree on key semantics</strong>: <code>JsonPropertyParser</code> normalizes keys into a <code>ResourceLocation</code> (lowercase, namespace optional), while <code>JsonItemParser</code> matches verbatim and case-sensitively (§4.2, §4.3).</li>
+<li><strong>The domain dimension of <code>Diagnostics</code> already has a writer</strong>: reload errors land under <code>Domain.RELOAD_DATA</code> with key = namespace (§5.4). An extension's failures pick their dimension by attribution.</li>
+<li><strong>The built-in item property parsers cover only a few keys</strong>: <code>JsonItemParser</code> builds in <code>stacks_to</code> / <code>rarity</code> / <code>fire_resistant</code> / <code>durability</code> / <code>no_repair</code> (<code>tab</code> is consumed separately by the loader); food properties, item components, and the like are not built in, and an unknown key is only warned about and ignored (<code>JsonItemParser:63</code>). Extend with <code>registerParser</code> when needed (§4.3).</li>
+<li><strong>An embedded BE's <code>data_type</code> (the DataFixer type) cannot be configured from JSON</strong>: <code>BlockEntityReg</code> has a <code>DataType</code> modifier (<code>RegFacade.transformObject("DataType", …)</code>, passed to <code>BlockEntityType.Builder.build(dataType)</code>), but <code>block_entity</code> on the JSON side has only <code>type</code> / <code>params</code> (<a href="../../../reference/data-driven/schema/">schema.md</a> §2.5), with no channel for it.</li>
+</ol>
+<hr />
+<h2 id="related-documents">Related documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>api-extension.md</code> §8 (the TypeHandler system), §9 (BuildContext / RegBuildContext), §10 (FactoryRegistry), §11 (property parsers); <code>api-diagnostics.md</code> §12 (error classification), §6 (Diagnostics), §7 (the /kasuga_data command); <code>api-reload.md</code> §13 (the reload API) — every signature this page cites is looked up there.</li>
+<li><code>schema.md</code> §1 (the index manifest and D1–D6), §2 (registration-phase content files), §2.5 (embedded <code>block_entities</code>), §4 (reload content), §5 (error classification and outlets) — field-level rules.</li>
+<li><code>guide-content.md</code> — content organization in pure JSON: creating directories, writing the index, writing blocks/items/block_entity, the property cheat sheet.</li>
+<li><code>intro.md</code> — the first path that works, from scratch.</li>
+</ul>
+<h2 id="appendix-what-this-page-leaves-to-the-data-driven-api-reference">Appendix: what this page leaves to the data-driven API reference<a class="headerlink" href="#appendix-what-this-page-leaves-to-the-data-driven-api-reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The complete signatures and parameter tables of every method.</li>
+<li>The algorithmic details of <code>DuplicateIdResolver</code> / <code>EffectiveId</code>.</li>
+<li>The complete signatures of <code>ReloadHandler</code> / <code>ReloadHandlerRegistry</code> / <code>Decoded</code> / <code>Reloaded</code>, plus <code>ReloadOrchestrator</code>'s stages in a full cycle and its four layers of participant-level guards with one fallback layer.</li>
+<li>The script-wins bucketing semantics of <code>FsmDefinitions</code> / <code>FsmAnimationClips</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
