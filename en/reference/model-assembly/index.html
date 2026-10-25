@@ -1,0 +1,3381 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/model-assembly/">
+      
+      
+        <link rel="prev" href="../mmd-ragdoll/">
+      
+      
+        <link rel="next" href="../model-posing/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/model-assembly/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Model assembly and outfit cache API - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-assembly-and-outfit-cache-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model assembly and outfit cache API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/model-assembly/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassemblybuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssemblyBuilder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModelAssemblyBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PartBuilder
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassembly-and-reference-remapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssembly and reference remapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamics-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamics merging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassemblycache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssemblyCache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-real-asset-probe-and-cache-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local real-asset probe and cache benchmark
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassemblybuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssemblyBuilder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModelAssemblyBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PartBuilder
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassembly-and-reference-remapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssembly and reference remapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamics-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamics merging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelassemblycache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModelAssemblyCache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-real-asset-probe-and-cache-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local real-asset probe and cache benchmark
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="model-assembly-and-outfit-cache-api">Model assembly and outfit cache API<a class="headerlink" href="#model-assembly-and-outfit-cache-api" title="Permanent link">&para;</a></h1>
+<p>Package: <code>lib.kasuga.rendering.models.uml.loaders.assembly</code>. This interface accepts a generic Model from any source and
+composes geometry, materials, skeleton, morph, named animations and dynamics into a single Model. For the principles and ownership see
+<a href="../../explanation/model-subsystems/">model subsystems</a>; for pose control see <a href="../model-posing/">ModelPosing</a>.
+For Minecraft's resource definitions, automatic invalidation and the instance swap entry point see <a href="../minecraft-model-assembly/">outfit resources and switching</a>.</p>
+<p>Here a Mesh is a face definition. The assembly result is one Model and one Skeleton, handed to the existing backend to form geometry buffers;
+it does not pack the vertices of several faces into one Mesh, nor does it promise a single draw for different materials/passes.</p>
+<h2 id="minimal-call">Minimal call<a class="headerlink" href="#minimal-call" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.loaders.assembly.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.dynamic.ModelInstance</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.structure.material.MaterialSetInstance</span><span class="p">;</span>
+
+<span class="c1">// The cache is owned by the clothing/model management service; do not create a new one every frame.</span>
+<span class="n">ModelAssemblyCache</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyCache</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">1_000_000</span><span class="p">);</span>
+<span class="n">ModelAssembly</span><span class="w"> </span><span class="n">outfit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyBuilder</span><span class="p">(</span><span class="s">"body"</span><span class="p">,</span><span class="w"> </span><span class="n">bodyModel</span><span class="p">,</span><span class="w"> </span><span class="n">bodyRevision</span><span class="p">,</span>
+<span class="w">        </span><span class="n">body</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="na">region</span><span class="p">(</span><span class="s">"torso"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">).</span><span class="na">hideRegions</span><span class="p">(</span><span class="s">"torso"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">part</span><span class="p">(</span><span class="s">"shirt"</span><span class="p">,</span><span class="w"> </span><span class="n">shirtModel</span><span class="p">,</span><span class="w"> </span><span class="n">shirtRevision</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">part</span><span class="p">(</span><span class="s">"coat"</span><span class="p">,</span><span class="w"> </span><span class="n">coatModel</span><span class="p">,</span><span class="w"> </span><span class="n">coatRevision</span><span class="p">,</span>
+<span class="w">                </span><span class="n">coat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">coat</span><span class="p">.</span><span class="na">mapBone</span><span class="p">(</span><span class="s">"coat_root"</span><span class="p">,</span><span class="w"> </span><span class="s">"root"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">assemble</span><span class="p">(</span><span class="n">cache</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outfit</span><span class="p">.</span><span class="na">model</span><span class="p">();</span>
+<span class="n">ModelInstance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelInstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MaterialSetInstance</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getMaterialSet</span><span class="p">()),</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getPosing</span><span class="p">().</span><span class="na">play</span><span class="p">(</span><span class="s">"walk"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">       </span><span class="c1">// body clip names are kept</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getPosing</span><span class="p">().</span><span class="na">play</span><span class="p">(</span><span class="s">"shirt/fit"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// clothing clip names get a part prefix</span>
+</code></pre></div>
+<p>Source models must already be fully loaded and use the same bind space/units. For shared bones, the difference between the source and target absolute bind
+matrices must not exceed <code>bindTolerance</code>; the default is <code>1e-4</code>, compared per matrix component. Assembly does not automatically scale clothing, fit the body
+or retarget animations from a different skeleton. Shared bones use the body hierarchy; bones unique to the clothing keep their original absolute bind pose.
+All default mappings and geometry clones run on a cache miss; each frame only updates the pose of the merged instance.</p>
+<h2 id="modelassemblybuilder">ModelAssemblyBuilder<a class="headerlink" href="#modelassemblybuilder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyBuilder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">bodyId</span><span class="p">,</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">revision</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyBuilder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">bodyId</span><span class="p">,</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">revision</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">ModelAssemblyBuilder</span><span class="p">.</span><span class="na">PartBuilder</span><span class="o">&gt;</span><span class="w"> </span><span class="n">configure</span><span class="p">);</span>
+</code></pre></div>
+<p>The first part is the body. revision is the resource version managed by the caller, and any long is allowed; after modifying a resource in place you must
+update the revision or call the cache invalidation interface. Source Models are distinguished by object identity; the format type is not read, and no
+content hash of the whole resource is computed.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModelAssemblyBuilder part(String id, Model model, long revision)</code></td>
+<td>Appends a part in order; by default matches same-named body bones and keeps dynamics</td>
+</tr>
+<tr>
+<td><code>ModelAssemblyBuilder part(String id, Model model, long revision, Consumer&lt;PartBuilder&gt; configure)</code></td>
+<td>Appends after configuring mappings, hidden regions and dynamics integration</td>
+</tr>
+<tr>
+<td><code>ModelAssemblyBuilder bindTolerance(float tolerance)</code></td>
+<td>Finite positive number, default <code>1e-4</code></td>
+</tr>
+<tr>
+<td><code>ModelAssembly.Request build()</code></td>
+<td>Copies and validates the request; creates no geometry or GPU resources</td>
+</tr>
+<tr>
+<td><code>ModelAssembly assemble()</code></td>
+<td>Assembles directly with the standard assembler, without the cache</td>
+</tr>
+<tr>
+<td><code>ModelAssembly assemble(ModelAssemblyCache cache)</code></td>
+<td>Builds the request and fetches the cache result</td>
+</tr>
+</tbody>
+</table>
+<p>A part id must be non-empty, must not be all whitespace and must not repeat. The body cannot have bone aliases set. The configure callback runs synchronously;
+the request stores its result, not the callback. Part order affects material indices and render order, so it is part of the cache key.</p>
+<h3 id="partbuilder">PartBuilder<a class="headerlink" href="#partbuilder" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PartBuilder mapBone(String source, String target)</code></td>
+<td>Source bone name to output bone name; the source bone is resolved immediately, the target is validated at assembly time</td>
+</tr>
+<tr>
+<td><code>PartBuilder mapBone(Bone source, String target)</code></td>
+<td>Uses a source Bone reference, which must belong to that source model</td>
+</tr>
+<tr>
+<td><code>PartBuilder matchBodyBones(boolean enabled)</code></td>
+<td>Default true; matches same-named body bones when there is no explicit mapping</td>
+</tr>
+<tr>
+<td><code>PartBuilder includeDynamics(boolean enabled)</code></td>
+<td>Default true; false excludes that part's inheritance, fixed axes, IK/closures and physics definitions</td>
+</tr>
+<tr>
+<td><code>PartBuilder hideMeshes(int... indices)</code></td>
+<td>Removes faces by index into the source Model's Mesh array</td>
+</tr>
+<tr>
+<td><code>PartBuilder region(String name, int... indices)</code></td>
+<td>Defines a named region inside this part; the same name replaces it</td>
+</tr>
+<tr>
+<td><code>PartBuilder hideRegions(String... names)</code></td>
+<td>Hides those regions; expanded into face indices when the Part is constructed</td>
+</tr>
+</tbody>
+</table>
+<p>Explicit mappings take precedence over automatic same-name matching; a target may be a body bone or a bone already introduced by an earlier part, and may
+not reference a later part. Unmapped part bones are named <code>partId/sourceName</code>; bones without a name use <code>bone_&lt;source index&gt;</code>.
+New bones keep the source absolute bind matrix, and their local bind is recomputed relative to the already-mapped parent bone; an independent root is attached under the body root.
+Output bone name conflicts, invalid mappings, incompatible binds or a cycle in the source hierarchy throw <code>IllegalArgumentException</code>.</p>
+<p>Hidden indices must be within the source Mesh array's range; an unknown region is an error. Only vertices used solely by hidden faces and their morphs are
+removed; shared vertices are kept; hiding geometry does not automatically remove bones or physics. Regions are supplied by the integrating party;
+occlusion is not guessed automatically. Pure triangles and quads can be combined into MIXED and handled by the existing backend; lines and surfaces must be assembled separately.</p>
+<h2 id="modelassembly-and-reference-remapping">ModelAssembly and reference remapping<a class="headerlink" href="#modelassembly-and-reference-remapping" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">Model</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">model</span><span class="p">();</span>
+<span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Request</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">request</span><span class="p">();</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Remap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">parts</span><span class="p">();</span>
+<span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Remap</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">part</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Source</span><span class="p">(</span><span class="n">Model</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">revision</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Part</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Source</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Bone</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">boneMappings</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hiddenMeshes</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">matchBodyBones</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">includeDynamics</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Request</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Part</span><span class="o">&gt;</span><span class="w"> </span><span class="n">parts</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">bindTolerance</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">PartMorphId</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">part</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">original</span><span class="p">);</span>
+</code></pre></div>
+<p>The result mappings and the request's collections are unmodifiable, and an unknown part id is an error. The body keeps its original morph/clip/anchor names;
+part morph identities are <code>PartMorphId</code>, avoiding identity collisions caused by string concatenation; clips and anchors use <code>partId/name</code>.</p>
+<p>The complete set of <code>Remap</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return value/behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String id()</code>, <code>Model source()</code></td>
+<td>Source part identity and the shared Model</td>
+</tr>
+<tr>
+<td><code>Bone bone(Bone source)</code></td>
+<td>Output bone reference; an unknown source is an error</td>
+</tr>
+<tr>
+<td><code>Vertex vertex(Vertex source)</code>, <code>Mesh mesh(Mesh source)</code></td>
+<td>Output elements; null when hidden or unused</td>
+</tr>
+<tr>
+<td><code>Material material(Material source)</code></td>
+<td>Output material; an unknown source is an error</td>
+</tr>
+<tr>
+<td><code>Object morphId(Object source)</code></td>
+<td>Body original identity or the part's PartMorphId</td>
+</tr>
+<tr>
+<td><code>String boneName(String source)</code></td>
+<td>Output name of a source bone name; unknown names are kept</td>
+</tr>
+<tr>
+<td><code>String ikName(String source)</code></td>
+<td>Output chain name; the same shared chain may reuse the body name</td>
+</tr>
+<tr>
+<td><code>String animationName(String source)</code>, <code>String anchorName(String source)</code></td>
+<td>Output names</td>
+</tr>
+<tr>
+<td><code>int rigidBodyIndex(int sourceIndex)</code></td>
+<td>Index from the source physics table to the output table; -1 when the part excludes dynamics</td>
+</tr>
+<tr>
+<td><code>Pose pose(Pose source)</code></td>
+<td>Converts bone name, morph, IK and material frame references</td>
+</tr>
+<tr>
+<td><code>&lt;T&gt; AnimationSampler&lt;T&gt; sampler(AnimationSampler&lt;T&gt; source)</code></td>
+<td>Wraps the sampler, preserving duration, original interpolation and formula Namespace</td>
+</tr>
+<tr>
+<td><code>MorphType&lt;?, ?, ?&gt; morph(MorphType&lt;?, ?, ?&gt; source)</code></td>
+<td>Copies a morph for the assembly extension; returns null for a hidden target</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">Object</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outfit</span><span class="p">.</span><span class="na">part</span><span class="p">(</span><span class="s">"shirt"</span><span class="p">).</span><span class="na">morphId</span><span class="p">(</span><span class="s">"fit"</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getMorph</span><span class="p">().</span><span class="na">activateMorph</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8f</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">clothBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outfit</span><span class="p">.</span><span class="na">part</span><span class="p">(</span><span class="s">"coat"</span><span class="p">).</span><span class="na">rigidBodyIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<p>Vertex, UV, normal, Mesh, Bone, Material and Sprite/SpriteSet definitions are copied separately. Textures and immutable
+raw metadata borrow the source resources, and Textures are deduplicated by object identity. Material and frame state stay independent between parts.
+Do not modify the shared definitions of a cache result; each character's transform, morph, material frames, animation clock and physics state live in the ModelInstance.</p>
+<p>Numeric/numeric-string Pose material references are remapped from source material indices to output Materials; invalid numeric references are ignored.
+<code>MaterialResolver.forInstance</code> supports Material references that belong directly to the current MaterialSetInstance.
+Custom named material references are passed through as-is, and the host can handle them with a custom MaterialResolver.</p>
+<h2 id="dynamics-merging">Dynamics merging<a class="headerlink" href="#dynamics-merging" title="Permanent link">&para;</a></h2>
+<p>Inheritance and fixed axes are converted to output Bones; identical constraints on the same output bone are reused, conflicting constraints are an error.
+A shared IK whose controller, effector, links and all solver settings match reuses the body chain; otherwise a part-prefixed chain is generated.
+Diamond closures are preserved; fully identical closures are reused, and conflicts and overlapping chain relationships continue to be validated by the generic Builder.
+When a full-skeleton garment uses the body's existing dynamics, you can also pass <code>includeDynamics(false)</code> explicitly.</p>
+<p>Physics coordinates and sizes are converted by each source's <code>Physics.unitScale</code>, and the output has <code>unitScale = (1,1,1)</code>; angles are still in radians.
+Rigid bodies bound to the same output bone with all properties identical are reused; a rigid body with no bound bone is kept independently. Joint indices are remapped,
+and fully identical joints are reused; a self-connection after mapping is an error. Bind-following bones are merged.
+If any source with physics bodies requires a profile, the result requires an explicit profile; when any source needs affine writeback,
+the combined physics uses affine writeback. profileRadiusScale must agree across non-empty sources, and a conflict is an error.
+The profile and drag interfaces use output physics indices, and source indices are converted through Remap.</p>
+<h2 id="modelassemblycache">ModelAssemblyCache<a class="headerlink" href="#modelassemblycache" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyCache</span><span class="p">();</span><span class="w"> </span><span class="c1">// 32 entries, 1_000_000 vertices</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyCache</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">maximumEntries</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">maximumVertices</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyCache</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">maximumEntries</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">maximumVertices</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAssembler</span><span class="w"> </span><span class="n">assembler</span><span class="p">);</span>
+
+<span class="n">ModelAssembly</span><span class="w"> </span><span class="nf">getOrAssemble</span><span class="p">(</span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Request</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">invalidate</span><span class="p">(</span><span class="n">Model</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">invalidate</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">partId</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span>
+<span class="n">ModelAssemblyCache</span><span class="p">.</span><span class="na">Stats</span><span class="w"> </span><span class="nf">stats</span><span class="p">();</span>
+</code></pre></div>
+<p>Both capacities must be positive. The LRU is limited by both the entry count and the vertex count of merged Models; the statistics are not byte sizes or GPU
+memory usage. A single result that exceeds the vertex budget can still be used, but is not cached. All operations are synchronous, and concurrent requests assemble only once;
+different misses also run serially, so the assembly service should be used on a loading/worker thread.</p>
+<p>The cache key covers part order, the object identity and revision of source Models, bone mappings, the final hidden face set, the dynamics
+switch, the same-name matching switch and the bind tolerance. Invalid resources/assembly exceptions are not stored in the cache.
+<code>invalidate</code> returns the number of removed entries; <code>clear</code> drops references but keeps the cumulative statistics.
+<code>Stats</code> provides <code>hits()</code>, <code>misses()</code>, <code>builds()</code>, <code>entries()</code>, <code>vertices()</code>; builds counts only successful assemblies.</p>
+<p>The cache owns CPU shared definitions, has no GPU resources and needs no close. Invalidation/eviction does not modify already returned results; a host still using an
+old ModelInstance is responsible for its render resource lifecycle. On a resource reload, stop the old instances and invalidate the corresponding cache entries first,
+then release the borrowed Texture/metadata.</p>
+<h2 id="extension-interfaces">Extension interfaces<a class="headerlink" href="#extension-interfaces" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@FunctionalInterface</span>
+<span class="kd">interface</span> <span class="nc">ModelAssembler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ModelAssembly</span><span class="w"> </span><span class="nf">assemble</span><span class="p">(</span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Request</span><span class="w"> </span><span class="n">request</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">ModelAssembler</span><span class="w"> </span><span class="nf">standard</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">ModelAssembler</span><span class="w"> </span><span class="nf">standard</span><span class="p">(</span><span class="n">MorphRemapper</span><span class="w"> </span><span class="n">morphs</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nd">@FunctionalInterface</span>
+<span class="kd">interface</span> <span class="nc">MorphRemapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MorphType</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">remap</span><span class="p">(</span><span class="n">MorphType</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAssembly</span><span class="p">.</span><span class="na">Remap</span><span class="w"> </span><span class="n">mapping</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">MorphRemapper</span><span class="w"> </span><span class="nf">standard</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The standard implementation supports the existing vertex position/normal/UV/tangent, bone transforms, material color/specular/ambient/rim, material frames/
+sprite frames, Flip and nested Group morphs. Unknown morph types are an error; custom types copy their
+references and parameters through a remapper, then fall back to the standard implementation. There is no model format allowlist.</p>
+<div class="highlight"><pre><span></span><code><span class="n">MorphRemapper</span><span class="w"> </span><span class="n">defaults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MorphRemapper</span><span class="p">.</span><span class="na">standard</span><span class="p">();</span>
+<span class="n">ModelAssembler</span><span class="w"> </span><span class="n">assembler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ModelAssembler</span><span class="p">.</span><span class="na">standard</span><span class="p">((</span><span class="n">morph</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// You can handle your own morph types here, remapping targets, identities and parameters.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">defaults</span><span class="p">.</span><span class="na">remap</span><span class="p">(</span><span class="n">morph</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="n">ModelAssemblyCache</span><span class="w"> </span><span class="n">cache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAssemblyCache</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">1_000_000</span><span class="p">,</span><span class="w"> </span><span class="n">assembler</span><span class="p">);</span>
+</code></pre></div>
+<p>A custom assembler must return a request equal to the input request, otherwise the cache refuses to store it. Resources should be read-only during assembly;
+the remapper is used only in the assembly/extension copy phase, and playback uses the result's immutable mappings.</p>
+<h2 id="local-real-asset-probe-and-cache-benchmark">Local real-asset probe and cache benchmark<a class="headerlink" href="#local-real-asset-probe-and-cache-benchmark" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:modelAssemblyProbe<span class="w"> </span>-PkasugaAssemblyFixtures<span class="o">=</span>/absolute/path/to/extracted-fixtures
+./gradlew<span class="w"> </span>:modules:modelling:renderGlTest<span class="w"> </span>-PkasugaAssemblyFixtures<span class="o">=</span>/absolute/path/to/extracted-fixtures
+</code></pre></div>
+<p>This optional probe covers the current nine-pack test assets: the extracted directories are <code>pack_1</code> to <code>pack_9</code>, <code>pack_6/7</code> are base bodies and
+<code>pack_3</code> is compatible dress clothing; it only calls the production PMX conversion and the generic assembly, and does not decode or display the asset textures.
+It checks all PMX loading and base body/part bind compatibility, then verifies the compatible dress, the assembly of 1/10/100 real small parts,
+neutral skinning positions, cache sharing and source invalidation. The stress case shares only bind-compatible bones, and the remaining bones keep the part namespace;
+this cannot be read as 100 different garments having been fitted to the base body.
+When RibbonDress short sleeves/long sleeves are present it also measures their assembly with a separate bind skeleton alongside the base body; when <code>pack_8/**/13.pmx</code> is present, hair is included.
+For actually swapping textures and clothes, and rendering hair and an MC weapon see <a href="../../guides/wardrobe-example/">real-asset example</a>.</p>
+<p>The default report is <code>build/reports/modelAssemblyProbe/report.json</code>; <code>kasugaAssemblyReport</code> can specify the output, and
+<code>kasugaAssemblyOrder=cached-first</code> or the default <code>uncached-first</code> controls the measurement order, making it easy to repeat in an alternating order on a fresh JVM.
+It records the first assembly, a rebuild after warm-up, a cache lookup for an existing request, building a request plus a cache lookup, and allocations on the current thread.
+Timings exclude file loading and texture decoding; the p50/p95 of batch means differ from a per-call latency distribution. Allocations do not include GPU/native memory.
+These numbers only verify CPU assembly and caching, and do not represent game FPS or a per-frame skinning/draw speedup.</p>
+<p>The optional GL path compares CPU and production GPU skinning over all merged vertices of the compatible base body + dress, including real bind types and bone rotations;
+it uses transform feedback and disables rasterization, and outputs no base body image. The success marker is <code>REAL_OVERLAY_SKINNING_PASS</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

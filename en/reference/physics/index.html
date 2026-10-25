@@ -1,0 +1,3731 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/physics/">
+      
+      
+        <link rel="prev" href="../pbr/">
+      
+      
+        <link rel="next" href="../render-alpha-passes/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/physics/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Physics, IK, and ModelTickLoop API - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#physics-ik-and-modeltickloop-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Physics, IK, and ModelTickLoop API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/physics/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-per-frame-evaluation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Per-Frame Evaluation Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-generic-rigid-body-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Generic Rigid Body API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Generic Rigid Body API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-shape-and-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Shape and Body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-world-lifecycle-and-fixed-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 World Lifecycle and Fixed Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#221-generic-joint-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 Generic Joint Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-impulse-force-and-body-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Impulse, Force, and Body Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-collision-contact-and-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Collision, Contact, and Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-ray-drag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Ray Drag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pmx-and-gltf-ragdoll-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PMX and glTF ragdoll API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ik-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IK API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modeltickloop-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ModelTickLoop Modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ModelTickLoop Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activeragdollmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 ActiveRagdollModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anchormodule-and-display-children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 AnchorModule and Display Children
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gltf-animation-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. glTF Animation Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-minecraft-physics-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Minecraft Physics Block
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-current-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Current Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-per-frame-evaluation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Per-Frame Evaluation Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-generic-rigid-body-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Generic Rigid Body API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Generic Rigid Body API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-shape-and-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Shape and Body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-world-lifecycle-and-fixed-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 World Lifecycle and Fixed Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#221-generic-joint-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 Generic Joint Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-impulse-force-and-body-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Impulse, Force, and Body Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-collision-contact-and-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Collision, Contact, and Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-ray-drag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Ray Drag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pmx-and-gltf-ragdoll-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PMX and glTF ragdoll API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ik-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IK API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modeltickloop-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ModelTickLoop Modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ModelTickLoop Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activeragdollmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 ActiveRagdollModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anchormodule-and-display-children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 AnchorModule and Display Children
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gltf-animation-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. glTF Animation Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-minecraft-physics-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Minecraft Physics Block
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-current-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Current Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="physics-ik-and-modeltickloop-api">Physics, IK, and ModelTickLoop API<a class="headerlink" href="#physics-ik-and-modeltickloop-api" title="Permanent link">&para;</a></h1>
+<p>Interface, configuration, and call reference. For the underlying principles see <a href="../../explanation/physics/">physics.md</a>.</p>
+<p>Native physics in Kasuga modelling is handled by the official Box3D C17 engine. The Java layer only handles object mapping, fixed steps, Minecraft
+collision data, animation targets, and bone writeback; there is no Java fallback integrator or contact solver.</p>
+<p>The currently vendored version is pinned to the official Box3D <code>main</code> commit
+<code>30c67b5e6d0a3a66f0f506c69ce9e9e0587e3b7c</code>. The source and the license are in
+<code>modules/modelling/src/main/native/box3d</code> and <code>modules/modelling/THIRD_PARTY_NOTICES.md</code> respectively.</p>
+<p>CMake and the Box3D native library are both optional capabilities. When the build machine cannot find CMake, Gradle emits a warning, skips the
+Box3D JNI compile, and still produces a modelling package without native physics. At runtime the capability can be queried through
+<code>NativeBox3D.available()</code>; when the native library is missing, the high-level <code>enablePhysics</code>/<code>attach</code> APIs return
+<code>null</code>, the deployment and block-generation APIs return empty results, and the physics commands show the reason they are disabled, while the remaining model loading, rendering, and animation features are unaffected.</p>
+<h2 id="1-per-frame-evaluation-order">1. Per-Frame Evaluation Order<a class="headerlink" href="#1-per-frame-evaluation-order" title="Permanent link">&para;</a></h2>
+<p>All procedural stages hang off the single ordered <code>ModelTickLoop</code> pipeline. The framework provides ordering through standard slots, and
+modules such as physics and IK implement only their own internal logic:</p>
+<div class="highlight"><pre><span></span><code>kasuga:apply -&gt; [user pre-IK modules] -&gt; kasuga:ik -&gt; [user post-IK modules]
+  -&gt; kasuga:physics -&gt; [user post-physics modules] -&gt; kasuga:anchor
+</code></pre></div>
+<p>The complete data flow within one frame for a model with physics:</p>
+<div class="highlight"><pre><span></span><code>PoseDriver.sample(partialTick)
+  -&gt; SkeletonApplyModule (flush pending transforms)
+  -&gt; pre-IK modules (write transient IK targets; modules that need pending transforms flushed go before apply)
+  -&gt; IkModule (hierarchy evaluation + generic Caliko IK; skipped while physics takes over the pose)
+  -&gt; post-IK modules (read the same-frame IK results, submit controller forces)
+  -&gt; RagdollModule (Box3D fixed steps + bone writeback)
+  -&gt; post-physics modules (observe the final pose)
+  -&gt; AnchorModule (recompute the world transform of the display child anchor)
+  -&gt; renderer upload
+</code></pre></div>
+<p><code>MinecraftRagdollRuntime</code> samples the animation first and then advances physics in <code>RenderFrame.Pre</code>; the backend's later <code>sample</code> consumes the
+mark already prepared for this frame and does not overwrite the physics results with the animation again. Animation/IK targets are evaluated and cached by input mutation epoch, so
+when the input stays the same the fixed steps reuse the same animation target; the native force accumulation and fixed-step execution are still managed by the world.</p>
+<p>In manual mode you can call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="na">animate</span><span class="p">(</span><span class="n">gameTickSeconds</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">sample</span><span class="p">(</span><span class="n">partialTick</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">simulatePhysics</span><span class="p">(</span><span class="n">frameSeconds</span><span class="p">);</span><span class="w">   </span><span class="c1">// goes through tickLoop.tick(dt) internally</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">tick</span><span class="p">(</span><span class="n">frameSeconds</span><span class="p">);</span><span class="w">              </span><span class="c1">// advances the whole pipeline directly</span>
+</code></pre></div>
+<p>Use this when animation sampling and physics advancement must happen in one call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">instance</span><span class="p">.</span><span class="na">evaluatePhysicsFrame</span><span class="p">(</span><span class="n">partialTick</span><span class="p">,</span><span class="w"> </span><span class="n">frameSeconds</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="2-generic-rigid-body-api">2. Generic Rigid Body API<a class="headerlink" href="#2-generic-rigid-body-api" title="Permanent link">&para;</a></h2>
+<p>Main package:</p>
+<div class="highlight"><pre><span></span><code>lib.kasuga.rendering.models.uml.dynamic.physics.core
+</code></pre></div>
+<h3 id="21-shape-and-body">2.1 Shape and Body<a class="headerlink" href="#21-shape-and-body" title="Permanent link">&para;</a></h3>
+<p><code>BodyShape</code> is a body-local sealed API:</p>
+<ul>
+<li><code>BodyShape.Sphere(center, radius)</code></li>
+<li><code>BodyShape.Box(center, rotation, halfExtents)</code></li>
+<li><code>BodyShape.Capsule(centerA, centerB, radius)</code></li>
+</ul>
+<p><code>SimBody.collisionShapes()</code> can return any number of child shapes, so one native body can be a compound body.
+The compatibility fields <code>shape()</code> and <code>shapeSizeRef()</code> are still mapped automatically to one centered primitive.</p>
+<p><code>GenericRigidBody</code> is the default implementation for non-PMX content:</p>
+<div class="highlight"><pre><span></span><code><span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">sphere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">sphere</span><span class="p">(</span><span class="mf">0.3f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">at</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">4f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">friction</span><span class="p">(</span><span class="mf">0.7f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">restitution</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">damping</span><span class="p">(</span><span class="mf">0.05f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">compound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">compound</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">)),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.25f</span><span class="p">))</span>
+<span class="p">),</span><span class="w"> </span><span class="mf">4f</span><span class="p">);</span>
+
+<span class="n">GenericRigidBody</span><span class="w"> </span><span class="n">movingPlatform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenericRigidBody</span><span class="p">.</span><span class="na">kinematic</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">BodyShape</span><span class="p">.</span><span class="na">Box</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">))</span>
+<span class="p">));</span>
+</code></pre></div>
+<p>Runtime state methods include <code>position()</code>, <code>rotation()</code>, <code>teleport(...)</code>, <code>setLinearVelocity(...)</code>, and
+<code>setAngularVelocity(...)</code>. The <code>*Ref()</code> methods on <code>SimBody</code> return internal mutable storage and are meant only for high-frequency adaptation and state synchronization.</p>
+<h3 id="22-world-lifecycle-and-fixed-step">2.2 World Lifecycle and Fixed Step<a class="headerlink" href="#22-world-lifecycle-and-fixed-step" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RigidBodyWorld</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">(</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span><span class="w"> </span><span class="n">compound</span><span class="p">),</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(),</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">.</span><span class="na">DEFAULT_SUBSTEP_COUNT</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">setSimulationHertz</span><span class="p">(</span><span class="mi">120</span><span class="n">f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">setGravity</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.80665f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">));</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">addGroundPlane</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="na">step</span><span class="p">(</span><span class="n">deltaSeconds</span><span class="p">,</span><span class="w"> </span><span class="n">RigidBodyWorld</span><span class="p">.</span><span class="na">KinematicDriver</span><span class="p">.</span><span class="na">none</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Object and joint management:</p>
+<ul>
+<li><code>add(SimBody)</code> / <code>remove(SimBody)</code></li>
+<li><code>add(BallJoint)</code> / <code>remove(BallJoint)</code> (the ball joints PMX/gltf ragdolls use)</li>
+<li><code>add(PhysicsJoint)</code> / <code>remove(PhysicsJoint)</code> (weld/distance/revolute/prismatic, see 2.2.1)</li>
+<li><code>bodies()</code> / <code>joints()</code> / <code>physicsJoints()</code></li>
+<li><code>excludePair(bodyA, bodyB)</code></li>
+<li><code>close()</code></li>
+</ul>
+<p>When a body is removed, both kinds of joint attached to it are destroyed automatically.</p>
+<h3 id="221-generic-joint-types">2.2.1 Generic Joint Types<a class="headerlink" href="#221-generic-joint-types" title="Permanent link">&para;</a></h3>
+<p>The four common Box3D joints have been ported in full through JNI (all constraint solving happens inside native code):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Weld: rigidly bonds two props (0 hertz = hardest), softness adjustable</span>
+<span class="n">WeldJoint</span><span class="w"> </span><span class="n">weld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WeldJoint</span><span class="p">.</span><span class="na">atCurrentPose</span><span class="p">(</span><span class="n">blockA</span><span class="p">,</span><span class="w"> </span><span class="n">blockB</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="n">world</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">weld</span><span class="p">);</span>
+
+<span class="c1">// Distance: rope/spring/winch, supports spring, length limits, and motor</span>
+<span class="n">DistanceJoint</span><span class="w"> </span><span class="n">rope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">length</span><span class="p">(</span><span class="mf">1f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">spring</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">3f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="n">f</span><span class="p">)</span><span class="w">      </span><span class="c1">// winch reeling in the rope</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="c1">// Revolute: hinge (door, lid, windmill), can carry angle limits and a motor</span>
+<span class="n">RevoluteJoint</span><span class="w"> </span><span class="n">hinge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RevoluteJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">door</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">hingeAxis</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6f</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="n">f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="c1">// Prismatic: slide rail (piston, drawer), can carry travel limits and a motor</span>
+<span class="n">PrismaticJoint</span><span class="w"> </span><span class="n">piston</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">rail</span><span class="p">,</span><span class="w"> </span><span class="n">slider</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">slideAxis</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">limits</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.2f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">motor</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="n">f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</code></pre></div>
+<p>Runtime tuning goes through each joint's setters (<code>setLimits</code>, <code>setMotor</code>, <code>setSpring</code>, <code>setLength</code>);
+calling a setter on a joint that is not bound to a world throws <code>IllegalStateException</code>.</p>
+<p><code>KinematicDriver.beginStep(world)</code> runs before every fixed step; <code>kinematicTarget(body)</code> returns the target
+position and rotation of that same step. <code>lastFixedStepCount()</code>, <code>droppedSimulationTime()</code>, and <code>interpolationAlpha()</code> are used to diagnose the fixed step.</p>
+<p>Main tuning parameters:</p>
+<ul>
+<li><code>setSimulationHertz(10..1000)</code></li>
+<li><code>setSubstepCount(1..50)</code></li>
+<li><code>setMaxFixedStepsPerUpdate(1..1000)</code></li>
+<li><code>setConstraintTuning(hertz, dampingRatio)</code></li>
+<li><code>setSpeedLimits(linear, angular)</code>; the current Box3D only provides a world linear speed mapping</li>
+<li><code>setRestitutionThreshold(value)</code></li>
+<li><code>setSleepingEnabled(boolean)</code> / <code>setSleepingThresholds(...)</code> / <code>wake()</code></li>
+<li><code>setContinuousCollisionEnabled(boolean)</code></li>
+<li><code>setCollisionsEnabled(boolean)</code></li>
+<li><code>setSelfCollisionsEnabled(boolean)</code></li>
+</ul>
+<p><code>setSolverIterations</code> is a compatibility entry point for old configurations. Box3D does not expose an iteration count of the same name, so it only validates and stores the value.</p>
+<h3 id="23-impulse-force-and-body-control">2.3 Impulse, Force, and Body Control<a class="headerlink" href="#23-impulse-force-and-body-control" title="Permanent link">&para;</a></h3>
+<p>All vectors are in world coordinates:</p>
+<div class="highlight"><pre><span></span><code><span class="n">world</span><span class="p">.</span><span class="na">applyImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">impulse</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">impulse</span><span class="p">,</span><span class="w"> </span><span class="n">worldPoint</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyAngularImpulse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">angularImpulse</span><span class="p">);</span>
+
+<span class="n">world</span><span class="p">.</span><span class="na">applyForce</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyForce</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="p">,</span><span class="w"> </span><span class="n">worldPoint</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">applyTorque</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">torque</span><span class="p">);</span>
+
+<span class="n">world</span><span class="p">.</span><span class="na">setGravityScale</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">);</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">gravityScale</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">setAwake</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">awake</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">awake</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</code></pre></div>
+<p>An impulse changes velocity immediately; force/torque is integrated by the next native Box3D step. The methods return <code>false</code> when the body does not belong to that world,
+when the body is not dynamic, or when an input is not a finite number. A negative gravity scale inverts that body's gravity.</p>
+<h3 id="24-collision-contact-and-query">2.4 Collision, Contact, and Query<a class="headerlink" href="#24-collision-contact-and-query" title="Permanent link">&para;</a></h3>
+<p>Static environment entry points:</p>
+<ul>
+<li><code>addPlaneCollider(normal, offset, friction, restitution)</code></li>
+<li><code>addGroundPlane(y, friction, restitution)</code></li>
+<li><code>addStaticBoxCollider(minimum, maximum, friction, restitution)</code></li>
+<li><code>addEnvironmentMesh(friction, restitution)</code></li>
+<li><code>setCollisionEnvironment(CollisionEnvironment)</code></li>
+</ul>
+<p><code>StaticEnvironmentMesh</code> incrementally synchronizes Minecraft terrain through <code>putCell/removeCell</code>; Java does not do the collision solving.</p>
+<p>Queries:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Optional</span><span class="o">&lt;</span><span class="n">RayHit</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">raycast</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span><span class="w"> </span><span class="n">maximumDistance</span><span class="p">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">BodyContact</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="na">contacts</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</code></pre></div>
+<p><code>RayHit</code> returns the Java <code>SimBody</code>, the world hit point, and the distance. <code>BodyContact</code> fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td>the body from the query's point of view</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>the other Java body; empty for native static terrain</td>
+</tr>
+<tr>
+<td><code>point</code></td>
+<td>world contact point</td>
+</tr>
+<tr>
+<td><code>normal</code></td>
+<td>unit normal pointing from <code>other</code> to <code>body</code></td>
+</tr>
+<tr>
+<td><code>separation</code></td>
+<td>negative means penetration</td>
+</tr>
+<tr>
+<td><code>normalImpulse</code></td>
+<td>normal impulse of the current solver point</td>
+</tr>
+<tr>
+<td><code>totalNormalImpulse</code></td>
+<td>normal impulse including the accumulated warm start</td>
+</tr>
+<tr>
+<td><code>normalVelocity</code></td>
+<td>pre-solve normal velocity</td>
+</tr>
+<tr>
+<td><code>touching()</code></td>
+<td>the separation or the impulse shows a current contact</td>
+</tr>
+</tbody>
+</table>
+<p>Summary counts are available through <code>selfContactCount()</code> and <code>staticContactBodyCount()</code>.</p>
+<h3 id="25-ray-drag">2.5 Ray Drag<a class="headerlink" href="#25-ray-drag" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">world</span><span class="p">.</span><span class="na">setDragSettings</span><span class="p">(</span><span class="n">DragSettings</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">beginDrag</span><span class="p">(</span><span class="n">hit</span><span class="p">);</span><span class="w">                 </span><span class="c1">// or beginDrag(body, worldPoint)</span>
+<span class="n">world</span><span class="p">.</span><span class="na">updateDragTarget</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">frameSeconds</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="na">endDrag</span><span class="p">();</span>
+</code></pre></div>
+<p>Drag creates a kinematic anchor and a spherical joint inside native Box3D; it does not teleport the body and does not run a Java stabilizer.
+A world currently has only one drag target at a time.</p>
+<h2 id="3-pmx-and-gltf-ragdoll-api">3. PMX and glTF ragdoll API<a class="headerlink" href="#3-pmx-and-gltf-ragdoll-api" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">SkeletonRagdoll</span><span class="w"> </span><span class="n">ragdoll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">enablePhysics</span><span class="p">();</span>
+<span class="c1">// or generate only the body capsules registered in the profile</span>
+<span class="n">SkeletonRagdoll</span><span class="w"> </span><span class="n">profiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">enablePhysics</span><span class="p">(</span><span class="n">profile</span><span class="p">);</span>
+</code></pre></div>
+<p>Queries:</p>
+<ul>
+<li><code>bodies()</code> / <code>joints()</code></li>
+<li><code>body(definitionIndex)</code>: index into the generic bodies list; the MMD Reader keeps the original rigid body order, the glTF Reader keeps the node order</li>
+<li><code>body(Bone)</code> / <code>body(boneName)</code></li>
+<li><code>animationTarget(body)</code>: the body target after this frame's animation + IK and before physics</li>
+<li><code>raycast(...)</code></li>
+</ul>
+<p><code>SkeletonRagdoll</code> forwards the generic impulse, force, torque, gravity, collision, drag, fixed-step, sleep, and
+environment controls directly. <code>Body</code> additionally provides <code>position()</code>, <code>rotation()</code>, <code>shapeSize()</code>, velocity, <code>toWorldPoint(...)</code>,
+<code>toLocalPoint(...)</code>, <code>teleport(...)</code>, and velocity setters.</p>
+<p>Mode semantics:</p>
+<ul>
+<li>PMX mode 0: kinematic, follows the animated bones.</li>
+<li>PMX mode 1: dynamic, full physics writeback.</li>
+<li>PMX mode 2: dynamic, keeps the animated translation and writes back the physics rotation.</li>
+<li>profile ragdoll: both PMX and glTF can generate capsules and semantic masses from the shared UML bone segments; internal
+  self-collision is off by default. PMX can keep the author-made skirt/hair rigid body chains through <code>include_secondary_bodies</code>; these
+  secondary-motion rigid bodies keep the PMX-internal filter relationships in an independent collision group/mask namespace and attach to the main
+  body one-way through a kinematic proxy, so they do not inherit the main body's negative group filters and do not drag the main body back. glTF must supply an explicit profile,
+  and does not guess human topology from bone names.</li>
+</ul>
+<p>For the configuration format, profile roles, and Minecraft deployment see <a href="../mmd-ragdoll/">mmd-ragdoll.md</a>.</p>
+<p>MMD/glTF ragdolls use a per-instance double world anchor and origin-local float physics coordinates. The Minecraft block mesh,
+rays, mouse drag, and entity attachment points all subtract that anchor first; rendering also uses a double camera-relative displacement. This avoids
+magnifying small colliders, bone segments, and joint error to centimeters or even whole blocks anywhere from a hundred thousand blocks out to the
+world border.</p>
+<h2 id="4-ik-api">4. IK API<a class="headerlink" href="#4-ik-api" title="Permanent link">&para;</a></h2>
+<p><code>SkeletonInstance</code> supports persistent external targets:</p>
+<div class="highlight"><pre><span></span><code><span class="n">skeleton</span><span class="p">.</span><span class="na">setIkTarget</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="n">worldTarget</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">clearIkTarget</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">clearIkTargets</span><span class="p">();</span>
+
+<span class="n">skeleton</span><span class="p">.</span><span class="na">setIkEnabled</span><span class="p">(</span><span class="s">"右足ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="n">skeleton</span><span class="p">.</span><span class="na">resetIkEnabled</span><span class="p">();</span>
+</code></pre></div>
+<p><code>weight</code> ranges over <code>[0,1]</code> and blends between the chain controller's position and the external world target. The name denotes a generic IK chain name, and
+an undefined chain returns <code>false</code>. For the full construction, limits, closure, and diagnostics see <a href="../skeleton-dynamics/">Skeleton Dynamics API</a>.</p>
+<p><code>setFrameIkTarget(...)</code> and <code>clearFrameIkTargets()</code> are the tick loop's transient entry points. <code>ModelTickLoop.tick</code>
+clears them at the start of every evaluation; the pre-IK modules write them again, and IK and physics then consume them together within that same evaluation. Ordinary callers should usually use
+<code>IkTargetModule</code> instead of managing the lifecycle directly.</p>
+<h2 id="5-modeltickloop-modules">5. ModelTickLoop Modules<a class="headerlink" href="#5-modeltickloop-modules" title="Permanent link">&para;</a></h2>
+<p>Every <code>ModelInstance</code> carries its own <code>ModelTickLoop</code> pipeline (<code>instance.getTickLoop()</code>), with four built-in modules installed by default:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Module</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kasuga:apply</code></td>
+<td><code>SkeletonApplyModule</code></td>
+<td>flushes pending transforms into the skeleton; the identity slot skips, and does not overwrite bones the animation already wrote</td>
+</tr>
+<tr>
+<td><code>kasuga:ik</code></td>
+<td><code>IkModule</code></td>
+<td>hierarchy evaluation + generic Caliko IK; when physics is enabled physics takes over the pose and this slot skips automatically</td>
+</tr>
+<tr>
+<td><code>kasuga:physics</code></td>
+<td><code>RagdollModule</code></td>
+<td>advances the SkeletonRagdoll (Box3D) and writes back; no-op when physics is not enabled</td>
+</tr>
+<tr>
+<td><code>kasuga:anchor</code></td>
+<td><code>AnchorModule</code></td>
+<td>recomputes the anchor world transform and notifies the display children</td>
+</tr>
+</tbody>
+</table>
+<p>User modules attach between the standard slots with typed helpers, and ordering is provided entirely by the pipeline:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ModelTickLoop</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">();</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPreIk</span><span class="p">(</span><span class="s">"my-target"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span>      <span class="err">//</span> <span class="nc">by</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">apply</span><span class="p">,</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">IK</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPostIk</span><span class="p">(</span><span class="s">"my-controller"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span> <span class="err">//</span> <span class="nc">after</span><span class="w"> </span><span class="n">IK</span><span class="p">,</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">physics</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">addPostPhysics</span><span class="p">(</span><span class="s">"my-observer"</span><span class="p">,</span><span class="w"> </span><span class="kd">module</span><span class="err">);</span> <span class="err">//</span> <span class="nc">after</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">anchor</span>
+<span class="n">loop</span><span class="p">.</span><span class="na">module</span><span class="p">(</span><span class="n">ModelTickLoop</span><span class="p">.</span><span class="na">SLOT_ANCHOR</span><span class="p">,</span><span class="w"> </span><span class="n">AnchorModule</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"> </span><span class="c1">// fetch a built-in module instance</span>
+</code></pre></div>
+<p>When you need to write pending transforms and have the default apply consume them, use
+<code>loop.getPipeline().addBefore(ModelTickLoop.SLOT_APPLY, "my-pose", module)</code>.
+You can also use <code>addFirst/addLast/addBefore/addAfter/remove</code> through <code>loop.getPipeline()</code> to insert anywhere.
+<code>tick()</code> clears the transient IK targets at the start, so their lifetime is exactly one tick.</p>
+<h3 id="51-iktargetmodule">5.1 <code>IkTargetModule</code><a class="headerlink" href="#51-iktargetmodule" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">IkTargetModule</span><span class="w"> </span><span class="n">hand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkTargetModule</span><span class="p">(</span><span class="s">"右手ＩＫ"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">),</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">().</span><span class="na">addPreIk</span><span class="p">(</span><span class="s">"hand"</span><span class="p">,</span><span class="w"> </span><span class="n">hand</span><span class="p">);</span>
+
+<span class="n">hand</span><span class="p">.</span><span class="na">setTarget</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1.2f</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">));</span>
+<span class="n">hand</span><span class="p">.</span><span class="na">setTarget</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">);</span>
+<span class="n">hand</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>It writes the transient world target only in the pre-IK stage, and does not modify authored animation data.</p>
+<h3 id="52-activeragdollmodule">5.2 <code>ActiveRagdollModule</code><a class="headerlink" href="#52-activeragdollmodule" title="Permanent link">&para;</a></h3>
+<p>This controller pulls dynamic bodies toward the same-frame animation/IK body targets in the post-IK stage: it first calls
+<code>SkeletonRagdoll.evaluateAnimationTarget()</code> to refresh the kinematic targets, and then computes the PD spring force/torque;
+integration, collision, joints, and sleep are still all executed by Box3D in the physics stage.</p>
+<p>Control all dynamic bodies:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ActiveRagdollModule</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActiveRagdollModule</span><span class="p">(</span>
+<span class="w">        </span><span class="mf">5f</span><span class="p">,</span><span class="w">    </span><span class="c1">// frequency Hz</span>
+<span class="w">        </span><span class="mf">1f</span><span class="p">,</span><span class="w">    </span><span class="c1">// damping ratio</span>
+<span class="w">        </span><span class="mi">800</span><span class="n">f</span><span class="p">,</span><span class="w">  </span><span class="c1">// maximum force</span>
+<span class="w">        </span><span class="mi">250</span><span class="n">f</span><span class="w">   </span><span class="c1">// maximum torque</span>
+<span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">().</span><span class="na">addPostIk</span><span class="p">(</span><span class="s">"active-ragdoll"</span><span class="p">,</span><span class="w"> </span><span class="n">active</span><span class="p">);</span>
+</code></pre></div>
+<p>Control only the bodies of the given bones:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">upperBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActiveRagdollModule</span><span class="p">(</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"上半身"</span><span class="p">,</span><span class="w"> </span><span class="s">"首"</span><span class="p">,</span><span class="w"> </span><span class="s">"頭"</span><span class="p">),</span><span class="w"> </span><span class="mf">6f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7f</span><span class="p">);</span>
+</code></pre></div>
+<p>At runtime you can use <code>setWeight</code>, <code>setSettings</code>, and <code>setEnabled</code>. An empty bone set means all dynamic bodies.</p>
+<p><code>IkTargetModule</code> and <code>ActiveRagdollModule</code> can be used together: the former modifies the targets first, Caliko solves the generic IK chains, and the latter then
+makes the Box3D bodies follow the post-IK pose. This is the recommended combination of animation, IK, and active physics.</p>
+<h3 id="53-anchormodule-and-display-children">5.3 <code>AnchorModule</code> and Display Children<a class="headerlink" href="#53-anchormodule-and-display-children" title="Permanent link">&para;</a></h3>
+<p><code>Anchor</code> in the model library (<code>uml.structure.skeleton.Anchor</code>) is a display-child anchor bound to a skinned bone,
+for example the sword a player holds. <code>SkeletonInstance.anchorTransform(name)</code> blends the bound bone's bind→current delta with the same rules as BDEF
+skinning to obtain the anchor world transform:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// hand the hand anchor's world transform to the host rendering logic every frame</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">attachToAnchor</span><span class="p">(</span><span class="s">"hand_r"</span><span class="p">,</span><span class="w"> </span><span class="n">worldTransform</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">worldTransform</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* anchor is invalid, hide the held item */</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">placeHeldItem</span><span class="p">(</span><span class="n">worldTransform</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(),</span><span class="w"> </span><span class="n">worldTransform</span><span class="p">.</span><span class="na">getRotation</span><span class="p">());</span>
+<span class="p">});</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">detachFromAnchor</span><span class="p">(</span><span class="s">"hand_r"</span><span class="p">,</span><span class="w"> </span><span class="n">attachment</span><span class="p">);</span>
+</code></pre></div>
+<p><code>AnchorModule</code> pushes these transforms in the last stage of every pipeline (<code>kasuga:anchor</code>), so an anchor always follows the final pose
+(including IK and physics). You can also call <code>instance.anchorTransform(name)</code> directly to query it immediately.</p>
+<h2 id="6-gltf-animation-compatibility">6. glTF Animation Compatibility<a class="headerlink" href="#6-gltf-animation-compatibility" title="Permanent link">&para;</a></h2>
+<p><code>.glb</code> and <code>.gltf</code> are registered as built-in resource pipelines. The parser API is in
+<code>lib.kasuga.rendering.models.uml.typo.gltf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">GltfAsset</span><span class="w"> </span><span class="n">asset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w">                    </span><span class="c1">// does not read animation tracks</span>
+<span class="n">GltfAsset</span><span class="w"> </span><span class="n">animated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"walk"</span><span class="p">));</span>
+<span class="n">GltfAsset</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfLoader</span><span class="p">.</span><span class="na">loadAllAnimations</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="n">Model</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GltfModelConverter</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="n">all</span><span class="p">);</span>
+</code></pre></div>
+<p><code>GltfModelConverter</code> merges all glTF nodes into one shared UML Skeleton and remaps every skin's <code>JOINTS_0</code> to
+global Bones, so the existing CPU/GPU skinning and tick loop modules can be used directly. The Minecraft resource pipeline places embedded
+base-color images into the existing texture atlas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ModelInstance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getPosing</span><span class="p">();</span>
+<span class="n">animation</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">"walk"</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>For the generic entry point see <a href="../model-posing/">ModelPosing</a>; the glTF sampler supports translation/rotation/scale/weights, STEP, LINEAR, and CUBIC_SPLINE. Resource-pack streaming of <code>.gltf</code> supports only
+embedded/data URIs; when you need external <code>.bin</code> or image URIs use the <code>Path</code> API, or package the asset as <code>.glb</code>.</p>
+<p>In Minecraft you can place a <code>&lt;model&gt;.gltf.json</code> manifest next to the model:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"model_scale"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"ragdoll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example:ragdolls/character.json"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>model_scale</code> applies to the vertices, the bones, and the generated ragdoll at the same time; <code>ragdoll</code> points to a profile/simulation configuration. The deployment logic reads only the
+manifest and does not choose a profile by file name or model name. The generic command is:</p>
+<div class="highlight"><pre><span></span><code>/kasuga_ragdoll deploy example:models/character.glb
+</code></pre></div>
+<h2 id="7-minecraft-physics-block">7. Minecraft Physics Block<a class="headerlink" href="#7-minecraft-physics-block" title="Permanent link">&para;</a></h2>
+<p><code>MinecraftBlockRigidBody</code> converts every voxel AABB of <code>BlockState#getCollisionShape</code> into one
+body-local <code>BodyShape.Box</code>, instead of always using the full unit cube. Slabs, fences, pillars, and combined shapes therefore keep their real
+collision gaps. The visual is still drawn by the vanilla block renderer.</p>
+<p><code>MinecraftBlockPhysics</code> uses one shared Box3D world:</p>
+<ul>
+<li>physics blocks collide with each other in real native collision;</li>
+<li>terrain is incrementally synchronized into static Box3D boxes by <code>MinecraftBlockRagdollEnvironment</code>;</li>
+<li>collision groups: props sit in group 1; the local player AABB is a group 15 dynamic proxy and, through a
+  non-collision mask, excludes group 0 (terrain and other default bodies), so the solver noise between the player and the terrain is not
+  passed on to a ground-hugging prop through the proxy. Spectators and dead players get no proxy;</li>
+<li>ground feel is synthesized from the contact writeback: the correction takes only the deepest contact's MTV (split by orientation — a top-face contact only lifts
+  vertically and produces no horizontal drift; a side-face contact blocks walking just like a real wall), and the proxy's own solver displacement is not fed back to the player,
+  so walking is not pushed back into "sliding" by the solver; while support holds, onGround is reset every frame and fallDistance is zeroed
+  (vanilla clears that state every tick because no real block is underfoot), which makes ground friction, jumping, and fall-damage checks
+  match real blocks;</li>
+<li>the default cap is <code>MAX_PROPS = 256</code>, and a prop is released automatically when it falls out of the level or the dimension changes;</li>
+<li>a block with an empty collision shape is not generated.</li>
+</ul>
+<p>Debug commands:</p>
+<div class="highlight"><pre><span></span><code>/kasuga_physics block [1-32]
+/kasuga_physics status
+/kasuga_physics clear
+</code></pre></div>
+<p>This is a client-side playground. To the local player it shows as a pushable, standable collision prop, but it is not a server-registered
+Block/Entity and takes no part in server-authoritative collision, saving, chunk serialization, or multiplayer synchronization. If you need "like a
+normal block" semantics that include those network and save behaviors, add a server-side entity and a synchronization protocol above it; do not treat the current local collision bridge as an anti-cheat security boundary.</p>
+<h2 id="8-current-limitations">8. Current Limitations<a class="headerlink" href="#8-current-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Box3D has no built-in Minecraft fluid volume/buoyancy API; the old Java buoyancy model has been deleted.</li>
+<li>A PMX six-axis joint is currently mapped to a spherical joint; the rotation box is approximated as cone/twist, and the three translation axes are tightened to a fixed anchor.</li>
+<li>A world currently has only one drag constraint.</li>
+<li>glTF morph targets already convert POSITION / NORMAL and their weight animations; TANGENT, TEXCOORD / COLOR targets, a second set of skin weights, non-triangle primitives, and material extensions are not converted yet.</li>
+<li>The glTF parser stores the metallic/roughness factor, but the current Minecraft adapter only uploads base-color directly; Kasuga's
+  stylized PBR conversion still uses its own rules and atlas baker from <a href="../pbr/">pbr.md</a>.</li>
+</ul>
+<p>For the render pipeline, shader, and effect APIs see <a href="../effect-rendering/">effect-rendering.md</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

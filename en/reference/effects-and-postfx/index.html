@@ -1,0 +1,3490 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/effects-and-postfx/">
+      
+      
+        <link rel="prev" href="../effect-rendering/">
+      
+      
+        <link rel="next" href="../extensions/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/effects-and-postfx/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Managed Effects and Post-Processing - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#managed-effects-and-post-processing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managed Effects and Post-Processing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/effects-and-postfx/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transformable-particle-instances-and-group-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformable Particle Instances and Group Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-process-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Process Passes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-process-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Process Graphs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ready-to-run-postfx-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ready-to-Run PostFX Presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostics-and-parameter-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostics and Parameter Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transformable-particle-instances-and-group-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformable Particle Instances and Group Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-process-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Process Passes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-process-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Process Graphs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ready-to-run-postfx-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ready-to-Run PostFX Presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostics-and-parameter-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostics and Parameter Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="managed-effects-and-post-processing">Managed Effects and Post-Processing<a class="headerlink" href="#managed-effects-and-post-processing" title="Permanent link">&para;</a></h1>
+<h2 id="transformable-particle-instances-and-group-control">Transformable Particle Instances and Group Control<a class="headerlink" href="#transformable-particle-instances-and-group-control" title="Permanent link">&para;</a></h2>
+<p>Particles and managed effects use different lifecycle models:</p>
+<ul>
+<li>
+<p><code>ParticleInstance</code> is a passive, transformable render instance. A particle instance contains a complete <code>Transform</code>, velocity, color, and general per-instance attributes. <code>ParticleInstance</code> does not require a <code>tick()</code> implementation.</p>
+</li>
+<li>
+<p><code>ParticleSource</code> is a continuous particle source. Application code can place and move the source. The emission rate uses particles per tick and supports fractional accumulation. Source settings control the particle factory, initial velocity, gravity, color, initial size, initial rotation, and lifetime. A source-setting change affects only new particles.</p>
+</li>
+<li>
+<p><code>ParticleState</code> supplies one state value to <code>ParticleOperator</code>. The state contains a spatial <code>Transform</code>, velocity, color, attributes, and lifetime progress. <code>Transform</code> contains position, size, and rotation. Velocity is a separate physical value. <code>ParticleOperator</code> receives the current state and returns the next state.</p>
+</li>
+<li>
+<p>An external physics system can replace or atomically change the complete instance transform through <code>transform(...)</code>.</p>
+</li>
+<li>
+<p><code>ParticleGroup</code> owns its instances and supplies two update methods. Both methods use two phases. The general method creates a stable snapshot for the complete group. The method then commits all changes. The packed-buffer method stores current and next states in direct buffers.</p>
+</li>
+<li>
+<p><code>ParticleGroupBehavior</code> updates the complete group in one call. Use this behavior for smoke flow fields, rain, snow, explosions, and camera-relative weather volumes.</p>
+</li>
+<li>
+<p><code>ParticleBufferGroupBehavior</code> updates the complete group in a reusable <code>ParticleInstanceBuffer</code>. A native-order direct <code>ByteBuffer</code> stores IDs, matrices, velocity, color, attributes, and flags. After the capacity becomes stable, tick and render operations do not create per-instance snapshot or update objects.</p>
+</li>
+<li>
+<p><code>ParticleBehavior</code> is an optional behavior for one instance. The behavior reads the complete group snapshot from before the update. Use this behavior for fish, bird, and insect groups that need neighbor data.</p>
+</li>
+<li>
+<p><code>ParticleGroupSnapshot.near(position, radius)</code> builds a spatial grid when the first query occurs. Queries with the same radius reuse the grid during one update. Therefore, Boids do not scan the complete group for each instance.</p>
+</li>
+<li>
+<p>If a group controller and instance behavior update one instance, the instance-behavior result has priority. A <code>null</code> result prevents an update of that instance.</p>
+</li>
+<li>
+<p><code>ParticleBatchRenderer</code> receives a reusable <code>ParticleInstanceBuffer</code> for each call. Matrix, position, velocity, and color getters can write to a destination parameter. This parameter prevents temporary-object allocation. A callback renderer can expand instances into a Minecraft vertex buffer. <code>ParticleInstancedBatchRenderer</code> submits instances with hardware instancing.</p>
+</li>
+<li>
+<p>Kasuga clears groups and placed sources when the client changes or unloads a world. If an instance has no controller and no behavior, the runtime does not move the instance.</p>
+</li>
+</ul>
+<p>The following example registers a batch pipeline:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ParticleRenderPipeline</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">particles</span><span class="p">(</span>
+<span class="w">        </span><span class="n">RenderPipelineDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">id</span><span class="p">(</span><span class="s">"smoke"</span><span class="p">),</span><span class="w"> </span><span class="n">RenderPhase</span><span class="p">.</span><span class="na">AFTER_PARTICLES</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="n">draw</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">draw</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">vertexFormat</span><span class="p">(</span><span class="n">DefaultVertexFormat</span><span class="p">.</span><span class="na">POSITION_COLOR</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">primitiveMode</span><span class="p">(</span><span class="n">VertexFormat</span><span class="p">.</span><span class="na">Mode</span><span class="p">.</span><span class="na">QUADS</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">blend</span><span class="p">(</span><span class="n">PipelineBlendMode</span><span class="p">.</span><span class="na">TRANSLUCENT</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
+<span class="w">        </span><span class="p">(</span><span class="n">instances</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">renderSmokeBatch</span><span class="p">(</span><span class="n">instances</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">GasSmokePreset</span><span class="w"> </span><span class="n">preset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GasSmokePreset</span><span class="p">(</span><span class="n">GasSmokePreset</span><span class="p">.</span><span class="na">Settings</span><span class="p">.</span><span class="na">defaults</span><span class="p">());</span>
+<span class="n">smoke</span><span class="p">.</span><span class="na">bufferController</span><span class="p">(</span><span class="n">preset</span><span class="p">.</span><span class="na">bufferController</span><span class="p">());</span>
+<span class="n">preset</span><span class="p">.</span><span class="na">inject</span><span class="p">(</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5f</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">smoke</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">preset</span><span class="p">.</span><span class="na">createTracer</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">));</span>
+</code></pre></div>
+<p>The following example combines physics and appearance operators in a placeable cube-smoke source:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ParticleOperator</span><span class="w"> </span><span class="n">cubeSmoke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParticleOperators</span>
+<span class="w">        </span><span class="c1">// Apply buoyancy, drag, and velocity integration.</span>
+<span class="w">        </span><span class="p">.</span><span class="na">physics</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0035f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mf">0.985f</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// Control size, rotation, and opacity in the same state function.</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="mf">1.012f</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">rotate</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.006f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.018f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.004f</span><span class="p">)))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">fade</span><span class="p">(</span><span class="mf">0.975f</span><span class="p">));</span>
+
+<span class="n">ParticleSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">smoke</span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="n">ParticleSource</span><span class="p">.</span><span class="na">Settings</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">position</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">emissionRate</span><span class="p">(</span><span class="mf">0.75f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">particleType</span><span class="p">(</span><span class="n">spawn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ParticleInstance</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">transform</span><span class="p">())</span>
+<span class="w">                </span><span class="c1">// The renderer can use this attribute to select a cube, sprite, or custom mesh.</span>
+<span class="w">                </span><span class="p">.</span><span class="na">velocity</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">velocity</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">color</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">color</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">attributes</span><span class="p">(</span><span class="n">CUBE_PARTICLE_TYPE</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">initialVelocity</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.035f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">affectedByGravity</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="mf">0.35f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">rotation</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">color</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector4f</span><span class="p">(</span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.48f</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">lifetimeTicks</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">operator</span><span class="p">(</span><span class="n">cubeSmoke</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+
+<span class="c1">// The source can follow a block, entity, or script anchor.</span>
+<span class="n">source</span><span class="p">.</span><span class="na">position</span><span class="p">(</span><span class="n">nextPosition</span><span class="p">);</span>
+</code></pre></div>
+<p><code>ParticleOperators.transform(...)</code> accepts a <code>UnaryOperator&lt;Transform&gt;</code>. The operator receives the current transform and returns the next transform. A gravity-affected particle uses the default <code>integrate()</code> and <code>.affectedByGravity(true)</code>. The source <code>particleType</code> is an instance factory. The renderer of the related <code>ParticleRenderPipeline</code> selects cube, billboard, or mesh drawing.</p>
+<p>The default particle type uses the source settings directly. A custom factory can use <code>spawn.sequence()</code> for stable random values. The factory can change position, velocity, size, or color during construction.</p>
+<p>Hardware instancing uses a backend-independent mesh and draw contract:</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderShaderHandle</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">shader</span><span class="p">(</span><span class="n">RenderShaderDescriptor</span><span class="p">.</span><span class="na">generated</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ParticleInstanceShaderPrograms</span><span class="p">.</span><span class="na">colored</span><span class="p">(</span><span class="s">"example:liquid_instances"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">DefaultVertexFormat</span><span class="p">.</span><span class="na">POSITION</span>
+<span class="p">)).</span><span class="na">handle</span><span class="p">();</span>
+
+<span class="n">ParticleInstanceMesh</span><span class="w"> </span><span class="n">mesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParticleInstanceMesh</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ParticleInstanceMesh</span><span class="p">.</span><span class="na">Topology</span><span class="p">.</span><span class="na">TRIANGLES</span><span class="p">,</span>
+<span class="w">        </span><span class="n">trianglePositions</span>
+<span class="p">);</span>
+<span class="n">ParticleBatchRenderer</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParticleInstancedBatchRenderer</span><span class="p">(</span>
+<span class="w">        </span><span class="n">mesh</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">OpenGlParticleInstanceBackend</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>ParticleInstanceMesh</code>, <code>ParticleInstanceBuffer</code>, <code>ParticleInstanceShaderPrograms</code>, and <code>ParticleInstanceRenderBackend</code> do not contain VAO, VBO, or LWJGL types.</p>
+</li>
+<li>
+<p>An alpha-blending renderer can reuse <code>ParticleDepthSorter</code>. The sorter submits instances from far to near. The sorter enables the depth test and disables depth writes. For per-particle face sorting, a quad pipeline can use <code>sortOnUpload(true)</code>. <code>pipeline.sortBackToFront(true)</code> reorders the packed instance buffer before rendering. Therefore, callback renderers and hardware-instanced renderers use the same transparent sorting.</p>
+</li>
+<li>
+<p>The current <code>OpenGlParticleInstanceBackend</code> owns all OpenGL resources, attributes, and <code>glDrawArraysInstanced</code> calls. The base mesh uses one static VBO. The packed instance buffer uses one stream VBO. The stream VBO expands when necessary and updates each frame. One instance group uses one draw submission.</p>
+</li>
+<li>
+<p>Kasuga Shader IR describes the matrix and color semantics of an instance. The particle API does not contain GLSL. A Vulkan backend can reuse the mesh, packed layout, simulation, and Shader IR. The Vulkan backend replaces the <code>ParticleInstanceRenderBackend</code> implementation and its shader compiler.</p>
+</li>
+<li>
+<p>The current standard layout uses 144 bytes for each instance. The layout exposes the four columns of a <code>mat4</code> and color to the GPU. Velocity and attributes stay in the packed buffer for simulation. The standard shader does not read velocity or attributes.</p>
+</li>
+<li>
+<p>GPU depth sorting for transparent instances is not currently available. For an effect that needs exact transparent order, use additive blending, weighted OIT, or an instance-sorting method before upload.</p>
+</li>
+</ul>
+<p>Built-in behavior presets:</p>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Update method</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SmokePlumePreset</code></td>
+<td>Group controller</td>
+<td>Analytic rise, disturbance, expansion, fade, and recycling</td>
+</tr>
+<tr>
+<td><code>GasSmokePreset</code></td>
+<td>Packed-buffer controller</td>
+<td>Density and velocity volume, buoyancy, diffusion, pressure projection, and tracer advection</td>
+</tr>
+<tr>
+<td><code>LiquidFlowPreset</code></td>
+<td>Packed-buffer controller</td>
+<td>Low-viscosity incompressible velocity field, gravity, pressure projection, and tracer advection</td>
+</tr>
+<tr>
+<td><code>RainFieldPreset</code></td>
+<td>Group controller</td>
+<td>Wind-driven fall, camera-relative or world-relative volume, and out-of-range reuse</td>
+</tr>
+<tr>
+<td><code>BoidsPreset</code></td>
+<td>Optional instance behavior</td>
+<td>Separation, alignment, cohesion, and group bounds</td>
+</tr>
+</tbody>
+</table>
+<p><code>GasSmokePreset</code> and <code>LiquidFlowPreset</code> share <code>StableFluidGrid3D</code>. Semi-Lagrangian advection, Gauss-Seidel diffusion, and pressure projection use preallocated direct <code>FloatBuffer</code> values. This implementation is a Stable Fluids approximation for real-time effects. The primary computational complexity is <code>O(gridSize^3 * iterations)</code>. Gas uses the default closed solver boundary. Liquid uses an open boundary; after a tracer leaves the finite solver grid it keeps its world-space momentum and gravity instead of being clipped to the simulation volume. A <code>FluidTracerCollision3D</code> remains active in world coordinates outside that grid. The Minecraft block adapter implements this interface with swept collision-shape queries in loaded chunks, so unrestricted tracers continue to collide and slide against blocks without forcing chunk loads.</p>
+<p>To increase simulation detail:</p>
+<ol>
+<li>Increase the tracer count.</li>
+<li>If more detail is necessary, increase the grid resolution.</li>
+</ol>
+<p><code>FluidEnvironment3D</code> combines fluid-environment constraints. Each simulation step applies the constraints before the pressure solver starts:</p>
+<div class="highlight"><pre><span></span><code><span class="n">liquid</span><span class="p">.</span><span class="na">environment</span><span class="p">(</span><span class="n">FluidEnvironment3D</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">solidBox</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span><span class="w"> </span><span class="n">maximum</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">solidSphere</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">directionalForce</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">acceleration</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">densityPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">drain</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">densityRetention</span><span class="p">,</span><span class="w"> </span><span class="n">acceleration</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+</code></pre></div>
+<p>Application code can implement <code>FluidConstraint3D</code> for a custom dynamic constraint. The constraint context supplies normalized cell coordinates, density, velocity, and the solid mask. Application code can generate constraints from block collision shapes, pipe networks, or moving force fields. The solver and preset do not depend on the Minecraft world.</p>
+<p>The following example connects Minecraft block collisions through a separate adapter:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MinecraftBlockFluidConstraint</span><span class="w"> </span><span class="n">blocks</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MinecraftBlockFluidConstraint</span><span class="p">(</span><span class="n">liquidHalfExtents</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="n">blocks</span><span class="p">.</span><span class="na">level</span><span class="p">(</span><span class="n">clientLevel</span><span class="p">);</span>
+<span class="n">blocks</span><span class="p">.</span><span class="na">center</span><span class="p">(</span><span class="n">simulationCenter</span><span class="p">);</span>
+
+<span class="n">liquid</span><span class="p">.</span><span class="na">environment</span><span class="p">(</span><span class="n">FluidEnvironment3D</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">blocks</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">otherConstraints</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+</code></pre></div>
+<ul>
+<li>
+<p>The adapter scans real block <code>VoxelShape</code> values in loaded chunks of the simulation volume. The adapter rasterizes stairs, slabs, fences, and other collision boxes into solid cells. The adapter does not treat all non-air blocks as full cubes.</p>
+</li>
+<li>
+<p>Collision boxes align with fluid-cell centers. This alignment prevents a wall from expanding outward by half a cell. A thinner collision box maps to the cell nearest the center of the collision box. Therefore, thin objects such as fences remain in the solid mask.</p>
+</li>
+<li>
+<p>The solver clears density and velocity in solid cells. In adjacent fluid cells, the solver clamps velocity that points into a solid cell. Pressure projection and advection then move around the block. If a coarse-grid step moves a liquid tracer into a solid cell, the tracer returns to its previous position.</p>
+</li>
+<li>
+<p>Scan results stay in a cache for the configured game-tick interval. The adapter rebuilds the results after volume movement, level changes, or an <code>invalidate()</code> call. The adapter skips unloaded chunks. Fluid simulation does not force chunk loading.</p>
+</li>
+<li>
+<p>Collision operates only from blocks to fluid. Simulated water does not push pistons or entities. The simulation does not wet blocks or change vanilla waterlogging. The simulation does not place or remove Minecraft fluid blocks.</p>
+</li>
+</ul>
+<p>In this API, liquid means an incompressible velocity and density volume. The solid mask is an approximate no-slip obstacle. The model excludes free surfaces, surface tension, drop merging, and conservative FLIP or PIC particles. The model also excludes two-way reactions between fluid and rigid bodies. The model supports visual effects such as water flow, magic liquid, and pipe flow. The model is not a complete water solver.</p>
+<p>The following commands control particle presets in the development client:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/kasuga_particle_preset smoke</code></td>
+<td>Starts the smoke preset.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset cube_smoke</code></td>
+<td>Starts the cube-smoke preset.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset liquid</code></td>
+<td>Starts the liquid preset.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset rain</code></td>
+<td>Starts the rain preset.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset boids</code></td>
+<td>Starts the Boids preset.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset all</code></td>
+<td>Starts all presets.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset clear</code></td>
+<td>Stops and clears all presets.</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset status</code></td>
+<td>Shows the instance count for each group.</td>
+</tr>
+</tbody>
+</table>
+<p>Normal smoke ray-marches a turbulent three-dimensional density field inside each instanced cube and integrates opacity along the view ray. The cube is only a volume bound; the fragment shader discards empty samples, so no billboard or solid cube surface is visible. Cube smoke enables back-face culling. Cube smoke also adds stable variation to the position, velocity, and color of each particle. These settings prevent repeated blending of transparent front and back faces.</p>
+<h2 id="managed-effects">Managed Effects<a class="headerlink" href="#managed-effects" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>EffectRenderPipeline</code> controls effect-instance ticks, lifetime checks, frustum culling, optional far-to-near sorting, and renderer calls.</p>
+</li>
+<li>
+<p>When the client is not paused and a world is present, Kasuga updates each active effect one time in each client tick.</p>
+</li>
+<li>
+<p>Kasuga removes an effect that is not alive before or after the effect tick. If the tick throws a runtime exception, Kasuga removes only the related instance. Kasuga also records the exception.</p>
+</li>
+<li>
+<p>Render traversal uses interpolated bounds for frustum culling. When sorting is enabled, Kasuga sorts effects from far to near. The sort uses the distance between the interpolated position and the camera. Kasuga calculates this distance one time for each visible effect in one frame. An effect can override <code>distanceToSqr(partialTick, observer)</code> to prevent allocation of a temporary position object.</p>
+</li>
+<li>
+<p>The renderer calls <code>begin</code> and <code>end</code> only if at least one instance is visible. The renderer calls each method one time for each pipeline in one frame.</p>
+</li>
+<li>
+<p>If one instance throws a render exception, Kasuga records the exception and continues with the other instances. Kasuga does not remove the failed instance automatically.</p>
+</li>
+<li>
+<p><code>spawn()</code>, <code>clear()</code>, and <code>EffectHandle.remove()</code> accept calls from different threads. Kasuga applies list changes during the next client tick or render traversal.</p>
+</li>
+<li>
+<p><code>EffectHandle.remove()</code> returns <code>true</code> only for the first successful removal.</p>
+</li>
+<li>
+<p>When the client changes or unloads a world, Kasuga clears all instances from all effect pipelines. Kasuga also clears the post-process target pool. Kasuga does not tick effects while the client is paused.</p>
+</li>
+<li>
+<p>After an effect pipeline closes, the pipeline rejects new instances. The closed pipeline does not participate in tick or render operations.</p>
+</li>
+</ul>
+<p>Instances of one effect type share a renderer and pipeline state. A separate handle controls each instance. The following example spawns and removes one effect:</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderPipelineDescriptor</span><span class="w"> </span><span class="n">sparkDescriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RenderPipelineDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"sparks"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">RenderPhase</span><span class="p">.</span><span class="na">AFTER_PARTICLES</span>
+<span class="p">).</span><span class="na">priority</span><span class="p">(</span><span class="mi">110</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+
+<span class="n">EffectRenderPipeline</span><span class="o">&lt;</span><span class="n">SparkEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sparks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">effects</span><span class="p">(</span>
+<span class="w">        </span><span class="n">sparkDescriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">SparkEffectRenderer</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="n">EffectHandle</span><span class="o">&lt;</span><span class="n">SparkEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spark</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sparks</span><span class="p">.</span><span class="na">spawn</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SparkEffect</span><span class="p">(</span><span class="n">position</span><span class="p">));</span>
+<span class="n">spark</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="post-process-passes">Post-Process Passes<a class="headerlink" href="#post-process-passes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>A post-process pass must use the semantic <code>RenderPhase.POST_PROCESS</code>. Registration rejects all other placements.</p>
+</li>
+<li>
+<p>A pass always runs on the render thread. Kasuga binds the main render target after the pass ends or throws an exception.</p>
+</li>
+<li>
+<p>A target descriptor supports a size relative to the screen or a fixed size. The descriptor also supports an optional depth attachment, nearest or linear filtering, and a clear color. The resolved width and height are a minimum of one pixel.</p>
+</li>
+<li>
+<p>The target pool reuses a target that has the same physical ID. A descriptor or resolved-size change destroys the old target. The target pool then creates a new target.</p>
+</li>
+<li>
+<p>A color copy fails when the source and destination are the same target. A depth copy fails if either target has no depth attachment.</p>
+</li>
+<li>
+<p>A fullscreen draw accepts only a <code>BLIT_SCREEN</code> shader. The draw saves and restores the GL state.</p>
+</li>
+<li>
+<p>A fullscreen draw rejects color or depth sampling from the current output target. This restriction prevents framebuffer feedback. The caller must ensure that a directly bound external texture ID cannot cause feedback.</p>
+</li>
+</ul>
+<h2 id="post-process-graphs">Post-Process Graphs<a class="headerlink" href="#post-process-graphs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>A graph ID must match the ID of the related pipeline descriptor.</p>
+</li>
+<li>
+<p>During graph construction, Kasuga rejects duplicate targets, duplicate passes, and undeclared targets. Kasuga rejects a managed-target read without a producer and multiple writers to a managed target. Kasuga also rejects missing explicit dependencies and dependency cycles.</p>
+</li>
+<li>
+<p>Each pass must declare at least one output. One pass must not read and write the same target.</p>
+</li>
+<li>
+<p>The main target is external. Multiple passes can write to the main target. All other targets are graph-managed targets.</p>
+</li>
+<li>
+<p>Pass order first satisfies explicit <code>after</code> dependencies. Pass order also satisfies dependencies from read and write relations. Of all available passes, a pass with a lower priority value runs first. If priority values are equal, Kasuga sorts the passes by pass ID.</p>
+</li>
+<li>
+<p><code>prepare</code> runs before managed-target allocation and pass execution. If <code>prepare</code> returns <code>false</code>, Kasuga does not allocate targets or run passes in that frame.</p>
+</li>
+<li>
+<p>Each graph execution creates a new <code>PostProcessGraphFrame</code>. The current <code>prepare</code> call and subsequent passes share the frame data. A read uses the declared type. The read throws an exception if data is missing or has a different type.</p>
+</li>
+<li>
+<p>A pass context can read or write only the targets that the pass declares. Access to an undeclared target fails at runtime.</p>
+</li>
+<li>
+<p>Kasuga converts each logical graph target to a physical ID that contains the graph ID. Therefore, equal logical names in different graphs do not conflict. Kasuga calculates physical IDs and substituted target descriptors during graph construction. Graph execution reuses these values.</p>
+</li>
+<li>
+<p>Managed targets use reference counts for each graph registration. When the last graph registration closes, Kasuga releases the target on the render thread.</p>
+</li>
+<li>
+<p>If <code>prepare</code> throws an exception, Kasuga adds the graph ID and throws the exception again. For a pass exception, Kasuga adds the pass ID. The world-pipeline dispatcher records the exception. Later pipelines continue to run.</p>
+</li>
+<li>
+<p><code>raw()</code> bypasses graph resource-access limits. After a <code>raw()</code> call, the caller is responsible for resource declarations and feedback safety.</p>
+</li>
+</ul>
+<p>This graph first saves the main image. Then, a fullscreen shader composites the image back to the main target:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">graphId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"screen_tint"</span><span class="p">);</span>
+<span class="n">PostProcessGraphTarget</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">managed</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"scene"</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">PostProcessGraph</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProcessGraph</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">graphId</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">target</span><span class="p">(</span><span class="n">PostProcessTargetDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="na">id</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">screenScale</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">PostProcessTargetDescriptor</span><span class="p">.</span><span class="na">TextureFilter</span><span class="p">.</span><span class="na">LINEAR</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">pass</span><span class="p">(</span><span class="n">PostProcessGraphPassDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"capture"</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">copyColor</span><span class="p">(</span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">main</span><span class="p">(),</span><span class="w"> </span><span class="n">scene</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">readsMain</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">writes</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">pass</span><span class="p">(</span><span class="n">PostProcessGraphPassDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"composite"</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">main</span><span class="p">(),</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">handle</span><span class="p">())</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">colorSampler</span><span class="p">(</span><span class="s">"SceneSampler"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">scene</span><span class="p">))</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">reads</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">writesMain</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="n">PostProcessGraphRegistration</span><span class="w"> </span><span class="n">graphRegistration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="ready-to-run-postfx-presets">Ready-to-Run PostFX Presets<a class="headerlink" href="#ready-to-run-postfx-presets" title="Permanent link">&para;</a></h2>
+<p><code>PostFxPresetDemo</code> uses one generated shader registration that stays active across reloads. Parameter blocks select different color settings. Preset selection does not register or compile the shader again.</p>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Development-client command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cinematic color</td>
+<td><code>/kasuga_postfx cinematic</code></td>
+</tr>
+<tr>
+<td>High-contrast monochrome</td>
+<td><code>/kasuga_postfx noir</code></td>
+</tr>
+<tr>
+<td>High-saturation vivid color</td>
+<td><code>/kasuga_postfx vivid</code></td>
+</tr>
+<tr>
+<td>Off</td>
+<td><code>/kasuga_postfx off</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>/kasuga_effects</code> shows the graph, shader state, and adjustable parameters.</p>
+<h2 id="diagnostics-and-parameter-interface">Diagnostics and Parameter Interface<a class="headerlink" href="#diagnostics-and-parameter-interface" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>/kasuga_effects</code> opens the client diagnostics and parameter interface. The interface does not pause the game.</p>
+</li>
+<li>
+<p>The Effects page shows the owner, pipeline ID, effect type, active count, visible count, and most recent render time.</p>
+</li>
+<li>
+<p>The Shaders page shows the owner, source, state, policy, priority, origin, generation, queue wait, preparation time, compile time, cache result, exposed-parameter count, and failure information.</p>
+</li>
+<li>
+<p>The shader summary shows the requested and actual worker counts for the preparation executor. The summary shows the available CPU count. The summary also shows the queue state of the preload scheduler on the render thread.</p>
+</li>
+<li>
+<p><code>Parameters</code> opens the general schema parameter editor. The editor has no special logic for built-in effects or the black-hole example.</p>
+</li>
+<li>
+<p>The Pipelines page shows the owner, placement, priority, draw mode, buffer size, and number of cached <code>RenderType</code> variants.</p>
+</li>
+</ul>
+<blockquote>
+<p>Other pages of this topic: <a href="../effect-rendering/">Custom Rendering Specification</a> and <a href="../shader-dsl/">Java Shader DSL Reference</a>.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

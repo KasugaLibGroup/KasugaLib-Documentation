@@ -1,0 +1,3891 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/pbr/">
+      
+      
+        <link rel="prev" href="../multiplexer/">
+      
+      
+        <link rel="next" href="../physics/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/pbr/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>KasugaLib PMX → PBR Conversion - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kasugalib-pmx-pbr-conversion" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KasugaLib PMX → PBR Conversion
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/pbr/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. How It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-changes-in-this-round" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Changes in This Round
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Changes in This Round">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#independent-material-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent material variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-cpu-and-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU, CPU, and caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#startup-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup indicator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-player-json-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Player JSON Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Player JSON Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#match-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-java-api-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Java API Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Java API Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-and-error-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority and error behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbrmaterialcontext-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PbrMaterialContext fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-compatibility-and-caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Compatibility and Caveats
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. How It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-changes-in-this-round" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Changes in This Round
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Changes in This Round">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#independent-material-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent material variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-cpu-and-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU, CPU, and caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#startup-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup indicator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-player-json-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Player JSON Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Player JSON Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#match-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-java-api-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Java API Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Java API Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-and-error-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority and error behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbrmaterialcontext-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PbrMaterialContext fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-compatibility-and-caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Compatibility and Caveats
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kasugalib-pmx-pbr-conversion">KasugaLib PMX → PBR Conversion<a class="headerlink" href="#kasugalib-pmx-pbr-conversion" title="Permanent link">&para;</a></h1>
+<p>Interfaces, configuration, and call reference. For the mechanics see <a href="../../explanation/pbr/">pbr.md</a>.</p>
+<p>This page covers KasugaLib's current PMX stylized PBR conversion pipeline, the implementation changes in this round, observability and troubleshooting, and how to customize it with the player configuration and the Java API.</p>
+<h2 id="1-how-it-works">1. How It Works<a class="headerlink" href="#1-how-it-works" title="Permanent link">&para;</a></h2>
+<p>PMX source materials mainly provide a base texture, a diffuse color, a specular color, and a specular strength; they do not directly contain complete PBR textures. KasugaLib performs one pre-bake during the client resource load phase:</p>
+<ol>
+<li>Read the numeric properties of the PMX material and generate automatic conversion parameters.</li>
+<li>Apply the Java registration rules and the player JSON rules in order.</li>
+<li>Generate a normal texture from the luminance gradient of the base texture.</li>
+<li>Generate a specular texture that matches the current LabPBR/Iris path.</li>
+<li>Pack the base color, normal, and specular into three corresponding atlases.</li>
+<li>Write the result to the disk cache; later resource reloads reuse it first.</li>
+</ol>
+<h3 id="automatic-parameters">Automatic parameters<a class="headerlink" href="#automatic-parameters" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>smoothness</code>: mapped from the PMX <code>shininess</code>.</li>
+<li><code>f0_code</code>: generated from the average of the PMX specular color; the automatic value is limited to 4–90, and no metal is guessed automatically.</li>
+<li><code>subsurface</code>: default 0.</li>
+<li><code>normal_strength</code>: default 0.08.</li>
+<li><code>emission</code>: default 0.</li>
+</ul>
+<h3 id="output-channels">Output channels<a class="headerlink" href="#output-channels" title="Permanent link">&para;</a></h3>
+<p>Normal texture:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>Encoded tangent-space X</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Encoded tangent-space Y</td>
+</tr>
+<tr>
+<td>B</td>
+<td>AO, currently 255</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Height, currently 255, that is, parallax height is not enabled</td>
+</tr>
+</tbody>
+</table>
+<p>Specular texture:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>Perceptual smoothness</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Dielectric F0 or the LabPBR metal code</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Porosity/SSS; non-zero SSS maps to 65–255</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Emission</td>
+</tr>
+</tbody>
+</table>
+<p>Normal sampling uses repeat/wrap at texture edges, matching the repeatable-UV behavior of PMX.</p>
+<h2 id="2-changes-in-this-round">2. Changes in This Round<a class="headerlink" href="#2-changes-in-this-round" title="Permanent link">&para;</a></h2>
+<h3 id="independent-material-variants">Independent material variants<a class="headerlink" href="#independent-material-variants" title="Permanent link">&para;</a></h3>
+<p>The atlas identity is decided jointly by "source texture + final PBR parameters":</p>
+<ul>
+<li>Same source texture, same parameters: reuse the same variant.</li>
+<li>Same source texture, different parameters: generate an independent variant and independent normal/specular sprites.</li>
+<li>If the same atlas identity is bound to a different source image or different parameters again: throw a conflict error immediately, instead of averaging silently.</li>
+</ul>
+<h3 id="gpu-cpu-and-caching">GPU, CPU, and caching<a class="headerlink" href="#gpu-cpu-and-caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prefer generating both the normal and specular outputs in a single pass on the render thread through an offscreen framebuffer and MRT.</li>
+<li>When the GPU shader is unavailable, this session switches automatically to the deterministic CPU reference baker.</li>
+<li>The GLSL of the GPU baker lives in <code>assets/kasuga_lib/shaders/pbr/stylized_bake.vsh</code> and <code>stylized_bake.fsh</code>.</li>
+<li>The GPU baker explicitly saves, clears, and restores <code>GL_PIXEL_PACK_BUFFER</code>, <code>GL_PIXEL_UNPACK_BUFFER</code>, and the pack/unpack row-length/skip state.</li>
+</ul>
+<h3 id="load-performance">Load performance<a class="headerlink" href="#load-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed the linear <code>indexOf</code> lookup in PMX vertex deduplication, replacing the near-O(n²) path of large models with a hash index.</li>
+<li>Unused copies of base textures are no longer put into the PBR atlas repeatedly.</li>
+<li>The PBR disk cache is prefetched in parallel by the resource load threads; only misses go back to the render thread for GPU baking.</li>
+<li>The content hash of the same source image and profile is reused within a single load.</li>
+<li><code>BufferedImage</code> is converted to <code>NativeImage</code> directly, instead of being encoded to an in-memory PNG and decoded again.</li>
+<li>The CPU fallback runs at most two bakes at a time, so it does not occupy all resource load threads.</li>
+<li>In-world resource reload uses generation-based publishing: new models are built in the background first, and are atomically swapped on the game thread only after the atlas and the sprite mappings are all ready; Kasuga model drawing is paused during the reload, and the old backend instances of the replaced models are cleaned up.</li>
+</ul>
+<h2 id="3-observability">3. Observability<a class="headerlink" href="#3-observability" title="Permanent link">&para;</a></h2>
+<h3 id="startup-indicator">Startup indicator<a class="headerlink" href="#startup-indicator" title="Permanent link">&para;</a></h3>
+<p>Minecraft's resource loading screen additionally shows KasugaLib's current stage and progress, including:</p>
+<ul>
+<li>scanning model resources;</li>
+<li>the current model resource;</li>
+<li>the current PMX name and the PMX count inside the ZIP;</li>
+<li>reading PBR cache entries;</li>
+<li>the number of GPU bakes for cache misses;</li>
+<li>PBR atlas packing.</li>
+</ul>
+<h3 id="batch-log">Batch log<a class="headerlink" href="#batch-log" title="Permanent link">&para;</a></h3>
+<p>After each PBR preparation finishes, one summary log line is emitted, for example:</p>
+<div class="highlight"><pre><span></span><code>Prepared 91 stylized PBR variants from 74 source textures (59.4 MP, 17 shared-source variants): GPU 0, CPU 0, disk hits 91, failures 0, elapsed 880.3 ms
+</code></pre></div>
+<p>Field meanings:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>variants</td>
+<td>Number of configured variants in the final atlas</td>
+</tr>
+<tr>
+<td>source textures</td>
+<td>Number of distinct source images</td>
+</tr>
+<tr>
+<td>MP</td>
+<td>Total processed pixels, counted per variant</td>
+</tr>
+<tr>
+<td>shared-source variants</td>
+<td>Number of variants added because the same source image uses different parameters</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>Number of items newly generated on the GPU in this batch</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Number of items newly generated by the CPU fallback in this batch</td>
+</tr>
+<tr>
+<td>disk hits</td>
+<td>Number of disk cache hits in this batch</td>
+</tr>
+<tr>
+<td>failures</td>
+<td>Number of items that failed in this batch and used the default PBR map</td>
+</tr>
+<tr>
+<td>elapsed</td>
+<td>Total time of cache prefetch and baking of misses</td>
+</tr>
+</tbody>
+</table>
+<p>A first load usually shows a GPU count; a warm-cache load usually shows <code>GPU 0, CPU 0</code> and a high <code>disk hits</code>.</p>
+<h3 id="client-commands">Client commands<a class="headerlink" href="#client-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>/kasuga_pbr status
+/kasuga_pbr reload_config
+/kasuga_pbr rebake
+</code></pre></div>
+<p><code>status</code> prints:</p>
+<ul>
+<li><code>ready</code>, <code>failed</code>, <code>total</code>: status counts of cache keys within this session;</li>
+<li><code>GPU</code>, <code>CPU</code>: number of items actually newly baked;</li>
+<li><code>disk-cache</code>: number of disk cache hits;</li>
+<li><code>memory-cache</code>: number of in-memory result hits within the same resource load;</li>
+<li><code>requests</code>: total number of requests the coordinator received, including cache prefetch and atlas consumption;</li>
+<li><code>key</code>: cumulative time of generating content cache keys;</li>
+<li><code>read</code>: cumulative time of decoding disk PNGs;</li>
+<li><code>GPU-time</code>, <code>CPU-time</code>: cumulative time of the corresponding baker;</li>
+<li><code>write</code>: cumulative time of writing to the disk cache.</li>
+</ul>
+<p><code>reload_config</code> reloads the player configuration and triggers a resource reload. <code>rebake</code> deletes the whole Kasuga PBR disk cache, clears the session statistics, and triggers a full resource reload.</p>
+<p>When either command runs inside a world, Kasuga models are temporarily hidden during the resource reload. New models are not published before the atlas is ready, so the render thread never observes a missing sprite; after the reload finishes, backend instances are recreated with the new configuration. On every platform, macOS included, cache misses uniformly prefer the GPU baker; only when the GPU shader or a GL call fails does it fall back to the CPU.</p>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<ol>
+<li>No change after editing parameters: run <code>/kasuga_pbr reload_config</code>. Parameters take part in the cache key, so clearing the cache by hand is usually unnecessary.</li>
+<li>Suspected corrupt old cache: run <code>/kasuga_pbr rebake</code>.</li>
+<li><code>GPU=0</code>: if <code>disk-cache</code> is high, this is a normal cache hit; if a GPU unavailable log appears, check for OpenGL/shader errors, as the system will use the CPU fallback.</li>
+<li><code>failures &gt; 0</code>: search the log for <code>Failed to bake stylized PBR texture</code>; the log entry contains the cache key and the exception.</li>
+<li>Atlas too large: compare <code>variants</code> with <code>source textures</code>. A large difference usually means many materials use different configurations.</li>
+<li>Startup still slow: use the indicator to tell whether it is stuck on PMX, cache reading, or atlas, and compare the staged timings in the batch log and <code>/kasuga_pbr status</code>.</li>
+</ol>
+<h2 id="4-player-json-customization">4. Player JSON Customization<a class="headerlink" href="#4-player-json-customization" title="Permanent link">&para;</a></h2>
+<p>The configuration file is located at:</p>
+<div class="highlight"><pre><span></span><code>&lt;game directory&gt;/config/kasuga-pbr.json
+</code></pre></div>
+<p>The file is generated automatically when it does not exist. Base structure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>enabled: false</code>: disables the player configuration layer; PMX automatic conversion and other Java rules are still kept.</li>
+<li><code>defaults</code>: conversion parameters that override all PMX materials.</li>
+<li><code>rules</code>: applied top to bottom in array order; a later matching rule can override the earlier result.</li>
+<li>A rule only needs the fields it wants to match and override.</li>
+</ul>
+<h3 id="match-fields">Match fields<a class="headerlink" href="#match-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>Set to false to temporarily disable a single rule</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>string glob</td>
+<td>Full model <code>ResourceLocation</code></td>
+</tr>
+<tr>
+<td><code>texture</code></td>
+<td>string glob</td>
+<td>Original texture <code>ResourceLocation</code>, not the hashed variant ID</td>
+</tr>
+<tr>
+<td><code>local_name</code></td>
+<td>string glob</td>
+<td>PMX local material name</td>
+</tr>
+<tr>
+<td><code>english_name</code></td>
+<td>string glob</td>
+<td>PMX English material name</td>
+</tr>
+<tr>
+<td><code>material_index</code></td>
+<td>integer</td>
+<td>PMX material index, starting from 0</td>
+</tr>
+<tr>
+<td><code>min_shininess</code></td>
+<td>number</td>
+<td>Lower bound of PMX shininess, inclusive</td>
+</tr>
+<tr>
+<td><code>max_shininess</code></td>
+<td>number</td>
+<td>Upper bound of PMX shininess, inclusive</td>
+</tr>
+</tbody>
+</table>
+<p>String matching is case-insensitive and supports <code>*</code> and <code>?</code>. Omitting a match field means that field is unconstrained.</p>
+<p>Material names and texture names can serve as auxiliary filter conditions, but using them as the only basis for classifying materials is not recommended. For a specific model, prefer <code>model + material_index</code>; for cross-model rules, prefer PMX numeric ranges or the structured context in the Java API.</p>
+<h3 id="output-fields">Output fields<a class="headerlink" href="#output-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smoothness</code></td>
+<td>0–1</td>
+<td>Perceptual smoothness</td>
+</tr>
+<tr>
+<td><code>f0_code</code></td>
+<td>0–255</td>
+<td>LabPBR specular G channel code</td>
+</tr>
+<tr>
+<td><code>subsurface</code></td>
+<td>0–1</td>
+<td>Subsurface scattering strength</td>
+</tr>
+<tr>
+<td><code>normal_strength</code></td>
+<td>0–1</td>
+<td>Strength of the normal derived from the base color luminance</td>
+</tr>
+<tr>
+<td><code>emission</code></td>
+<td>0–1</td>
+<td>Emission strength</td>
+</tr>
+</tbody>
+</table>
+<p>Out-of-range values are clamped automatically by <code>PbrConversionSettings</code>.</p>
+<p>LabPBR predefined metal codes:</p>
+<table>
+<thead>
+<tr>
+<th>Metal</th>
+<th style="text-align: right;"><code>f0_code</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iron</td>
+<td style="text-align: right;">230</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td style="text-align: right;">231</td>
+</tr>
+<tr>
+<td>Aluminum</td>
+<td style="text-align: right;">232</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td style="text-align: right;">233</td>
+</tr>
+<tr>
+<td>Copper</td>
+<td style="text-align: right;">234</td>
+</tr>
+<tr>
+<td>Lead</td>
+<td style="text-align: right;">235</td>
+</tr>
+<tr>
+<td>Platinum</td>
+<td style="text-align: right;">236</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td style="text-align: right;">237</td>
+</tr>
+<tr>
+<td>Use albedo as the metal color</td>
+<td style="text-align: right;">255</td>
+</tr>
+</tbody>
+</table>
+<p>0–229 is used for dielectric F0. Automatic conversion does not produce metal codes above 230.</p>
+<h3 id="configuration-example">Configuration example<a class="headerlink" href="#configuration-example" title="Permanent link">&para;</a></h3>
+<p>The example below applies stylization to the material indices of one specific model:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"normal_strength"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.06</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kasuga_lib:models/pmx/test2.mmd.zip/unfading_flowers_miku_black.pmx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"material_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"smoothness"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.72</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"f0_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"normal_strength"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.035</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kasuga_lib:models/pmx/test2.mmd.zip/unfading_flowers_miku_black.pmx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"material_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"smoothness"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.38</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"subsurface"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"normal_strength"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.025</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kasuga_lib:models/pmx/*"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"min_shininess"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"smoothness"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>After saving, run:</p>
+<div class="highlight"><pre><span></span><code>/kasuga_pbr reload_config
+</code></pre></div>
+<h2 id="5-java-api-customization">5. Java API Customization<a class="headerlink" href="#5-java-api-customization" title="Permanent link">&para;</a></h2>
+<p>The public API lives in:</p>
+<div class="highlight"><pre><span></span><code>lib.kasuga.rendering.models.mc.api.pbr
+</code></pre></div>
+<p>Main types:</p>
+<ul>
+<li><code>PbrConversionSettings</code>: immutable final conversion parameters, clamped automatically at construction, with <code>with...</code> methods.</li>
+<li><code>PbrMaterialContext</code>: read-only snapshot of the current model, texture, material index, PMX names, colors, shininess, flags, and texture dimensions.</li>
+<li><code>PbrConversionRule</code>: conversion function.</li>
+<li><code>PbrConversionRegistry</code>: rule registration, unregistration, and ordering.</li>
+<li><code>PbrMetalPreset</code>: LabPBR metal code enum.</li>
+</ul>
+<h3 id="registering-rules">Registering rules<a class="headerlink" href="#registering-rules" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.mc.api.pbr.PbrConversionRegistry</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.mc.api.pbr.PbrMetalPreset</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">net.minecraft.resources.ResourceLocation</span><span class="p">;</span>
+
+<span class="n">PbrConversionRegistry</span><span class="p">.</span><span class="na">Registration</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PbrConversionRegistry</span><span class="p">.</span><span class="na">register</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example_mod"</span><span class="p">,</span><span class="w"> </span><span class="s">"character_materials"</span><span class="p">),</span>
+<span class="w">        </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">context</span><span class="p">.</span><span class="na">modelId</span><span class="p">().</span><span class="na">getNamespace</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">"example_mod"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="na">materialIndex</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">current</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">withMetal</span><span class="p">(</span><span class="n">PbrMetalPreset</span><span class="p">.</span><span class="na">SILVER</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">withSmoothness</span><span class="p">(</span><span class="mf">0.82f</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">withNormalStrength</span><span class="p">(</span><span class="mf">0.04f</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="na">shininess</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">8.0f</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">diffuseAlpha</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">current</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">withSmoothness</span><span class="p">(</span><span class="mf">0.3f</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">withSubsurface</span><span class="p">(</span><span class="mf">0.2f</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>When the rule is no longer needed, call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">registration</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+</code></pre></div>
+<p>You can also register again with the same ID; the old rule is removed first.</p>
+<h3 id="priority-and-error-behavior">Priority and error behavior<a class="headerlink" href="#priority-and-error-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Rules run from the smallest <code>priority</code> to the largest.</li>
+<li>Rules with the same priority run in string order of the rule ID.</li>
+<li>The player JSON configuration is registered at priority <code>1000</code>.</li>
+<li>To provide a base value before the player configuration, use a priority smaller than 1000.</li>
+<li>To force an override of the player configuration, use a priority greater than 1000; this reduces the player's ability to customize and should be used with care.</li>
+<li>When a rule returns <code>null</code> or throws a runtime exception, KasugaLib logs a warning and keeps the result of the previous rule, then continues.</li>
+</ul>
+<h3 id="pbrmaterialcontext-fields"><code>PbrMaterialContext</code> fields<a class="headerlink" href="#pbrmaterialcontext-fields" title="Permanent link">&para;</a></h3>
+<p>Code rules can access:</p>
+<ul>
+<li><code>modelId</code>, <code>textureId</code>, <code>materialIndex</code>;</li>
+<li><code>localName</code>, <code>englishName</code>, <code>metadata</code>;</li>
+<li>diffuse RGBA;</li>
+<li>specular RGB;</li>
+<li>ambient RGB;</li>
+<li><code>shininess</code>;</li>
+<li><code>noCull</code>, <code>receivesShadow</code>;</li>
+<li><code>textureWidth</code>, <code>textureHeight</code>.</li>
+</ul>
+<p>Prefer rules that use the stable combination of model ID, material index, and PMX numeric values. If names must be used, constrain the model ID as well and allow for fallback behavior when the model version changes.</p>
+<h2 id="6-compatibility-and-caveats">6. Compatibility and Caveats<a class="headerlink" href="#6-compatibility-and-caveats" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Baking currently happens during the client resource load/reload phase and does not run every frame.</li>
+<li>The PBR atlas is matched to the Iris shader path; without Iris or a shader pack the base-color model is still usable, but whether the PBR channels produce a visual effect depends on the actual rendering path.</li>
+<li>Using many different configurations on the same base texture increases the atlas area and VRAM usage. Reuse identical parameter combinations as much as possible.</li>
+<li>When changing the channel semantics or the algorithm of a baker, <code>PbrBakeProfile.VERSION</code> must be bumped so that old disk caches are invalidated.</li>
+<li><code>rebake</code> deletes the whole Kasuga PBR cache, which makes the next load expensive; use it only for troubleshooting or an algorithm upgrade.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

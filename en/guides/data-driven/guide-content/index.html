@@ -1,0 +1,4406 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/guides/data-driven/guide-content/">
+      
+      
+        <link rel="prev" href="../intro/">
+      
+      
+        <link rel="next" href="../guide-extension/">
+      
+      
+        
+          <link rel="alternate" href="../../../../guides/data-driven/guide-content/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Path 1: adding content with data-driven files (organization and best practices) - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#path-1-adding-content-with-data-driven-files-organization-and-best-practices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Path 1: adding content with data-driven files (organization and best practices)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../guides/data-driven/guide-content/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-separate-the-three-concepts-first-about-30-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Separate the three concepts first (about 30 seconds)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-goal-get-a-batch-of-content-loaded-how-to-organize-the-index-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goal: get a batch of content loaded — how to organize the index manifest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Goal: get a batch of content loaded — how to organize the index manifest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-index-directory-is-fixed-and-cannot-be-moved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The index directory is fixed and cannot be moved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-one-manifest-per-mod-or-several" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 One manifest per mod, or several?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-what-goes-in-on_register-and-on_reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 What goes in on_register and on_reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-why-leaving-a-file-out-means-it-never-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Why leaving a file out means it never loads
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-to-split-content-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How to split content files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How to split content files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-split-by-type-or-split-by-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Split by type, or split by feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-more-files-means-listing-them-one-by-one-in-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 More files means listing them one by one in the index
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-goal-share-properties-across-blocks-inheritance-with-registry_groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Goal: share properties across blocks — inheritance with registry_groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Goal: share properties across blocks — inheritance with registry_groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-a-group-and-attach-blocks-to-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Create a group and attach blocks to it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-inheritance-chain-block-level-child-group-parent-group-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Inheritance chain: block level &gt; child group &gt; parent group &gt; root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-what-happens-with-a-missing-parent-group-or-a-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 What happens with a missing parent group or a cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-goal-know-who-wins-on-a-duplicate-id-last-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Goal: know who wins on a duplicate id — last-wins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Goal: know who wins on a duplicate id — last-wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-counts-as-the-same-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What counts as "the same id"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-later-means-load-order-not-lexicographic-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 "Later" means load order, not lexicographic order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-conflicting-entries-isolated-no-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Conflicting entries: isolated, no crash
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-goal-bind-a-block-entity-to-a-block-how-to-use-an-embedded-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Goal: bind a block entity to a block — how to use an embedded type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Goal: bind a block entity to a block — how to use an embedded type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-the-block-entity-is-embedded-not-a-top-level-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 The block entity is embedded, not a top-level field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-in-the-same-file-or-in-its-own-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 "In the same file" or "in its own file"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anti-pattern-writing-an-embedded-type-as-a-top-level-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Anti-pattern: writing an embedded type as a top-level field
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-goal-add-state-machines-and-animation-clips-reload-domain-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Goal: add state machines and animation clips — reload-domain content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Goal: add state machines and animation clips — reload-domain content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-state-machines-state_machines-two-entry-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 State machines (state_machines): two entry points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-animation-clips-animation_clips-the-index-is-the-only-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Animation clips (animation_clips): the index is the only entry point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-a-few-rules-for-reload-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 A few rules for reload content
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-anti-patterns-and-boundary-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Anti-patterns and boundary checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Anti-patterns and boundary checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-data-driven-does-not-generate-assets-or-localization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Data-driven does not generate assets or localization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-goal-confirm-you-got-it-right-verification-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Goal: confirm you got it right — verification and troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Goal: confirm you got it right — verification and troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-count-the-entries-in-the-log-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Count the entries in the log first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-inspect-the-error-bucket-with-a-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Inspect the error bucket with a command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-assert-in-a-test-that-the-error-bucket-is-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Assert in a test that the error bucket is empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-a-troubleshooting-order-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 A troubleshooting order table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-production-scale-reference-how-kuayue-organizes-carriages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Production-scale reference: how KuaYue organizes carriages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-separate-the-three-concepts-first-about-30-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Separate the three concepts first (about 30 seconds)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-goal-get-a-batch-of-content-loaded-how-to-organize-the-index-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goal: get a batch of content loaded — how to organize the index manifest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Goal: get a batch of content loaded — how to organize the index manifest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-index-directory-is-fixed-and-cannot-be-moved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 The index directory is fixed and cannot be moved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-one-manifest-per-mod-or-several" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 One manifest per mod, or several?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-what-goes-in-on_register-and-on_reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 What goes in on_register and on_reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-why-leaving-a-file-out-means-it-never-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Why leaving a file out means it never loads
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-to-split-content-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How to split content files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How to split content files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-split-by-type-or-split-by-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Split by type, or split by feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-more-files-means-listing-them-one-by-one-in-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 More files means listing them one by one in the index
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-goal-share-properties-across-blocks-inheritance-with-registry_groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Goal: share properties across blocks — inheritance with registry_groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Goal: share properties across blocks — inheritance with registry_groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-a-group-and-attach-blocks-to-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Create a group and attach blocks to it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-inheritance-chain-block-level-child-group-parent-group-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Inheritance chain: block level &gt; child group &gt; parent group &gt; root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-what-happens-with-a-missing-parent-group-or-a-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 What happens with a missing parent group or a cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-goal-know-who-wins-on-a-duplicate-id-last-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Goal: know who wins on a duplicate id — last-wins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Goal: know who wins on a duplicate id — last-wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-counts-as-the-same-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What counts as "the same id"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-later-means-load-order-not-lexicographic-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 "Later" means load order, not lexicographic order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-conflicting-entries-isolated-no-crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Conflicting entries: isolated, no crash
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-goal-bind-a-block-entity-to-a-block-how-to-use-an-embedded-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Goal: bind a block entity to a block — how to use an embedded type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Goal: bind a block entity to a block — how to use an embedded type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-the-block-entity-is-embedded-not-a-top-level-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 The block entity is embedded, not a top-level field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-in-the-same-file-or-in-its-own-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 "In the same file" or "in its own file"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anti-pattern-writing-an-embedded-type-as-a-top-level-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Anti-pattern: writing an embedded type as a top-level field
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-goal-add-state-machines-and-animation-clips-reload-domain-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Goal: add state machines and animation clips — reload-domain content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Goal: add state machines and animation clips — reload-domain content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-state-machines-state_machines-two-entry-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 State machines (state_machines): two entry points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-animation-clips-animation_clips-the-index-is-the-only-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Animation clips (animation_clips): the index is the only entry point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-a-few-rules-for-reload-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 A few rules for reload content
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-anti-patterns-and-boundary-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Anti-patterns and boundary checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Anti-patterns and boundary checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-data-driven-does-not-generate-assets-or-localization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Data-driven does not generate assets or localization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-goal-confirm-you-got-it-right-verification-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Goal: confirm you got it right — verification and troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Goal: confirm you got it right — verification and troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-count-the-entries-in-the-log-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Count the entries in the log first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-inspect-the-error-bucket-with-a-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Inspect the error bucket with a command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-assert-in-a-test-that-the-error-bucket-is-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Assert in a test that the error bucket is empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-a-troubleshooting-order-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 A troubleshooting order table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-production-scale-reference-how-kuayue-organizes-carriages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Production-scale reference: how KuaYue organizes carriages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="path-1-adding-content-with-data-driven-files-organization-and-best-practices">Path 1: adding content with data-driven files (organization and best practices)<a class="headerlink" href="#path-1-adding-content-with-data-driven-files-organization-and-best-practices" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>For <strong>content authors</strong>: add blocks, items, groups, state machines, and animation clips with JSON alone, without writing Java.
+Applies to: Minecraft 1.21.1 · NeoForge 21.1.203 · Parchment 2024.11.17 · Java 21. Line numbers in this page refer to the current working tree (the uncommitted data-driven reimplementation), baseline commit <code>ec864a1</code>.
+This page answers "how to organize files" and "why organize them this way". The complete list of fields is not here — see <a href="../../../reference/data-driven/schema/">schema.md</a>.</p>
+</blockquote>
+<p>This page is written for someone with a concrete goal in hand: adding the blocks of one carriage, wiring up a fan, setting up a creative tab.
+Every step gives JSON fragments you can copy as-is and spells out the cost. Anything that takes Java to do (registering the factory behind a <code>type</code>, registering
+a new top-level field) lives in <a href="../guide-extension/">guide-extension.md</a> and is not repeated here.</p>
+<hr />
+<h2 id="0-separate-the-three-concepts-first-about-30-seconds">0. Separate the three concepts first (about 30 seconds)<a class="headerlink" href="#0-separate-the-three-concepts-first-about-30-seconds" title="Permanent link">&para;</a></h2>
+<p>The three words each have a clear identity in this system:</p>
+<ul>
+<li><strong>index manifest</strong>: a manifest file of "which files to parse". It lists paths only and contains no object definitions.</li>
+<li><strong>content file</strong>: the <strong>single source of truth</strong> for definitions of blocks, items, and groups. The top-level field name (<code>blocks</code>, <code>items</code>, <code>registry_groups</code>) decides which handler this set of definitions is handed to.</li>
+<li><strong>domain</strong>: content files are split into two domains by when they are read. <strong>Registration phase (register)</strong> content is read once during mod construction and written into Minecraft's registries; <strong>reload phase (reload)</strong> content is read on <code>/reload</code> and written into the reload bucket; state machines and animation clips belong here.</li>
+</ul>
+<p>How the three relate:</p>
+<pre class="mermaid"><code>flowchart LR
+    IDX["index manifest&lt;br&gt;kasuga_lib/data_driven/*.json&lt;br&gt;{ on_register: [...], on_reload: [...] }"]
+    IDX --&gt;|on_register| REG["registration-phase content file&lt;br&gt;{ blocks, items, registry_groups }"]
+    IDX --&gt;|on_reload| REL["reload-phase content file&lt;br&gt;{ state_machines, animation_clips }"]
+    GLOB["directory glob&lt;br&gt;data/&amp;lt;ns&amp;gt;/state_machines/*.json"]
+    GLOB --&gt; REL</code></pre>
+<p>This diagram holds one <strong>asymmetry</strong>, and it is the easiest pitfall in the whole page: <code>state_machines/</code> has an extra directory-glob entry point, while <code>animation_clips/</code> does not — the latter's files can <strong>only</strong> be listed by the index manifest (see section 6).</p>
+<p>The authoritative table of field names, types, requiredness, defaults, and rule IDs D1–D6 is in <a href="../../../reference/data-driven/schema/">schema.md</a>. The examples in this page are copied from real fixtures and can be adapted directly.</p>
+<hr />
+<h2 id="1-goal-get-a-batch-of-content-loaded-how-to-organize-the-index-manifest">1. Goal: get a batch of content loaded — how to organize the index manifest<a class="headerlink" href="#1-goal-get-a-batch-of-content-loaded-how-to-organize-the-index-manifest" title="Permanent link">&para;</a></h2>
+<h3 id="11-the-index-directory-is-fixed-and-cannot-be-moved">1.1 The index directory is fixed and cannot be moved<a class="headerlink" href="#11-the-index-directory-is-fixed-and-cannot-be-moved" title="Permanent link">&para;</a></h3>
+<p>Put the manifest into this four-segment path; the spelling must match exactly:</p>
+<div class="highlight"><pre><span></span><code>data/&lt;your mod id&gt;/kasuga_lib/data_driven/
+</code></pre></div>
+<p>The path is locked down by <code>JsonTreeBuilder.indexDirectorySegments(modId)</code> to <code>{"data", modId, "kasuga_lib", "data_driven"}</code> (<code>JsonTreeBuilder.java:745-747</code>).
+<code>kasuga_lib</code> uses an underscore, and so does <code>data_driven</code>; write <code>kasuga-lib</code> instead, or drop the <code>kasuga_lib</code> level, and the
+system concludes you have no index directory and then <strong>does nothing at all</strong> (leaving a single DEBUG line in the log). <strong>Every</strong> <code>.json</code> file
+under the directory is treated as a manifest and read in ascending filename order; <code>index.json</code> is only a conventional name, not a requirement (<code>JsonTreeBuilder.listIndexFiles</code>, <code>:762-774</code>).</p>
+<p>So <strong>do not put content files in this directory</strong> — a content file gets parsed as a manifest and reports "missing <code>on_register</code>/<code>on_reload</code>".</p>
+<h3 id="12-one-manifest-per-mod-or-several">1.2 One manifest per mod, or several?<a class="headerlink" href="#12-one-manifest-per-mod-or-several" title="Permanent link">&para;</a></h3>
+<p><strong>Both work, and you can mix them.</strong> All <code>.json</code> manifests under the index directory for the same mod are read in full first and then consumed together;
+paths are joined in the order "ascending manifest filename → written order of the array inside the manifest" (<code>JsonTreeBuilder.java:92-96</code>, <code>:296-301</code>).</p>
+<p>The trade-off:</p>
+<ul>
+<li>Splitting has the benefit that <strong>each feature unit can carry its own manifest fragment</strong>. KuaYue has one <code>data/kuayue/kasuga_lib/data_driven/cXX.json</code> per carriage; after compilation these fragments merge into the same jar directory, and the system aggregates them as several manifests of the same mod (see section 9).</li>
+<li>The cost of splitting is that <strong>filenames must be unique</strong>. Once several manifests are merged, files with the same name cannot overwrite each other (they are appended side by side, not overwritten), but you have to make sure each manifest lists only its own files, or content is parsed twice (the same path listed in more than one place within one mod is <strong>silently deduplicated</strong>, with no error, <code>parseSource</code>'s <code>parsedSources</code>, <code>:400-402</code>).</li>
+</ul>
+<h3 id="13-what-goes-in-on_register-and-on_reload">1.3 What goes in <code>on_register</code> and <code>on_reload</code><a class="headerlink" href="#13-what-goes-in-on_register-and-on_reload" title="Permanent link">&para;</a></h3>
+<p>A manifest has only two top-level fields, each a string array:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it lists</th>
+<th>When it is read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>on_register</code></td>
+<td>content files that go into Minecraft's registries, such as blocks, items, and groups</td>
+<td>during mod construction, once</td>
+</tr>
+<tr>
+<td><code>on_reload</code></td>
+<td>reload-phase content files, such as state machines and animation clips</td>
+<td>on every <code>/reload</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Both fields may be omitted, but at least one must be written</strong>; a "pure reload mod" that writes only <code>on_reload</code> is legal (<code>JsonTreeBuilder.java:100-104</code>, <code>:323-326</code>).
+An empty array <code>[]</code> also counts as "written" (rule D2). Omitting both records one error.</p>
+<p>A minimal two-domain manifest:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"on_register"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/groups.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/blocks.json"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"on_reload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"animation_clips/fan_fsm_data_driven.json"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Array elements are <strong>paths relative to <code>data/&lt;your mod id&gt;/</code></strong>, must carry the <code>.json</code> suffix, must not start with <code>/</code>, and must not contain an empty segment or a <code>.</code>/<code>..</code> segment
+(<code>JsonTreeBuilder.validateSourcePath</code>, <code>:383-392</code>). They are always joined under <code>data/&lt;your mod id&gt;/</code>, so <strong>cross-namespace is structurally impossible</strong>.</p>
+<blockquote>
+<p><strong>Best practice</strong>: write the groups (<code>groups.json</code>) ahead of the block manifest so a human can see the dependency at a glance. But this has nothing to do with "order is semantic" — the group application phase comes before blocks anyway, see section 3.</p>
+</blockquote>
+<h3 id="14-why-leaving-a-file-out-means-it-never-loads">1.4 Why leaving a file out means it never loads<a class="headerlink" href="#14-why-leaving-a-file-out-means-it-never-loads" title="Permanent link">&para;</a></h3>
+<p>The registration phase has <strong>no directory scan</strong>: <code>buildForMod</code> reads only the paths listed in <code>on_register</code> and does not walk your <code>data/</code> directory (<code>JsonTreeBuilder.java:105-110</code>).
+A content file that really exists in the jar still <strong>never gets read</strong> as long as no manifest lists it, and nothing is reported either.</p>
+<p>The reload side has different rules: <code>state_machines/</code> has a directory glob, <code>animation_clips/</code> does not. The difference is spelled out in section 6.</p>
+<p><strong>The cost</strong>: the index is a hand-maintained manifest, and "adding a file = editing the index" is what this design pays for "what gets loaded is fully controllable and auditable".
+Change the directory structure and forget the index, and the symptom is <strong>silently loading less</strong>, not an error. That is why the first thing in the verification steps of section 8 is counting entries in the log.</p>
+<hr />
+<h2 id="2-how-to-split-content-files">2. How to split content files<a class="headerlink" href="#2-how-to-split-content-files" title="Permanent link">&para;</a></h2>
+<p>Content files go anywhere under <code>data/&lt;your mod id&gt;/</code> (they do not have to be squeezed in next to the index directory), and one file may hold several top-level fields at once.
+Files <strong>do not reference one another</strong>, so there is no recursion and no need for cycle detection (<code>JsonTreeBuilder.java:372-373</code>).</p>
+<h3 id="21-split-by-type-or-split-by-feature">2.1 Split by type, or split by feature<a class="headerlink" href="#21-split-by-type-or-split-by-feature" title="Permanent link">&para;</a></h3>
+<p>Both hold up; the choice depends on whether the question you need to answer is "where is everything of this type" or "where is everything of this feature".</p>
+<p><strong>Split by type</strong> (one big file each for groups and blocks):</p>
+<div class="highlight"><pre><span></span><code>data/mymod/kasuga_lib/data_driven/index.json
+data/mymod/content/groups.json        # all registry_groups
+data/mymod/content/blocks.json        # all blocks
+data/mymod/content/items.json         # all standalone items
+</code></pre></div>
+<p><strong>Split by feature</strong> (each feature directory carries its own type files):</p>
+<div class="highlight"><pre><span></span><code>data/mymod/kasuga_lib/data_driven/panels.json     # on_register: content/panels/*
+data/mymod/kasuga_lib/data_driven/lighting.json   # on_register: content/lighting/*
+data/mymod/content/panels/groups.json
+data/mymod/content/panels/blocks.json
+data/mymod/content/lighting/groups.json
+data/mymod/content/lighting/blocks.json
+</code></pre></div>
+<p>The trade-off:</p>
+<ul>
+<li>Splitting by type makes <strong>reuse and cross-feature lookup convenient</strong> (one file is the complete set for one type), but files keep growing, several people editing one file conflict easily, and nothing reminds you not to stuff unrelated things in.</li>
+<li>Splitting by feature keeps <strong>one feature's changes in one place</strong>, which suits units that can be delivered on their own, such as "one carriage = one feature"; the cost is that every feature has to list its own files in the index one by one.</li>
+</ul>
+<blockquote>
+<p><strong>Best practice</strong>: take "the smallest unit that can be delivered and verified on its own" as the splitting unit. Inside a feature unit, split further by type (<code>groups.json</code> + <code>blocks.json</code>); that keeps reusability and keeps index entries readable. KuaYue's carriages are split that way (section 9).</p>
+</blockquote>
+<h3 id="22-more-files-means-listing-them-one-by-one-in-the-index">2.2 More files means listing them one by one in the index<a class="headerlink" href="#22-more-files-means-listing-them-one-by-one-in-the-index" title="Permanent link">&para;</a></h3>
+<p>After splitting by feature, the manifest grows into one file per line — which is exactly what it is for: <strong>the manifest is the explicit declaration of "which files this feature contains"</strong>.
+Do not stuff a whole block of content into one file just to keep the manifest short. A longer manifest is a readability cost, a stuffed file is a maintainability cost, and the former is easier to handle.</p>
+<hr />
+<h2 id="3-goal-share-properties-across-blocks-inheritance-with-registry_groups">3. Goal: share properties across blocks — inheritance with <code>registry_groups</code><a class="headerlink" href="#3-goal-share-properties-across-blocks-inheritance-with-registry_groups" title="Permanent link">&para;</a></h2>
+<p>A group is a container for shared properties: write <code>properties</code> on a group and the blocks in it inherit them automatically.</p>
+<h3 id="31-create-a-group-and-attach-blocks-to-it">3.1 Create a group and attach blocks to it<a class="headerlink" href="#31-create-a-group-and-attach-blocks-to-it" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"registry_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:base_panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"no_occlusion"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"strength"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:detail_panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:base_panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"item_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"tab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:main_tab"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A block names the group it attaches to with <code>registry_group</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:simple_panel"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:detail_panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"destroy_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This passage is copied verbatim from the real fixtures <code>modules/data-driven/src/contentTesting/resources/data/kasuga_lib/kasuga_lib_content/groups.json</code> and <code>blocks.json</code>.</p>
+<h3 id="32-inheritance-chain-block-level-child-group-parent-group-root">3.2 Inheritance chain: block level &gt; child group &gt; parent group &gt; root<a class="headerlink" href="#32-inheritance-chain-block-level-child-group-parent-group-root" title="Permanent link">&para;</a></h3>
+<p>Properties are not "merged"; they are <strong>applied in turn</strong> along the parent chain. The parent group's properties are applied first, then the group's own, so definitions closer to the block take effect later and override what came before
+(<code>Reg.applyProperties</code>, <code>Reg.java:103-114</code>). Priority in one sentence:</p>
+<blockquote>
+<p><strong>Block level &gt; child group &gt; parent group &gt; root group.</strong></p>
+</blockquote>
+<p>This order holds for both <code>properties</code> and <code>item_properties</code>. The real fixture <code>inheritance_blocks.json</code> shows three cases:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:inherited_block"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="p">,</span><span class="w"> </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:inherit_group"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:overridden_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:inherit_group"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"strength"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:item_inherit_override"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:inherit_group"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"item_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"stacks_to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"durability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>inherited_block</code> touches no property at all and inherits the group entirely.</li>
+<li><code>overridden_block</code> overrides the group value with a block-level <code>properties.strength</code>.</li>
+<li><code>item_inherit_override</code> overrides the group's <code>stacks_to</code> with a block-level <code>item_properties</code>, and adds a <code>durability</code> the group does not have.</li>
+</ul>
+<p>One exception is worth noting on its own: <strong>the creative tab (<code>tab</code>)</strong>. The group's <code>item_properties.tab</code> is recorded separately and used only when the block has no <code>tab</code> of its own (<code>RegTypeHandler.java:89-97</code>). So "block-level <code>tab</code> wins" works like most fields here, but the implementation goes through a different channel, and that is worth remembering when troubleshooting tab problems.</p>
+<h3 id="33-what-happens-with-a-missing-parent-group-or-a-cycle">3.3 What happens with a missing parent group or a cycle<a class="headerlink" href="#33-what-happens-with-a-missing-parent-group-or-a-cycle" title="Permanent link">&para;</a></h3>
+<p>Both anomalies are caught and neither crashes, but the result may differ from what you expect:</p>
+<ul>
+<li><strong>The parent group does not exist</strong> → the group <strong>silently attaches to the root group</strong> (<code>RegistryGroupHandler.store</code>, <code>:58-63</code>). Blocks register as usual, they just inherit nothing. <strong>With no log message.</strong></li>
+<li><strong>The ancestor chain contains a cycle</strong> → the loader does a topological sort first, and on detecting a cycle emits a WARN: <code>Cycle detected among registry groups: [...]</code>; the groups in the cycle fall back to their original order and end up attached to the root (<code>JsonTreeBuilder.java:823-842</code>).</li>
+</ul>
+<p>The real fixture <code>edge_cases_groups.json</code> contains a ready-made cycle:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"registry_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:orphan_group"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:circular_a"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:circular_b"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:circular_b"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:circular_a"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>orphan_group</code> explicitly has no <code>parent</code> and attaches to the root; <code>circular_a</code>/<code>circular_b</code> are each other's parent.</p>
+<p><strong>The cost and the advice</strong>: group inheritance saves a lot of repeated fields, but "silently attaches to the root" means <strong>a mistyped group id is not reported</strong>.
+So give group ids a namespace prefix (starting with <code>mymod:</code>), and make "the group definition" and "the block that references the group" appear as a pair in the same manifest, so changing an id changes both together.</p>
+<hr />
+<h2 id="4-goal-know-who-wins-on-a-duplicate-id-last-wins">4. Goal: know who wins on a duplicate id — last-wins<a class="headerlink" href="#4-goal-know-who-wins-on-a-duplicate-id-last-wins" title="Permanent link">&para;</a></h2>
+<h3 id="41-what-counts-as-the-same-id">4.1 What counts as "the same id"<a class="headerlink" href="#41-what-counts-as-the-same-id" title="Permanent link">&para;</a></h3>
+<p>A duplicate is decided only <strong>within the same type field</strong> (<code>blocks</code> against <code>blocks</code>, <code>items</code> against <code>items</code>, <code>registry_groups</code> against <code>registry_groups</code>, embedded block entities against embedded block entities).
+The same name in different fields <strong>is not a conflict</strong> (<code>DuplicateIdResolver</code>'s collision key is <code>(typeName, identity)</code>, <code>:73-100</code>).</p>
+<p>The three types compute identity differently:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What identity is</th>
+<th>Normalization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>blocks</code> / <code>items</code></td>
+<td>the <code>ResourceLocation</code> at registration</td>
+<td>no namespace or a <code>minecraft:</code> prefix → <code>&lt;your mod id&gt;:&lt;path&gt;</code>; any other namespace is kept as-is (<code>EffectiveId.of</code>, <code>:39-52</code>)</td>
+</tr>
+<tr>
+<td><code>registry_groups</code></td>
+<td>the entry's <strong>literal</strong> <code>id</code>, not normalized</td>
+<td>groups are internal nodes and do not go into a registry, so <code>door</code> and <code>minecraft:door</code> count as two groups (<code>RegistryGroupHandler.resolveIdentity</code>, <code>:50-52</code>)</td>
+</tr>
+<tr>
+<td>the embedded block entity</td>
+<td>the identity of the <strong>host block</strong></td>
+<td>only two <code>block_entity</code> keys on the same block count as a duplicate (<code>BlockEntityTypeHandler.resolveIdentity</code>, <code>:66-68</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Normalization is the easiest one to trip over: as blocks, <code>foo</code> and <code>minecraft:foo</code> <strong>are the same id</strong> and conflict with each other (<code>EffectiveIdTest.explicitMinecraftNamespaceResolvesToTheOwningMod</code>).
+But <code>foo</code> in <code>blocks</code> and <code>foo</code> in <code>items</code> do not conflict; they are two registration spaces.</p>
+<h3 id="42-later-means-load-order-not-lexicographic-order">4.2 "Later" means load order, not lexicographic order<a class="headerlink" href="#42-later-means-load-order-not-lexicographic-order" title="Permanent link">&para;</a></h3>
+<p>The rule for duplicates is <strong>last-wins</strong> (the later definition wins). "Who is later" is decided entirely by load order:</p>
+<ol>
+<li>Several manifests of the same mod, by <strong>ascending filename</strong>;</li>
+<li>Inside one manifest's <code>on_register</code> array, by <strong>written order</strong>;</li>
+<li>Inside one content file's type array, by <strong>written order</strong>.</li>
+</ol>
+<p><code>DuplicateIdResolverTest.lastMeansLastInSequenceNotLexicographicallyLastSource</code> locks this down specifically: even when the later candidate comes from a file whose path sorts earlier lexicographically, it is still the winner.
+In other words, <strong>order is a semantic switch, not a layout preference</strong>.</p>
+<h3 id="43-conflicting-entries-isolated-no-crash">4.3 Conflicting entries: isolated, no crash<a class="headerlink" href="#43-conflicting-entries-isolated-no-crash" title="Permanent link">&para;</a></h3>
+<p>When a duplicate is found (<code>DuplicateIdResolver.describe</code>, <code>:109-115</code>):</p>
+<ul>
+<li><strong>No crash</strong>: loading finishes as usual and the game starts normally.</li>
+<li><strong>The loser does not take effect at all</strong>: the earlier definition <strong>never reaches registration</strong>, so no ghost entry is left in Minecraft's registries.</li>
+<li><strong>No collateral damage</strong>: only the conflicting entry is dropped; other entries in the file and other types proceed as usual.</li>
+<li><strong>Evidence is kept</strong>: one WARN log line (giving the id, the type field, and the winner's and the loser's source files) plus one loading error recorded against that mod.</li>
+</ul>
+<blockquote>
+<p><strong>Best practice</strong>: treat order as an "override switch", not as "layout". When you have no intent to override, make sure ids are unique within the type and keep the WARN away;
+when you do intend an override (a base file plus a variant file), point out which one is the patch file in the manifest with a comment or a name.
+The cost is that such an override <strong>tells you nothing about "who got overridden" beyond that WARN</strong>, so override files should be as small and focused as possible.</p>
+</blockquote>
+<hr />
+<h2 id="5-goal-bind-a-block-entity-to-a-block-how-to-use-an-embedded-type">5. Goal: bind a block entity to a block — how to use an embedded type<a class="headerlink" href="#5-goal-bind-a-block-entity-to-a-block-how-to-use-an-embedded-type" title="Permanent link">&para;</a></h2>
+<h3 id="51-the-block-entity-is-embedded-not-a-top-level-field">5.1 The block entity is embedded, not a top-level field<a class="headerlink" href="#51-the-block-entity-is-embedded-not-a-top-level-field" title="Permanent link">&para;</a></h3>
+<p>A block entity (BE) does not get a top-level field of its own; it is written in the <code>block_entity</code> key of the block entry:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:be_test_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:data_driven_group"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"block_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_be"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"tick_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(from <code>kasuga_lib_content/block_entities.json</code>.) <code>block_entity</code> accepts <code>type</code> (the BE factory) and <code>params</code>;
+after the host block is registered, the system creates the BE automatically and attaches it as its child node, and the BE id is automatically <code>&lt;block path&gt;_be</code>.
+So <strong>a block can embed at most one BE</strong> (<code>BlockEntityTypeHandler.apply</code>, <code>:88-95</code>).</p>
+<p>FSM blocks have a common pattern: <code>state_machine</code> is written at the <strong>top level of the block entry</strong>, and the system forwards it into the BE's <code>params</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:my_fsm_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsm_block"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:data_driven_group"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"state_machine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:my_machine"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"destroy_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"block_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsm_be"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:models/my_cube.obj"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(from modelling contentTesting's <code>fsm_blocks.json</code>; the forwarding logic is in <code>BlockEntityTypeHandler.extractEmbedded</code>, <code>:33-44</code>, covered by <code>BlockEntityStateMachineExtractTest</code>.)</p>
+<h3 id="52-in-the-same-file-or-in-its-own-file">5.2 "In the same file" or "in its own file"<a class="headerlink" href="#52-in-the-same-file-or-in-its-own-file" title="Permanent link">&para;</a></h3>
+<p>The filename <code>block_entities.json</code> is a convention, and <strong>its top-level key is still <code>blocks</code> once you open it</strong>. So the choice here is file organization, not syntax:</p>
+<ul>
+<li>Keeping blocks with BEs together with ordinary blocks puts the whole block picture in one place, which is convenient for comparison.</li>
+<li>Opening a separate file (such as <code>block_entities.json</code>) for blocks with BEs shows "which blocks have entities" at a glance, and lets this kind of block evolve on its own.</li>
+</ul>
+<p>Either choice must list the file in the manifest. The trade-off is <strong>review cost</strong>: a separate file makes the BE set stand out, but seeing "a block's full definition" then takes two files.</p>
+<h3 id="53-anti-pattern-writing-an-embedded-type-as-a-top-level-field">5.3 Anti-pattern: writing an embedded type as a top-level field<a class="headerlink" href="#53-anti-pattern-writing-an-embedded-type-as-a-top-level-field" title="Permanent link">&para;</a></h3>
+<p>The following form is <strong>illegal</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"block_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_be"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:ok"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple_block"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The result: the top-level <code>block_entities</code> is reported as an "unsupported top-level field", with the hint "it should be written in the <code>block_entity</code> key of a <code>blocks</code> entry";
+the key point is that <strong><code>blocks</code> in the same file still dispatches as usual</strong> (partial-apply), so this one mistake does not throw away the whole file (<code>JsonTreeBuilderEmbeddedTypeDispatchTest.topLevelEmbeddedTypeIsReportedAndTheRestOfTheFileStillDispatches</code>, <code>JsonTreeBuilder.java:475-490</code>).</p>
+<p>Likewise, a single BE failing in the apply phase (a missing BE factory, for example) only emits a WARN and is skipped, leaving the other blocks in the same file alone (<code>BlockEntityTypeHandler.apply</code>, <code>:81-100</code>).</p>
+<blockquote>
+<p><strong>Best practice</strong>: always write <code>block_entity</code> next to its host block. A BE has no id of its own, so an "orphan BE" does not exist syntactically.</p>
+</blockquote>
+<hr />
+<h2 id="6-goal-add-state-machines-and-animation-clips-reload-domain-content">6. Goal: add state machines and animation clips — reload-domain content<a class="headerlink" href="#6-goal-add-state-machines-and-animation-clips-reload-domain-content" title="Permanent link">&para;</a></h2>
+<p>The reload domain has two kinds of content, and their top-level field names are each the only legal key.</p>
+<h3 id="61-state-machines-state_machines-two-entry-points">6.1 State machines (<code>state_machines</code>): two entry points<a class="headerlink" href="#61-state-machines-state_machines-two-entry-points" title="Permanent link">&para;</a></h3>
+<p>A state machine file looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"state_machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:fan_machine"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"state_vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cycle"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w"> </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"ephemeral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:fan/cycle"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gear"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"initial_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"states"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w"> </span><span class="nt">"clip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:fan_clip"</span><span class="p">,</span><span class="w"> </span><span class="nt">"loop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"g1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"clip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:fan_clip"</span><span class="p">,</span><span class="w"> </span><span class="nt">"loop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">"transitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off_to_g1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w"> </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"g1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"trigger_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cycle"</span><span class="p">,</span><span class="w"> </span><span class="nt">"cross_fade_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(the full version of the real fixture <code>modules/modelling/src/contentTesting/resources/data/kasuga_lib/state_machines/fan_machine_data_driven.json</code> has 4 states and 4 transitions; a subset is taken here for space, with no field changed.)</p>
+<p>A state machine has <strong>two entry points</strong>; use either one or both:</p>
+<ol>
+<li><strong>Directory glob</strong>: put the file at <code>data/&lt;your namespace&gt;/state_machines/*.json</code> and it is discovered automatically (<code>StateMachineDefinitionLoader.PATH = "state_machines"</code>, <code>:39</code>; the directory is declared by <code>FsmReloadHandler.globDirectories()</code>, <code>:69-71</code>). <strong>No need to list it in the index.</strong></li>
+<li><strong>The <code>on_reload</code> array</strong>: list the path in the manifest and it is read as well.</li>
+</ol>
+<p>When both entry points hit the same file, the glob skips the one the index already lists, so the file is read once (<code>ReloadOrchestrator.collectGlob</code>, <code>:348-367</code>).
+The relative order of the two entry points is <strong>glob first, index second</strong>, and for the same id the later one still wins (<code>ReloadOrchestrator</code> class documentation, <code>:77-91</code>).</p>
+<h3 id="62-animation-clips-animation_clips-the-index-is-the-only-entry-point">6.2 Animation clips (<code>animation_clips</code>): the index is the only entry point<a class="headerlink" href="#62-animation-clips-animation_clips-the-index-is-the-only-entry-point" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"animation_clips"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mymod:fan_clip"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"duration_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"bone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fan"</span><span class="p">,</span><span class="w"> </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rotate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11 * query.angle"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"bone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cover"</span><span class="p">,</span><span class="w"> </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rotate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"z"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sin(rad(2 * query.angle)) * 30"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(from <code>animation_clips/fan_fsm_data_driven.json</code>.)</p>
+<p><code>animation_clips/</code> has no directory glob, so clip files can only be read through the manifest's <code>on_reload</code> array
+(<code>AnimationClipLoader</code> class documentation, <code>:28-29</code>). Put a clip file under <code>data/&lt;ns&gt;/animation_clips/</code> and forget to list it in the manifest, and
+it <strong>is never loaded, with no hint at all</strong>.</p>
+<p>Compare the real fixture <code>modelling.json</code>, which lists two entries under <code>on_register</code> and one under <code>on_reload</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"on_register"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/fan_formula_data_driven.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"kasuga_lib_content/fsm_blocks.json"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"on_reload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"animation_clips/fan_fsm_data_driven.json"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The state machine file <code>state_machines/fan_machine_data_driven.json</code> is <strong>not in this manifest</strong> — the glob picks it up. <code>fsm_blocks.json</code> originally belonged to data-driven's contentTesting, and moved to the modelling side because the <code>fsm_block</code> / <code>fsm_be</code> factories live in modelling only (the content is still written with <code>blocks</code> as its top-level key).</p>
+<h3 id="63-a-few-rules-for-reload-content">6.3 A few rules for reload content<a class="headerlink" href="#63-a-few-rules-for-reload-content" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>One file can carry several top-level keys</strong>: writing <code>state_machines</code> and <code>animation_clips</code> in the same file is legal, and the two handlers each read their own key and register their own entries (<code>ReloadOrchestrator.dispatch</code>, <code>:429-470</code>).
+  A <strong>genuinely unknown key</strong> (claimed by no reload type, a mistyped <code>foo</code> for instance) is reported as an unsupported-top-level-field error, but known keys still contribute as usual and do not drag down the whole file.</li>
+<li><strong>Reload paths go through the pack stack</strong>: paths in <code>on_reload</code> are resolved with <code>ResourceManager.getResource</code>, so <strong>data packs can override</strong> your reload content;
+  <code>on_register</code> goes through the mod's jar (<code>IModFile.findResource</code>), which data packs cannot reach (<code>ReloadOrchestrator.collectIndex</code>, <code>:369</code>).</li>
+<li><strong>Dangling clip references are checked after the fact</strong>: once a reload round finishes, the loader checks whether the id that <code>states[].clip</code> points at exists in every state machine definition just registered,
+  and if it is missing it emits a WARN and records it in the error bucket, while that state degrades to a static pose (<code>FsmReloadHandler.afterReload</code>, <code>:95-116</code>). The check <strong>does not block registration</strong>.</li>
+</ul>
+<blockquote>
+<p><strong>Best practice</strong>: keep state machines in <code>state_machines/</code> for the glob to discover, which cuts manifest maintenance; clips must be listed in <code>on_reload</code> one by one, so make clip files coarser rather than finer (one file per feature) instead of letting the manifest grow to dozens of lines.</p>
+</blockquote>
+<hr />
+<h2 id="7-anti-patterns-and-boundary-checklist">7. Anti-patterns and boundary checklist<a class="headerlink" href="#7-anti-patterns-and-boundary-checklist" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you write</th>
+<th>Symptom</th>
+<th>Cause / handling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"sources": [...]</code> in a manifest</td>
+<td>two errors: <code>contains unsupported field 'sources'</code> + <code>declares neither 'on_register' nor 'on_reload'</code>, and that manifest contributes no path</td>
+<td><code>sources</code> is a <strong>deprecated field</strong>, not an alias (<code>JsonTreeBuilder.parseIndexManifest</code>, <code>:222-243</code>; <code>JsonTreeBuilderIndexSchemaTest.legacySourcesFieldIsReportedAsUnknown</code>). Change it to <code>on_register</code></td>
+</tr>
+<tr>
+<td>listing a <code>state_machines</code> file under <code>on_register</code></td>
+<td>error: <code>unsupported top-level field 'state_machines'</code>, with the hint "list this file under 'on_reload' instead"</td>
+<td>the conditional D9 hint; the registration domain does not recognize a reload-domain shape, and the hint points you at the other array (<code>JsonTreeBuilder.java:474-491</code>; <code>JsonTreeBuilderReloadHintTest</code>)</td>
+</tr>
+<tr>
+<td>listing registration content under <code>on_reload</code></td>
+<td>error: <code>unsupported top-level field 'blocks'</code>, with the hint to list it under <code>on_register</code></td>
+<td>the reverse D9 hint (<code>ReloadOrchestrator.dispatch</code>, <code>:441-446</code>)</td>
+</tr>
+<tr>
+<td>the same path in both <code>on_register</code> and <code>on_reload</code></td>
+<td>error, and that path is <strong>consumed by neither domain</strong></td>
+<td>rule D6's fail-closed (<code>JsonTreeBuilder.resolveIndexManifests</code>, <code>:308-316</code>; <code>JsonTreeBuilderIndexSchemaTest.crossListedPathIsConsumedByNeitherDomain</code>)</td>
+</tr>
+<tr>
+<td>a top-level <code>block_entities</code></td>
+<td>error + the hint to write it in the <code>block_entity</code> key of a <code>blocks</code> entry</td>
+<td>embedded types do not take a top-level field (section 5.3)</td>
+</tr>
+<tr>
+<td>a path written as <code>/blocks.json</code>, <code>blocks</code> (no suffix), <code>a/../b.json</code></td>
+<td>error: <code>path must be relative</code> / <code>path must include the '.json' suffix</code> / <code>path must not contain '.' or '..'</code></td>
+<td><code>validateSourcePath</code> (<code>:383-392</code>; <code>JsonTreeBuilderSourcePathTest.rejectsMalformedSourcePaths</code>)</td>
+</tr>
+<tr>
+<td>the manifest points at a file that does not exist</td>
+<td>error: <code>Source file not found ...</code></td>
+<td>the path is relative to <code>data/&lt;mod&gt;/</code>; first confirm the file really made it into the jar</td>
+</tr>
+<tr>
+<td>a content file placed in the index directory</td>
+<td>error: the file is parsed as a manifest and reports the two domain fields as missing</td>
+<td>the index directory holds manifests only</td>
+</tr>
+<tr>
+<td>a block <code>type</code> with no corresponding factory</td>
+<td>the block does not appear; log WARN <code>No factory for type '...'</code></td>
+<td><strong>log only, not into the error bucket</strong> (<code>RegTypeHandler.apply</code>, <code>:70-74</code>). The factory must be registered first, see <a href="../guide-extension/">guide-extension.md</a></td>
+</tr>
+<tr>
+<td>a block referencing a <code>registry_group</code> that does not exist</td>
+<td>the block still appears, but its properties/tab do not match expectations</td>
+<td><strong>silently attaches to the root group</strong>, no log (section 3.3)</td>
+</tr>
+<tr>
+<td>a misspelled property name (such as <code>sound_type</code>)</td>
+<td>that property is ignored; log WARN <code>Unknown block property</code> / <code>Unknown sound type</code></td>
+<td><strong>log only, not into the error bucket</strong> (<code>JsonPropertyParser</code>, <code>:50-57</code>, <code>:87-95</code>)</td>
+</tr>
+<tr>
+<td>an element's <code>parse</code> throws during the registration phase (malformed fields in that element)</td>
+<td>error: <code>Content file '&lt;label&gt;' for mod '&lt;mod&gt;': entry &lt;i&gt; in '&lt;key&gt;' failed to parse: &lt;msg&gt;; entry skipped</code></td>
+<td><strong>only that element is dropped</strong>; sibling entries in the same file register as usual (<code>JsonTreeBuilder.java:530, 592</code>; isomorphic to the reload side's <code>…; element skipped</code>).</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Best practice</strong>: distinguish "errors that go into the error bucket" from "errors that only emit a WARN". The former (index, path, field, duplicate id, apply failure) can be asserted red through <code>getLoadingErrors</code>;
+the latter (unknown factory, unknown property, missing group, group cycle) can only be found by <strong>reading the log</strong>. Lumping the two together will make you miss the second half of the problems.</p>
+</blockquote>
+<h3 id="71-data-driven-does-not-generate-assets-or-localization">7.1 Data-driven does not generate assets or localization<a class="headerlink" href="#71-data-driven-does-not-generate-assets-or-localization" title="Permanent link">&para;</a></h3>
+<p>Data-driven registers the <strong>block / item / block entity</strong> itself only (<code>blocks</code> entries have no <code>model</code> / <code>textures</code> field, see <a href="../../../reference/data-driven/schema/">schema.md</a> section 2.3). For a block to display properly, its model, texture, and language still have to be provided in the resource pack following vanilla conventions, and the system does not generate them for you:</p>
+<ul>
+<li><strong>Model / texture</strong>: looked up following Minecraft conventions at <code>assets/&lt;namespace&gt;/blockstates/&lt;path&gt;.json</code> and <code>assets/&lt;namespace&gt;/models/block/&lt;path&gt;.json</code>, and you must supply them by hand; leave them out and you get a purple-and-black block.</li>
+<li><strong>Translation key</strong>: derived by convention as <code>block.&lt;namespace&gt;.&lt;path&gt;</code> (<code>item.&lt;namespace&gt;.&lt;path&gt;</code> for items), and you must add it in <code>lang/*.json</code> by hand; leave it out and the raw key name is displayed.</li>
+</ul>
+<hr />
+<h2 id="8-goal-confirm-you-got-it-right-verification-and-troubleshooting">8. Goal: confirm you got it right — verification and troubleshooting<a class="headerlink" href="#8-goal-confirm-you-got-it-right-verification-and-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="81-count-the-entries-in-the-log-first">8.1 Count the entries in the log first<a class="headerlink" href="#81-count-the-entries-in-the-log-first" title="Permanent link">&para;</a></h3>
+<p>After startup the log should contain this line (INFO):</p>
+<div class="highlight"><pre><span></span><code>Loaded N JSON entries across M types for mod '&lt;your mod id&gt;'
+</code></pre></div>
+<p><code>JsonTreeBuilder.java:114</code>. <code>N</code> is the total number of entries parsed, and <code>M</code> is the number of distinct top-level types with content.
+Turn DEBUG on and you also see the applied count per type (<code>Applying N entries for type '&lt;type&gt;'</code>, <code>:129</code>). <strong>An N that is too small usually means a missed index entry or a wrong path</strong>.
+If the line is entirely absent, check the index directory path first (when the directory does not exist there is only one DEBUG line: <code>No data-driven index directory for mod '...'</code>, <code>:77</code>).</p>
+<h3 id="82-inspect-the-error-bucket-with-a-command">8.2 Inspect the error bucket with a command<a class="headerlink" href="#82-inspect-the-error-bucket-with-a-command" title="Permanent link">&para;</a></h3>
+<p>In game (permission level 2 required):</p>
+<div class="highlight"><pre><span></span><code>/kasuga_data errors
+/kasuga_data errors &lt;your mod id&gt;
+</code></pre></div>
+<p>With no argument it prints a one-line summary for every non-empty bucket (<strong>both dimensions included</strong>: the mod dimension and the reload <code>RELOAD_DATA[&lt;namespace&gt;]</code> source dimension); with a mod id it prints that mod's per-entry failures in both dimensions
+(<code>DataDiagnosticsCommands</code>, <code>:45-92</code>). Registration-phase errors go into the mod dimension; reload-phase errors go into the <code>Domain.RELOAD_DATA</code> source dimension, keyed by namespace (<code>ReloadOrchestrator.reportError</code>, <code>:566-573</code>).</p>
+<h3 id="83-assert-in-a-test-that-the-error-bucket-is-empty">8.3 Assert in a test that the error bucket is empty<a class="headerlink" href="#83-assert-in-a-test-that-the-error-bucket-is-empty" title="Permanent link">&para;</a></h3>
+<p>An integration test or a debugging tool can assert directly:</p>
+<div class="highlight"><pre><span></span><code><span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">getLoadingErrors</span><span class="p">(</span><span class="s">"mymod"</span><span class="p">)</span><span class="w">   </span><span class="c1">// this mod's list of errors</span>
+<span class="n">JsonTreeBuilder</span><span class="p">.</span><span class="na">getLoadingErrorsByMod</span><span class="p">()</span><span class="w">     </span><span class="c1">// bucketed by mod</span>
+</code></pre></div>
+<p>Turning "silent errors" into a red light is the least-effort approach. Error buckets are isolated per mod, and one mod's <code>buildForMod</code> clears only its own bucket (<code>JsonTreeBuilderLoadingErrorTest.errorsAreIsolatedPerMod</code>).</p>
+<h3 id="84-a-troubleshooting-order-table">8.4 A troubleshooting order table<a class="headerlink" href="#84-a-troubleshooting-order-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Look first at</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no <code>Loaded ... JSON entries</code> at all</td>
+<td>is the index directory's four-segment path right? is there a <code>.json</code> in the directory?</td>
+</tr>
+<tr>
+<td>N smaller than expected</td>
+<td>is the manifest missing an entry? <code>Source file not found</code>?</td>
+</tr>
+<tr>
+<td>the block does not appear</td>
+<td><code>No factory for type</code>? (WARN); are the block item, blockstate, and model assets all present?</td>
+</tr>
+<tr>
+<td>properties are wrong</td>
+<td><code>Unknown block property</code> (WARN); is <code>registry_group</code> written correctly (silent attach to root)?</td>
+</tr>
+<tr>
+<td>an id takes effect as something other than what you wrote</td>
+<td>the duplicate-id WARN; look at the winner/loser source files (section 4)</td>
+</tr>
+<tr>
+<td>the state machine does not take effect</td>
+<td>is the file in <code>state_machines/</code>? or is it listed in <code>on_reload</code>?</td>
+</tr>
+<tr>
+<td>the clip does not take effect</td>
+<td><strong>almost always it is not listed in <code>on_reload</code></strong> — clips have no glob (section 6.2)</td>
+</tr>
+<tr>
+<td>the state machine runs but the animation is frozen</td>
+<td>look for the <code>unresolved clip references after reload</code> WARN (section 6.3)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-production-scale-reference-how-kuayue-organizes-carriages">9. Production-scale reference: how KuaYue organizes carriages<a class="headerlink" href="#9-production-scale-reference-how-kuayue-organizes-carriages" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>This section only observes the KuaYue repository's <code>modules/train-parts/resources/carriages/</code> read-only; nothing is modified.</p>
+</blockquote>
+<p>KuaYue's 11 carriages (<code>22</code>/<code>25</code>/<code>25b</code>/<code>25g</code>/<code>25k</code>/<code>25t</code>/<code>25z</code>/<code>cr200j</code>/<code>freight</code>/<code>jy30</code>/<code>m1</code>) show what "split by feature, each feature carrying its own manifest fragment" looks like in a real project. Each carriage is an <strong>independent resource-compilation module</strong>, and its source directory top level holds <code>blockstates/</code>, <code>data/</code>, <code>lang/</code>, <code>loots/</code>, <code>models/</code>, <code>recipes/</code>, <code>tags/</code>, <code>textures/</code> and <code>module.toml</code> — <strong>there is no <code>assets/</code></strong>; only after resource compilation does it merge into the <code>assets/</code>/<code>data/</code> layout in the output. Model assets, localization, loot tables, and data-driven content are delivered together inside the same carriage directory.</p>
+<p>For the data-driven part there are three files per carriage (exception: <code>jy30</code> has <code>module.toml</code> but no data-driven content at all, so it does not take part in data-driven):</p>
+<div class="highlight"><pre><span></span><code>carriages/22/
+├── module.toml                                              # module root marker
+└── data/kuayue/
+    ├── kasuga_lib/data_driven/c22.json                      # index manifest (one per carriage)
+    └── carriages/c22/
+        ├── groups.json                                      # this carriage's groups
+        └── blocks.json                                      # this carriage's blocks
+</code></pre></div>
+<p>The manifest content is "groups first, blocks after":</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"on_register"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"carriages/c22/groups.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"carriages/c22/blocks.json"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The group (<code>c22</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"registry_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:c22_panels"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"no_occlusion"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"strength"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"map_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"item_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"tab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:train_panel_tab"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The blocks (<code>c22</code>, excerpt):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:22_floor"</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slab"</span><span class="p">,</span><span class="w"> </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:c22_panels"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:22_large_window"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"train_openable_window"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"wide"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"registry_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kuayue:c22_panels"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>How it is split, and why</strong>:</p>
+<ul>
+<li><strong>The splitting unit is one carriage</strong>, because a carriage can be delivered and verified on its own, and the whole carriage's assets (models, language, block definitions) travel together anyway.</li>
+<li><strong>One manifest per carriage</strong> (<code>c22.json</code>, <code>c25.json</code>, …; the filenames all differ). At compile time they merge into the same jar directory, and the framework aggregates them as several manifests of the same mod. This answers exactly the question in section 1.2: <strong>"several manifests per mod" in production is split by delivery unit</strong>.</li>
+<li><strong>Inside a carriage, split further into two files by type</strong> (<code>groups.json</code> + <code>blocks.json</code>) rather than stuffing groups and blocks into one — that keeps the readability of "split by type" while <strong>putting groups before blocks</strong>, matching the framework's "groups are applied first" phase order.</li>
+<li><strong>A block's <code>type</code> is a factory KuaYue registers itself</strong> (<code>slab</code>, <code>train_panel</code>, <code>train_openable_window</code>, and so on), not one of the library's built-in test factories — this is exactly the extension point described in <a href="../guide-extension/">guide-extension.md</a> used in production.</li>
+</ul>
+<p><strong>A lesson unrelated to data-driven content, but one that makes content "vanish into thin air"</strong>: the two carriage directories <code>cr200j</code> and <code>freight</code> <strong>have no <code>module.toml</code></strong>.
+The resource compiler only walks directories that <strong>contain <code>module.toml</code></strong> (<code>ResourceCompilerMain.java:24-39</code>; <code>ResourceScanner.scanModule</code>, <code>:43-58</code>),
+so the content in these two directories (index and data-driven files included) <strong>never makes it into the jar</strong>, and the blocks in them are never registered.
+Transferring this to your own project: even with the manifest written correctly, confirm that the directory carrying it is really picked up by your resource compilation/packaging pipeline.</p>
+<hr />
+<h2 id="10-further-reading">10. Further reading<a class="headerlink" href="#10-further-reading" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you want</th>
+<th>Where to go</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the complete list of fields, types, requiredness, defaults, and D1–D6 rules</td>
+<td><a href="../../../reference/data-driven/schema/">schema.md</a></td>
+</tr>
+<tr>
+<td>complete signatures of Java classes and methods, load timing, and the pure-function test surface</td>
+<td><a href="../../../reference/data-driven/">the data-driven API reference</a></td>
+</tr>
+<tr>
+<td>getting the first path working from scratch</td>
+<td><a href="../intro/">intro.md</a></td>
+</tr>
+<tr>
+<td>registering your own <code>type</code> factory, property compiler, and TypeHandler</td>
+<td><a href="../guide-extension/">guide-extension.md</a></td>
+</tr>
+<tr>
+<td>a dedicated explanation of the FSM state machine</td>
+<td><a href="../../../reference/fsm/"><code>../../reference/fsm.md</code></a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
