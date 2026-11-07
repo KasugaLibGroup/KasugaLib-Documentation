@@ -1,0 +1,3490 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/effects-and-postfx/">
+      
+      
+        <link rel="prev" href="../effect-rendering/">
+      
+      
+        <link rel="next" href="../extensions/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/reference/effects-and-postfx/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>托管效果与后处理 - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#托管效果与后处理" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              托管效果与后处理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/reference/effects-and-postfx/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#可变换粒子实例与整组控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可变换粒子实例与整组控制
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#托管效果" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        托管效果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后处理-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后处理 pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后处理图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后处理图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开箱即用的-postfx-预设" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开箱即用的 PostFX 预设
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#诊断与参数界面" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        诊断与参数界面
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#可变换粒子实例与整组控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可变换粒子实例与整组控制
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#托管效果" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        托管效果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后处理-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后处理 pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后处理图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后处理图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开箱即用的-postfx-预设" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开箱即用的 PostFX 预设
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#诊断与参数界面" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        诊断与参数界面
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="托管效果与后处理">托管效果与后处理<a class="headerlink" href="#托管效果与后处理" title="Permanent link">&para;</a></h1>
+<h2 id="可变换粒子实例与整组控制">可变换粒子实例与整组控制<a class="headerlink" href="#可变换粒子实例与整组控制" title="Permanent link">&para;</a></h2>
+<p>粒子与托管效果使用不同的生命周期模型：</p>
+<ul>
+<li>
+<p><code>ParticleInstance</code> 是被动的、可变换的渲染实例。一个粒子实例包含完整的 <code>Transform</code>、速度、颜色以及通用的每实例属性。<code>ParticleInstance</code> 不要求实现 <code>tick()</code>。</p>
+</li>
+<li>
+<p><code>ParticleSource</code> 是持续发射的粒子源。应用代码可以放置并移动该源。发射速率以每 tick 粒子数计，支持小数累积。源设置控制粒子工厂、初速度、重力、颜色、初始大小、初始旋转和生命周期。修改源设置只影响新生成的粒子。</p>
+</li>
+<li>
+<p><code>ParticleState</code> 向 <code>ParticleOperator</code> 提供一份状态值。该状态包含空间 <code>Transform</code>、速度、颜色、属性和生命周期进度。<code>Transform</code> 包含位置、大小和旋转，速度是独立的物理量。<code>ParticleOperator</code> 接收当前状态并返回下一个状态。</p>
+</li>
+<li>
+<p>外部物理系统可以通过 <code>transform(...)</code> 替换或原子地改动整个实例变换。</p>
+</li>
+<li>
+<p><code>ParticleGroup</code> 拥有自己的实例，并提供两种更新方法。两种方法都分两个阶段执行：通用方法先为整组建立稳定快照，再提交所有改动；打包 buffer 方法把当前状态与下一个状态存进 direct buffer。</p>
+</li>
+<li>
+<p><code>ParticleGroupBehavior</code> 在一次调用里更新整组。烟雾流场、雨、雪、爆炸和相对摄像机的天气体适合用这个行为。</p>
+</li>
+<li>
+<p><code>ParticleBufferGroupBehavior</code> 在可复用的 <code>ParticleInstanceBuffer</code> 里更新整组。本地序（native-order）的 direct <code>ByteBuffer</code> 存放 ID、矩阵、速度、颜色、属性和标志位。容量稳定之后，tick 与渲染操作不再创建每实例的快照或更新对象。</p>
+</li>
+<li>
+<p><code>ParticleBehavior</code> 是可选的单实例行为，它读取更新前的整组快照。需要邻居数据的鱼群、鸟群和虫群适合用这个行为。</p>
+</li>
+<li>
+<p><code>ParticleGroupSnapshot.near(position, radius)</code> 在首次查询时构建空间网格。同半径的查询在一次更新内复用该网格，因此 Boids 不必为每个实例扫描整组。</p>
+</li>
+<li>
+<p>若整组控制器与实例行为都要更新同一个实例，以实例行为的结果为准。返回 <code>null</code> 表示不更新该实例。</p>
+</li>
+<li>
+<p><code>ParticleBatchRenderer</code> 每次调用都接收一个可复用的 <code>ParticleInstanceBuffer</code>。矩阵、位置、速度与颜色的 getter 可以写入目标参数，以避免分配临时对象。回调式 renderer 可以把实例展开进 Minecraft 顶点缓冲。<code>ParticleInstancedBatchRenderer</code> 以硬件实例化提交实例。</p>
+</li>
+<li>
+<p>客户端切换或卸载世界时，Kasuga 清空粒子组与已放置的粒子源。若某实例既没有控制器也没有行为，运行时不会移动该实例。</p>
+</li>
+</ul>
+<p>下面的例子注册一条批处理管线：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ParticleRenderPipeline</span><span class="w"> </span><span class="n">smoke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">particles</span><span class="p">(</span>
+<span class="w">        </span><span class="n">RenderPipelineDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">id</span><span class="p">(</span><span class="s">"smoke"</span><span class="p">),</span><span class="w"> </span><span class="n">RenderPhase</span><span class="p">.</span><span class="na">AFTER_PARTICLES</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="n">draw</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">draw</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">vertexFormat</span><span class="p">(</span><span class="n">DefaultVertexFormat</span><span class="p">.</span><span class="na">POSITION_COLOR</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">primitiveMode</span><span class="p">(</span><span class="n">VertexFormat</span><span class="p">.</span><span class="na">Mode</span><span class="p">.</span><span class="na">QUADS</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">blend</span><span class="p">(</span><span class="n">PipelineBlendMode</span><span class="p">.</span><span class="na">TRANSLUCENT</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">(),</span>
+<span class="w">        </span><span class="p">(</span><span class="n">instances</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">renderSmokeBatch</span><span class="p">(</span><span class="n">instances</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">GasSmokePreset</span><span class="w"> </span><span class="n">preset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GasSmokePreset</span><span class="p">(</span><span class="n">GasSmokePreset</span><span class="p">.</span><span class="na">Settings</span><span class="p">.</span><span class="na">defaults</span><span class="p">());</span>
+<span class="n">smoke</span><span class="p">.</span><span class="na">bufferController</span><span class="p">(</span><span class="n">preset</span><span class="p">.</span><span class="na">bufferController</span><span class="p">());</span>
+<span class="n">preset</span><span class="p">.</span><span class="na">inject</span><span class="p">(</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5f</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">smoke</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">preset</span><span class="p">.</span><span class="na">createTracer</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">));</span>
+</code></pre></div>
+<p>下面的例子在可放置的方块烟雾源里组合物理算子和外观算子：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ParticleOperator</span><span class="w"> </span><span class="n">cubeSmoke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParticleOperators</span>
+<span class="w">        </span><span class="c1">// 施加浮力、阻力和速度积分。</span>
+<span class="w">        </span><span class="p">.</span><span class="na">physics</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0035f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mf">0.985f</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// 在同一个状态函数里控制大小、旋转与不透明度。</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="mf">1.012f</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">rotate</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.006f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.018f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.004f</span><span class="p">)))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">ParticleOperators</span><span class="p">.</span><span class="na">fade</span><span class="p">(</span><span class="mf">0.975f</span><span class="p">));</span>
+
+<span class="n">ParticleSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">smoke</span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="n">ParticleSource</span><span class="p">.</span><span class="na">Settings</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">position</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">emissionRate</span><span class="p">(</span><span class="mf">0.75f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">particleType</span><span class="p">(</span><span class="n">spawn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ParticleInstance</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">transform</span><span class="p">())</span>
+<span class="w">                </span><span class="c1">// renderer 可以用这个属性选择立方体、sprite 或自定义 mesh。</span>
+<span class="w">                </span><span class="p">.</span><span class="na">velocity</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">velocity</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">color</span><span class="p">(</span><span class="n">spawn</span><span class="p">.</span><span class="na">color</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">attributes</span><span class="p">(</span><span class="n">CUBE_PARTICLE_TYPE</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">initialVelocity</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.035f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">affectedByGravity</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="mf">0.35f</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">rotation</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">color</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector4f</span><span class="p">(</span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.48f</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">lifetimeTicks</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">operator</span><span class="p">(</span><span class="n">cubeSmoke</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+
+<span class="c1">// 该源可以跟随方块、实体或脚本锚点。</span>
+<span class="n">source</span><span class="p">.</span><span class="na">position</span><span class="p">(</span><span class="n">nextPosition</span><span class="p">);</span>
+</code></pre></div>
+<p><code>ParticleOperators.transform(...)</code> 接受 <code>UnaryOperator&lt;Transform&gt;</code>：算子接收当前变换并返回下一个变换。受重力影响的粒子使用默认的 <code>integrate()</code> 和 <code>.affectedByGravity(true)</code>。源的 <code>particleType</code> 是实例工厂。相关 <code>ParticleRenderPipeline</code> 的 renderer 决定画立方体、billboard 还是 mesh。</p>
+<p>默认粒子类型直接使用源设置。自定义工厂可以用 <code>spawn.sequence()</code> 获得稳定的随机值，并在构造期间修改位置、速度、大小或颜色。</p>
+<p>硬件实例化使用与后端无关的 mesh 与绘制契约：</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderShaderHandle</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">shader</span><span class="p">(</span><span class="n">RenderShaderDescriptor</span><span class="p">.</span><span class="na">generated</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ParticleInstanceShaderPrograms</span><span class="p">.</span><span class="na">colored</span><span class="p">(</span><span class="s">"example:liquid_instances"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">DefaultVertexFormat</span><span class="p">.</span><span class="na">POSITION</span>
+<span class="p">)).</span><span class="na">handle</span><span class="p">();</span>
+
+<span class="n">ParticleInstanceMesh</span><span class="w"> </span><span class="n">mesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParticleInstanceMesh</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ParticleInstanceMesh</span><span class="p">.</span><span class="na">Topology</span><span class="p">.</span><span class="na">TRIANGLES</span><span class="p">,</span>
+<span class="w">        </span><span class="n">trianglePositions</span>
+<span class="p">);</span>
+<span class="n">ParticleBatchRenderer</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParticleInstancedBatchRenderer</span><span class="p">(</span>
+<span class="w">        </span><span class="n">mesh</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">OpenGlParticleInstanceBackend</span><span class="p">(</span><span class="n">shader</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>ParticleInstanceMesh</code>、<code>ParticleInstanceBuffer</code>、<code>ParticleInstanceShaderPrograms</code> 和 <code>ParticleInstanceRenderBackend</code> 中不含 VAO、VBO 或 LWJGL 类型。</p>
+</li>
+<li>
+<p>alpha 混合的 renderer 可以复用 <code>ParticleDepthSorter</code>。排序器由远及近提交实例，开启深度测试并关闭深度写入。需要逐粒子面排序时，quad 管线可以用 <code>sortOnUpload(true)</code>；<code>pipeline.sortBackToFront(true)</code> 在渲染前重排打包好的实例 buffer。因此回调式 renderer 与硬件实例化 renderer 使用同一套半透明排序。</p>
+</li>
+<li>
+<p>当前 <code>OpenGlParticleInstanceBackend</code> 拥有全部 OpenGL 资源、属性和 <code>glDrawArraysInstanced</code> 调用。基础 mesh 用一个静态 VBO，打包实例 buffer 用一个 stream VBO；stream VBO 按需扩容并每帧更新。一个实例组对应一次 draw 提交。</p>
+</li>
+<li>
+<p>Kasuga Shader IR 描述实例的矩阵与颜色语义。粒子 API 里不含 GLSL。Vulkan 后端可以复用 mesh、打包布局、模拟和 Shader IR，只需替换 <code>ParticleInstanceRenderBackend</code> 实现及其 shader 编译器。</p>
+</li>
+<li>
+<p>当前标准布局每个实例占 144 字节，向 GPU 暴露 <code>mat4</code> 的四列和颜色。速度和属性留在打包 buffer 中供模拟使用，标准 shader 不读取速度和属性。</p>
+</li>
+<li>
+<p>目前不提供半透明实例的 GPU 深度排序。需要精确半透明顺序的效果，请用加法混合、加权 OIT，或在实例上传前先做排序。</p>
+</li>
+</ul>
+<p>内置行为预设：</p>
+<table>
+<thead>
+<tr>
+<th>预设</th>
+<th>更新方式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SmokePlumePreset</code></td>
+<td>整组控制器</td>
+<td>解析式上升、扰动、扩张、淡出与回收</td>
+</tr>
+<tr>
+<td><code>GasSmokePreset</code></td>
+<td>打包 buffer 控制器</td>
+<td>密度与速度体、浮力、扩散、压力投影与示踪粒子平流</td>
+</tr>
+<tr>
+<td><code>LiquidFlowPreset</code></td>
+<td>打包 buffer 控制器</td>
+<td>低粘度不可压缩速度场、重力、压力投影与示踪粒子平流</td>
+</tr>
+<tr>
+<td><code>RainFieldPreset</code></td>
+<td>整组控制器</td>
+<td>风驱动下落、相对摄像机或相对世界的体、超范围复用</td>
+</tr>
+<tr>
+<td><code>BoidsPreset</code></td>
+<td>可选实例行为</td>
+<td>分离、对齐、聚集与组边界</td>
+</tr>
+</tbody>
+</table>
+<p><code>GasSmokePreset</code> 与 <code>LiquidFlowPreset</code> 共用 <code>StableFluidGrid3D</code>。半拉格朗日平流、高斯-赛德尔扩散与压力投影使用预分配的 direct <code>FloatBuffer</code>。该实现是面向实时效果的 Stable Fluids 近似，主要计算复杂度为 <code>O(gridSize^3 * iterations)</code>。气体使用默认的封闭求解边界。液体使用开放边界：示踪粒子离开有限求解网格后保留其世界空间动量与重力，不会被裁剪到模拟体内。<code>FluidTracerCollision3D</code> 在该网格之外的世界坐标中仍然有效。Minecraft 方块适配器用已加载区块中的扫掠碰撞形状查询实现该接口，因此不受限的示踪粒子会继续与方块碰撞、滑动，且不强制加载区块。</p>
+<p>要提高模拟细节：</p>
+<ol>
+<li>增加示踪粒子数量。</li>
+<li>仍不够时，提高网格分辨率。</li>
+</ol>
+<p><code>FluidEnvironment3D</code> 组合流体环境约束。每个模拟步都在压力求解器启动之前施加这些约束：</p>
+<div class="highlight"><pre><span></span><code><span class="n">liquid</span><span class="p">.</span><span class="na">environment</span><span class="p">(</span><span class="n">FluidEnvironment3D</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">solidBox</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span><span class="w"> </span><span class="n">maximum</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">solidSphere</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">directionalForce</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">acceleration</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">source</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">densityPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">velocity</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">FluidConstraints3D</span><span class="p">.</span><span class="na">drain</span><span class="p">(</span><span class="n">regionMin</span><span class="p">,</span><span class="w"> </span><span class="n">regionMax</span><span class="p">,</span><span class="w"> </span><span class="n">densityRetention</span><span class="p">,</span><span class="w"> </span><span class="n">acceleration</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+</code></pre></div>
+<p>应用代码可以实现 <code>FluidConstraint3D</code> 来定义自定义动态约束。约束上下文提供归一化的网格单元坐标、密度、速度与固体掩码。应用代码可以从方块碰撞形状、管道网络或移动力场生成约束。求解器与预设都不依赖 Minecraft 世界。</p>
+<p>下面的例子通过独立适配器接入 Minecraft 方块碰撞：</p>
+<div class="highlight"><pre><span></span><code><span class="n">MinecraftBlockFluidConstraint</span><span class="w"> </span><span class="n">blocks</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MinecraftBlockFluidConstraint</span><span class="p">(</span><span class="n">liquidHalfExtents</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="n">blocks</span><span class="p">.</span><span class="na">level</span><span class="p">(</span><span class="n">clientLevel</span><span class="p">);</span>
+<span class="n">blocks</span><span class="p">.</span><span class="na">center</span><span class="p">(</span><span class="n">simulationCenter</span><span class="p">);</span>
+
+<span class="n">liquid</span><span class="p">.</span><span class="na">environment</span><span class="p">(</span><span class="n">FluidEnvironment3D</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">blocks</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">otherConstraints</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">());</span>
+</code></pre></div>
+<ul>
+<li>
+<p>适配器扫描模拟体范围内已加载区块中真实的方块 <code>VoxelShape</code>。它把楼梯、台阶、栅栏等碰撞盒栅格化为固体单元，不会把所有非空气方块都当作完整立方体。</p>
+</li>
+<li>
+<p>碰撞盒与流体单元中心对齐。这样对齐可以避免墙面向外扩张半个单元。较薄的碰撞盒映射到最接近碰撞盒中心的单元，因此栅栏这类薄物体仍会留在固体掩码里。</p>
+</li>
+<li>
+<p>求解器清空固体单元中的密度与速度。在相邻的流体单元中，求解器把指向固体单元的速度夹取掉，压力投影与平流随后绕开方块。若粗网格的一步把液体示踪粒子移进固体单元，该示踪粒子回到上一位置。</p>
+</li>
+<li>
+<p>扫描结果按配置的游戏 tick 间隔留在缓存中。体积移动、level 变化或调用 <code>invalidate()</code> 之后，适配器重建结果。适配器跳过未加载的区块。流体模拟不强制加载区块。</p>
+</li>
+<li>
+<p>碰撞只从方块作用于流体。模拟出的水不会推动活塞或实体，不会弄湿方块，也不改变原版的含水状态。模拟不会放置或移除 Minecraft 流体方块。</p>
+</li>
+</ul>
+<p>在这套 API 里，液体指的是一块不可压缩的速度与密度体。固体掩码是近似的无滑移障碍物。该模型不包含自由表面、表面张力、液滴合并，也不包含守恒的 FLIP 或 PIC 粒子，同样不包含流体与刚体之间的双向作用。该模型支持水流、魔法液体、管道流动这类视觉效果，但不是完整的水体求解器。</p>
+<p>以下命令在开发客户端里控制粒子预设：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/kasuga_particle_preset smoke</code></td>
+<td>启动烟雾预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset cube_smoke</code></td>
+<td>启动方块烟雾预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset liquid</code></td>
+<td>启动液体预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset rain</code></td>
+<td>启动降雨预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset boids</code></td>
+<td>启动 Boids 预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset all</code></td>
+<td>启动所有预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset clear</code></td>
+<td>停止并清空所有预设。</td>
+</tr>
+<tr>
+<td><code>/kasuga_particle_preset status</code></td>
+<td>显示每个组的实例数量。</td>
+</tr>
+</tbody>
+</table>
+<p>普通烟雾在每个实例化立方体内部对湍流三维密度场做光线步进，并沿视线积分不透明度。立方体只是体的边界；片元 shader 丢弃空采样，因此看不到 billboard 或实心立方体表面。方块烟雾开启背面剔除，还为每个粒子的位置、速度和颜色加入稳定扰动。这些设置避免半透明的正面与背面被重复混合。</p>
+<h2 id="托管效果">托管效果<a class="headerlink" href="#托管效果" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>EffectRenderPipeline</code> 负责效果实例的 tick、生命周期检查、视锥剔除、可选的由远及近排序，以及 renderer 调用。</p>
+</li>
+<li>
+<p>客户端未暂停且存在世界时，Kasuga 在每个客户端 tick 更新一次每个活跃效果。</p>
+</li>
+<li>
+<p>效果 tick 之前或之后，Kasuga 会移除已不存活的效果。若 tick 抛出运行时异常，Kasuga 只移除相关实例，并记录该异常。</p>
+</li>
+<li>
+<p>绘制遍历用插值包围体做视锥剔除。开启排序时，Kasuga 按插值位置到相机的距离由远及近排序。一帧之内，每个可见效果只计算一次该距离。效果可以覆写 <code>distanceToSqr(partialTick, observer)</code>，以避免分配临时位置对象。</p>
+</li>
+<li>
+<p>只有至少一个实例可见时，renderer 才调用 <code>begin</code> 与 <code>end</code>。一帧之内，每条管线各自调用这两个方法一次。</p>
+</li>
+<li>
+<p>若某个实例在渲染时抛异常，Kasuga 记录该异常并继续处理其他实例。Kasuga 不会自动移除失败的实例。</p>
+</li>
+<li>
+<p><code>spawn()</code>、<code>clear()</code> 和 <code>EffectHandle.remove()</code> 允许来自不同线程的调用。Kasuga 在下一个客户端 tick 或绘制遍历时应用列表改动。</p>
+</li>
+<li>
+<p>只有第一次成功移除时，<code>EffectHandle.remove()</code> 才返回 <code>true</code>。</p>
+</li>
+<li>
+<p>客户端切换或卸载世界时，Kasuga 清空所有效果管线中的全部实例，同时清空后处理目标池。客户端暂停时 Kasuga 不 tick 效果。</p>
+</li>
+<li>
+<p>效果管线关闭后拒绝新实例。已关闭的管线不参与 tick 与绘制。</p>
+</li>
+</ul>
+<p>同一类效果的实例共享 renderer 与管线状态，每个实例由独立的句柄控制。下面的例子生成并移除一个效果：</p>
+<div class="highlight"><pre><span></span><code><span class="n">RenderPipelineDescriptor</span><span class="w"> </span><span class="n">sparkDescriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RenderPipelineDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"sparks"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">RenderPhase</span><span class="p">.</span><span class="na">AFTER_PARTICLES</span>
+<span class="p">).</span><span class="na">priority</span><span class="p">(</span><span class="mi">110</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+
+<span class="n">EffectRenderPipeline</span><span class="o">&lt;</span><span class="n">SparkEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sparks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">effects</span><span class="p">(</span>
+<span class="w">        </span><span class="n">sparkDescriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">SparkEffectRenderer</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="n">EffectHandle</span><span class="o">&lt;</span><span class="n">SparkEffect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spark</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sparks</span><span class="p">.</span><span class="na">spawn</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SparkEffect</span><span class="p">(</span><span class="n">position</span><span class="p">));</span>
+<span class="n">spark</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="后处理-pass">后处理 pass<a class="headerlink" href="#后处理-pass" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>后处理 pass 必须使用语义阶段 <code>RenderPhase.POST_PROCESS</code>。其他执行阶段都会被注册拒绝。</p>
+</li>
+<li>
+<p>pass 始终运行在渲染线程上。pass 结束或抛异常之后，Kasuga 重新绑定主渲染目标。</p>
+</li>
+<li>
+<p>目标描述支持相对屏幕的尺寸或固定尺寸，也支持可选的深度附件、nearest 或 linear 过滤以及清屏颜色。解析出的宽高最小为 1 像素。</p>
+</li>
+<li>
+<p>目标池复用物理 ID 相同的目标。描述或解析尺寸变化时销毁旧目标，再由目标池创建新目标。</p>
+</li>
+<li>
+<p>颜色拷贝的源与目标为同一个目标时失败。深度拷贝在任一目标没有深度附件时失败。</p>
+</li>
+<li>
+<p>fullscreen 绘制只接受 <code>BLIT_SCREEN</code> shader。绘制过程会保存并恢复 GL 状态。</p>
+</li>
+<li>
+<p>fullscreen 绘制拒绝从当前输出目标采样颜色或深度，这条限制用于避免 framebuffer feedback。调用方必须自行保证直接绑定的外部纹理 ID 不会造成 feedback。</p>
+</li>
+</ul>
+<h2 id="后处理图">后处理图<a class="headerlink" href="#后处理图" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>图的 ID 必须与对应管线描述的 ID 一致。</p>
+</li>
+<li>
+<p>图构造期会拒绝重复目标、重复 pass 和未声明的目标。Kasuga 拒绝没有生产者却读取托管目标，也拒绝多个写者对同一托管目标，还拒绝缺失的显式依赖和依赖环。</p>
+</li>
+<li>
+<p>每个 pass 至少要声明一个输出。一个 pass 不能同时读写同一个目标。</p>
+</li>
+<li>
+<p>主目标是外部目标，允许多个 pass 写入。其余目标都是由图托管的托管目标。</p>
+</li>
+<li>
+<p>pass 顺序先满足显式的 <code>after</code> 依赖，再满足读写关系带来的依赖。在所有可执行的 pass 中，优先级数值较小的先运行。优先级数值相同时，Kasuga 按 pass ID 排序。</p>
+</li>
+<li>
+<p><code>prepare</code> 在托管目标分配与 pass 执行之前运行。若 <code>prepare</code> 返回 <code>false</code>，Kasuga 在该帧不分配目标也不运行 pass。</p>
+</li>
+<li>
+<p>每次图执行都会新建一个 <code>PostProcessGraphFrame</code>。本次 <code>prepare</code> 调用与后续 pass 共享该帧数据。读取按声明的类型进行，数据缺失或类型不同时读取抛异常。</p>
+</li>
+<li>
+<p>pass context 只能读写该 pass 声明的目标。访问未声明的目标会在运行时失败。</p>
+</li>
+<li>
+<p>Kasuga 把每个逻辑图目标转换成包含图 ID 的物理 ID，因此不同图里相同的逻辑名不会冲突。物理 ID 与替换后的目标描述在图构造期算出，图执行时复用这些值。</p>
+</li>
+<li>
+<p>托管目标按每条图注册计引用数。最后一条图注册关闭时，Kasuga 在渲染线程释放该目标。</p>
+</li>
+<li>
+<p><code>prepare</code> 抛异常时，Kasuga 补上图 ID 再抛出。pass 抛异常时补上 pass ID。world pipeline 分派器记录该异常，后续管线继续运行。</p>
+</li>
+<li>
+<p><code>raw()</code> 绕过图的资源访问限制。调用 <code>raw()</code> 之后，资源声明与 feedback 安全由调用方负责。</p>
+</li>
+</ul>
+<p>下面这张图先把主画面保存下来，再用一个 fullscreen shader 把画面合成回主目标：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">graphId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"screen_tint"</span><span class="p">);</span>
+<span class="n">PostProcessGraphTarget</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">managed</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"scene"</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">PostProcessGraph</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProcessGraph</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">graphId</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">target</span><span class="p">(</span><span class="n">PostProcessTargetDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="na">id</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">screenScale</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">PostProcessTargetDescriptor</span><span class="p">.</span><span class="na">TextureFilter</span><span class="p">.</span><span class="na">LINEAR</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">pass</span><span class="p">(</span><span class="n">PostProcessGraphPassDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"capture"</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">copyColor</span><span class="p">(</span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">main</span><span class="p">(),</span><span class="w"> </span><span class="n">scene</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">readsMain</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">writes</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">pass</span><span class="p">(</span><span class="n">PostProcessGraphPassDescriptor</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span><span class="w"> </span><span class="s">"composite"</span><span class="p">),</span>
+<span class="w">                        </span><span class="n">context</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">fullscreen</span><span class="p">(</span><span class="n">PostProcessGraphTarget</span><span class="p">.</span><span class="na">main</span><span class="p">(),</span><span class="w"> </span><span class="n">shader</span><span class="p">.</span><span class="na">handle</span><span class="p">())</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">colorSampler</span><span class="p">(</span><span class="s">"SceneSampler"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">scene</span><span class="p">))</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">reads</span><span class="p">(</span><span class="n">scene</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">writesMain</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="n">PostProcessGraphRegistration</span><span class="w"> </span><span class="n">graphRegistration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipelines</span><span class="p">.</span><span class="na">graph</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="开箱即用的-postfx-预设">开箱即用的 PostFX 预设<a class="headerlink" href="#开箱即用的-postfx-预设" title="Permanent link">&para;</a></h2>
+<p><code>PostFxPresetDemo</code> 只用一条生成的 shader 注册，且该注册跨重载保持有效。参数块选择不同的调色设置，切换预设不会重新注册或重新编译 shader。</p>
+<table>
+<thead>
+<tr>
+<th>预设</th>
+<th>开发客户端命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电影感调色</td>
+<td><code>/kasuga_postfx cinematic</code></td>
+</tr>
+<tr>
+<td>高对比黑白</td>
+<td><code>/kasuga_postfx noir</code></td>
+</tr>
+<tr>
+<td>高饱和鲜艳色彩</td>
+<td><code>/kasuga_postfx vivid</code></td>
+</tr>
+<tr>
+<td>关闭</td>
+<td><code>/kasuga_postfx off</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>/kasuga_effects</code> 显示图、shader 状态与可调参数。</p>
+<h2 id="诊断与参数界面">诊断与参数界面<a class="headerlink" href="#诊断与参数界面" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>/kasuga_effects</code> 打开客户端诊断与参数界面。该界面不会暂停游戏。</p>
+</li>
+<li>
+<p>Effects 页显示所有者、管线 ID、效果类型、活跃数量、可见数量与最近一次渲染耗时。</p>
+</li>
+<li>
+<p>Shaders 页显示所有者、来源、状态、策略、优先级、加载来源、generation、队列等待、准备耗时、编译耗时、缓存结果、暴露参数数量与失败信息。</p>
+</li>
+<li>
+<p>shader 摘要显示准备执行器请求的与实际的工作线程数，显示可用 CPU 数，还显示渲染线程上预加载调度器的队列状态。</p>
+</li>
+<li>
+<p><code>Parameters</code> 打开通用 schema 参数编辑器。该编辑器对内置效果和黑洞示例都没有特殊逻辑。</p>
+</li>
+<li>
+<p>Pipelines 页显示所有者、执行阶段、优先级、绘制模式、缓冲大小，以及缓存的 <code>RenderType</code> 变体数量。</p>
+</li>
+</ul>
+<blockquote>
+<p>本主题的其他页面：<a href="../effect-rendering/">自定义渲染规范</a> 与 <a href="../shader-dsl/">Java Shader DSL 参考</a>。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
