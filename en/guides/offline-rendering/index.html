@@ -1,0 +1,3465 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/guides/offline-rendering/">
+      
+      
+        <link rel="prev" href="../data-driven/guide-extension/">
+      
+      
+        <link rel="next" href="../verification/">
+      
+      
+        
+          <link rel="alternate" href="../../../guides/offline-rendering/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Offscreen Output and Multi-Camera Rendering - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#offscreen-output-and-multi-camera-rendering" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Offscreen Output and Multi-Camera Rendering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../guides/offline-rendering/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dual-camera-debug-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual-Camera DEBUG Startup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headless-mc-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Headless MC Launcher
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jfr-testing-and-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JFR Testing and Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#player-motion-synchronization-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Player Motion Synchronization Fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-code-re-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Code Re-Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-of-multi-window-and-headless-startup-and-additional-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification of Multi-Window and Headless Startup, and Additional Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dual-camera-debug-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual-Camera DEBUG Startup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headless-mc-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Headless MC Launcher
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jfr-testing-and-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JFR Testing and Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#player-motion-synchronization-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Player Motion Synchronization Fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-code-re-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Code Re-Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-of-multi-window-and-headless-startup-and-additional-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification of Multi-Window and Headless Startup, and Additional Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="offscreen-output-and-multi-camera-rendering">Offscreen Output and Multi-Camera Rendering<a class="headerlink" href="#offscreen-output-and-multi-camera-rendering" title="Permanent link">&para;</a></h1>
+<p>This page maintains the interface, startup and operation reference; for isolation, data flow and synchronization principles see <a href="../../explanation/offline-rendering-and-multi-cam/">the explanation page</a>.
+The Player, Free and Fixed categories and their creation entry points are in <a href="../../reference/cameras/">the camera API</a>. The configuration of the standalone-world camera views below applies to Free/Fixed;
+Player shares the vanilla final main frame and the player's current configuration.
+The performance and client acceptance sections below keep the historical records from that time; they do not mean this documentation migration re-ran the corresponding tests.</p>
+<p>This page corresponds to Minecraft 1.21.1 / NeoForge 21.1.203; the compatibility path actually verified Sodium
+0.6.13 and Iris 1.8.12. All camera views render in order inside one client process and the main OpenGL context;
+multi-window uses auxiliary contexts with a shared texture to display finished frames. Camera views each own world caches, a terrain renderer, camera, projection, color/depth targets
+and an Iris pipeline, while the main view still takes the vanilla rendering path.</p>
+<p>Offscreen output delivers a GPU FBO and the game tick keeps running. The headless startup entry points support a hidden desktop
+context and an EGL pbuffer context on Linux without X11/Wayland. A full
+Minecraft client and an OpenGL driver are still required; there is currently no fixed-timestep offline video exporter and no built-in
+video encoder, so a caller can send frames to its own compositing, encoding and transport modules.</p>
+<h2 id="dual-camera-debug-startup">Dual-Camera DEBUG Startup<a class="headerlink" href="#dual-camera-debug-startup" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span>-PkasugaDebugDualCamera<span class="o">=</span><span class="nb">true</span>
+
+<span class="c1"># Optional: enter an existing singleplayer world; omit it to enter normally from the menu.</span>
+./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaDebugDualCamera<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/test-client
+</code></pre></div>
+<p>The equivalent JVM switch is <code>-Dkasuga.debugDualCamera=true</code>. It is off by default and creates no DEBUG
+camera view or preview target. On entering a world it creates <code>debug:first-person</code> and <code>debug:third-person</code>,
+with first person on the left and third person on the right, and the window title states the left-right order. The two have separate
+sessions, FOV follows the user setting, size follows the window, render distance 8 chunks, Fancy, shader pack off.
+Third person sits 4 blocks back along the view direction and checks for wall occlusion; first person hides the player's own entity.</p>
+<p>The DEBUG preview is the world image and contains no first-person hand or HUD. Opening a menu/inventory pauses the side-by-side
+compositing and displays the original screen normally. Leaving the world releases the camera views and they are rebuilt automatically the next time you enter. The main view still
+runs, and DEBUG compositing happens before the final screen output; while it is active, subscribing to the main view also captures the side-by-side image.</p>
+<p>The automated check is for an isolated world copy only:</p>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaDebugDualCamera<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaDebugDualCameraCaptureFrames<span class="o">=</span><span class="m">180</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/test-client
+</code></pre></div>
+<p>After previewing 180 frames it writes <code>debug/dual-camera.png</code>, prints <code>DUAL_CAMERA_DEBUG_PASS</code>
+and closes the client. The plain DEBUG switch keeps running and does not exit automatically.</p>
+<h2 id="multi-window">Multi-Window<a class="headerlink" href="#multi-window" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span>-PkasugaDebugMultiWindow<span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<p>After entering a world, first and third person each get their own window and the MC main window keeps displaying. It works with
+<code>kasugaQuickPlayWorld</code> / <code>kasugaClientDirectory</code>; for testing,
+<code>-PkasugaDebugDualCameraCaptureFrames=120</code> prints <code>MULTI_WINDOW_DEBUG_PASS</code> and exits after both paths have presented 120 frames. Off by default. DEBUG temporarily disables pause-on-lost-focus and
+restores the previous setting afterwards; an ordinary API caller can set <code>mc.options.pauseOnLostFocus</code> itself.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.output.gl.FramePreviewWindow</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.output.mc.MinecraftFrameWindows</span><span class="p">;</span>
+
+<span class="c1">// Owns both the camera and the window: closing either this view's native window releases the camera.</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">windowCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MinecraftFrameWindows</span><span class="p">.</span><span class="na">createCamera</span><span class="p">(</span><span class="s">"monitor:wide"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">WorldCameraView</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">360</span><span class="p">),</span><span class="w"> </span><span class="n">settings</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FramePreviewWindow</span><span class="p">.</span><span class="na">Options</span><span class="p">(</span><span class="s">"Wide camera"</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">360</span><span class="p">));</span>
+<span class="n">windowCamera</span><span class="p">.</span><span class="na">pause</span><span class="p">();</span>
+<span class="n">windowCamera</span><span class="p">.</span><span class="na">resume</span><span class="p">();</span>
+<span class="n">windowCamera</span><span class="p">.</span><span class="na">resize</span><span class="p">(</span><span class="mi">1280</span><span class="p">,</span><span class="w"> </span><span class="mi">720</span><span class="p">);</span>
+<span class="n">windowCamera</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+
+<span class="c1">// Owns only the window and a subscription: closing this window does not close the existing camera.</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">mirror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MinecraftFrameWindows</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="s">"capture:wide"</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FramePreviewWindow</span><span class="p">.</span><span class="na">Options</span><span class="p">(</span><span class="s">"Existing camera"</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">360</span><span class="p">));</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">mainMonitor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MinecraftFrameWindows</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">MinecraftFrameOutputs</span><span class="p">.</span><span class="na">MAIN_VIEW</span><span class="p">,</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FramePreviewWindow</span><span class="p">.</span><span class="na">Options</span><span class="p">(</span><span class="s">"Final MC + GUI"</span><span class="p">,</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w"> </span><span class="mi">360</span><span class="p">));</span>
+<span class="n">mirror</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="n">mainMonitor</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+</code></pre></div>
+<p>All operations are called on the MC render thread. The camera size follows the window framebuffer/DPI; while minimized the
+last valid size is kept. Close events are handled every frame, and a paused camera view can also be closed. A window that only subscribed keeps the last frame after the
+source camera view stops publishing, and the caller is responsible for closing it. Exiting MC releases the windows together and
+only then releases the main context.</p>
+<p>An auxiliary window uses a GL context with a shared texture, its own read FBO and a bidirectional GPU fence.
+Presenting only copies the finished frame and adds no world rendering; a camera view captures once per frame and multiple
+subscribers share the read-only output FBO. Each auxiliary window still has its own context-local read FBO,
+which is only the read entry point onto the shared texture and does not allocate a separate output color texture.
+The main context may overwrite the next frame only after the texture read completes; no CPU <code>glFinish</code> is used. Every present
+restores MC's current context / GL capabilities. Standalone windows can be stretched, and the image keeps its aspect ratio
+with black bars. GLFW initialization, the global error callback and termination are still managed by MC.</p>
+<p>This is not multiple clients: player input, ticks and the main window event loop still belong to one MC.
+Linux Null/EGL mode provides no native window, and calling the multi-window API reports an explicit error.</p>
+<h2 id="headless-mc-launcher">Headless MC Launcher<a class="headerlink" href="#headless-mc-launcher" title="Permanent link">&para;</a></h2>
+<p>The repository provides <code>scripts/run-headless-client.sh</code> and the Gradle <code>runClientHeadless</code> entry point.
+By default it uses the standalone <code>modules/modelling/run/headless-client</code> directory and does not reuse the everyday client.
+A single-player Quick Play world must already exist under that directory's <code>saves/</code>; an existing directory can also be specified:</p>
+<div class="highlight"><pre><span></span><code>./scripts/run-headless-client.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/headless-client<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaHeadlessFps<span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># Or connect straight to a server; the client session's authentication requirements still apply.</span>
+./scripts/run-headless-client.sh<span class="w"> </span>-PkasugaHeadlessServer<span class="o">=</span>localhost:25565
+
+<span class="c1"># Gradle direct entry point for a desktop machine.</span>
+./gradlew<span class="w"> </span>:modules:modelling:runClientHeadless<span class="w"> </span>-PkasugaHeadlessBackend<span class="o">=</span>hidden<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test
+</code></pre></div>
+<p>This is the startup entry point for this repository's NeoForge development client; it keeps the Gradle mod/classpath configuration and
+does not handle account login or video encoding. Without a world/server specified it starts into an offscreen menu for a caller's
+client extension to control; it does not create a new world automatically.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>GL context</th>
+<th>Display service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hidden</code>, default on macOS/Windows</td>
+<td>a GLFW window hidden from creation</td>
+<td>needs a desktop display environment</td>
+</tr>
+<tr>
+<td><code>egl</code>, default on Linux</td>
+<td>GLFW Null platform + EGL pbuffer</td>
+<td>needs no X11/Wayland/Xvfb</td>
+</tr>
+</tbody>
+</table>
+<p>Before startup, <code>prepareHeadlessClient</code> sets <code>earlyWindowControl = false</code> in the chosen client directory's
+<code>config/fml.toml</code>, so that NeoForge does not display a splash before the game mixins take effect.
+This setting is kept in that directory. MC does not go fullscreen, the context is not displayed, vsync is not enabled and
+pause-on-lost-focus is disabled; the render frame rate is controlled separately by <code>kasugaHeadlessFps</code> (default 60). The first-time accessibility
+introduction screen is skipped, while game ticks, world loading, resource packs and the regular loading screens still run.</p>
+<p>Linux needs Java 21, a C compiler, CMake, <code>patch</code>, <code>curl</code> and an EGL driver that supports desktop OpenGL.
+For example, a Debian/Ubuntu Mesa environment can install <code>libegl1</code>,
+<code>libgl1-mesa-dri</code>, <code>build-essential</code>, <code>cmake</code>, <code>patch</code>, <code>curl</code>. On first launch the script
+automatically downloads the pinned GLFW 3.4 source, verifies its SHA-256, applies a small in-repository pbuffer patch and
+compiles a shared library with X11/Wayland disabled. The build output lands in
+<code>modules/modelling/build/headless-glfw/cmake/src/libglfw.so</code> and is reused on later launches.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux: the script unsets DISPLAY / WAYLAND_DISPLAY and defaults EGL_PLATFORM=surfaceless.</span>
+./scripts/run-headless-client.sh<span class="w"> </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test
+
+<span class="c1"># Pre-build separately, or deploy a precompiled library for the same architecture.</span>
+./scripts/build-headless-glfw.sh
+<span class="nv">KASUGA_HEADLESS_GLFW_LIBRARY</span><span class="o">=</span>/opt/kasuga/libglfw.so<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>./scripts/run-headless-client.sh<span class="w"> </span>-PkasugaHeadlessServer<span class="o">=</span>localhost:25565
+
+<span class="c1"># Force software rendering; only for functional verification on a machine with no GPU.</span>
+<span class="nv">LIBGL_ALWAYS_SOFTWARE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ALSOFT_DRIVERS</span><span class="o">=</span>null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>./scripts/run-headless-client.sh<span class="w"> </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test
+</code></pre></div>
+<p>The upstream GLFW 3.4 plain EGL path only selects a window surface; the patch selects a pbuffer config and calls <code>eglCreatePbufferSurface</code> on the Null platform only. Substituting the upstream GLFW library for
+this one is not equivalent. If you start Gradle's <code>egl</code> mode directly, you must unset the display environment variables yourself,
+set <code>EGL_PLATFORM=surfaceless</code> and pass <code>-PkasugaHeadlessGlfwLibrary=/absolute/libglfw.so</code>.
+The JVM equivalents are <code>-Dkasuga.headless=egl</code> and <code>-Dorg.lwjgl.glfw.libname=...</code>, and
+NeoForge's early window configuration must still be turned off before startup.</p>
+<p>No display service still means a GL driver is required. Hardware EGL depends on driver support and render node permissions;
+multi-camera shader packs and large resource packs still consume the corresponding CPU/GPU memory. A hidden window or a pbuffer does not
+eliminate world rendering cost, and software rendering does not stand for production hardware performance.</p>
+<h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
+<p>The real client uses a world copy and an isolated directory to check shader/shadow sessions, pixel content of
+different material atlases, chunks and entities beyond 1024 blocks, restoration of metadata defaults, main RGB consistency,
+fog and state restoration, resize, pause/resume, callback closure and failure release.</p>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:modelUnitTest<span class="w"> </span>:modules:modelling:renderGlTest
+./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaTestWorldViews<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-PkasugaTestCameraIris<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/test-client
+
+<span class="c1"># The path with Iris/Sodium not installed.</span>
+./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaRendererMods<span class="o">=</span><span class="nb">false</span><span class="w"> </span>-PkasugaTestWorldViews<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/vanilla-test-client
+</code></pre></div>
+<p>The client artifacts are <code>debug/world-views/report.json</code> and PNGs, with the success marker
+<code>WORLD_VIEWS_SMOKE_PASS</code>. The standalone GL regression covers final blit RGB/orientation/alpha, resize,
+abnormal state recovery and resource release, and needs no full MC launch.</p>
+<h2 id="jfr-testing-and-performance-optimization">JFR Testing and Performance Optimization<a class="headerlink" href="#jfr-testing-and-performance-optimization" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaTestCameraPerformance<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/performance-test-client
+python3<span class="w"> </span>scripts/analyze-camera-jfr.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>/path/to/cameras-4.jfr<span class="w"> </span>--output<span class="w"> </span>/path/to/analysis.json
+</code></pre></div>
+<p>The real MC runs 0, 1, 2 and 4 additional camera views in turn, then re-measures 0 at the end; each group warms up for 8 seconds and JFR
+<code>profile</code> records for 12 seconds. The additional camera views are 1280×720, 4 chunks, Fancy, no shader pack, and the main view
+uses the test shader pack, vsync is off and an empty consumer measures delivery. The test exits by itself; the results are
+the per-group JFR files and <code>report.json</code> in <code>debug/camera-performance/</code>; do not enable DEBUG
+or another benchmark at the same time. Each run overwrites that directory, so copy the records before comparing.</p>
+<p>2026-10-02, Apple M3 Max, main window 1708×960, first round of comparison in the real client:</p>
+<table>
+<thead>
+<tr>
+<th>Metric for 4 additional camera views</th>
+<th style="text-align: right;">Before optimization</th>
+<th style="text-align: right;">After optimization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host frame mean CPU render</td>
+<td style="text-align: right;">2.913 ms</td>
+<td style="text-align: right;">2.953 ms</td>
+</tr>
+<tr>
+<td>Host frame P95</td>
+<td style="text-align: right;">3.305 ms</td>
+<td style="text-align: right;">3.278 ms</td>
+</tr>
+<tr>
+<td>Host frame P99</td>
+<td style="text-align: right;">3.870 ms</td>
+<td style="text-align: right;">3.500 ms</td>
+</tr>
+<tr>
+<td>Sum of mean camera pass durations</td>
+<td style="text-align: right;">1.262 ms</td>
+<td style="text-align: right;">0.945 ms</td>
+</tr>
+<tr>
+<td>Render thread allocation rate</td>
+<td style="text-align: right;">207.31 MB/s</td>
+<td style="text-align: right;">156.70 MB/s</td>
+</tr>
+<tr>
+<td>Cloud path allocation samples</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table>
+<p>Two optimizations were implemented from the JFR data:</p>
+<ol>
+<li>The Iris/Sodium <code>hadShadersOn</code> flag used to be global, so with the main view's shader pack on and the camera views' off it flipped back and forth,
+   which repeatedly invalidated the cloud geometry cache. It is now kept per CloudRenderer instance and switched/restored during drawing;
+   real-client tests covered the actual Mixin path.</li>
+<li>Gaussian sampling for fog/sky color produced a temporary Vec3 on every loop iteration. The camera views use the same kernel,
+   sampling and addition order, accumulate in scalars and create the final Vec3 at the end. Comparing 200 fixed random positive/negative and fractional
+   coordinates against vanilla, the double bits of all three components are identical, and the sampling order of 216 samples matches too.
+   The main view keeps the vanilla path.</li>
+</ol>
+<p>The observed allocation rate dropped by about 24% and the sum of mean camera pass durations by about 25%, while the whole-frame mean stayed flat,
+so there are no grounds for claiming an FPS increase. The first 0-camera-view mean was 2.900 ms and the closing re-measurement 1.601 ms, which shows
+clear warm-up/world activity/environment variance. The two rounds are not a statistical A/B with the world state locked, and they cover neither
+complex commercial shader packs, large entity scenes nor other GPUs.</p>
+<p>Host frame timing uses <code>RenderFrameEvent.Pre/Post</code> and does not wait for the GPU to finish, so it does not represent full
+swap/present, encoding or end-to-end latency. <code>kasuga.CameraRenderPass</code> records world + Iris
+final composition and excludes the output blit/consumers; <code>kasuga.CameraChunkSnapshot</code> records
+server snapshot build/encoding. The allocation rate uses the <code>jdk.ThreadAllocationStatistics</code> delta divided by time;
+do not accumulate <code>ObjectAllocationSample.weight</code>, because the first sample may carry allocations from before recording started.
+The number of allocation samples is a pointer for locating hotspots, not an exact byte count.</p>
+<p>The raw records are in <code>../modules/modelling/build/camera-performance-baseline</code> and
+<code>modules/modelling/build/camera-performance-optimized/</code>, and are local build artifacts.
+The remaining hotspots are mostly biome/noise reads, terrain/entity frustum filtering and entity vertex building. Later work
+should re-measure in complex scenes; the full entity state sent every 5 ticks could be deduplicated further by value, but the sync
+semantics for returning to default values must be preserved.</p>
+<h2 id="player-motion-synchronization-fix">Player Motion Synchronization Fix<a class="headerlink" href="#player-motion-synchronization-fix" title="Permanent link">&para;</a></h2>
+<p>A camera view subscription sends entity state every 5 ticks, whereas the vanilla teleport handler interpolates over 3 ticks,
+which produces a two-tick stutter. Distant camera view entities were changed to interpolate over 5 ticks. For entities the main client already
+tracks, the camera view copies their position, previous-tick position, rotation and limb
+animation history into their own copy before each render; a player's client-side predicted movement no longer takes a round trip through the server subscription.
+The separate Entity/ClientLevel is kept, and FOV/render resource isolation is unaffected.</p>
+<p>A real-client regression has the player move/turn/change walking animation continuously, and at partial tick 0, 0.25, 0.75 and 1 of 120 output frames
+checks that the copy's position interpolation, rotation history and animation phase agree:</p>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:modules:modelling:runClient<span class="w"> </span>-PkasugaTestCameraMotion<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaQuickPlayWorld<span class="o">=</span>world-view-test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-PkasugaClientDirectory<span class="o">=</span>/absolute/path/to/test-client
+</code></pre></div>
+<p>This test deliberately modifies the player position inside the isolated world and restores it at the end. The success marker is
+<code>CAMERA_MOTION_SMOKE_PASS</code>, and the report is <code>debug/camera-motion.json</code>.</p>
+<h2 id="final-code-re-measurement">Final Code Re-Measurement<a class="headerlink" href="#final-code-re-measurement" title="Permanent link">&para;</a></h2>
+<p>After the player motion fix, vanilla distant terrain positioning and the RGBA readback interface were added, the same JFR
+scenario was run again (empty consumer, excluding the synchronous CPU readback cost):</p>
+<table>
+<thead>
+<tr>
+<th>Additional camera views</th>
+<th style="text-align: right;">Mean CPU render</th>
+<th style="text-align: right;">P95</th>
+<th style="text-align: right;">P99</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, first</td>
+<td style="text-align: right;">2.198 ms</td>
+<td style="text-align: right;">4.053 ms</td>
+<td style="text-align: right;">5.440 ms</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align: right;">2.033 ms</td>
+<td style="text-align: right;">2.543 ms</td>
+<td style="text-align: right;">2.852 ms</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">2.125 ms</td>
+<td style="text-align: right;">2.534 ms</td>
+<td style="text-align: right;">2.952 ms</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: right;">2.846 ms</td>
+<td style="text-align: right;">3.267 ms</td>
+<td style="text-align: right;">3.878 ms</td>
+</tr>
+<tr>
+<td>0, closing re-measurement</td>
+<td style="text-align: right;">1.253 ms</td>
+<td style="text-align: right;">1.479 ms</td>
+<td style="text-align: right;">1.657 ms</td>
+</tr>
+</tbody>
+</table>
+<p>With 4 camera views the render thread allocation rate is <strong>138.14 MB/s</strong>, the sum of mean camera pass durations is <strong>1.040 ms</strong>
+and the cloud path allocation samples are 14. Against the original 207.31 MB/s record, the observed
+allocation rate dropped by about 33%, while whole-frame time is still at a similar level; the warm-up and unlocked-world limitations above still
+apply. "1 camera view being faster than the first 0-camera-view run" must not be read as additional camera views speeding anything up.
+The records and analysis are kept in <code>../modules/modelling/build/camera-performance-final</code>.</p>
+<p>Verification summary: 625 JVM cases, 0 failures/errors, 1 skipped; 9 standalone GL check groups
+passed, including RGBA orientation, alpha and PBO/pack state restoration; the vanilla and Iris client multi-camera
+checks, the dual-camera DEBUG actual output, the 120-frame player motion regression and the final JFR test passed.
+The integrated server's chunk/entity subscription path was actually run; a standalone dedicated server and arbitrary
+third-party shader pack/resource pack combinations are outside this verification's coverage.</p>
+<h2 id="verification-of-multi-window-and-headless-startup-and-additional-optimizations">Verification of Multi-Window and Headless Startup, and Additional Optimizations<a class="headerlink" href="#verification-of-multi-window-and-headless-startup-and-additional-optimizations" title="Permanent link">&para;</a></h2>
+<p>After the new features were completed, <code>renderingReleaseCheck</code> passed; the JVM checks are <strong>627 cases,
+0 failures/errors, 1 skipped</strong>. The standalone GL regression is <strong>10 groups</strong>, adding shared window texture
+presenting, bidirectional fences, current context/capabilities restoration, resize and independent window closing,
+plus Sodium-type RGBA native blit keeping RGB and forcing output alpha=1.</p>
+<table>
+<thead>
+<tr>
+<th>Actual check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS MC + Iris/Sodium, multi-camera windows and mirroring an existing camera view</td>
+<td>passed; closing a paused camera view, DPI resize, other camera views continuing after one window closes</td>
+</tr>
+<tr>
+<td>Multi-window first/third person DEBUG startup</td>
+<td><code>MULTI_WINDOW_DEBUG_PASS</code></td>
+</tr>
+<tr>
+<td>macOS <code>run-headless-client.sh</code> hidden mode</td>
+<td><code>HEADLESS_CLIENT_SMOKE_PASS</code>, main frame plus two camera view PNGs</td>
+</tr>
+<tr>
+<td>Debian 12 aarch64, no DISPLAY / WAYLAND_DISPLAY, GLFW Null + EGL</td>
+<td><code>HEADLESS_CLIENT_SMOKE_PASS</code>, main frame plus two camera view PNGs</td>
+</tr>
+</tbody>
+</table>
+<p>The Linux verification used Mesa 22.3.6's llvmpipe / OpenGL 4.5 and <strong>did not start Xvfb</strong>.
+It checked that the native window was never visible, that the context came back to its place, that there was no GL error, and that RGBA was non-empty with an opaque
+alpha. The main frame PNG includes the hand/HUD, and the camera view PNGs are their respective world views; JFR also recorded
+80 render passes per camera view. What ran was the JVM / classpath exported from that NeoForge client configuration;
+the whole Gradle project was not rebuilt inside the VM. This proves that the client rendering path can run without a display
+service; it does not prove NVIDIA/AMD hardware EGL, Windows or all third-party shader pack combinations.</p>
+<p>The test VM temporarily used 12 GiB of memory and a 6.5 GiB Java heap and loaded this machine's large test models,
+including three 16384×8192 atlases; this is not a minimum runtime memory requirement. The artifacts are kept in the ignored
+<code>modules/modelling/build/headless-linux-smoke/debug</code> and <code>headless-linux-jfr</code>.</p>
+<p>Two startup/background performance issues were fixed as well:</p>
+<ul>
+<li>GLFW Null's <code>glfwWaitEventsTimeout</code> is an empty function, so MC's frame limiting loop busy-waits.
+  EGL mode was changed to <code>LockSupport.parkNanos</code>, and early wake-ups are still handled by the original frame deadline
+  loop. For the same 60 FPS offscreen menu, 4 seconds of JFR each: before the optimization, 26 of 74 render thread
+  execution samples were in <code>limitDisplayFPS</code>; after, 0 of 50. This is short-duration CPU sampling evidence and cannot
+  be taken as a world rendering FPS gain or an exact CPU percentage.</li>
+<li>The PBR cache key used to allocate a whole-image <code>int[]</code> and an equally large byte buffer for scratch, adding
+  <code>8 × width × height</code> bytes of scratch. It now chunks by 4096 pixels with 32 KiB of scratch, and the SHA-256
+  descriptor, size and big-endian ARGB order are unchanged. Tests cover chunk
+  boundaries, different raster formats and subimages, and old on-disk caches stay valid. The actual memory demand of the source image, the bake
+  result and the GPU atlas is still there.</li>
+</ul>
+<p>The earlier 0/1/2/4 camera view JFR tables do not include the new window presenting cost or the synchronous CPU readback cost, so their
+durations cannot be applied directly to multi-window or software EGL deployments.</p>
+<blockquote>
+<p>This is the hands-on page for the offscreen and multi-camera topic. For the output and camera contracts see <a href="../../reference/multi-camera-output/">multi-camera output contracts</a>, and for the principles see <a href="../../explanation/offline-rendering-and-multi-cam/">offscreen output and multi-camera principles</a>.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
