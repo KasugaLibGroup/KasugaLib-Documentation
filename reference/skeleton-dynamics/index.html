@@ -1,0 +1,4120 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/skeleton-dynamics/">
+      
+      
+        <link rel="prev" href="../sidedness/">
+      
+      
+        <link rel="next" href="../uml-render-framework/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/reference/skeleton-dynamics/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Skeleton Dynamics API Reference - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#skeleton-dynamics-api-reference" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Skeleton Dynamics API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/reference/skeleton-dynamics/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#类型与包" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类型与包
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#生命周期与单位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生命周期与单位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton-与-skeletondynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skeleton 与 SkeletonDynamics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeletondynamicsbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SkeletonDynamicsBuilder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-与已有-skeletonbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reader 与已有 SkeletonBuilder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#通用骨骼姿态约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用骨骼姿态约束
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#物理数据" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        物理数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="物理数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rigidbody" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RigidBody
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#不带格式-metadata-的物理示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不带格式 metadata 的物理示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ik-数据与限位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK 数据与限位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IK 数据与限位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iklinkrotationlimit-与-ikjoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IkLink、RotationLimit 与 IkJoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ikchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IkChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#菱形闭环" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        菱形闭环
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeletoninstance-运行时控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SkeletonInstance 运行时控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SkeletonInstance 运行时控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#每-tick-目标iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每 tick 目标：IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#格式-reader-的实际默认行为" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        格式 Reader 的实际默认行为
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#自定义宿主的求解适配" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义宿主的求解适配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#源码入口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        源码入口
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#类型与包" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类型与包
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#生命周期与单位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生命周期与单位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeleton-与-skeletondynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skeleton 与 SkeletonDynamics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeletondynamicsbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SkeletonDynamicsBuilder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-与已有-skeletonbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reader 与已有 SkeletonBuilder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#通用骨骼姿态约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用骨骼姿态约束
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#物理数据" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        物理数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="物理数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rigidbody" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RigidBody
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#不带格式-metadata-的物理示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不带格式 metadata 的物理示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ik-数据与限位" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK 数据与限位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IK 数据与限位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iklinkrotationlimit-与-ikjoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IkLink、RotationLimit 与 IkJoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ikchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IkChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#菱形闭环" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        菱形闭环
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skeletoninstance-运行时控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SkeletonInstance 运行时控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SkeletonInstance 运行时控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#每-tick-目标iktargetmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每 tick 目标：IkTargetModule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#格式-reader-的实际默认行为" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        格式 Reader 的实际默认行为
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#自定义宿主的求解适配" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义宿主的求解适配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#源码入口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        源码入口
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="skeleton-dynamics-api-reference">Skeleton Dynamics API Reference<a class="headerlink" href="#skeleton-dynamics-api-reference" title="Permanent link">&para;</a></h1>
+<p>本页对应当前 <code>render-core</code> 中的通用骨骼动力学接口。数据转换在模型构建阶段完成，
+运行时按 IK 链名控制各实例。算法与所有权说明见 <a href="../../explanation/skeleton-dynamics/">原理文档</a>。
+底层 world、力、碰撞、主动布娃娃与 Minecraft 接入见 <a href="../physics/">Physics API</a>，
+格式 manifest/profile 见 <a href="../mmd-ragdoll/">MMD/glTF 配置</a>。</p>
+<h2 id="类型与包">类型与包<a class="headerlink" href="#类型与包" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>完整包名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Skeleton</code>, <code>SkeletonDynamics</code></td>
+<td><code>lib.kasuga.rendering.models.uml.structure.skeleton</code></td>
+<td>骨骼和共享动力学定义</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamics.*</code></td>
+<td>同上，<code>SkeletonDynamics</code> 的嵌套类型</td>
+<td>物理、IK 和闭环数据</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder</code>, <code>SkeletonDynamicsReader&lt;T&gt;</code>, <code>SkeletonBuilder</code></td>
+<td><code>lib.kasuga.rendering.models.uml.loaders</code></td>
+<td>构建、校验和外部格式扩展</td>
+</tr>
+<tr>
+<td><code>SkeletonInstance</code>, <code>ModelInstance</code></td>
+<td><code>lib.kasuga.rendering.models.uml.dynamic</code></td>
+<td>每实例控制和姿态求值</td>
+</tr>
+<tr>
+<td><code>CalikoIkSolver</code></td>
+<td><code>lib.kasuga.rendering.models.uml.dynamic.ik</code></td>
+<td>求解适配与诊断结果</td>
+</tr>
+<tr>
+<td><code>IkTargetModule</code></td>
+<td><code>lib.kasuga.rendering.models.uml.dynamic.tick_loop.handler</code></td>
+<td>每 tick 外部 IK 目标</td>
+</tr>
+<tr>
+<td><code>MmdSkeletonDynamicsReader</code></td>
+<td><code>lib.kasuga.rendering.models.uml.typo.miku_miku_dance</code></td>
+<td>PMX/已转换 PMD 数据转换</td>
+</tr>
+<tr>
+<td><code>GltfSkeletonDynamicsReader</code></td>
+<td><code>lib.kasuga.rendering.models.uml.typo.gltf</code></td>
+<td>glTF 节点物理候选转换</td>
+</tr>
+</tbody>
+</table>
+<p>本页代码块除独立声明外使用以下 imports；<code>model</code> 表示已经加载的 <code>Model</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.dynamic.ModelInstance</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.loaders.SkeletonDynamicsBuilder</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.loaders.SkeletonDynamicsReader</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.structure.skeleton.Skeleton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.structure.skeleton.SkeletonDynamics</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lib.kasuga.rendering.models.uml.structure.skeleton.SkeletonDynamics.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.joml.Vector3f</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="生命周期与单位">生命周期与单位<a class="headerlink" href="#生命周期与单位" title="Permanent link">&para;</a></h2>
+<ol>
+<li>加载 Model；格式 metadata 的 <code>configureSkeleton(Skeleton)</code> 钩子在 Model 构造时执行。</li>
+<li>从 Skeleton 创建动力学 Builder，追加或覆盖定义，然后 <code>attach()</code>。</li>
+<li>创建 ModelInstance；设置目标、tick loop 模块与物理。</li>
+<li>通过实例的姿态管线求值；销毁时关闭 ModelInstance 或解除物理。</li>
+</ol>
+<p>动力学配置应在创建实例前完成。共享定义的集合不可修改，向量构造参数和向量访问结果均复制，
+但 <code>Bone</code> 是结构引用，不能把其定义变换当作实例姿态修改。多个实例各自保存目标和求解修正。</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>单位/坐标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RigidBody.position</code>, <code>Joint.position</code>、形状尺寸及平移范围</td>
+<td>定义坐标，物理适配乘以 <code>Physics.unitScale</code></td>
+</tr>
+<tr>
+<td><code>RigidBody.rotation</code>, <code>Joint.rotation</code>、旋转范围</td>
+<td>XYZ Euler，弧度</td>
+</tr>
+<tr>
+<td>IK 角度、<code>maxRotationStep</code>、<code>Rotor</code>、<code>Hinge</code></td>
+<td>弧度</td>
+</tr>
+<tr>
+<td>IK <code>tolerance</code></td>
+<td>当前求值空间的距离单位；导入/根缩放会影响实际对应尺度</td>
+</tr>
+<tr>
+<td><code>setIkTarget</code>, <code>setFrameIkTarget</code>, <code>IkTargetModule</code> 的目标</td>
+<td>世界坐标，<code>Vector3f</code>；浮动原点开启后在求值时减去 double 世界锚点</td>
+</tr>
+<tr>
+<td><code>SkeletonRagdoll.Body.position()</code> 和普通物理查询</td>
+<td>模拟局部坐标；使用 <code>worldPosition</code>/<code>*World</code> 接口取得或输入世界坐标</td>
+</tr>
+</tbody>
+</table>
+<p>float 外部目标本身已受精度限制；浮动原点不会恢复在 <code>Vector3f</code> 构造时丢失的世界坐标小数。</p>
+<h2 id="skeleton-与-skeletondynamics">Skeleton 与 SkeletonDynamics<a class="headerlink" href="#skeleton-与-skeletondynamics" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">SkeletonDynamics</span><span class="w"> </span><span class="n">Skeleton</span><span class="p">.</span><span class="na">getDynamics</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">Skeleton</span><span class="p">.</span><span class="na">setDynamics</span><span class="p">(</span><span class="n">SkeletonDynamics</span><span class="w"> </span><span class="n">dynamics</span><span class="p">);</span>
+
+<span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamics</span><span class="p">(</span><span class="n">Physics</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IkChain</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ikChains</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DiamondConstraint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">diamonds</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamics</span><span class="p">(</span><span class="n">Physics</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IkChain</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ikChains</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DiamondConstraint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">diamonds</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">BonePoseConstraint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">poseConstraints</span><span class="p">);</span>
+</code></pre></div>
+<p>Skeleton 默认使用 <code>SkeletonDynamics.EMPTY</code>。通常通过 Builder 验证后挂载；直接构造和 setter
+不会执行全部骨骼归属、链层级、关节引用与闭环校验。</p>
+<table>
+<thead>
+<tr>
+<th>访问器</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>physics()</code></td>
+<td>共用物理定义</td>
+</tr>
+<tr>
+<td><code>poseConstraints()</code></td>
+<td>目标 Bone 到继承/固定轴约束的不可修改映射；三参数构造默认为空</td>
+</tr>
+<tr>
+<td><code>ikChains()</code></td>
+<td>保留定义顺序的 IK 链列表</td>
+</tr>
+<tr>
+<td><code>diamonds()</code></td>
+<td>闭环约束列表</td>
+</tr>
+<tr>
+<td><code>chainsByName()</code></td>
+<td>只读 <code>Map&lt;String, IkChain&gt;</code>；链名必须唯一</td>
+</tr>
+<tr>
+<td><code>ikChainsByBone()</code></td>
+<td>只读 <code>Map&lt;Bone, List&lt;IkChain&gt;&gt;</code>；驱动骨到控制它的全部链的反向映射</td>
+</tr>
+</tbody>
+</table>
+<h2 id="skeletondynamicsbuilder">SkeletonDynamicsBuilder<a class="headerlink" href="#skeletondynamicsbuilder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="p">(</span><span class="n">Skeleton</span><span class="w"> </span><span class="n">skeleton</span><span class="p">);</span>
+</code></pre></div>
+<p>构造时复制 Skeleton 已挂载的定义到 Builder；不会自动清空原 rig。</p>
+<table>
+<thead>
+<tr>
+<th>完整方法</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Skeleton skeleton()</code></td>
+<td>当前目标骨架</td>
+</tr>
+<tr>
+<td><code>Bone bone(String name)</code></td>
+<td>按骨名解析结构引用；未知名称抛 <code>IllegalArgumentException</code></td>
+</tr>
+<tr>
+<td><code>&lt;T&gt; SkeletonDynamicsBuilder read(T source, SkeletonDynamicsReader&lt;? super T&gt; reader)</code></td>
+<td>同步执行 Reader，返回此 Builder</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder physics(Physics definition)</code></td>
+<td>替换整个物理定义，保留 IK/闭环</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder physics(List&lt;RigidBody&gt; bodies, List&lt;Joint&gt; joints)</code></td>
+<td>替换 bodies/joints；单位缩放、无强制 profile、affine 写回、半径比例 1、无绑定跟随骨</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder ik(IkChain chain)</code></td>
+<td>添加链；相同链名替换已有链</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder diamond(DiamondConstraint diamond)</code></td>
+<td>添加约束；相同约束名替换已有约束</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamicsBuilder pose(BonePoseConstraint constraint)</code></td>
+<td>添加骨骼姿态约束；同一目标 Bone 替换已有约束</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamics build()</code></td>
+<td>校验并返回定义；不挂载、不创建求解器或 native world</td>
+</tr>
+<tr>
+<td><code>SkeletonDynamics attach()</code></td>
+<td>先 <code>build()</code>，再写入 Skeleton，返回挂载的定义</td>
+</tr>
+</tbody>
+</table>
+<p><code>build()</code>/<code>attach()</code> 的结构校验包括：</p>
+<ul>
+<li>非空 body 骨、绑定跟随骨、IK controller/effector/link 都属于目标 Skeleton。</li>
+<li>姿态约束的目标和继承源都属于此 Skeleton，拒绝自身引用和继承环。</li>
+<li>关节的两刚体索引有效且不同；索引对应 <code>Physics.bodies()</code>，不是 <code>Bone.index</code>。</li>
+<li>IK 链非空，驱动骨不重复，后续 link/effector 必须是前一 link 的后代；允许跳过中间骨。</li>
+<li>闭环引用两条已存在的 POSITION 链；同一链不能属于多个闭环。</li>
+<li>闭环分支不共享驱动骨、末端不同、分支 base 的绑定位置相距不超过闭环 tolerance，
+  且一分支的驱动骨不能是另一 base 的祖先。</li>
+</ul>
+<p>非法结构抛 <code>IllegalArgumentException</code>。必需参数为 null 时通常抛 <code>NullPointerException</code>。</p>
+<h2 id="reader-与已有-skeletonbuilder">Reader 与已有 SkeletonBuilder<a class="headerlink" href="#reader-与已有-skeletonbuilder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">SkeletonDynamicsReader</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Reader 只向 Builder 填充通用定义；它本身不自动 <code>attach()</code>。外部格式可以使用任何 source 类型：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Skeleton</span><span class="w"> </span><span class="n">skeleton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">getSkeleton</span><span class="p">();</span>
+<span class="n">SkeletonDynamicsReader</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">chainName</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">ik</span><span class="p">(</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="n">chainName</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"hand-target"</span><span class="p">),</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"hand"</span><span class="p">),</span>
+<span class="w">                </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"upper-arm"</span><span class="p">)),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"forearm"</span><span class="p">)))));</span>
+
+<span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="p">(</span><span class="n">skeleton</span><span class="p">).</span><span class="na">read</span><span class="p">(</span><span class="s">"left-arm"</span><span class="p">,</span><span class="w"> </span><span class="n">reader</span><span class="p">).</span><span class="na">attach</span><span class="p">();</span>
+</code></pre></div>
+<p>已有 <code>SkeletonBuilder</code> 提供：</p>
+<div class="highlight"><pre><span></span><code><span class="n">SkeletonBuilder</span><span class="w"> </span><span class="nf">dynamics</span><span class="p">(</span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">SkeletonDynamicsBuilder</span><span class="o">&gt;</span><span class="w"> </span><span class="n">configure</span><span class="p">);</span>
+</code></pre></div>
+<p>回调在骨架 <code>build(...)</code> 的 Bone/Anchor/Vertex 绑定完成后执行，并自动校验、挂载。
+重复调用 <code>dynamics(...)</code> 替换配置回调；<code>clear()</code> 同时清除它。自定义 <code>ModelData</code> 可覆盖
+<code>void configureSkeleton(Skeleton skeleton)</code>，在 Model 构建时接入 Reader。
+格式 metadata 的 Model 构造钩子晚于 SkeletonBuilder 回调，可能覆盖物理表或同名链；
+需要覆盖格式默认值的配置应放在 Model 加载完成后、ModelInstance 创建前。</p>
+<h2 id="通用骨骼姿态约束">通用骨骼姿态约束<a class="headerlink" href="#通用骨骼姿态约束" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">TransformInheritance</span><span class="p">(</span><span class="n">Bone</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">translation</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">rotation</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">BonePoseConstraint</span><span class="p">(</span><span class="n">Bone</span><span class="w"> </span><span class="n">bone</span><span class="p">,</span><span class="w"> </span><span class="n">TransformInheritance</span><span class="w"> </span><span class="n">inheritance</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">fixedAxis</span><span class="p">);</span>
+</code></pre></div>
+<p>两者是 <code>SkeletonDynamics</code> 下的公共 record，不要求 BoneData 的类型。
+继承的权重必须有限，允许负值；至少启用平移或旋转。继承源提供当前求值后的局部姿态增量，
+平移乘以 weight，旋转从单位 quaternion 按 weight slerp；不继承源的绑定姿态或世界位置。
+目标骨骼的原始局部姿态先应用继承，再提取沿 fixedAxis 的 twist，然后应用 IK 和物理覆盖。
+固定轴在目标骨骼局部坐标中，输入向量复制并归一化，长度平方小于 <code>1e-8</code> 时拒绝。
+物理覆盖以最终模拟姿态为准；此轴约束不替代物理关节限位。</p>
+<p><code>inheritance</code> 或 <code>fixedAxis</code> 可以为 null，但不能同时为空。
+<code>fixedAxis()</code> 返回副本；<code>hasFixedAxis()</code> 查询是否定义轴，<code>fixedAxis(Vector3f destination)</code>
+在已定义轴时复制到调用方 scratch。Builder 按骨骼引用校验所属骨架及继承环。
+实例按依赖顺序求值，跨分支继承不依赖层级遍历顺序，并扩大更新范围以覆盖受影响的顶点。</p>
+<p>PMX/PMD 的骨继承和固定轴在 <code>MmdSkeletonDynamicsReader.read</code> 时转换；单独读取 PMX 骨表时，
+也可调用 <code>MmdSkeletonDynamicsReader.readBoneConstraints(builder)</code> 和 <code>readIk(builder)</code>。
+格式文件的索引仅存在于 Reader 层；MC 或外部格式通过相同 Builder 填充这些定义即可。</p>
+<h2 id="物理数据">物理数据<a class="headerlink" href="#物理数据" title="Permanent link">&para;</a></h2>
+<h3 id="physics">Physics<a class="headerlink" href="#physics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">Physics</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">RigidBody</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bodies</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Joint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">joints</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">unitScale</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">profileRequired</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">affineWriteback</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">profileRadiusScale</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Bone</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bindPoseFollowers</span><span class="p">);</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bodies</code>, <code>joints</code></td>
+<td>复制后的定义列表；profile/关节引用 bodies 的列表索引</td>
+</tr>
+<tr>
+<td><code>unitScale</code></td>
+<td>三个有限正分量；用于刚体位置/尺寸和关节平移量</td>
+</tr>
+<tr>
+<td><code>profileRequired</code></td>
+<td>true 时不能直接无 profile 启用该表；用于候选表</td>
+</tr>
+<tr>
+<td><code>affineWriteback</code></td>
+<td>true 时在完整 affine 父层级中逆算局部物理变换，保留 scale/shear</td>
+</tr>
+<tr>
+<td><code>profileRadiusScale</code></td>
+<td>有限正数；生成 profile 胶囊的半径比例</td>
+</tr>
+<tr>
+<td><code>bindPoseFollowers</code></td>
+<td>无直接物理体的跟随骨，可按最近物理祖先的绑定到当前 affine delta 跟随</td>
+</tr>
+</tbody>
+</table>
+<p><code>Physics.EMPTY</code>：空表、<code>unitScale=(1,1,1)</code>、<code>profileRequired=false</code>、
+<code>affineWriteback=true</code>、<code>profileRadiusScale=1</code>、空跟随集合。</p>
+<h3 id="rigidbody">RigidBody<a class="headerlink" href="#rigidbody" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">RigidBody</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">alias</span><span class="p">,</span><span class="w"> </span><span class="n">Bone</span><span class="w"> </span><span class="n">bone</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">collisionGroup</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">int</span><span class="w"> </span><span class="n">nonCollisionMask</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">shape</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<span class="w">              </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">rotation</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">linearDamping</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">float</span><span class="w"> </span><span class="n">angularDamping</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">restitution</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">friction</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mode</span><span class="p">);</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code>, <code>alias</code></td>
+<td>非 null 的显示/辅助名称，不要求它们是骨名；alias 可为空字符串</td>
+</tr>
+<tr>
+<td><code>bone</code></td>
+<td>可为 null，表示不绑定骨骼的体；非空时必须属于 Skeleton</td>
+</tr>
+<tr>
+<td><code>collisionGroup</code></td>
+<td>整数 <code>0..63</code></td>
+</tr>
+<tr>
+<td><code>nonCollisionMask</code></td>
+<td>整数过滤掩码，按物理适配保留排除层语义</td>
+</tr>
+<tr>
+<td><code>shape</code></td>
+<td><code>SPHERE=0</code>、<code>BOX=1</code>、<code>CAPSULE=2</code></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>有限非负向量；球用 x 半径，盒用 xyz 半尺寸，胶囊用 x 半径/y 圆柱段完整高度</td>
+</tr>
+<tr>
+<td><code>position</code>, <code>rotation</code></td>
+<td>体在定义坐标中的位置和 XYZ Euler 朝向；均有限</td>
+</tr>
+<tr>
+<td><code>mass</code></td>
+<td>有限非负质量，0 不产生动态逆质量</td>
+</tr>
+<tr>
+<td><code>linearDamping</code>, <code>angularDamping</code></td>
+<td>有限非负阻尼</td>
+</tr>
+<tr>
+<td><code>restitution</code>, <code>friction</code></td>
+<td>有限非负材质参数</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>下表中的运动/写回模式</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th style="text-align: right;">值</th>
+<th>运行行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KINEMATIC</code></td>
+<td style="text-align: right;">0</td>
+<td>动画目标驱动刚体</td>
+</tr>
+<tr>
+<td><code>DYNAMIC</code></td>
+<td style="text-align: right;">1</td>
+<td>物理写回完整姿态</td>
+</tr>
+<tr>
+<td><code>DYNAMIC_ROTATION</code></td>
+<td style="text-align: right;">2</td>
+<td>动态体，只写回骨骼旋转，保留动画平移</td>
+</tr>
+</tbody>
+</table>
+<p>定义构造允许非负尺寸；实际创建碰撞形状时，球/胶囊半径及盒的三个半尺寸必须为正。
+创建物理体可能因此进一步拒绝退化形状。</p>
+<h3 id="joint">Joint<a class="headerlink" href="#joint" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">Joint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">alias</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rigidBodyA</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rigidBodyB</span><span class="p">,</span>
+<span class="w">          </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">rotation</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">positionMin</span><span class="p">,</span>
+<span class="w">          </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">positionMax</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">rotationMin</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">rotationMax</span><span class="p">,</span>
+<span class="w">          </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">positionSpring</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">rotationSpring</span><span class="p">);</span>
+</code></pre></div>
+<p><code>name</code>/<code>alias</code> 非 null，所有向量有限并复制。<code>rigidBodyA/B</code> 在 Builder 校验时必须有效且不同。
+<code>position/rotation</code> 是共同关节 frame，<code>*Min/*Max</code> 为作者限制，<code>*Spring</code> 为作者弹簧参数。
+当前模型适配器把这组作者六轴参数映射为 Box3D 球形 cone/twist；平移收紧为固定锚点。
+其他原生关节通过 <a href="../physics/#221-通用关节类型">Physics API</a> 创建，不由此 record 的类型字段选择。</p>
+<h3 id="不带格式-metadata-的物理示例">不带格式 metadata 的物理示例<a class="headerlink" href="#不带格式-metadata-的物理示例" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getSkeleton</span><span class="p">());</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RigidBody</span><span class="p">(</span><span class="s">"torso-body"</span><span class="p">,</span><span class="w"> </span><span class="s">""</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"torso"</span><span class="p">),</span>
+<span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">RigidBody</span><span class="p">.</span><span class="na">BOX</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">0.2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">),</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(),</span>
+<span class="w">        </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">,</span><span class="w"> </span><span class="n">RigidBody</span><span class="p">.</span><span class="na">DYNAMIC</span><span class="p">);</span>
+<span class="n">builder</span><span class="p">.</span><span class="na">physics</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">body</span><span class="p">),</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">()).</span><span class="na">attach</span><span class="p">();</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelInstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">ragdoll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">enablePhysics</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ragdoll</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ragdoll</span><span class="p">.</span><span class="na">setGravity</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.80665f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// 由宿主每帧调用一次；已经接入 Minecraft 运行时的实例使用该运行时推进。</span>
+<span class="w">    </span><span class="n">instance</span><span class="p">.</span><span class="na">evaluatePhysicsFrame</span><span class="p">(</span><span class="mf">0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="n">f</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 生命周期结束时：instance.detachPhysics() 或 instance.close()。</span>
+</code></pre></div>
+<p>高层 <code>enablePhysics</code> 在 native 库不可用时返回 null；库可用但 bodies 为空、
+或 <code>profileRequired=true</code> 且未传 profile 时抛 <code>IllegalArgumentException</code>。
+<code>Body.source()</code> 返回此通用 <code>RigidBody</code>，<code>Joint.source()</code> 返回此通用 <code>Joint</code>。</p>
+<h2 id="ik-数据与限位">IK 数据与限位<a class="headerlink" href="#ik-数据与限位" title="Permanent link">&para;</a></h2>
+<h3 id="iklinkrotationlimit-与-ikjoint">IkLink、RotationLimit 与 IkJoint<a class="headerlink" href="#iklinkrotationlimit-与-ikjoint" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">Bone</span><span class="w"> </span><span class="n">bone</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">Bone</span><span class="w"> </span><span class="n">bone</span><span class="p">,</span><span class="w"> </span><span class="n">RotationLimit</span><span class="w"> </span><span class="n">limit</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">Bone</span><span class="w"> </span><span class="n">bone</span><span class="p">,</span><span class="w"> </span><span class="n">RotationLimit</span><span class="w"> </span><span class="n">limit</span><span class="p">,</span><span class="w"> </span><span class="n">IkJoint</span><span class="w"> </span><span class="n">joint</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">RotationLimit</span><span class="p">(</span><span class="n">Vector3f</span><span class="w"> </span><span class="n">minimum</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">maximum</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">Rotor</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">angle</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">Hinge</span><span class="p">(</span><span class="n">Vector3f</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">reference</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">minimum</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">maximum</span><span class="p">);</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数与行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IkLink</code></td>
+<td><code>bone</code> 必需；<code>limit</code>/<code>joint</code> 可为 null；两个简化构造器的缺省字段为 null</td>
+</tr>
+<tr>
+<td><code>RotationLimit</code></td>
+<td>有限 XYZ Euler 上下界，逐轴 minimum ≤ maximum；作用于 IK 局部修正</td>
+</tr>
+<tr>
+<td><code>IkJoint</code></td>
+<td>sealed interface，允许 <code>Rotor</code> 与 <code>Hinge</code></td>
+</tr>
+<tr>
+<td><code>Rotor</code></td>
+<td>有限角度 <code>0..π</code>；首段围绕未修正姿态方向，后续段相对于前一段方向</td>
+</tr>
+<tr>
+<td><code>Hinge</code></td>
+<td>axis/reference 在 driver 未修正局部 frame 中；非零、自动归一化、正交误差 ≤ <code>1e-4</code>；角度在 <code>[-π,π]</code> 且 minimum ≤ maximum</td>
+</tr>
+</tbody>
+</table>
+<p>Rotor/Hinge 在 Caliko 中约束位置求解，RotationLimit 在局部修正上投影。两者同时给出时两种限制
+都会参与，但 Euler 盒投影不保证复杂约束的全局收敛。已经到达目标的链不会另选解。</p>
+<h3 id="ikchain">IkChain<a class="headerlink" href="#ikchain" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Bone</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span><span class="w"> </span><span class="n">Bone</span><span class="w"> </span><span class="n">effector</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IkLink</span><span class="o">&gt;</span><span class="w"> </span><span class="n">links</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Bone</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span><span class="w"> </span><span class="n">Bone</span><span class="w"> </span><span class="n">effector</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">IkLink</span><span class="o">&gt;</span><span class="w"> </span><span class="n">links</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">tolerance</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">maxRotationStep</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">replaceAuthoredRotation</span><span class="p">,</span><span class="w"> </span><span class="n">TargetMode</span><span class="w"> </span><span class="n">targetMode</span><span class="p">);</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>简化构造默认值</th>
+<th>契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>必填</td>
+<td>非空白链名；控制和诊断都以它寻址，不要求等于 controller 骨名</td>
+</tr>
+<tr>
+<td><code>controller</code></td>
+<td>必填</td>
+<td>默认目标来源骨</td>
+</tr>
+<tr>
+<td><code>effector</code></td>
+<td>必填</td>
+<td>最终末端骨</td>
+</tr>
+<tr>
+<td><code>links</code></td>
+<td>必填</td>
+<td>非空，从 base 到 tip；最终 link 指向 effector</td>
+</tr>
+<tr>
+<td><code>iterations</code></td>
+<td>32</td>
+<td><code>1..256</code>；限制适配迭代和库的尝试次数</td>
+</tr>
+<tr>
+<td><code>tolerance</code></td>
+<td><code>1e-4f</code></td>
+<td>有限正距离</td>
+</tr>
+<tr>
+<td><code>maxRotationStep</code></td>
+<td>π</td>
+<td>有限非负值，每次方向对齐增量的最大角度；0 将该增量限制为零，后续 Euler 投影仍可调整修正</td>
+</tr>
+<tr>
+<td><code>replaceAuthoredRotation</code></td>
+<td>false</td>
+<td>true 接管链骨作者局部姿态；当前实现从单位局部变换开始，连作者平移/缩放也一并跳过，morph/grant/fixed-axis 后续仍参与</td>
+</tr>
+<tr>
+<td><code>targetMode</code></td>
+<td><code>POSITION</code></td>
+<td>非 null；模式见下</td>
+</tr>
+</tbody>
+</table>
+<p><code>POSITION</code> 以 controller 的当前绝对位置为默认目标。
+<code>DIRECTION</code> 在没有外部目标时用绑定骨段方向和 controller 的旋转差确定朝向，忽略其纯平移。
+存在持久/单 tick 外部目标时转为位置混合；该模式不会把外部 Vector3f 解释为方向向量。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getSkeleton</span><span class="p">());</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">elbow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Hinge</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<span class="w">        </span><span class="o">-</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2f</span><span class="p">,</span><span class="w"> </span><span class="mf">0f</span><span class="p">);</span>
+<span class="n">builder</span><span class="p">.</span><span class="na">ik</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="s">"left-arm"</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"hand-target"</span><span class="p">),</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"hand"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"upper-arm"</span><span class="p">)),</span>
+<span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"forearm"</span><span class="p">),</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">elbow</span><span class="p">)))).</span><span class="na">attach</span><span class="p">();</span>
+</code></pre></div>
+<p>该 hinge 示例假定前臂绑定方向为局部 +X、弯曲轴为 +Z；实际资产需填写自己的骨骼 frame。</p>
+<h2 id="菱形闭环">菱形闭环<a class="headerlink" href="#菱形闭环" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">DiamondConstraint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstChain</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">secondChain</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">DiamondConstraint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstChain</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">secondChain</span><span class="p">,</span>
+<span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">tolerance</span><span class="p">);</span>
+</code></pre></div>
+<p>简化构造使用 <code>iterations=32</code>、<code>tolerance=1e-4f</code>。名称非空白，两个链名必需且不同，
+iterations 为 <code>1..256</code>，tolerance 为有限正数。分支要求由 Builder 验证，见其结构校验列表。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SkeletonDynamicsBuilder</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">getSkeleton</span><span class="p">());</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="s">"left-linkage"</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"closure-target"</span><span class="p">),</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"left-tip"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"left-base"</span><span class="p">)),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"left-mid"</span><span class="p">))));</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkChain</span><span class="p">(</span><span class="s">"right-linkage"</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"closure-target"</span><span class="p">),</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"right-tip"</span><span class="p">),</span>
+<span class="w">        </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"right-base"</span><span class="p">)),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IkLink</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">bone</span><span class="p">(</span><span class="s">"right-mid"</span><span class="p">))));</span>
+<span class="n">builder</span><span class="p">.</span><span class="na">ik</span><span class="p">(</span><span class="n">left</span><span class="p">).</span><span class="na">ik</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">diamond</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DiamondConstraint</span><span class="p">(</span><span class="s">"linkage"</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">.</span><span class="na">name</span><span class="p">(),</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="na">name</span><span class="p">()))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">attach</span><span class="p">();</span>
+</code></pre></div>
+<p>两个 base 应在绑定姿态位置重合，分别驱动独立层级，两个末端代表同一个闭合点。
+两个 controller 可以是同一骨，也可以分别设置目标，求解从两目标的中点开始。
+任一链关闭会暂停该闭环；分支属于闭环时不先作独立链求解。
+约束只保证位置闭合，不保证末端朝向相等、四边等长或原生机械反馈。</p>
+<h2 id="skeletoninstance-运行时控制">SkeletonInstance 运行时控制<a class="headerlink" href="#skeletoninstance-运行时控制" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">skeleton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getSkeletonInstance</span><span class="p">();</span>
+</code></pre></div>
+<p>下表 <code>name</code> 都表示 IK 链名。现有参数名 <code>boneName</code>/<code>controllerBone</code> 是历史名称。</p>
+<table>
+<thead>
+<tr>
+<th>方法签名</th>
+<th>返回/行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean setIkEnabled(String name, boolean enabled)</code></td>
+<td>未定义链返回 false；成功时要求重新求值</td>
+</tr>
+<tr>
+<td><code>boolean isIkEnabled(String name)</code></td>
+<td>读取开关，缺省 true；不是存在性检查，未知链也返回 true</td>
+</tr>
+<tr>
+<td><code>void resetIkEnabled()</code></td>
+<td>清除覆盖开关，恢复缺省 true</td>
+</tr>
+<tr>
+<td><code>boolean clearIkEnabled(String name)</code></td>
+<td>清除单个链的显式开关；有状态被移除时返回 true</td>
+</tr>
+<tr>
+<td><code>boolean setIkTarget(String name, Vector3f worldTarget, float weight)</code></td>
+<td>持久目标；未定义链 false；复制目标并要求更新</td>
+</tr>
+<tr>
+<td><code>boolean clearIkTarget(String name)</code></td>
+<td>清除持久目标；没有目标返回 false</td>
+</tr>
+<tr>
+<td><code>void clearIkTargets()</code></td>
+<td>清除全部持久目标</td>
+</tr>
+<tr>
+<td><code>boolean setFrameIkTarget(String name, Vector3f worldTarget, float weight)</code></td>
+<td>当前 pose pipeline 周期的瞬态目标；未定义链 false</td>
+</tr>
+<tr>
+<td><code>void clearFrameIkTargets()</code></td>
+<td>清除瞬态目标；ModelTickLoop 在周期开始自动调用</td>
+</tr>
+<tr>
+<td><code>void updateTransform()</code></td>
+<td>求值层级、IK 与最终层级；手动宿主按自己的求值时序调用</td>
+</tr>
+<tr>
+<td><code>void updateTransformAfterPhysics()</code></td>
+<td>写回后重建层级，保留已求解 IK 修正，不再求解 IK</td>
+</tr>
+<tr>
+<td><code>Map&lt;String, CalikoIkSolver.SolveResult&gt; ikSolveResults()</code></td>
+<td>最近一次 IK 求解的只读诊断视图</td>
+</tr>
+</tbody>
+</table>
+<p>目标必须非 null、有限，weight 必须有限且在 <code>[0,1]</code>，否则抛相应参数异常。
+混合从 controller 当前位置到外部位置执行，weight 不是“启用 IK 的强度”。
+瞬态目标优先于持久目标；未知链在目标数值校验前直接返回 false。
+设置目标只标记输入改变，不立即完成求解，随后运行实例的正常求值入口。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">skeleton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="na">getSkeletonInstance</span><span class="p">();</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">accepted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skeleton</span><span class="p">.</span><span class="na">setIkTarget</span><span class="p">(</span><span class="s">"left-arm"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">updateImmediate</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skeleton</span><span class="p">.</span><span class="na">ikSolveResults</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="s">"left-arm"</span><span class="p">);</span>
+</code></pre></div>
+<p><code>SolveResult(float residual, boolean satisfied)</code> 的访问器为 <code>residual()</code>、<code>satisfied()</code>。
+普通链 residual 是实际末端到本次目标的距离；闭环取两末端距离与两 base 距离的较大值。
+闭环分支结果对应最近一次共同目标，不代表其原 controller 目标一定达到。
+satisfied 只表达对应的位置残差在 tolerance 内，不是完整角度/动力学验收。
+关闭/未运行的链没有该次结果；Map 是实时只读视图，下次求解会清空并更新，需保留快照时自行复制。</p>
+<h3 id="每-tick-目标iktargetmodule">每 tick 目标：IkTargetModule<a class="headerlink" href="#每-tick-目标iktargetmodule" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"> </span><span class="n">IkTargetModule</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">worldTarget</span><span class="p">);</span>
+<span class="k">new</span><span class="w"> </span><span class="n">IkTargetModule</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3f</span><span class="w"> </span><span class="n">worldTarget</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">weight</span><span class="p">);</span>
+</code></pre></div>
+<p>二参数构造的 weight 为 1，初始 enabled 为 true。
+访问器：<code>controllerBone()</code>（链名）、<code>target()</code>（复制向量）、<code>weight()</code>、<code>enabled()</code>。
+控制方法：<code>void setTarget(Vector3f)</code>、<code>void setTarget(Vector3f,float)</code>、<code>void setEnabled(boolean)</code>。
+设置 target 保留 enabled 状态，一参数 setter 保留当前 weight。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">lib</span><span class="p">.</span><span class="na">kasuga</span><span class="p">.</span><span class="na">rendering</span><span class="p">.</span><span class="na">models</span><span class="p">.</span><span class="na">uml</span><span class="p">.</span><span class="na">dynamic</span><span class="p">.</span><span class="na">tick_loop</span><span class="p">.</span><span class="na">handler</span><span class="p">.</span><span class="na">IkTargetModule</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"left-arm"</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">instance</span><span class="p">.</span><span class="na">getTickLoop</span><span class="p">().</span><span class="na">addPreIk</span><span class="p">(</span><span class="s">"hand-target-input"</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">);</span>
+<span class="n">target</span><span class="p">.</span><span class="na">setTarget</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Vector3f</span><span class="p">(</span><span class="mf">1.2f</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">);</span>
+<span class="n">target</span><span class="p">.</span><span class="na">setEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>构造器只校验名称非空白和目标数值，不验证链是否存在；运行时向实例发布时才按链名解析。
+<code>addPreIk</code> 把模块放在 IK 前、默认 apply 后，瞬态目标在同周期内供 IK 与物理共同消费。
+需要写 pending transforms 并让默认 apply 消费时，使用 tick pipeline 的 <code>addBefore(SLOT_APPLY, ...)</code>。</p>
+<h2 id="格式-reader-的实际默认行为">格式 Reader 的实际默认行为<a class="headerlink" href="#格式-reader-的实际默认行为" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th>读取接口</th>
+<th>默认映射</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MmdSkeletonDynamicsReader</code></td>
+<td><code>void read(MmdModelData, SkeletonDynamicsBuilder)</code></td>
+<td>作者刚体顺序、直接 Bone 引用、有效关节、导入 unitScale；不强制 profile，rigid 写回，profile 半径比例 1</td>
+</tr>
+<tr>
+<td>同上</td>
+<td><code>static void readIk(SkeletonDynamicsBuilder)</code></td>
+<td>仅转换已挂在骨骼上的 PMX IK；可用于无完整 tail 的骨架</td>
+</tr>
+<tr>
+<td>同上</td>
+<td><code>static void readBoneConstraints(SkeletonDynamicsBuilder)</code></td>
+<td>将 PMX 继承/固定轴转换为通用约束；完整 read 会自动调用</td>
+</tr>
+<tr>
+<td><code>GltfSkeletonDynamicsReader</code></td>
+<td><code>void read(GltfModelData, SkeletonDynamicsBuilder)</code></td>
+<td>按 node 顺序生成候选；强制显式 profile，affine 写回，skin 骨绑定跟随；不自动猜测/创建 IK</td>
+</tr>
+</tbody>
+</table>
+<p>MMD 的 controller 骨名作为链名，链从文件的 tip-to-base 反转为 base-to-tip；正的迭代次数
+封顶 256，tolerance 为 <code>1e-4f</code>，步长角度取原限制绝对值，并开启作者局部姿态接管。
+可表达的单轴 Euler 限位转换为 Hinge；其他盒限位保留 RotationLimit。
+单 link、controller/effector 绑定位置重合且 controller 有向量 tail 时使用 DIRECTION。
+无有效 effector/link 或非正迭代次数的链不进入定义。无效/自连接 PMX 关节不进入可模拟表。</p>
+<p>glTF profile 的外部索引继续对应 node 顺序；MMD profile 对应原刚体顺序。
+这两种来源在 Reader 边界完成转换，运行时 <code>Body.source().bone()</code> 直接得到通用骨引用。</p>
+<h2 id="自定义宿主的求解适配">自定义宿主的求解适配<a class="headerlink" href="#自定义宿主的求解适配" title="Permanent link">&para;</a></h2>
+<p><code>CalikoIkSolver(Skeleton skeleton, PoseAccess pose)</code> 提供 <code>void solve()</code> 与
+<code>Map&lt;String, SolveResult&gt; results()</code>。通常由 SkeletonInstance 管理，直接使用时宿主实现：</p>
+<table>
+<thead>
+<tr>
+<th>PoseAccess 方法</th>
+<th>宿主职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Transform absolute(Bone bone)</code></td>
+<td>已求值的绝对姿态</td>
+</tr>
+<tr>
+<td><code>Transform correction(Bone bone)</code></td>
+<td>可修改、每实例持有的局部 IK 修正</td>
+</tr>
+<tr>
+<td><code>Vector3f target(IkChain chain)</code></td>
+<td>返回本次目标的新向量；闭环会修改该返回值来求共同目标</td>
+</tr>
+<tr>
+<td><code>boolean enabled(String chain)</code></td>
+<td>链开关</td>
+</tr>
+<tr>
+<td><code>void refresh(Bone driver, Bone endpoint)</code></td>
+<td>修正后同步重建受影响层级，后续读取必须看到最新姿态</td>
+</tr>
+</tbody>
+</table>
+<p>宿主负责动画/物理求值次序、修正清理和线程归属。求解器有可变状态，不能并发求解同一实例。
+当前库是官方 Caliko 1.3.8 core；<code>modules/render-core/libs</code> 下附有依赖说明与许可证。</p>
+<h2 id="源码入口">源码入口<a class="headerlink" href="#源码入口" title="Permanent link">&para;</a></h2>
+<p>本页对应的类都在 <code>render-core</code> 模块中，包路径见「类型与包」表：</p>
+<ul>
+<li><code>SkeletonDynamics</code></li>
+<li><code>SkeletonDynamicsBuilder</code></li>
+<li><code>SkeletonDynamicsReader</code></li>
+<li><code>SkeletonInstance</code></li>
+<li><code>CalikoIkSolver</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

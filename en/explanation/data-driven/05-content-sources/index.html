@@ -1,0 +1,3464 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/explanation/data-driven/05-content-sources/">
+      
+      
+      
+      
+        
+          <link rel="alternate" href="../../../../explanation/data-driven/05-content-sources/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>内容来源、快照与安全 - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#内容来源快照与安全" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              内容来源、快照与安全
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../explanation/data-driven/05-content-sources/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#平台身份" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        平台身份
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contentsource-接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ContentSource 接口
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-indexingmain-与-parcel-roots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene indexing、main 与 parcel roots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcesnapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ResourceSnapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixedresourcesource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FixedResourceSource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snapshotcontentsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SnapshotContentSource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcesources-适配器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ResourceSources 适配器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ResourceSources 适配器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#目录" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#只读非默认-nio-根" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        只读、非默认 NIO 根
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mod-根" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mod 根
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputpolicy-与额外限额" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputPolicy 与额外限额
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#流租约与关闭" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流、租约与关闭
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#严格-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        严格 JSON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#旧-contentsource-适配器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旧 ContentSource 适配器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#来源优先级与依赖" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        来源优先级与依赖
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#与-mc-资源投影的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与 MC 资源投影的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sourceaccessexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SourceAccessException
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="内容来源快照与安全">内容来源、快照与安全<a class="headerlink" href="#内容来源快照与安全" title="Permanent link">&para;</a></h1>
+<p>v2 的注册来源有两层：</p>
+<ol>
+<li>core 的 <code>ResourceSource</code> 负责捕获物理来源，返回不可变的 <code>ResourceSnapshot</code>；</li>
+<li>data-driven 的 <code>ContentSource</code> 负责把一个具体 root 暴露为 manifest/JSON 读取视图。</li>
+</ol>
+<p>生产接线应使用 <code>ResourceSource -&gt; ResourceSnapshot -&gt; ContentSourceFactory.snapshot(...) -&gt; DataDrivenBuildPipeline</code>。直接打开目录或 ZIP 的 <code>ContentSourceFactory.directory/zip/modJar/open</code> 仍保留给旧入口和测试兼容，不再代表 v2 的固定启动快照模型。</p>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSourceDescriptor</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ResourceSourceDescriptor</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"example"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"example-pack"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"main"</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ResourceSourceDescriptor</span><span class="p">.</span><span class="na">Origin</span><span class="p">.</span><span class="na">EXTERNAL</span>
+<span class="p">);</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResourceSource</span><span class="w"> </span><span class="n">fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">fixed</span><span class="p">(</span>
+<span class="w">             </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">             </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">mod</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span><span class="w"> </span><span class="n">modRoot</span><span class="p">,</span><span class="w"> </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">),</span>
+<span class="w">             </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span>
+<span class="w">     </span><span class="n">ContentSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">snapshot</span><span class="p">(</span>
+<span class="w">             </span><span class="n">fixed</span><span class="p">.</span><span class="na">capture</span><span class="p">(),</span>
+<span class="w">             </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">             </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"example"</span><span class="p">),</span>
+<span class="w">             </span><span class="s">"example pack root main"</span>
+<span class="w">     </span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PreparedContent</span><span class="w"> </span><span class="n">prepared</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipeline</span><span class="p">.</span><span class="na">prepare</span><span class="p">(</span>
+<span class="w">            </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">source</span><span class="p">),</span>
+<span class="w">            </span><span class="n">BuildOptions</span><span class="p">.</span><span class="na">STRICT</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="平台身份">平台身份<a class="headerlink" href="#平台身份" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSourceDescriptor(ownerId, sourceId, rootId, rank, origin)</code> 是 core 的唯一提供者身份：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>约束</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ownerId</code></td>
+<td>匹配平台 ID 规则，最多 128 字符</td>
+<td>定义所有权、依赖可见性和访问授权</td>
+</tr>
+<tr>
+<td><code>sourceId</code></td>
+<td>匹配同一规则</td>
+<td>一个宿主逻辑 source，通常对应一个 pack</td>
+</tr>
+<tr>
+<td><code>rootId</code></td>
+<td>匹配同一规则</td>
+<td>source 内的具体根</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>非负整数</td>
+<td>全局资源层顺序；越大越优先</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>EXTERNAL</code>、<code>MC_MANAGED</code>、<code>DERIVED</code></td>
+<td>来源类别和投影限制</td>
+</tr>
+</tbody>
+</table>
+<p>平台 ID 不允许冒号。<code>example_railway:m1</code> 可以是业务 parcel ID，但不能直接作为 <code>rootId</code>；宿主必须保存稳定映射，例如 <code>parcel-m1</code>。</p>
+<p>data-driven 的 <code>SourceDescriptor</code> 保留四字段旧构造器和新的平台构造器。由 <code>SourceDescriptor.of(ResourceSourceDescriptor, namespaces, label)</code> 创建时：</p>
+<ul>
+<li><code>sourceId()</code> / <code>ownerId()</code> 与平台 descriptor 相同；</li>
+<li><code>rootId()</code>、<code>rank()</code>、<code>origin()</code> 直接读取平台 descriptor；</li>
+<li><code>resource()</code> 返回原平台 descriptor；</li>
+<li><code>namespaces</code> 是注册读取允许的 namespace 集合，必须非空并稳定排序；</li>
+<li><code>diagnosticLabel</code> 只用于人工定位。</li>
+</ul>
+<p>旧四字段 <code>SourceDescriptor.of(sourceId, ownerId, namespaces)</code> 的 <code>resource()</code> 为 <code>null</code>。pipeline 只为这种兼容来源按输入位置分配 order；平台来源始终使用显式 rank。</p>
+<h2 id="contentsource-接口">ContentSource 接口<a class="headerlink" href="#contentsource-接口" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ContentSource</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">AutoCloseable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SourceDescriptor</span><span class="w"> </span><span class="nf">descriptor</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">InputStream</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">exists</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedFile</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">files</span><span class="p">();</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedFile</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">indexes</span><span class="p">();</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">InputStream</span><span class="w"> </span><span class="nf">requireOpen</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>files()</code> 是打开该视图时固定的、按逻辑路径排序的文件列表。<code>LocatedFile</code> 包含 descriptor、<code>LogicalPath</code>、size，以及平台快照可提供的 <code>ResourceUri</code>、SHA-256 revision 和 tags。</p>
+<p><code>indexes()</code> 默认只识别 descriptor namespace 下的：</p>
+<div class="highlight"><pre><span></span><code>data/&lt;namespace&gt;/kasuga_lib/data_driven/&lt;name&gt;.json
+</code></pre></div>
+<p>它是这一层 <code>data_driven/</code> 的直接子文件，不递归。<code>data/&lt;namespace&gt;</code> 的 namespace 必须出现在 <code>SourceDescriptor.namespaces</code> 中。</p>
+<p><code>ContentSource</code> 是读取协议，不是沙箱。路径和归档结构由实现约束，但 handler、JSON codec 和 factory 仍在宿主 JVM 中执行；不可信包仍需要宿主限制依赖、资源预算和副作用。</p>
+<h2 id="scene-indexingmain-与-parcel-roots">Scene indexing、main 与 parcel roots<a class="headerlink" href="#scene-indexingmain-与-parcel-roots" title="Permanent link">&para;</a></h2>
+<p>本文把“当前注册场景选择哪些 root，每个 root 暴露哪些入口 manifest”称为 Scene indexing。它是组合语义，不是新增的 Java 或 JSON 类型。</p>
+<p>平台级组合是：</p>
+<div class="highlight"><pre><span></span><code>pack owner/source
+├─ main       (低 rank，使用默认 indexes() 或宿主声明的 pack 根入口)
+├─ parcel-m1  (较高 rank，只暴露 parcel.json.indexes)
+├─ parcel-m2  (再高 rank，只暴露 parcel.json.indexes)
+└─ shared     (宿主定义时的共享根，仍有自己的唯一 rank/index 集)
+</code></pre></div>
+<p><code>main</code>、<code>parcel-*</code> 和 <code>shared</code> 是宿主约定。KasugaLib 只要求：</p>
+<ul>
+<li>每个 <code>(sourceId, rootId)</code> 在一次 prepare 中唯一；</li>
+<li>每个 root 的 <code>rank</code> 非负且在本次 prepare 的所有 roots 间唯一；</li>
+<li>root ID 不含冒号；</li>
+<li>注册、MC 资源发现和 reload 消费引用同一个冻结 root；</li>
+<li>被禁用的 root 不进入 source 列表，也不进入 MC Approved 资源注册。</li>
+</ul>
+<p>rank 必须按所有 pack 的全局顺序分配。若每个 pack 都从 0 重起，不同 root 的同路径会出现 <code>ROUTING_CONFLICT</code>，pipeline 也会报告重复 rank。依赖拓扑只决定准备/引用顺序，不能重排 rank。</p>
+<h2 id="resourcesnapshot">ResourceSnapshot<a class="headerlink" href="#resourcesnapshot" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSnapshot.capture()</code> 的结果是一份不可变字节集合：</p>
+<ul>
+<li>每个文件保存实际读取字节、size、检测出的 type/subtype、SHA-256 revision 和 logical path；</li>
+<li>小于等于 <code>InputPolicy.memoryThresholdBytes</code> 的文件保存在内存；</li>
+<li>更大的文件写入随机命名的私有临时 spool 文件；</li>
+<li>捕获时逐字节实施 JSON/普通文件/总量/文件数预算；</li>
+<li>同一 snapshot 不允许重复 <code>ResourceUri</code> 或重复 logical path，也拒绝文件和目录前缀冲突。</li>
+</ul>
+<p><code>LocatedResourceFile</code> 的身份是具体 provider URI：</p>
+<div class="highlight"><pre><span></span><code>ksg://&lt;source&gt;/roots/&lt;root&gt;/&lt;path&gt;[#&lt;child&gt;]
+</code></pre></div>
+<p>有 <code>childKey</code> 时，文件 descriptor 的 <code>origin</code> 变为 <code>DERIVED</code>，rank/owner/source/root 仍继承父 provider；<code>parentUri()</code> 返回去掉 child key 的文件 URI。运行期派生产物因此能保留来源血缘，而不会伪装成新的外部 source。</p>
+<p><code>readBytes()</code> 读取一次完整内容。<code>open()</code> 创建一个临时读取 lease；<code>open(existingLease)</code> 为 stream 增加引用，stream 关闭后释放该引用。</p>
+<p>调用 <code>ResourceSnapshot.close()</code> 会 retire 快照：</p>
+<ul>
+<li>之后不能创建新 lease；</li>
+<li>已存在且有效的 lease/stream 仍可完成读取；</li>
+<li>最后一个引用释放时才清除内存并删除私有 spool 文件；</li>
+<li><code>close()</code> 可重复调用。</li>
+</ul>
+<p><code>ResourceSnapshot.Builder.copy(file)</code> 保留原 URI、logical path、type/subtype/tags，同时重新捕获字节和 revision。它只接受 owner/source/root 完全相同的文件，不能把一个 provider 的内容偷换到另一个 provider 身份下。</p>
+<h2 id="fixedresourcesource">FixedResourceSource<a class="headerlink" href="#fixedresourcesource" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSources.fixed(descriptor, liveSource, policy)</code> 在创建时立即执行一次 <code>liveSource.capture()</code>，随后关闭 live source。返回的 <code>FixedResourceSource</code> 持有这份 baseline snapshot。</p>
+<p>之后每次 <code>fixed.capture()</code>：</p>
+<ol>
+<li>在同一 descriptor 下创建新的 <code>ResourceSnapshot.Builder</code>；</li>
+<li>对 baseline 中每个文件调用 <code>Builder.copy</code>；</li>
+<li>返回一份独立、可关闭的 snapshot。</li>
+</ol>
+<p>因此：</p>
+<ul>
+<li>原目录或归档在固定之后被修改，不影响后续消费；</li>
+<li>不同消费者关闭各自快照不会让另一个消费者收到 <code>STALE_REFERENCE</code>；</li>
+<li>fixed source 本身关闭后，新的 <code>capture()</code> 失败；</li>
+<li>关闭 fixed source 会 retire baseline；已经返回给调用方的 snapshot 有独立引用计数，不受 baseline 关闭影响。</li>
+</ul>
+<p>如果 baseline 中混入不同 owner/source/root 的文件，capture 失败；它不会用传入 descriptor 重新标记 foreign provider。</p>
+<p><code>ApprovedResourcePacks</code> 的每次 discovery 和 <code>ResourceCoordinator</code> 的每轮 prepare 都会调用 <code>capture()</code>。给这些消费者传入 fixed source，才能让多次 discovery 与注册解析继续使用启动字节。直接把 <code>ResourceSources.directory/archive</code> 的 live source 传给它们，会重新读取安装内容。</p>
+<h2 id="snapshotcontentsource">SnapshotContentSource<a class="headerlink" href="#snapshotcontentsource" title="Permanent link">&para;</a></h2>
+<p><code>ContentSourceFactory.snapshot(...)</code> 把 <code>ResourceSnapshot</code> 投影成注册视图，并把 snapshot ownership 交给返回的 <code>SnapshotContentSource</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ContentSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">snapshot</span><span class="p">(</span>
+<span class="w">        </span><span class="n">snapshot</span><span class="p">,</span>
+<span class="w">        </span><span class="n">resourceDescriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">namespaces</span><span class="p">,</span>
+<span class="w">        </span><span class="n">diagnosticLabel</span><span class="p">,</span>
+<span class="w">        </span><span class="n">declaredIndexes</span><span class="w"> </span><span class="c1">// 可选</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>构造时执行以下检查：</p>
+<ul>
+<li>snapshot 中每个文件必须属于传入的 owner/source/root；</li>
+<li>logical path 不得重复；</li>
+<li>文件重新按 path 排序，并暴露 URI、revision、tags 和 size；</li>
+<li>descriptor 采用 <code>SourceDescriptor.of(resourceDescriptor, namespaces, label)</code>。</li>
+</ul>
+<p><code>declaredIndexes</code> 的语义很窄：它替换 <code>indexes()</code> 的候选集合，并保留其中存在、按 path 排序的文件。它不会：</p>
+<ul>
+<li>删除 snapshot 中未声明的文件；</li>
+<li>限制 manifest 后续 <code>open()</code> 的内容路径；</li>
+<li>自动验证索引是否位于标准目录；</li>
+<li>自动为缺失声明生成诊断。</li>
+</ul>
+<p>传入空集合是“显式零 index”，适用于只提供原生 resources/data 的 root；传入 <code>null</code> 才是默认扫描标准索引目录。</p>
+<p>车包宿主应在 build 前自行验证每个 parcel index 存在于该 root snapshot 中；<code>PackResourceSnapshotter</code> 一类宿主实现通常在切片时做这项检查。</p>
+<p>关闭 <code>SnapshotContentSource</code> 会关闭它拥有的 snapshot。调用方不得再把同一 snapshot 交给第二个 owner 关闭；需要多个消费者时先从 fixed source 分别 capture。</p>
+<h2 id="resourcesources-适配器">ResourceSources 适配器<a class="headerlink" href="#resourcesources-适配器" title="Permanent link">&para;</a></h2>
+<h3 id="目录">目录<a class="headerlink" href="#目录" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">live</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">directory</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">directory</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><code>directory</code> 在构造时检查根目录和整棵树：</p>
+<ul>
+<li>根及后代不得是 symbolic link；</li>
+<li>只允许 directory 和 regular file；</li>
+<li>节点数量有上限；</li>
+<li>capture 前后各枚举/读取一次，并比较文件 descriptor/revision，检测捕获期间变化。</li>
+</ul>
+<p>它通过 <code>DirectoryVfs</code> 读取。该 VFS 构造可能先扫描或哈希现有树，超限检查不能撤回这部分前置成本；对不可变启动输入应尽早 <code>ResourceSources.fixed(...)</code>。</p>
+<h3 id="只读非默认-nio-根">只读、非默认 NIO 根<a class="headerlink" href="#只读非默认-nio-根" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">readOnlyDirectory</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">unionFilesystemRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>该适配器用于不支持创建目录或 <code>NOFOLLOW_LINKS</code> open option 的只读 provider，例如 NeoForge 展开 mod 的 union filesystem。它仍拒绝 symbolic link 和特殊文件，并做两次 capture 一致性检查。</p>
+<h3 id="mod-根">Mod 根<a class="headerlink" href="#mod-根" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">mod</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">pathFromFindResource</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>选择规则：</p>
+<ul>
+<li>非目录的普通文件按 archive 处理；</li>
+<li>默认文件系统目录走 <code>directory</code>；</li>
+<li>非默认文件系统目录走 <code>readOnlyDirectory</code>。</li>
+</ul>
+<p>因此展开 mod、普通 JAR 和 union filesystem 不再要求宿主按显示路径猜 backend。</p>
+<h3 id="archive">Archive<a class="headerlink" href="#archive" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">archive</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">zipOrJar</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>v2 archive 入口会在限额内复制归档，验证 raw central directory，再 inflate 每个正文并按实际字节计数。它拒绝：</p>
+<ul>
+<li>非 regular file、symlink、加密、分卷归档；</li>
+<li>ZIP64；</li>
+<li>raw path 或 logical path 重复；</li>
+<li>file/directory 冲突；</li>
+<li>Unix symlink、device、FIFO 等特殊 entry；</li>
+<li>超出 JSON、单文件、总量或文件数预算；</li>
+<li>entry size/CRC 不匹配。</li>
+</ul>
+<p>归档会被捕获两次并比较 descriptor/revision，避免静默接受捕获期间被替换或修改的包。</p>
+<h3 id="vfs">VFS<a class="headerlink" href="#vfs" title="Permanent link">&para;</a></h3>
+<p><code>ResourceSources.vfs(descriptor, files, owned, sourcePrefix, logicalPrefix, policy)</code> 为宿主已有 <code>VirtualFileSystem</code> 建立有界快照。<code>sourcePrefix</code> 是 URI 中的根内路径，<code>logicalPrefix</code> 是注册视图中的路径前缀；两者不能混用。除非 VFS 本身已经具备严格 archive/link 校验，通用 VFS wrapper 不会凭空获得这些证明。</p>
+<h2 id="inputpolicy-与额外限额">InputPolicy 与额外限额<a class="headerlink" href="#inputpolicy-与额外限额" title="Permanent link">&para;</a></h2>
+<p><code>InputPolicy.DEFAULT</code>：</p>
+<table>
+<thead>
+<tr>
+<th>限额</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON 单文件</td>
+<td>8 MiB</td>
+</tr>
+<tr>
+<td>普通单文件</td>
+<td>256 MiB</td>
+</tr>
+<tr>
+<td>一个 snapshot/root 总量</td>
+<td>1 GiB</td>
+</tr>
+<tr>
+<td>文件数</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>JSON 深度</td>
+<td>64</td>
+</tr>
+<tr>
+<td>内存转私有 spool 阈值</td>
+<td>1 MiB</td>
+</tr>
+</tbody>
+</table>
+<p>构造时要求正数、<code>maxJsonBytes &lt;= maxFileBytes &lt;= maxTotalBytes</code>，深度在 1–256 之间，spool 阈值不超过 <code>Integer.MAX_VALUE</code>。</p>
+<p>限额属于一个 <code>ResourceSnapshot.Builder</code>，也就是一个具体 root。宿主若把整包拆成 main、parcel 和 shared roots，应额外按整个 pack 汇总预算；多个合法 root 不会自动共享这 1 GiB。</p>
+<p><code>StrictResourceJson</code> 还会限制 JSON 文本 8 MiB、节点 100,000 个；输入在进入该解码器前仍应受 <code>InputPolicy</code> 约束，避免先无界读入。</p>
+<h2 id="流租约与关闭">流、租约与关闭<a class="headerlink" href="#流租约与关闭" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">InputStream</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="p">.</span><span class="na">requireOpen</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="w">     </span><span class="n">Reader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// read while the source is open</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>open</code> 对缺失路径返回 empty；</li>
+<li><code>requireOpen</code> 对缺失路径抛 <code>SourceAccessException(NOT_FOUND)</code>；</li>
+<li><code>SnapshotContentSource</code> 关闭后，<code>open</code>、<code>exists</code>、<code>files</code> 都报 <code>IllegalStateException</code>；</li>
+<li>pipeline 不关闭 <code>ContentSource</code>；</li>
+<li>标准 definition 在 prepare 中复制解析结果，因此通常可在 build 前关闭 ContentSource；</li>
+<li>自定义 definition 若延迟读取文件，必须持有并关闭自己的 stream/lease。</li>
+</ul>
+<h2 id="严格-json">严格 JSON<a class="headerlink" href="#严格-json" title="Permanent link">&para;</a></h2>
+<p><code>DataDrivenBuildPipeline</code> 在 STRICT 中先用严格 UTF-8 decoder，再调用 <code>StrictResourceJson.parse</code>：</p>
+<ul>
+<li>拒绝 malformed UTF-8；</li>
+<li>关闭 Gson lenient mode，拒绝注释、单引号和尾逗号；</li>
+<li>要求整份文件恰好一个 object；</li>
+<li>拒绝重复键；</li>
+<li>默认深度 64、节点 100,000；</li>
+<li>manifest、register content 和 reload 预检都使用这条路径。</li>
+</ul>
+<p>LEGACY 使用 <code>JsonParser.parseString</code>，保留宽松兼容。运行期 <code>ReloadOrchestrator</code> 仍通过 Minecraft <code>ResourceManager</code> 和 <code>JsonParser</code> 读取当前包栈，并不自动继承 provider 的 STRICT 字节快照；pipeline 的 reload 预检只能证明冻结来源中的 schema，最终 <code>/reload</code> 仍以 MC 当前选中的包为准。</p>
+<h2 id="旧-contentsource-适配器">旧 ContentSource 适配器<a class="headerlink" href="#旧-contentsource-适配器" title="Permanent link">&para;</a></h2>
+<p>以下 API 仍在源码中：</p>
+<div class="highlight"><pre><span></span><code><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">zip</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">modJar</span><span class="p">(</span><span class="n">IModFile</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><code>DirectoryContentSource</code> 固定文件列表，但打开时读取当时文件字节；</li>
+<li><code>ZipContentSource</code> 支持普通归档以及受 <code>SourceLimits.maxFiles</code> 约束的 ZIP64 元数据，打开期间保持 ZipFile；</li>
+<li><code>ModJarContentSource</code> 读取 <code>modFile.getSecureJar().getRootPath()</code>，不关闭共享 secure JAR filesystem。</li>
+</ul>
+<p>这些适配器适合旧入口、导入工具或兼容测试。新注册 provider 若要保证“注册、首次资源发现和 reload 不读取变化后的安装目录”，应改用 core 的 <code>ResourceSources</code>、<code>ResourceSnapshot</code> 和 <code>FixedResourceSource</code>。</p>
+<h2 id="来源优先级与依赖">来源优先级与依赖<a class="headerlink" href="#来源优先级与依赖" title="Permanent link">&para;</a></h2>
+<p>共享平台来源按 <code>ResourceSourceDescriptor.rank</code> 从低到高处理：</p>
+<div class="highlight"><pre><span></span><code>main rank 10
+parcel-m1 rank 11
+parcel-m2 rank 12
+next-pack main rank 13
+</code></pre></div>
+<p>数值越大优先级越高。非注册定义按 priority 选 winner；STRICT 注册定义保留所有候选并检查最终 claims。依赖声明和优先级是两个维度：</p>
+<ul>
+<li>rank 决定覆盖和稳定遍历顺序；</li>
+<li><code>dependencies</code> 决定 owner 是否能读取另一个 owner 的定义和资源；</li>
+<li>依赖拓扑不会重排 rank，也不会临时提升某个 source。</li>
+</ul>
+<h2 id="与-mc-资源投影的关系">与 MC 资源投影的关系<a class="headerlink" href="#与-mc-资源投影的关系" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSnapshot</code> 同时可被注册视图和 MC pack 层使用：</p>
+<ul>
+<li>注册侧：<code>SnapshotContentSource</code>；</li>
+<li>MC 侧：<code>ApprovedResourcePacks</code> discovery 使用 <code>MappedPackResources</code>，每个 <code>(sourceId, rootId)</code> 是一个独立 pack 层。</li>
+</ul>
+<p><code>MappedPackResources</code> 为文件持有 snapshot lease，只暴露经宿主路由批准的 <code>assets/</code>、<code>data/</code>、<code>pack.mcmeta</code> 和 <code>pack.png</code>。缺少 <code>pack.mcmeta</code> 时，投影层可按当前 <code>PackType</code> 生成运行时 metadata；这不会修改作者快照。</p>
+<p>Approved pack discovery 是独立消费路径，可能重复调用 <code>capture()</code>。只有 fixed source 才能保证每次 discovery 都来自启动字节。注册 provider 还应在 strict preflight、依赖闭包和 build 成功后更新单一 approved root 集合，再让资源发现发布相同 roots。</p>
+<p>来源优先级不会自动决定 MC pack priority，但两边的 root 列表、order 和 rank 应由同一冻结快照生成。若使用 <code>MappedPackResources</code>，不要再用“物化到缓存目录并以普通 Path pack 重新扫描”的方式复制第二套权威内容。</p>
+<h2 id="sourceaccessexception">SourceAccessException<a class="headerlink" href="#sourceaccessexception" title="Permanent link">&para;</a></h2>
+<p>旧 ContentSource 适配器使用：</p>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT_FOUND</code></td>
+<td>来源或逻辑文件不存在</td>
+</tr>
+<tr>
+<td><code>ACCESS_DENIED</code></td>
+<td>文件系统拒绝访问</td>
+</tr>
+<tr>
+<td><code>OUT_OF_BOUNDS</code></td>
+<td>越界路径的保留错误类型</td>
+</tr>
+<tr>
+<td><code>SYMLINK_REJECTED</code></td>
+<td>根、树节点或 archive entry 是 symlink</td>
+</tr>
+<tr>
+<td><code>DUPLICATE_ENTRY</code></td>
+<td>raw 或 logical entry 重复</td>
+</tr>
+<tr>
+<td><code>INVALID_ENTRY</code></td>
+<td>特殊文件、错误目录 entry、非法名称等</td>
+</tr>
+<tr>
+<td><code>LIMIT_EXCEEDED</code></td>
+<td>超过文件数或字节限额</td>
+</tr>
+<tr>
+<td><code>CORRUPT_ARCHIVE</code></td>
+<td>ZIP 结构或 inflate 失败</td>
+</tr>
+<tr>
+<td><code>SOURCE_CLOSED</code></td>
+<td>关闭后继续 open</td>
+</tr>
+<tr>
+<td><code>IO_ERROR</code></td>
+<td>其他 I/O 失败</td>
+</tr>
+</tbody>
+</table>
+<p>core 的 <code>ResourceSources</code> 使用带稳定前缀的 <code>IOException</code>，例如 <code>SOURCE_UNAVAILABLE</code>、<code>UNSAFE_PATH</code>、<code>DUPLICATE_ENTRY</code>、<code>LIMIT_EXCEEDED</code> 和 <code>INVALID_ARCHIVE</code>。宿主报告应保留原始 message 和 source/root 上下文，不要在兼容层把它们压缩成“文件不存在”。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
