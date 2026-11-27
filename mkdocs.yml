@@ -9,8 +9,8 @@
 #   prose source of truth : https://github.com/KasugaLibGroup/KasugaLibNext → doc/
 #   rendered site          : gh-pages branch
 #
-# The documentation is bilingual: every page exists twice, as `X.md` (Chinese)
-# and `X.en.md` (English), side by side in the same directory.
+# The documentation is bilingual: every public page exists twice, as `X.md`
+# (Chinese) and `X.en.md` (English), side by side in the same directory.
 # =============================================================================
 
 # --- Layout (fixed interface; the CI checkout step writes into this path) ----
@@ -50,10 +50,10 @@ theme:
   # during the build, so the English tree gets `en` without extra config.
   language: zh
   features:
-    # Every section directory ships a README.md that acts as that section's
-    # landing page. With this feature the section heading itself links to it,
-    # instead of the section showing a child entry with a duplicated title.
-    # (Material treats README.md as an index page, same as index.md.)
+    # Every top-level section (and README-backed sub-directory) ships a README.md
+    # that acts as that section's landing page. With this feature the section
+    # heading itself links to it, instead of showing a child entry with a
+    # duplicated title. (Material treats README.md as an index page, same as index.md.)
     - navigation.indexes
     # NOT enabled on purpose: `navigation.instant`. Instant loading is
     # incompatible with the i18n plugin's language switcher — the plugin
@@ -92,10 +92,10 @@ plugins:
           name: English
           build: true
           site_name: KasugaLibNext Documentation
-          # Maps the Chinese nav labels written in `nav:` below to their
-          # English counterparts. Every value is copied verbatim from the H1 of
-          # the corresponding `*.en.md` page, so the English nav reads as
-          # "the page's own title", not as a translation of a translation.
+          # Maps the Chinese nav labels and group headings written in `nav:`
+          # below to their English counterparts. Every page label is copied
+          # verbatim from the H1 of the corresponding `*.en.md` page, so the
+          # English nav reads as "the page's own title", not a re-translation.
           nav_translations:
             KasugaLibNext 文档: KasugaLibNext Documentation
 
@@ -105,52 +105,107 @@ plugins:
             最小示例工程: Minimal Example Project
 
             指南: Guides
+            数据驱动指南: Data-Driven Guides
             数据驱动上手：从空目录到方块动起来: "Data-driven getting started: from an empty directory to a moving block"
             路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）: "Path 1: adding content with data-driven files (organization and best practices)"
             扩展指南：写 Java 才能做到的事（How-to）: "Extension guide: what you have to write Java for (How-to)"
+            内容接入：方块与物品的模型资源: "Content Integration: Block and Item Model Resources"
+            把内容接入 Proxy Kernel: Integrating Content With the Proxy Kernel
+            蓝图与可嵌套世界显示: Blueprints and Nestable World Displays
+            世界空间光源: World-Space Lights
+            模型碰撞、区块生命周期与远景: Model Collision, Chunk Lifecycle, and Distant Rendering
             离屏输出与多机位渲染: Offscreen Output and Multi-Camera Rendering
-            构建与验证入口: Build and Verification Entries
+            Nebula 曲速飞行 demo: Nebula Warp Flight Demo
             真实素材换装与 MC 装备示例: Real-Asset Wardrobe Swap and MC Equipment Example
+            构建与验证入口: Build and Verification Entries
+            Create 集成: Create Integration
+            多转向架列车车厢: Multi-Bogey Train Carriages
+            车厢垂直姿态: Carriage Vertical Posture
 
             API Reference: API Reference
+            核心、注入与构建: Core, Injection, and Build
+            Core 模组入口与注册系统（modules/core）: Core Mod Entry and Registration System (modules/core)
+            Core 运行时基础设施与内容子系统（modules/core）: Core Runtime Infrastructure and Content Subsystems (modules/core)
+            Inject 依赖注入与环境装配（modules/inject）: Inject Dependency Injection and Environment Wiring (modules/inject)
+            Utils 工具模块（modules/utils）: Utils Module (modules/utils)
+            生命周期与初始化顺序: Lifecycle and Initialization Order
+            配置项: Configuration Options
+            扩展点目录: Extension Point Catalog
+            侧边模型: Sidedness Model
+            Gradle 插件、代码生成与资源编译参考: Gradle Plugins, Codegen, and Resource Compiler Reference
+            库打包、阴影重定位与多版本结构参考: Library Packaging, Shade Relocation, and Multiversion Structure Reference
+
+            模型、骨骼与动画: Models, Skeletons, and Animation
+            Modelling 模块: Modelling Module
+            通用模型姿态与动画 API: Generic model posing and animation API
+            Model 组装与穿搭缓存 API: Model assembly and outfit cache API
+            Minecraft 穿搭资源与实例切换 API: Minecraft outfit resources and instance switching API
+            Minecraft 模型附加组件 v1: Minecraft Model Components v1
+            Anchor 与 Minecraft 装备挂接: Anchor and Minecraft equipment attachment
+            Skeleton Dynamics API Reference: Skeleton Dynamics API Reference
+            Physics、IK 与 ModelTickLoop API: Physics, IK, and ModelTickLoop API
+            PMX 与 glTF 布娃娃配置: PMX and glTF Ragdoll Configuration
+            摄像机控制与动画轨道: Camera Control and Animation Tracks
+            状态机与动画剪辑 JSON 参考: State Machine and Animation Clip JSON Reference
+            模型变体选择（Multiplexer）参考: Model Variant Selection (Multiplexer) Reference
+
+            渲染、预览与世界 UI: Rendering, Previews, and World UI
+            Kasuga 自定义渲染规范: Kasuga Custom Rendering Specification
+            Java Shader DSL 参考: Java Shader DSL Reference
+            托管效果与后处理: Managed Effects and Post-Processing
+            内置效果、水体仿真与空间音频参考: Built-in Effects, Water Simulation, and Spatial Audio Reference
+            天空体积云与积雨云实例: Sky Volumetric Clouds and Cumulonimbus Instances
+            UML 渲染 framework 与后端接口: UML rendering framework and backend interfaces
+            渲染后端接入参考: Rendering backend integration reference
+            Iris 兼容层参考: Iris Compatibility Layer Reference
+            模型渲染调度（Render Scheduling）: Model render scheduling (Render Scheduling)
+            模型材质 Alpha 渲染参考: Model Material Alpha Rendering Reference
+            KasugaLib PMX → PBR 转换: KasugaLib PMX → PBR Conversion
+            模型深度偏移: Model Depth Bias
+            ItemModelRenderers / ItemModelRenderer: ItemModelRenderers / ItemModelRenderer
+            MC 最终画面离屏输出: MC final frame offscreen output
+            Player / Free / Fixed Camera: Player / Free / Fixed Camera
+            多机位输出契约: Multi-camera output contract
+            Minecraft 结构与 Create 模型预览: Minecraft structures and Create model previews
+            UI 模型预览: UI model previews
+            世界空间 UI 与自由光标输入: World UI and Free-Cursor Input
+            LDLib2 Compose 接入: LDLib2 Compose Integration
+
+            数据驱动、资源与脚本: Data-Driven, Resources, and Scripting
             数据驱动注册专题: Data-Driven Registration
             数据驱动 JSON 格式规范（schema）: Data-driven JSON format specification (schema)
+            数据驱动方块状态属性: Data-driven block-state properties
             数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）: "Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)"
             数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）: "Data-driven extension API (TypeHandler, BuildContext, and property parsers)"
             数据驱动诊断 API（Diagnostics、命令与错误分类）: "Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)"
             数据驱动重载 API（含可断言的纯函数面与调用示例）: "Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)"
+            统一资源平台与 Script Ticket: Unified Resource Platform and Script Tickets
+            虚拟文件系统（VFS）: Virtual file systems
+            Scripting 与 Javet 运行时参考: Scripting and Javet Runtime Reference
             Formula 模块: Formula Module
-            Modelling 模块: Modelling Module
-            Anchor 与 Minecraft 装备挂接: Anchor and Minecraft equipment attachment
-            摄像机控制与动画轨道: Camera Control and Animation Tracks
-            Player / Free / Fixed Camera: Player / Free / Fixed Camera
-            配置项: Configuration Options
-            Kasuga 自定义渲染规范: Kasuga Custom Rendering Specification
-            托管效果与后处理: Managed Effects and Post-Processing
-            扩展点目录: Extension Point Catalog
-            MC 最终画面离屏输出: MC final frame offscreen output
-            状态机与动画剪辑 JSON 参考: State Machine and Animation Clip JSON Reference
-            生命周期与初始化顺序: Lifecycle and Initialization Order
-            Minecraft 穿搭资源与实例切换 API: Minecraft outfit resources and instance switching API
-            PMX 与 glTF 布娃娃配置: PMX and glTF Ragdoll Configuration
-            Model 组装与穿搭缓存 API: Model assembly and outfit cache API
-            通用模型姿态与动画 API: Generic model posing and animation API
-            多机位输出契约: Multi-camera output contract
-            模型变体选择（Multiplexer）参考: Model Variant Selection (Multiplexer) Reference
-            KasugaLib PMX → PBR 转换: KasugaLib PMX → PBR Conversion
-            Physics、IK 与 ModelTickLoop API: Physics, IK, and ModelTickLoop API
-            模型材质 Alpha 渲染参考: Model Material Alpha Rendering Reference
-            模型渲染调度（Render Scheduling）: Model render scheduling (Render Scheduling)
-            渲染后端接入参考: Rendering backend integration reference
-            Java Shader DSL 参考: Java Shader DSL Reference
-            侧边模型: Sidedness Model
-            Skeleton Dynamics API Reference: Skeleton Dynamics API Reference
-            UML 渲染 framework 与后端接口: UML rendering framework and backend interfaces
-            天空体积云与积雨云实例: Sky Volumetric Clouds and Cumulonimbus Instances
+
+            Create 与移动宿主: Create and Moving Hosts
+            Create 模块集成参考: Create Module Integration Reference
+            移动结构上的场景与 UI: Scenes and UI on moving structures
+            航空学 / Sable 的场景宿主: Aeronautics / Sable scene hosts
 
             原理与设计: Explanations and Design
+            线程模型: Threading Model
+            Proxy：Minecraft 元素与动画系统之间的适配层: "Proxy: An Adapter Between Minecraft Elements and Animation"
+            动画作用域与目标: Animation Scope and Targets
+            AnimationScope：从业务状态到稳定画面: "AnimationScope: From Business State to a Stable Image"
+            AnimationTarget：把动画结果写入业务目标: "AnimationTarget: Writing Animation Results into Business Targets"
             摄像机与共享动画时间轴原理: How cameras and the shared animation timeline work
             数据驱动注册原理: How data-driven registration works
+            KasugaLib 数据驱动系统: KasugaLib Data-Driven System
+            概念与生命周期: Concepts and Lifecycle
+            索引与 JSON 格式: Index and JSON Format
+            TypeHandler 与预检: TypeHandler and Preflight
+            ReloadHandler 与资源重载: ReloadHandler and Resource Reload
+            内容来源、快照与安全: Content Sources, Snapshots, and Security
+            多来源构建管线: Multi-Source Build Pipeline
+            工厂、注册组与宿主接线: Factories, Registry Groups, and Host Integration
+            排查与迁移: Troubleshooting and Migration
             自定义渲染管线原理: How custom render pipelines work
             最终画面输出原理: How final frame output works
             分层动画状态机原理: How the layered animation state machine works
@@ -164,9 +219,11 @@ plugins:
             模型可见性与渲染调度原理: How model visibility and render scheduling work
             渲染模块与图形 API 的边界: How the boundary between rendering modules and the graphics API works
             通用骨骼物理、IK 与闭环约束原理: How generic skeleton physics, IK, and closure constraints work
-            线程模型: Threading Model
             UML 渲染框架与资源所有权原理: How the UML render framework and resource ownership work
             多层体积云渲染原理: How multi-layer volumetric cloud rendering works
+            世界空间 UI 输入设计: World UI Input Design
+            多转向架车厢原理: How Multi-Bogey Carriages Work
+            车厢垂直姿态原理: How Carriage Posture Works
 
             项目与版本信息: Project and Version Information
             更新日志与版本策略: Changelog and Version Policy
@@ -186,8 +243,8 @@ plugins:
 # re-declared here or it silently degrades.
 #
 # Only extensions for syntax the prose actually uses are listed — no
-# admonition, footnotes, content tabs, math, images, inline HTML, front matter
-# or attr_list appear anywhere in the 152 pages.
+# admonition, footnotes, content tabs, math, images, front matter or attr_list
+# appear anywhere in the 242 public bilingual pages (121 Chinese, 121 English).
 
 markdown_extensions:
   - toc:
@@ -195,9 +252,9 @@ markdown_extensions:
       # Load-bearing and non-obvious. Markdown's stock slugifier DROPS
       # non-ASCII characters, so a heading like `## 验证入口` produces an empty
       # slug and falls back to `_1`, `_2`, … — every Chinese anchor link in the
-      # docs would break. The 16 in-page anchor links (8 Chinese, 8 English)
-      # were authored against a Unicode-preserving slugifier, so it is swapped
-      # in explicitly here.
+      # docs would break. The 38 cross-page anchor links (19 Chinese, 19
+      # English) were authored against a Unicode-preserving slugifier, so it is
+      # swapped in explicitly here.
       slugify: !!python/name:markdown.extensions.toc.slugify_unicode
 
   # Pipe tables are used throughout the prose; this is the re-declaration of
@@ -210,14 +267,14 @@ markdown_extensions:
   # `markdown.extensions.fenced_code` and that the two "cannot be loaded at the
   # same time" — listing both is undefined behaviour.
   # (https://facelessuser.github.io/pymdown-extensions/usage_notes/)
-  # SuperFences, configured below, is what actually renders the 592 fenced code
-  # blocks, including the Pygments syntax highlighting they rely on. So code
-  # fences are covered; only the *extension name* differs from the default.
+  # SuperFences, configured below, is what actually renders the 1146 fenced code
+  # blocks across the public pages, including Pygments syntax highlighting.
+  # So code fences are covered; only the *extension name* differs from default.
 
-  # SuperFences turns the 28 ```mermaid fences (flowchart / sequenceDiagram)
-  # into real diagrams. Material for MkDocs ships the Mermaid runtime and
-  # renders any element carrying the `mermaid` class, so no extra JavaScript
-  # needs to be wired up.
+  # SuperFences turns the 58 ```mermaid fences (flowchart / sequenceDiagram /
+  # stateDiagram-v2) into real diagrams. Material for MkDocs ships the Mermaid
+  # runtime and renders any element carrying the `mermaid` class, so no extra
+  # JavaScript needs to be wired up.
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -244,15 +301,17 @@ markdown_extensions:
 #
 #   * Paths are the CHINESE files (`X.md`). Never write `X.en.md` — the i18n
 #     plugin maps the path to the English file automatically.
-#   * Every label is the page's real H1, copied verbatim. Do not "improve" a
-#     label; if a heading is renamed upstream, this file has to follow.
-#   * Every section title is likewise the H1 of that directory's README.md,
-#     which `navigation.indexes` turns into the clickable section landing page.
-#   * All 76 Chinese pages appear exactly once.
+#   * Every page label is the page's real H1, copied verbatim. Do not "improve"
+#     a label; if a heading is renamed upstream, this file has to follow.
+#   * Every README-backed section title is likewise the H1 of that directory's
+#     README.md, which `navigation.indexes` turns into the clickable landing page.
+#   * All 121 public Chinese pages appear exactly once (internal-only notes
+#     `json-resource-bindings.md` and `reference/minecraft-model-dimensions-design.md`
+#     are intentionally excluded).
 #
-# `guides/data-driven/` is the one sub-directory with no index page, so its
-# three pages are listed directly under 指南 instead of being wrapped in a
-# title-less group.
+# Sub-directories without a README.md (`guides/data-driven/`, `guides/create/`,
+# `explanation/animation/`, `explanation/create/`) and logical groupings inside
+# `API Reference` use plain section headings translated in `nav_translations`.
 #
 # The English tree reuses this structure and swaps labels via
 # `plugins.i18n.languages[en].nav_translations` above.
@@ -268,55 +327,107 @@ nav:
 
   - 指南:
       - guides/README.md
-      - 数据驱动上手：从空目录到方块动起来: guides/data-driven/intro.md
-      - 路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）: guides/data-driven/guide-content.md
-      - 扩展指南：写 Java 才能做到的事（How-to）: guides/data-driven/guide-extension.md
+      - 数据驱动指南:
+          - 数据驱动上手：从空目录到方块动起来: guides/data-driven/intro.md
+          - 路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）: guides/data-driven/guide-content.md
+          - 扩展指南：写 Java 才能做到的事（How-to）: guides/data-driven/guide-extension.md
+      - 内容接入：方块与物品的模型资源: guides/model-content.md
+      - 把内容接入 Proxy Kernel: guides/proxy-integration.md
+      - 蓝图与可嵌套世界显示: guides/world-display.md
+      - 世界空间光源: guides/world-lights.md
+      - 模型碰撞、区块生命周期与远景: guides/world-model-collision-and-lod.md
       - 离屏输出与多机位渲染: guides/offline-rendering.md
-      - 构建与验证入口: guides/verification.md
+      - Nebula 曲速飞行 demo: guides/nebula-demo.md
       - 真实素材换装与 MC 装备示例: guides/wardrobe-example.md
+      - 构建与验证入口: guides/verification.md
+      - Create 集成:
+          - 多转向架列车车厢: guides/create/multi-bogey-carriage.md
+          - 车厢垂直姿态: guides/create/carriage-posture.md
 
   - API Reference:
       - reference/README.md
-      - Anchor 与 Minecraft 装备挂接: reference/anchors.md
-      - 摄像机控制与动画轨道: reference/camera-animation.md
-      - Player / Free / Fixed Camera: reference/cameras.md
-      - 配置项: reference/configuration.md
-      - 数据驱动注册专题:
-          - reference/data-driven/README.md
-          - 数据驱动 JSON 格式规范（schema）: reference/data-driven/schema.md
-          - 数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）: reference/data-driven/api-registration.md
-          - 数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）: reference/data-driven/api-extension.md
-          - 数据驱动诊断 API（Diagnostics、命令与错误分类）: reference/data-driven/api-diagnostics.md
-          - 数据驱动重载 API（含可断言的纯函数面与调用示例）: reference/data-driven/api-reload.md
-      - Kasuga 自定义渲染规范: reference/effect-rendering.md
-      - 托管效果与后处理: reference/effects-and-postfx.md
-      - 扩展点目录: reference/extensions.md
-      - Formula 模块: reference/formula/README.md
-      - MC 最终画面离屏输出: reference/frame-output.md
-      - 状态机与动画剪辑 JSON 参考: reference/fsm.md
-      - 生命周期与初始化顺序: reference/lifecycle.md
-      - Minecraft 穿搭资源与实例切换 API: reference/minecraft-model-assembly.md
-      - PMX 与 glTF 布娃娃配置: reference/mmd-ragdoll.md
-      - Model 组装与穿搭缓存 API: reference/model-assembly.md
-      - 通用模型姿态与动画 API: reference/model-posing.md
-      - Modelling 模块: reference/modelling/README.md
-      - 多机位输出契约: reference/multi-camera-output.md
-      - 模型变体选择（Multiplexer）参考: reference/multiplexer.md
-      - KasugaLib PMX → PBR 转换: reference/pbr.md
-      - Physics、IK 与 ModelTickLoop API: reference/physics.md
-      - 模型材质 Alpha 渲染参考: reference/render-alpha-passes.md
-      - 模型渲染调度（Render Scheduling）: reference/render-scheduling.md
-      - 渲染后端接入参考: reference/rendering-backends.md
-      - Java Shader DSL 参考: reference/shader-dsl.md
-      - 侧边模型: reference/sidedness.md
-      - Skeleton Dynamics API Reference: reference/skeleton-dynamics.md
-      - UML 渲染 framework 与后端接口: reference/uml-render-framework.md
-      - 天空体积云与积雨云实例: reference/volumetric-clouds.md
+      - 核心、注入与构建:
+          - Core 模组入口与注册系统（modules/core）: reference/core-registration.md
+          - Core 运行时基础设施与内容子系统（modules/core）: reference/core-runtime.md
+          - Inject 依赖注入与环境装配（modules/inject）: reference/inject.md
+          - Utils 工具模块（modules/utils）: reference/utils.md
+          - 生命周期与初始化顺序: reference/lifecycle.md
+          - 配置项: reference/configuration.md
+          - 扩展点目录: reference/extensions.md
+          - 侧边模型: reference/sidedness.md
+          - Gradle 插件、代码生成与资源编译参考: reference/gradle-and-codegen.md
+          - 库打包、阴影重定位与多版本结构参考: reference/library-packaging.md
+      - 模型、骨骼与动画:
+          - Modelling 模块: reference/modelling/README.md
+          - 通用模型姿态与动画 API: reference/model-posing.md
+          - Model 组装与穿搭缓存 API: reference/model-assembly.md
+          - Minecraft 穿搭资源与实例切换 API: reference/minecraft-model-assembly.md
+          - Minecraft 模型附加组件 v1: reference/mc-model-components.md
+          - Anchor 与 Minecraft 装备挂接: reference/anchors.md
+          - Skeleton Dynamics API Reference: reference/skeleton-dynamics.md
+          - Physics、IK 与 ModelTickLoop API: reference/physics.md
+          - PMX 与 glTF 布娃娃配置: reference/mmd-ragdoll.md
+          - 摄像机控制与动画轨道: reference/camera-animation.md
+          - 状态机与动画剪辑 JSON 参考: reference/fsm.md
+          - 模型变体选择（Multiplexer）参考: reference/multiplexer.md
+      - 渲染、预览与世界 UI:
+          - Kasuga 自定义渲染规范: reference/effect-rendering.md
+          - Java Shader DSL 参考: reference/shader-dsl.md
+          - 托管效果与后处理: reference/effects-and-postfx.md
+          - 内置效果、水体仿真与空间音频参考: reference/builtin-effects-and-audio.md
+          - 天空体积云与积雨云实例: reference/volumetric-clouds.md
+          - UML 渲染 framework 与后端接口: reference/uml-render-framework.md
+          - 渲染后端接入参考: reference/rendering-backends.md
+          - Iris 兼容层参考: reference/iris-compat.md
+          - 模型渲染调度（Render Scheduling）: reference/render-scheduling.md
+          - 模型材质 Alpha 渲染参考: reference/render-alpha-passes.md
+          - KasugaLib PMX → PBR 转换: reference/pbr.md
+          - 模型深度偏移: reference/model-depth-bias.md
+          - ItemModelRenderers / ItemModelRenderer: reference/item-model-renderers.md
+          - MC 最终画面离屏输出: reference/frame-output.md
+          - Player / Free / Fixed Camera: reference/cameras.md
+          - 多机位输出契约: reference/multi-camera-output.md
+          - Minecraft 结构与 Create 模型预览: reference/minecraft-model-preview.md
+          - UI 模型预览: reference/ui-model-preview.md
+          - 世界空间 UI 与自由光标输入: reference/world-ui-input.md
+          - LDLib2 Compose 接入: reference/ldlib-compose.md
+      - 数据驱动、资源与脚本:
+          - 数据驱动注册专题:
+              - reference/data-driven/README.md
+              - 数据驱动 JSON 格式规范（schema）: reference/data-driven/schema.md
+              - 数据驱动方块状态属性: reference/data-driven/block-state-properties.md
+              - 数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）: reference/data-driven/api-registration.md
+              - 数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）: reference/data-driven/api-extension.md
+              - 数据驱动诊断 API（Diagnostics、命令与错误分类）: reference/data-driven/api-diagnostics.md
+              - 数据驱动重载 API（含可断言的纯函数面与调用示例）: reference/data-driven/api-reload.md
+          - 统一资源平台与 Script Ticket: reference/resource-platform.md
+          - 虚拟文件系统（VFS）: reference/vfs.md
+          - Scripting 与 Javet 运行时参考: reference/scripting.md
+          - Formula 模块: reference/formula/README.md
+      - Create 与移动宿主:
+          - Create 模块集成参考: reference/create-integration.md
+          - 移动结构上的场景与 UI: reference/moving-scene-hosts.md
+          - 航空学 / Sable 的场景宿主: reference/sable-scene-hosts.md
 
   - 原理与设计:
       - explanation/README.md
+      - 线程模型: explanation/threads.md
+      - Proxy：Minecraft 元素与动画系统之间的适配层: explanation/proxy/README.md
+      - 动画作用域与目标:
+          - AnimationScope：从业务状态到稳定画面: explanation/animation/animation-scope.md
+          - AnimationTarget：把动画结果写入业务目标: explanation/animation/animation-target.md
       - 摄像机与共享动画时间轴原理: explanation/camera-animation.md
       - 数据驱动注册原理: explanation/data-driven-registration.md
+      - KasugaLib 数据驱动系统:
+          - explanation/data-driven/README.md
+          - 概念与生命周期: explanation/data-driven/01-concepts-lifecycle.md
+          - 索引与 JSON 格式: explanation/data-driven/02-index-and-content-format.md
+          - TypeHandler 与预检: explanation/data-driven/03-handlers-and-preflight.md
+          - ReloadHandler 与资源重载: explanation/data-driven/04-reload-pipeline.md
+          - 内容来源、快照与安全: explanation/data-driven/05-content-sources.md
+          - 多来源构建管线: explanation/data-driven/06-build-pipeline.md
+          - 工厂、注册组与宿主接线: explanation/data-driven/07-factories-groups-integration.md
+          - 排查与迁移: explanation/data-driven/08-troubleshooting-migration.md
       - 自定义渲染管线原理: explanation/effect-rendering.md
       - 最终画面输出原理: explanation/frame-output.md
       - 分层动画状态机原理: explanation/fsm.md
@@ -330,9 +441,12 @@ nav:
       - 模型可见性与渲染调度原理: explanation/render-scheduling.md
       - 渲染模块与图形 API 的边界: explanation/rendering-backends.md
       - 通用骨骼物理、IK 与闭环约束原理: explanation/skeleton-dynamics.md
-      - 线程模型: explanation/threads.md
       - UML 渲染框架与资源所有权原理: explanation/uml-render-framework.md
       - 多层体积云渲染原理: explanation/volumetric-clouds.md
+      - 世界空间 UI 输入设计: explanation/world-ui-input.md
+      - Create 集成:
+          - 多转向架车厢原理: explanation/create/multi-bogey-carriage.md
+          - 车厢垂直姿态原理: explanation/create/carriage-posture.md
 
   - 项目与版本信息:
       - meta/README.md
