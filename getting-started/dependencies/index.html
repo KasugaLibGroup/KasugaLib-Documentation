@@ -1,0 +1,3605 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/getting-started/dependencies/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../installation/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/getting-started/dependencies/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>依赖与运行环境 - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#依赖与运行环境" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              依赖与运行环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/getting-started/dependencies/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#运行环境与工具链版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行环境与工具链版本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#模组标识与发布产物" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模组标识与发布产物
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模组标识与发布产物">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#当前仓库与发布状态" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前仓库与发布状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#模块结构与坐标映射" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块结构与坐标映射
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块结构与坐标映射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-聚合模组与运行期内部模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 聚合模组与运行期内部模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-独立工具链gradle-插件与可选扩展模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 独立工具链、Gradle 插件与可选扩展模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradle-下游接入配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle 下游接入配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gradle 下游接入配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composite-build-接入推荐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composite Build 接入（推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三方-maven-仓库与版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三方 Maven 仓库与版本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#必需与可选运行时依赖对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必需与可选运行时依赖对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#下一步" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下一步
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#运行环境与工具链版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行环境与工具链版本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#模组标识与发布产物" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模组标识与发布产物
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模组标识与发布产物">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#当前仓库与发布状态" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前仓库与发布状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#模块结构与坐标映射" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块结构与坐标映射
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块结构与坐标映射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-聚合模组与运行期内部模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 聚合模组与运行期内部模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-独立工具链gradle-插件与可选扩展模块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 独立工具链、Gradle 插件与可选扩展模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradle-下游接入配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle 下游接入配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gradle 下游接入配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composite-build-接入推荐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composite Build 接入（推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三方-maven-仓库与版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三方 Maven 仓库与版本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#必需与可选运行时依赖对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必需与可选运行时依赖对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#下一步" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        下一步
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="依赖与运行环境">依赖与运行环境<a class="headerlink" href="#依赖与运行环境" title="Permanent link">&para;</a></h1>
+<p>本页列出 KasugaLibNext 的基础运行环境、构建工具链、仓库坐标、模块划分与可选运行时依赖，均以当前仓库源码与 Gradle 构建配置为准。</p>
+<h2 id="运行环境与工具链版本">运行环境与工具链版本<a class="headerlink" href="#运行环境与工具链版本" title="Permanent link">&para;</a></h2>
+<p>下表来自根目录 <code>gradle.properties</code>、<code>build.gradle</code>、<code>gradle/wrapper/gradle-wrapper.properties</code> 与 <code>modules/library/src/main/templates/META-INF/neoforge.mods.toml</code>：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求 / 锁定版本</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>Java 21（<code>JavaLanguageVersion.of(21)</code>）</td>
+<td><code>build.gradle</code></td>
+</tr>
+<tr>
+<td>Gradle</td>
+<td><code>8.14.3</code>（Wrapper <code>gradle-8.14.3-bin.zip</code>）</td>
+<td><code>gradle/wrapper/gradle-wrapper.properties</code></td>
+</tr>
+<tr>
+<td>Minecraft</td>
+<td><code>1.21.1</code>（范围 <code>[1.21.1]</code>）</td>
+<td><code>gradle.properties</code></td>
+</tr>
+<tr>
+<td>Mod Loader</td>
+<td>NeoForge <code>21.1.268</code>（<code>javafml</code>，FML 范围 <code>[1,)</code>）</td>
+<td><code>gradle.properties</code>、<code>neoforge.mods.toml</code></td>
+</tr>
+<tr>
+<td>ModDevGradle</td>
+<td><code>net.neoforged.moddev</code> <code>2.0.107</code></td>
+<td><code>build.gradle</code></td>
+</tr>
+<tr>
+<td>Parchment 映射</td>
+<td>MC <code>1.21.1</code> / <code>2024.11.17</code></td>
+<td><code>gradle.properties</code></td>
+</tr>
+<tr>
+<td>Shadow 插件</td>
+<td><code>com.gradleup.shadow</code> <code>9.0.2</code></td>
+<td><code>modules/library/build.gradle</code></td>
+</tr>
+<tr>
+<td>Lombok</td>
+<td><code>1.18.42</code>（子工程编译期自动注入）</td>
+<td><code>build.gradle</code>、<code>gradle.properties</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>不支持 Fabric</strong>：仓库中所有模组工程仅配置了 <code>net.neoforged.moddev</code> 与 <code>javafml</code>。</p>
+<p><strong>关于版本目录</strong>：本仓库未使用 <code>gradle/libs.versions.toml</code>；所有共享版本属性集中定义在根目录 <code>gradle.properties</code>（个别扩展子模块也在各自 <code>build.gradle</code> / <code>gradle.properties</code> 中声明 NeoForge <code>21.1.268</code>）。</p>
+</blockquote>
+<h2 id="模组标识与发布产物">模组标识与发布产物<a class="headerlink" href="#模组标识与发布产物" title="Permanent link">&para;</a></h2>
+<p>聚合模组 <code>:modules:library</code> 在运行期注册的 NeoForge 元数据如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>modId</code></td>
+<td><code>kasuga_lib</code></td>
+<td>运行时模组 ID（<code>KasugaLib.MODID</code>）</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td><code>KasugaLib Next</code></td>
+<td>显示名称</td>
+</tr>
+<tr>
+<td><code>group</code></td>
+<td><code>lib.kasuga</code></td>
+<td>Gradle <code>mod_group_id</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>1.0.0</code></td>
+<td>当前 <code>mod_version</code>，下游依赖范围 <code>kasuga_lib_version_range = [1.0.0,)</code></td>
+</tr>
+<tr>
+<td>默认归档名</td>
+<td><code>kasuga-library-1.0.0-all.jar</code></td>
+<td>根 <code>build.gradle</code> 将子项目 <code>archivesName</code> 设为 <code>kasuga-${project.name}</code>；<code>shadowJar</code> 带 <code>all</code> 分类器</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>不要直接部署或依赖未重定位的瘦 JAR</strong>：根 <code>build.gradle</code> 与 <code>modules/library/build.gradle</code> 明确要求整个聚合模组以单个 JAR 加载。若同时存在多个共享同包的子模块 JAR，FML / JPMS 模块层会拆分包空间并在启动时触发类加载错误。</p>
+</blockquote>
+<h3 id="当前仓库与发布状态">当前仓库与发布状态<a class="headerlink" href="#当前仓库与发布状态" title="Permanent link">&para;</a></h3>
+<p>当前仓库（<code>modules/library/build.gradle</code> 等）的 <code>publishing</code> 块仅配置了本地目录仓库 <code>file://${project.projectDir}/repo</code>，<strong>尚未在构建脚本中配置远端公开 Maven 仓库地址</strong>。在同一个工作空间或源码构建环境中，下游模组（如工作空间中的 <code>KuaYue</code>）通过 Gradle <strong>Composite Build（<code>includeBuild</code>）+ 依赖替换</strong>接入。</p>
+<h2 id="模块结构与坐标映射">模块结构与坐标映射<a class="headerlink" href="#模块结构与坐标映射" title="Permanent link">&para;</a></h2>
+<p><code>settings.gradle</code> 包含以下子工程与构建插件工程：</p>
+<h3 id="1-聚合模组与运行期内部模块">1. 聚合模组与运行期内部模块<a class="headerlink" href="#1-聚合模组与运行期内部模块" title="Permanent link">&para;</a></h3>
+<p><code>:modules:library</code> 通过 <code>builder.kasuga.monorepo</code> 插件的 <code>useModProject(...)</code> 将以下模块汇总进 <code>kasuga_lib</code> 单一模组层（<code>kasuga-library-&lt;version&gt;-all.jar</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>子工程</th>
+<th>职责概览</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:modules:library</code></td>
+<td>聚合与 Shadow 打包入口</td>
+<td>产出完整 <code>kasuga-library-*-all.jar</code></td>
+</tr>
+<tr>
+<td><code>:modules:core</code></td>
+<td>注册 DSL（<code>Reg</code> / <code>Registry</code>）、生命周期、资源平台、VFS、RPC、存档等</td>
+<td>依赖 <code>Builder</code> 代码生成与 <code>kasuga_lib.mixins.json</code></td>
+</tr>
+<tr>
+<td><code>:modules:data-driven</code></td>
+<td>JSON 数据驱动注册与 <code>/reload</code> 重载管线</td>
+<td>见 <a href="../../reference/data-driven/">数据驱动注册专题</a></td>
+</tr>
+<tr>
+<td><code>:modules:modelling</code></td>
+<td>客户端模型加载、动画 FSM、骨骼物理/IK、渲染调度、特效与多机位</td>
+<td>含 Box3D JNI 桥接与 <code>KasugaLibMixinPlugin</code></td>
+</tr>
+<tr>
+<td><code>:modules:iris-compat</code></td>
+<td>可选 Iris/Sodium 兼容适配层</td>
+<td>通过 ASM 字节码探测门控 <code>kasuga_lib_iris.mixins.json</code></td>
+</tr>
+<tr>
+<td><code>:modules:create</code></td>
+<td>Create 铁路/动态结构/转向架与 Sable 适配</td>
+<td>含 <code>kasuga_lib_create.mixins.json</code></td>
+</tr>
+<tr>
+<td><code>:modules:scripting</code></td>
+<td>脚本包发现、沙箱与生命周期宿主（<code>PackageSystem</code>）</td>
+<td>不直接绑定 JS 引擎，引擎由伴生模组提供</td>
+</tr>
+<tr>
+<td><code>:modules:inject</code></td>
+<td>基于 Micronaut <code>4.9.10</code> 的 DI、<code>@Configurable</code>、<code>@BeanOnlyIn</code></td>
+<td>在 <code>-all.jar</code> 内重定位至 <code>lib.kasuga.vendors.inject</code></td>
+</tr>
+<tr>
+<td><code>:modules:utils</code></td>
+<td>Gson 绑定、Glob/Path 匹配与注解基础工具</td>
+<td>Shadow 打入 <code>-all.jar</code></td>
+</tr>
+<tr>
+<td><code>:modules:formula</code></td>
+<td>纯 JVM 表达式与命名空间求值引擎</td>
+<td>见 <a href="../../reference/formula/">Formula 模块</a></td>
+</tr>
+<tr>
+<td><code>:modules:shader</code></td>
+<td>类型化 Shader DSL、IR 与 GLSL 生成器</td>
+<td>见 <a href="../../reference/shader-dsl/">Java Shader DSL 参考</a></td>
+</tr>
+<tr>
+<td><code>:modules:render-core</code></td>
+<td>图形 API 无关的渲染核心、Caliko IK、glTF/PMX 模型定义</td>
+<td><code>checkGraphicsApiIsolation</code> 强制零 MC/LWJGL 依赖</td>
+</tr>
+<tr>
+<td><code>:modules:render-opengl</code></td>
+<td>基于 LWJGL <code>3.3.3</code> 的共享 OpenGL 实现</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>:modules:annotations</code></td>
+<td>运行期注解占位模块（<code>FMLModType=GAMELIBRARY</code>）</td>
+<td>当前无 Java 源码</td>
+</tr>
+<tr>
+<td><code>:modules:multiversion</code></td>
+<td>多版本/冒烟测试宿主壳模块</td>
+<td>无 <code>main/java</code> 源码</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Shadow 重定位注意</strong>：<code>modules/library/build.gradle</code> 会将 <code>io.micronaut</code>、<code>jakarta.inject</code>、<code>jakarta.annotation</code> 与 <code>lib.kasuga.inject</code> 重定位至 <code>lib.kasuga.vendors.*</code>（并嵌入 <code>de.javagl:jgltf-model:2.0.4</code>、<code>de.javagl:jgltf-impl-v2:2.0.4</code>、<code>caliko-1.3.8.jar</code>、<code>com.google.zxing:core:3.5.3</code>）。因此下游模组如果自己也要在编译/开发期使用 <code>@Context</code> 与 <code>ModApplicationContext</code>，需额外声明 <code>:modules:inject</code> 与 Micronaut 依赖；若仅使用 <code>KasugaLibRegistry</code> 与 <code>Reg</code> API，则无需配置 Micronaut。</p>
+</blockquote>
+<h3 id="2-独立工具链gradle-插件与可选扩展模块">2. 独立工具链、Gradle 插件与可选扩展模块<a class="headerlink" href="#2-独立工具链gradle-插件与可选扩展模块" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>工程路径</th>
+<th>产物 / 插件 ID</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./modules/gradle-plugin</code></td>
+<td><code>builder.kasuga.monorepo</code><br><code>builder.kasuga.generator</code><br><code>builder.kasuga.resource-compiler</code><br><code>builder.kasuga.shader</code></td>
+<td><code>useModProject</code>、JSON 深合并、<code>@RegGenerator</code> 代码生成、<code>compileResources</code>、<code>generateKasugaShaders</code></td>
+</tr>
+<tr>
+<td><code>:modules:generator</code></td>
+<td><code>lib.kasuga.generator:generator</code></td>
+<td><code>@RegGenerator</code> / <code>@CodeTemplate</code> 注解处理器（依赖 JavaParser <code>3.27.1</code>）</td>
+</tr>
+<tr>
+<td><code>:modules:resource-compiler</code></td>
+<td><code>lib.kasuga.resource:resource-compiler</code></td>
+<td><code>ResourceCompilerMain</code> 资源编译与 <code>JsonMergeTransformer</code></td>
+</tr>
+<tr>
+<td><code>:modules:shader-graal</code></td>
+<td><code>lib.kasuga:shader-graal</code></td>
+<td>可选 GraalVM Polyglot/JS <code>24.1.2</code> Shader DSL 前端（纯 JVM 可运行）</td>
+</tr>
+<tr>
+<td><code>:external:slp:javet</code></td>
+<td><code>lib.kasuga.slp.javet</code>（<code>modId</code>: <code>kasuga_lib_javet</code>）</td>
+<td>可选 Javet <code>5.0.1</code> V8 JavaScript 脚本引擎支持模组</td>
+</tr>
+<tr>
+<td><code>:external:uip:ldlib</code></td>
+<td><code>lib.kasuga.uip.ldlib</code>（<code>modId</code>: <code>kasuga_lib_ldlib2</code>）</td>
+<td>可选 LDLib2 <code>2.2.44</code> 世界空间 UI 提供方</td>
+</tr>
+<tr>
+<td><code>:external:uip:ldlib-compose</code></td>
+<td><code>lib.kasuga.uip.compose</code>（<code>modId</code>: <code>kasuga_lib_ldlib_compose</code>）</td>
+<td>可选 LDLib2 Compose <code>21.0.0.1:all</code>（Kotlin <code>2.1.20</code>、NeoForge <code>21.1.268</code>）</td>
+</tr>
+<tr>
+<td><code>:external:uip:modernui</code></td>
+<td><code>lib.kasuga.uip.modernui</code>（<code>modId</code>: <code>kasuga_lib_modernui</code>）</td>
+<td>可选 ModernUI <code>eMf1VSQd</code> 模型预览演示接入</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>:modules:old</code> 为旧版 UI 原型归档目录，未作为功能模块纳入当前开发。</p>
+</blockquote>
+<h2 id="gradle-下游接入配置">Gradle 下游接入配置<a class="headerlink" href="#gradle-下游接入配置" title="Permanent link">&para;</a></h2>
+<h3 id="composite-build-接入推荐">Composite Build 接入（推荐）<a class="headerlink" href="#composite-build-接入推荐" title="Permanent link">&para;</a></h3>
+<p>在下游模组的 <code>settings.gradle</code> 中引入本地源码树与 Gradle 插件构建（参照同工作空间 <code>KuaYue/settings.gradle</code>）：</p>
+<div class="highlight"><pre><span></span><code><span class="n">pluginManagement</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">gradlePluginPortal</span><span class="o">()</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">includeBuild</span><span class="o">(</span><span class="s2">"../KasugaLibNext"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">dependencySubstitution</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">substitute</span><span class="w"> </span><span class="n">module</span><span class="o">(</span><span class="s2">"lib.kasuga:kasuga_lib"</span><span class="o">)</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">project</span><span class="o">(</span><span class="s1">':modules:library'</span><span class="o">)</span>
+<span class="w">        </span><span class="n">substitute</span><span class="w"> </span><span class="n">module</span><span class="o">(</span><span class="s2">"lib.kasuga:inject"</span><span class="o">)</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">project</span><span class="o">(</span><span class="s1">':modules:inject'</span><span class="o">)</span>
+<span class="w">        </span><span class="n">substitute</span><span class="w"> </span><span class="n">module</span><span class="o">(</span><span class="s2">"lib.kasuga:generator"</span><span class="o">)</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">project</span><span class="o">(</span><span class="s1">':modules:generator'</span><span class="o">)</span>
+<span class="w">        </span><span class="n">substitute</span><span class="w"> </span><span class="n">module</span><span class="o">(</span><span class="s2">"lib.kasuga:resource-compiler"</span><span class="o">)</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">project</span><span class="o">(</span><span class="s1">':modules:resource-compiler'</span><span class="o">)</span>
+<span class="w">        </span><span class="n">substitute</span><span class="w"> </span><span class="n">module</span><span class="o">(</span><span class="s2">"lib.kasuga:formula"</span><span class="o">)</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">project</span><span class="o">(</span><span class="s1">':modules:formula'</span><span class="o">)</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">includeBuild</span><span class="o">(</span><span class="s2">"../KasugaLibNext/modules/gradle-plugin"</span><span class="o">)</span>
+</code></pre></div>
+<p>在模组的 <code>build.gradle</code> 中请求 Shadowed 变体（<code>Bundling.SHADOWED</code>），使复合构建解析到 <code>kasuga-library-*-all.jar</code> 而非未打包的瘦 JAR：</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="o">(</span><span class="s2">"lib.kasuga:kasuga_lib:1.0.0"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">attributes</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">attribute</span><span class="o">(</span><span class="n">Bundling</span><span class="o">.</span><span class="na">BUNDLING_ATTRIBUTE</span><span class="o">,</span><span class="w"> </span><span class="n">objects</span><span class="o">.</span><span class="na">named</span><span class="o">(</span><span class="n">Bundling</span><span class="o">,</span><span class="w"> </span><span class="n">Bundling</span><span class="o">.</span><span class="na">SHADOWED</span><span class="o">))</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">        </span><span class="n">transitive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>若模组自身还使用 <code>ModApplicationContext</code>、<code>@Context</code>、<code>@Configurable</code> 或 <code>@BeanOnlyIn</code>，再补充 Micronaut 注解处理器与 <code>lib.kasuga:inject</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="o">(</span><span class="s2">"lib.kasuga:inject:1.0.0"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">transitive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">implementation</span><span class="o">(</span><span class="s2">"io.micronaut:micronaut-inject:4.9.10"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">exclude</span><span class="w"> </span><span class="nl">group:</span><span class="w"> </span><span class="s1">'org.slf4j'</span><span class="o">,</span><span class="w"> </span><span class="nl">module:</span><span class="w"> </span><span class="s1">'slf4j-api'</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">additionalRuntimeClasspath</span><span class="o">(</span><span class="s2">"io.micronaut:micronaut-inject:4.9.10"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">exclude</span><span class="w"> </span><span class="nl">group:</span><span class="w"> </span><span class="s1">'org.slf4j'</span><span class="o">,</span><span class="w"> </span><span class="nl">module:</span><span class="w"> </span><span class="s1">'slf4j-api'</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">additionalRuntimeClasspath</span><span class="o">(</span><span class="s2">"io.micronaut:micronaut-aop:4.9.10"</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">exclude</span><span class="w"> </span><span class="nl">group:</span><span class="w"> </span><span class="s1">'org.slf4j'</span><span class="o">,</span><span class="w"> </span><span class="nl">module:</span><span class="w"> </span><span class="s1">'slf4j-api'</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">annotationProcessor</span><span class="w"> </span><span class="s1">'io.micronaut:micronaut-inject-java:4.9.10'</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2 id="第三方-maven-仓库与版本">第三方 Maven 仓库与版本<a class="headerlink" href="#第三方-maven-仓库与版本" title="Permanent link">&para;</a></h2>
+<p>构建与运行完整 <code>KasugaLibNext</code>（及其 <code>:modules:library</code> / <code>:modules:create</code> / <code>:external:*</code>）时用到的 Maven 仓库与版本如下：</p>
+<table>
+<thead>
+<tr>
+<th>仓库 URL</th>
+<th>用途与版本</th>
+<th>声明位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mavenCentral()</code> / <code>gradlePluginPortal()</code></td>
+<td>Micronaut <code>4.9.10</code>、LWJGL <code>3.3.3</code>、JOML <code>1.10.5</code>、DataFixerUpper <code>8.0.16</code>、Gson <code>2.10.1</code>、Guava <code>32.1.2-jre</code>、jgltf <code>2.0.4</code>、ZXing <code>3.5.3</code>、Javet <code>5.0.1</code>、GraalVM <code>24.1.2</code> 等</td>
+<td>各模块 <code>build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.neoforged.net/releases</code></td>
+<td>NeoForge <code>21.1.268</code>、<code>testframework</code>、<code>render-core</code> / <code>render-opengl</code></td>
+<td><code>modules/render-core/build.gradle</code>、ModDevGradle</td>
+</tr>
+<tr>
+<td><code>https://libraries.minecraft.net</code></td>
+<td>Minecraft 共享库</td>
+<td><code>modules/render-core/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.createmod.net</code></td>
+<td>Create <code>6.0.11-346</code>、Ponder <code>1.0.92+mc1.21.1</code>、Flywheel <code>1.0.7</code></td>
+<td><code>modules/library/build.gradle</code>、<code>modules/create/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.ithundxr.dev/snapshots</code></td>
+<td>Registrate <code>MC1.21-1.3.0+67</code></td>
+<td><code>modules/library/build.gradle</code>、<code>modules/create/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.squiddev.cc</code>（限定组 <code>cc.tweaked</code>）</td>
+<td>CC:Tweaked <code>cc-tweaked-1.21.1-forge:1.116.1</code></td>
+<td><code>modules/library/build.gradle</code>、<code>modules/create/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.ryanhcode.dev/releases</code>（限定组 <code>dev.ryanhcode.sable-companion</code>）</td>
+<td>Sable Companion <code>sable-companion-common-1.21.1:1.6.0</code>（<code>compileOnly</code>）</td>
+<td><code>modules/create/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://maven.firstdark.dev/snapshots</code></td>
+<td>LDLib2 <code>2.2.44</code>、<code>ldlib2-compose-1.21.1:21.0.0.1:all</code></td>
+<td><code>external/uip/ldlib*/build.gradle</code></td>
+</tr>
+<tr>
+<td><code>https://api.modrinth.com/maven</code></td>
+<td>ModernUI <code>maven.modrinth:modern-ui:eMf1VSQd</code></td>
+<td><code>external/uip/modernui/build.gradle</code></td>
+</tr>
+<tr>
+<td>本地 <code>flatDir</code>（<code>modules/modelling/libs</code>、<code>modules/iris-compat/libs</code>）</td>
+<td>开发期可选编译/本地运行：Sodium <code>0.8.14-beta.2</code>、Iris <code>1.8.14-beta.1</code>（不打入发布 JAR）</td>
+<td><code>modules/modelling/build.gradle</code>、<code>modules/iris-compat/build.gradle</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="必需与可选运行时依赖对照">必需与可选运行时依赖对照<a class="headerlink" href="#必需与可选运行时依赖对照" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>组件 / 模组</th>
+<th>状态</th>
+<th>机制与说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minecraft <code>1.21.1</code> + NeoForge <code>[21.1.268,)</code></td>
+<td>必需</td>
+<td>由 <code>neoforge.mods.toml</code> 强制声明</td>
+</tr>
+<tr>
+<td>Create <code>6.0.11-346</code> + Ponder + Flywheel + Registrate</td>
+<td>聚合 JAR 需提供</td>
+<td>虽然 DI Bean 使用 <code>@CreateModBeans</code>（<code>IfCreateModLoaded</code>）条件启用，但 <code>:modules:library</code> 的 <code>neoforge.mods.toml</code> 无条件声明了 <code>kasuga_lib_create.mixins.json</code>（<code>required: true</code>），且 <code>CreateMixinPlugin</code> 会读取 <code>BezierConnection.class</code>，缺 Create 时客户端加载会抛出 <code>IllegalStateException</code></td>
+</tr>
+<tr>
+<td><code>kasuga_lib_javet</code>（<code>external/slp/javet</code>）</td>
+<td>可选</td>
+<td>提供 JavaScript（Javet <code>5.0.1</code>）脚本引擎；仅在加载声明 <code>javascript</code> 的脚本包时必需。首次运行会由 <code>JavetDownloader</code> 拉取平台 V8 原生库至 <code>&lt;gameDir&gt;/native-libraries/javet/</code></td>
+</tr>
+<tr>
+<td>Iris <code>1.8.14-beta.1</code> + Sodium <code>0.8.14-beta.2</code></td>
+<td>可选（仅客户端）</td>
+<td><code>kasuga_lib_iris.mixins.json</code> 设为 <code>required: false</code>，<code>IrisCameraMixinPlugin</code> 与 <code>IrisCompat</code> 在启动时做 ASM ABI 探测，不兼容或缺失时自动回退</td>
+</tr>
+<tr>
+<td>Voxy / Sable</td>
+<td>可选</td>
+<td><code>VoxyCompat</code> 与 <code>Create</code> Sable 适配器均按 <code>ModList</code> / 类存在性探测启用</td>
+</tr>
+<tr>
+<td>Box3D 原生库（<code>kasuga_box3d</code>）</td>
+<td>可选原生加速</td>
+<td>随平台 <code>native/&lt;os&gt;-&lt;arch&gt;/</code> 打包进 JAR；构建机缺少 <code>cmake</code> 或目标平台缺失对应原生库时，<code>NativeBox3D.availableOrWarn()</code> 仅禁用布娃娃/刚体物理而不影响其余功能</td>
+</tr>
+<tr>
+<td><code>org.jgrapht:jgrapht-core:1.5.2</code></td>
+<td>若用到图模块需自备</td>
+<td><code>:modules:core</code> 将其列入 <code>shadowLibrary</code>，但 <code>:modules:library</code> 的 <code>shadowLibrary</code> 未重新声明该库（当前 <code>kasuga-library-*-all.jar</code> 不含 <code>org/jgrapht</code>）；若下游模组使用 <code>lib.kasuga.content.graph.*</code> 需显式引入（如 <code>KuaYue/modules/core/build.gradle</code> 的做法）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="下一步">下一步<a class="headerlink" href="#下一步" title="Permanent link">&para;</a></h2>
+<ul>
+<li>搭建第一个可运行的模组：阅读 <a href="../minimal-example/">最小示例工程</a></li>
+<li>构建产出 JAR 或部署到客户端 / 服务端 / 整合包：阅读 <a href="../installation/">安装与部署</a></li>
+<li>查看各系统生命周期与侧别边界：阅读 <a href="../../reference/lifecycle/">生命周期与初始化顺序</a> 与 <a href="../../reference/sidedness/">侧边模型</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

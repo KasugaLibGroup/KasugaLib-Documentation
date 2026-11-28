@@ -1,0 +1,3559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/create-integration/">
+      
+      
+      
+      
+        
+          <link rel="alternate" href="../../../reference/create-integration/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Create Module Integration Reference - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-module-integration-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create Module Integration Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/create-integration/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-registration-dsl-and-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create Registration DSL and Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Create Registration DSL and Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-dispatching-and-two-phase-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Dispatching and Two-Phase Commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-bogey-registration-bogeysizereg-bogeyblockreg-bogeygroupreg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Bogey Registration: BogeySizeReg, BogeyBlockReg, BogeyGroupReg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-track-registration-trackmaterialreg-and-trackreg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Track Registration: TrackMaterialReg and TrackReg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-edge-data-edge-point-registrations-edgedatareg-and-trackedgepointreg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Edge Data &amp; Edge Point Registrations: EdgeDataReg and TrackEdgePointReg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-minimal-registration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Minimal Registration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-train-devices-custom-track-segments-and-graph-extra-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Train Devices, Custom Track Segments, and Graph Extra Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Train Devices, Custom Track Segments, and Graph Extra Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-traindeviceregistry-and-traindevicesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 TrainDeviceRegistry and TrainDeviceSystem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-boundarysegmentregistry-and-customtracksegment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 BoundarySegmentRegistry and CustomTrackSegment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-edgeextrapayloadregistry-railwaydata-and-railwaydatasyncmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 EdgeExtraPayloadRegistry, RailwayData, and RailwayDataSyncManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bogey-proxy-and-train-visual-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bogey Proxy and Train Visual Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bogey Proxy and Train Visual Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bogeymodels-bogeyroots-and-contraptionbogeyproxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 BogeyModels, BogeyRoots, and ContraptionBogeyProxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-proxybogeyvisual-contraptionbogeytickers-and-createbogeyproxyadapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 ProxyBogeyVisual, ContraptionBogeyTickers, and CreateBogeyProxyAdapter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-contraption-captured-proxy-models-and-interaction-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Contraption-Captured Proxy Models and Interaction Shapes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Contraption-Captured Proxy Models and Interaction Shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-contraptionproxymodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 ContraptionProxyModels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-contraptionshapeprovider-contraptionblockview-and-contraptioninteractionshapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 ContraptionShapeProvider, ContraptionBlockView, and ContraptionInteractionShapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-common-configuration-and-default-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Common Configuration and Default Overrides
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="create-module-integration-reference">Create Module Integration Reference<a class="headerlink" href="#create-module-integration-reference" title="Permanent link">&para;</a></h1>
+<p><code>modules/create</code> provides KasugaLibNext's optional Create 6 integration, covering the track and
+bogey registration DSL, train device and custom signal segment extensions, bogey and contraption
+Proxy adapters, extended contraption interaction shapes, and moving-structure scene hosts. All
+Micronaut beans are gated on <code>@CreateModBeans</code> (<code>IfCreateModLoaded</code>) so they activate only when
+the <code>create</code> mod is loaded.</p>
+<p>Package root: <code>lib.kasuga.create</code><br>
+Source tree: <code>modules/create/src/main/java/lib/kasuga/create/</code></p>
+<p>Related guides and scene-host references:</p>
+<ul>
+<li><a href="../../guides/create/multi-bogey-carriage/">Multi-Bogey Train Carriages</a> / <a href="../../guides/create/carriage-posture/">Carriage Vertical Posture</a></li>
+<li><a href="../../guides/world-model-collision-and-lod/">Model Collision, Chunk Lifecycle, and Distant Rendering</a> (Create contraption LOD)</li>
+<li><a href="../moving-scene-hosts/">Scenes and UI on moving structures</a> / <a href="../sable-scene-hosts/">Aeronautics / Sable scene hosts</a></li>
+<li><a href="../../guides/proxy-integration/">Integrating Content With the Proxy Kernel</a> / <a href="../../explanation/proxy/">Proxy: An Adapter Between Minecraft Elements and Animation</a></li>
+</ul>
+<h2 id="1-create-registration-dsl-and-lifecycle">1. Create Registration DSL and Lifecycle<a class="headerlink" href="#1-create-registration-dsl-and-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Packages: <code>lib.kasuga.create.registration</code>, <code>lib.kasuga.create.registration.{bogey,track,edge_data,edge_point}</code>, <code>lib.kasuga.create.client.registration</code></p>
+<h3 id="11-dispatching-and-two-phase-commit">1.1 Dispatching and Two-Phase Commit<a class="headerlink" href="#11-dispatching-and-two-phase-commit" title="Permanent link">&para;</a></h3>
+<p><code>CreateRegistrationDispatcher</code> (<code>@Context @CreateModBeans</code>) hooks
+<code>RegisterContextRegistry.registerBefore(Side.COMMON, RegistrationStage.REGISTER_EVENT, ...)</code> so
+<code>CreateRegistrationState.prepare(registry, clientBridge)</code> runs once before the vanilla registration
+event:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Responsibility</th>
+<th>Key members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CreateRegistrationDispatcher</code></td>
+<td>Wires <code>CreateRegistrationStages.PREPARE</code> into the common registration lifecycle</td>
+<td><code>@PostConstruct init()</code></td>
+</tr>
+<tr>
+<td><code>CreateRegistrationStages</code></td>
+<td>Defines the Create preparation stage</td>
+<td><code>PREPARE</code> (<code>RegistrationStage&lt;CreateRegistrationEvent&gt;</code>)</td>
+</tr>
+<tr>
+<td><code>CreateRegistrationState</code></td>
+<td>Tracks per-<code>Registry</code> preparation state so commit runs at most once</td>
+<td><code>Status</code> (<code>NEW</code> / <code>PREPARING</code> / <code>COMMITTED</code> / <code>FAILED</code>), <code>prepare(...)</code>, <code>status()</code>, <code>preparationCount()</code></td>
+</tr>
+<tr>
+<td><code>CreateRegistrationEvent</code></td>
+<td>Collects, validates, and commits Create entries in phase order</td>
+<td><code>Phase</code> (<code>TRACK_MATERIAL</code>, <code>BOGEY_SIZE</code>, <code>BOGEY_BLOCK</code>, <code>BOGEY_STYLE</code>), <code>submit(...)</code>, <code>contains(...)</code></td>
+</tr>
+<tr>
+<td><code>CreateClientBridge</code></td>
+<td>Isolates client visual wiring; dedicated servers fall back to <code>CreateClientBridge.noop()</code></td>
+<td>Implemented on client by <code>ClientCreateRegistrationBridge</code> (<code>@BeanOnlyIn.Client</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>CreateRegistrationEvent</code> guarantees:</p>
+<ul>
+<li>All submissions are sorted by <code>(Phase, ResourceLocation.toString())</code>; duplicate <code>(Phase, id)</code> keys throw <code>IllegalStateException</code>;</li>
+<li>Every <code>validator</code> runs before any <code>committer</code> executes;</li>
+<li>Any validation or commit exception transitions <code>CreateRegistrationState</code> to <code>FAILED</code> and caches the failure so subsequent calls rethrow the same exception.</li>
+</ul>
+<h3 id="12-bogey-registration-bogeysizereg-bogeyblockreg-bogeygroupreg">1.2 Bogey Registration: <code>BogeySizeReg</code>, <code>BogeyBlockReg</code>, <code>BogeyGroupReg</code><a class="headerlink" href="#12-bogey-registration-bogeysizereg-bogeyblockreg-bogeygroupreg" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Registration / Index</th>
+<th>Package</th>
+<th>Signatures &amp; Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BogeySizeReg</code></td>
+<td><code>registration.bogey</code></td>
+<td><code>BogeySizeReg(String name)</code> (default radius <code>1.0f</code>), <code>BogeySizeReg(String name, float wheelRadius)</code>, <code>size(float wheelRadius)</code>. Radius must be finite and positive. Commits via <code>BogeySizes.register(...)</code> and populates <code>BogeyMetadataIndex</code>.</td>
+</tr>
+<tr>
+<td><code>BogeyBlockReg&lt;T extends AbstractBogeyBlock&lt;?&gt;&gt;</code></td>
+<td><code>registration.bogey</code></td>
+<td><code>BogeyBlockReg(String name, BogeySizeReg size, BogeyBlockFactory&lt;T&gt; factory)</code>. Owns a child <code>BlockReg&lt;T&gt;</code> (<code>getBlockReg()</code>) and exposes <code>withBlockProperties(UnaryOperator&lt;BlockBehaviour.Properties&gt;)</code> and <code>getSizeReg()</code>. Validates during <code>PREPARE</code> that <code>size</code> is committed or pending in the same event.</td>
+</tr>
+<tr>
+<td><code>BogeyGroupReg</code></td>
+<td><code>registration.bogey</code></td>
+<td><code>BogeyGroupReg(String name, String cycleGroup)</code>, producing a Create <code>BogeyStyle</code>. Requires at least one size, rejects duplicate style IDs already in <code>AllBogeyStyles.BOGEY_STYLES</code>, checks size/block consistency, and calls <code>clientBridge.validateBogeyRenderer(...)</code>.</td>
+</tr>
+<tr>
+<td><code>BogeyRendererHandle</code></td>
+<td><code>registration.bogey</code></td>
+<td><code>record BogeyRendererHandle(ResourceLocation id)</code>, <code>BogeyRendererHandle.of(ResourceLocation)</code>. Keeps common code decoupled from client renderer types.</td>
+</tr>
+<tr>
+<td><code>ClientBogeyRendererRegistry</code></td>
+<td><code>client.registration</code></td>
+<td><code>@Context @CreateModBeans @BeanOnlyIn.Client</code>. <code>register(BogeyRendererHandle, Supplier&lt;? extends BogeyRenderer&gt;, BogeyVisualizer)</code>, <code>get(...)</code>, <code>remove(...)</code>, <code>clear()</code> backed by <code>WeakHashMap</code>.</td>
+</tr>
+<tr>
+<td><code>BogeyMetadataIndex</code></td>
+<td><code>registration.bogey</code></td>
+<td><code>SizeMetadata(ResourceLocation id, float wheelRadius)</code>, <code>StyleMetadata(ResourceLocation id, ResourceLocation cycleGroup)</code>, <code>get(BogeySizes.BogeySize)</code> / <code>get(BogeyStyle)</code> / <code>clear()</code> (<code>WeakHashMap</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Fluent methods on <code>BogeyGroupReg</code>:</p>
+<ul>
+<li><code>displayName(Component)</code> / <code>translationKey(String)</code></li>
+<li><code>sound(Supplier&lt;SoundEvent&gt;)</code>, <code>contactParticle(ParticleOptions)</code>, <code>smokeParticle(ParticleOptions)</code>, <code>defaultData(CompoundTag)</code></li>
+<li><code>bogey(BogeySizeReg size, BogeyBlockReg&lt;?&gt; block, BogeyRendererHandle rendererHandle)</code></li>
+<li><code>onCommitted(Consumer&lt;BogeyStyle&gt; callback)</code>: runs once after the style is committed into <code>AllBogeyStyles</code>. Style IDs and sizes only exist at this point, so external render-pipeline mappings such as <code>BogeyModels.register(...)</code> must be called inside <code>onCommitted</code>.</li>
+</ul>
+<h3 id="13-track-registration-trackmaterialreg-and-trackreg">1.3 Track Registration: <code>TrackMaterialReg</code> and <code>TrackReg</code><a class="headerlink" href="#13-track-registration-trackmaterialreg-and-trackreg" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Registration / Index</th>
+<th>Package</th>
+<th>Signatures &amp; Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrackMaterialReg</code></td>
+<td><code>registration.track</code></td>
+<td><code>TrackMaterialReg(String name)</code> builds Create's <code>TrackMaterial</code> and records <code>TrackMaterialMetadata</code> in <code>TrackMaterialMetadataIndex</code>.</td>
+</tr>
+<tr>
+<td><code>TrackReg&lt;T extends TrackBlock&gt;</code></td>
+<td><code>registration.track</code></td>
+<td><code>TrackReg(String name, TrackMaterialReg material, TrackBlockFactory&lt;T&gt; factory)</code>. Composes child <code>BlockReg&lt;T&gt;</code> (<code>getBlockReg()</code>) and <code>ItemReg&lt;TrackBlockItem&gt;</code> (<code>getItemReg()</code> / <code>getItem()</code>) without inheriting <code>BlockReg</code>. Hooks <code>CreateClientBridge.trackBlockCreated</code> to wrap baked block models in Create's <code>TrackModel</code>. Exposes <code>withBlockProperties(...)</code>, <code>withItemProperties(...)</code>, and <code>getMaterialReg()</code>.</td>
+</tr>
+<tr>
+<td><code>TrackModelDescriptor</code></td>
+<td><code>registration.track</code></td>
+<td><code>Mode</code> (<code>DEFAULT</code> / <code>STANDARD</code> / <code>CUSTOM</code>), <code>defaultModels()</code>, <code>standardModels()</code>, <code>custom(tie, leftSegment, rightSegment)</code>.</td>
+</tr>
+<tr>
+<td><code>TrackMaterialMetadata</code> / <code>TrackMaterialMetadataIndex</code></td>
+<td><code>registration.track</code></td>
+<td><code>TrackMaterialMetadata(ResourceLocation id, boolean replaceable, UnaryOperator&lt;Vec3&gt; railOffset)</code>; <code>put</code> / <code>get</code> / <code>remove</code> / <code>clear</code> (<code>WeakHashMap</code>).</td>
+</tr>
+<tr>
+<td><code>ClientTrackMetadataIndex</code></td>
+<td><code>client.registration</code></td>
+<td><code>@Context @CreateModBeans @BeanOnlyIn.Client</code>, caches <code>TrackModelDescriptor</code> per <code>TrackMaterial</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Fluent methods on <code>TrackMaterialReg</code>:</p>
+<ul>
+<li>Required: <code>block(Supplier&lt;? extends TrackBlock&gt;)</code> / <code>block(TrackReg&lt;?&gt;)</code> and <code>particle(ResourceLocation)</code>;</li>
+<li>Optional: <code>lang(String)</code>, <code>trackType(TrackMaterial.TrackType)</code> / <code>trackType(ResourceLocation, TrackMaterial.TrackType.TrackBlockFactory)</code>, <code>sleeper(ItemLike...)</code>, <code>rails(ItemLike...)</code>, <code>replaceable(boolean)</code>;</li>
+<li>Models: <code>defaultModels()</code>, <code>standardModels()</code>, <code>customModels(ResourceLocation tie, ResourceLocation leftSegment, ResourceLocation rightSegment)</code>;</li>
+<li>Curve rail gauge offset: <code>simpleTrackModelOffset(float halfDistance)</code> (<code>vector -&gt; vector.scale(halfDistance)</code>) or <code>trackModelOffset(UnaryOperator&lt;Vec3&gt;)</code>, defaulting to <code>vector -&gt; vector.scale(.965f)</code>. On the client, <code>CreateMixinPlugin</code> selects <code>BezierConnectionMixin</code> or <code>ModernBezierSegmentsMixin</code> / <code>ModernBezierGirdersMixin</code> according to Create's curve API.</li>
+</ul>
+<h3 id="14-edge-data-edge-point-registrations-edgedatareg-and-trackedgepointreg">1.4 Edge Data &amp; Edge Point Registrations: <code>EdgeDataReg</code> and <code>TrackEdgePointReg</code><a class="headerlink" href="#14-edge-data-edge-point-registrations-edgedatareg-and-trackedgepointreg" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>EdgeDataReg&lt;T extends EdgeExtraPayload&gt;</code> (<code>lib.kasuga.create.registration.edge_data</code>):
+  <code>new EdgeDataReg&lt;&gt;(registrationKey, supplier, reader)</code> builds an <code>EdgeExtraPayloadType&lt;T&gt;</code> and registers it into <code>EdgeExtraPayloadRegistry</code> during <code>RegistrationStage.REGISTER_EVENT</code>.</li>
+<li><code>TrackEdgePointReg&lt;T extends TrackEdgePoint&gt;</code> (<code>lib.kasuga.create.registration.edge_point</code>):
+  <code>new TrackEdgePointReg&lt;&gt;(id, supplier)</code> calls <code>EdgePointType.register(...)</code> during <code>RegistrationStage.REGISTER_EVENT</code>; <code>getBlockItemFactory()</code> provides a <code>BiFunction&lt;Block, Item.Properties, BlockItem&gt;</code> via <code>TrackTargetingBlockItem.ofType</code>.</li>
+<li>Edge-point helpers (<code>content.train.edge_point</code> and <code>client.rendering.edge_point</code>):</li>
+<li><code>BogeyObserverEdgePoint</code>: defines <code>void notifyBogey(Train train)</code>. Note that automatic dispatch of <code>BogeyObserverEdgePoint</code> inside <code>TrainMixin</code>'s <code>frontSignalListener</code> and <code>backSignalListener</code> is currently commented out in source.</li>
+<li><code>EdgePointBlockEntity&lt;T extends TrackEdgePoint&gt;</code>: extends Create's <code>SmartBlockEntity</code>, attaches <code>TrackTargetingBehaviour&lt;T&gt;</code>, and delegates <code>getEdgePointType()</code> to subclasses.</li>
+<li><code>EdgePointRenderer</code>, <code>EdgePointBlockEntityRenderer&lt;T&gt;</code>, <code>EdgePointOverlayRenderer</code>, and <code>EdgePointOverlayRendererRegistry</code> (weak-key registry mapping <code>EdgePointType&lt;?&gt; -&gt; EdgePointOverlayRenderer</code>).</li>
+</ul>
+<h3 id="15-minimal-registration-example">1.5 Minimal Registration Example<a class="headerlink" href="#15-minimal-registration-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Common definitions (adapted from contentTesting)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">BogeySizeReg</span><span class="w"> </span><span class="n">PK209P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BogeySizeReg</span><span class="p">(</span><span class="s">"pk209p"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.915f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2f</span><span class="p">);</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">BogeyRendererHandle</span><span class="w"> </span><span class="n">PK209P_RENDERER</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">BogeyRendererHandle</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"examplemod"</span><span class="p">,</span><span class="w"> </span><span class="s">"pk209p_renderer"</span><span class="p">));</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">BogeyBlockReg</span><span class="o">&lt;</span><span class="n">ExampleBogeyBlock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">STANDARD_BOGEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BogeyBlockReg</span><span class="o">&lt;&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"pk209p_bogey"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">PK209P</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExampleBogeyBlock</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">)</span>
+<span class="p">).</span><span class="na">withBlockProperties</span><span class="p">(</span><span class="n">properties</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">properties</span><span class="p">.</span><span class="na">strength</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">).</span><span class="na">noOcclusion</span><span class="p">());</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">BogeyGroupReg</span><span class="w"> </span><span class="n">STANDARD_GROUP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BogeyGroupReg</span><span class="p">(</span><span class="s">"standard"</span><span class="p">,</span><span class="w"> </span><span class="s">"example_bogey"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">displayName</span><span class="p">(</span><span class="n">Component</span><span class="p">.</span><span class="na">literal</span><span class="p">(</span><span class="s">"Standard Bogey"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">bogey</span><span class="p">(</span><span class="n">PK209P</span><span class="p">,</span><span class="w"> </span><span class="n">STANDARD_BOGEY</span><span class="p">,</span><span class="w"> </span><span class="n">PK209P_RENDERER</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">onCommitted</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">BogeyModels</span><span class="p">.</span><span class="na">register</span><span class="p">(</span>
+<span class="w">                </span><span class="n">style</span><span class="p">.</span><span class="na">id</span><span class="p">,</span><span class="w"> </span><span class="n">PK209P</span><span class="p">.</span><span class="na">getEntry</span><span class="p">(),</span><span class="w"> </span><span class="n">pk209pParts</span><span class="p">,</span><span class="w"> </span><span class="mf">0.91f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BogeyRoots</span><span class="p">.</span><span class="na">CREATE_Y_OFFSET</span>
+<span class="w">        </span><span class="p">));</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TrackMaterialReg</span><span class="w"> </span><span class="n">STANDARD_MATERIAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TrackMaterialReg</span><span class="p">(</span><span class="s">"standard"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">lang</span><span class="p">(</span><span class="s">"Standard"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">particle</span><span class="p">(</span><span class="n">ResourceLocation</span><span class="p">.</span><span class="na">fromNamespaceAndPath</span><span class="p">(</span><span class="s">"examplemod"</span><span class="p">,</span><span class="w"> </span><span class="s">"block/track_particle"</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">customModels</span><span class="p">(</span><span class="n">tieModel</span><span class="p">,</span><span class="w"> </span><span class="n">leftSegModel</span><span class="p">,</span><span class="w"> </span><span class="n">rightSegModel</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="na">simpleTrackModelOffset</span><span class="p">(</span><span class="mf">0.755f</span><span class="p">);</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TrackReg</span><span class="o">&lt;</span><span class="n">ExampleTrackBlock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">STANDARD_TRACK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TrackReg</span><span class="o">&lt;&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"standard_track"</span><span class="p">,</span>
+<span class="w">        </span><span class="n">STANDARD_MATERIAL</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExampleTrackBlock</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="n">STANDARD_BOGEY</span><span class="p">::</span><span class="n">getEntry</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">Registry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PK209P</span><span class="p">.</span><span class="na">setParent</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="n">STANDARD_BOGEY</span><span class="p">.</span><span class="na">setParent</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="n">STANDARD_GROUP</span><span class="p">.</span><span class="na">setParent</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="n">STANDARD_MATERIAL</span><span class="p">.</span><span class="na">block</span><span class="p">(</span><span class="n">STANDARD_TRACK</span><span class="p">).</span><span class="na">setParent</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="n">STANDARD_TRACK</span><span class="p">.</span><span class="na">setParent</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// Client renderer binding (@BeanOnlyIn.Client)</span>
+<span class="n">renderers</span><span class="p">.</span><span class="na">register</span><span class="p">(</span>
+<span class="w">        </span><span class="n">PK209P_RENDERER</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ProxyBogeyVisual</span><span class="p">.</span><span class="na">NoopRenderer</span><span class="p">::</span><span class="k">new</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">partialTick</span><span class="p">,</span><span class="w"> </span><span class="n">inContraption</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProxyBogeyVisual</span><span class="p">(</span>
+<span class="w">                </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">PK209P</span><span class="p">.</span><span class="na">getEntry</span><span class="p">(),</span><span class="w"> </span><span class="n">myContraptionBogeyProxy</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="2-train-devices-custom-track-segments-and-graph-extra-data">2. Train Devices, Custom Track Segments, and Graph Extra Data<a class="headerlink" href="#2-train-devices-custom-track-segments-and-graph-extra-data" title="Permanent link">&para;</a></h2>
+<h3 id="21-traindeviceregistry-and-traindevicesystem">2.1 <code>TrainDeviceRegistry</code> and <code>TrainDeviceSystem</code><a class="headerlink" href="#21-traindeviceregistry-and-traindevicesystem" title="Permanent link">&para;</a></h3>
+<p>Package: <code>lib.kasuga.create.content.train.device</code></p>
+<p><code>TrainMixin</code> implements <code>TrainDeviceProvider</code>, attaching one <code>TrainDeviceManager</code> to each Create
+<code>Train</code> and forwarding NBT serialization, ticks, speed/distance hooks, and signal callbacks:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Key Methods</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrainDeviceRegistry</code></td>
+<td><code>register(ResourceLocation, TrainDeviceSystemType&lt;?&gt;)</code>, <code>register(ResourceLocation, TrainDeviceSystemType&lt;?&gt;, boolean contextDevice)</code>, <code>get(ResourceLocation)</code>, <code>getKey(TrainDeviceSystemType&lt;?&gt;)</code>, <code>createInitialContextDevices(TrainDeviceManager)</code></td>
+<td>Registers train device system types. Setting <code>contextDevice = true</code> instantiates the system on every newly constructed <code>Train</code>. Duplicate IDs or types throw <code>IllegalArgumentException</code>.</td>
+</tr>
+<tr>
+<td><code>TrainDeviceSystemType&lt;T&gt;</code></td>
+<td><code>TrainDeviceSystemType.of(Function&lt;TrainDeviceManager, T&gt;)</code>, <code>create(TrainDeviceManager)</code></td>
+<td>Factory descriptor for a <code>TrainDeviceSystem</code>.</td>
+</tr>
+<tr>
+<td><code>TrainDeviceSystem</code></td>
+<td><code>write(CompoundTag)</code>, <code>read(CompoundTag)</code>, <code>earlyTick(Level)</code>, <code>tick(Level)</code>, <code>initializeServer(Level)</code>, <code>beforeSpeed()</code>, <code>cancelSlowdown()</code>, <code>notifySpeed(double)</code>, <code>notifyDistance(double)</code>, <code>notifySignalFront(...)</code>, <code>notifySignalBack(...)</code>, <code>notifySignalCollection()</code>, <code>notifyDisassemble(Direction, BlockPos)</code>, <code>onSegmentUpdated(ResourceLocation)</code></td>
+<td>Base class for per-train systems. On the first non-client <code>tick</code>, invokes <code>initializeServer(Level)</code> once.</td>
+</tr>
+<tr>
+<td><code>TrainDeviceManager</code></td>
+<td><code>getManager(Train)</code>, <code>getManager(MovementContext)</code>, <code>getManager(AbstractContraptionEntity, BlockPos)</code>, <code>getSystem(TrainDeviceSystemType&lt;T&gt;)</code>, <code>getOrCreateSystem(TrainDeviceSystemType&lt;T&gt;)</code>, <code>updateCache()</code></td>
+<td>Manages per-train system instances. <code>cancelSlowdown()</code> uses a cached flag updated via <code>updateCache()</code>. Persists under <code>"TrainDeviceSystems"</code>.</td>
+</tr>
+<tr>
+<td><code>TrainDeviceLocation</code></td>
+<td><code>record TrainDeviceLocation(UUID trainId, int carriageIndex, BlockPos position)</code>, <code>read(CompoundTag)</code>, <code>write(CompoundTag)</code></td>
+<td>Identifies a device block position inside a train carriage.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-boundarysegmentregistry-and-customtracksegment">2.2 <code>BoundarySegmentRegistry</code> and <code>CustomTrackSegment</code><a class="headerlink" href="#22-boundarysegmentregistry-and-customtracksegment" title="Permanent link">&para;</a></h3>
+<p>Package: <code>lib.kasuga.create.content.train.signal</code></p>
+<p>Provides custom track-graph signal/circuit segments independent of Create's built-in block signals:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Responsibility &amp; Key Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BoundarySegmentRegistry</code></td>
+<td><code>register(ResourceLocation featureLocation, EdgePointType&lt;? extends CustomBoundary&gt; boundary, Function&lt;UUID, CustomTrackSegment&gt; constructor)</code>, <code>registerUpdateListener(ResourceLocation, EdgePointType&lt;? extends SegmentUpdateListener&gt;)</code>, <code>createSegment(CustomBoundary, UUID)</code>, <code>createSegmentByFeatureName(ResourceLocation, UUID)</code>, <code>getFeatureName(...)</code>, <code>getBoundaries()</code>.</td>
+</tr>
+<tr>
+<td><code>CustomTrackSegment</code></td>
+<td>Per-segment state object constructed with <code>UUID segmentId</code>; overridable <code>write()</code>, <code>read(CompoundTag)</code>, and <code>onEarlyGlobalTick()</code> (invoked from <code>GlobalRailwayManagerMixin.onTick</code> on Overworld ticks via <code>RailwayData.onEarlyGlobalTick(Level)</code>).</td>
+</tr>
+<tr>
+<td><code>CustomBoundary</code></td>
+<td>Abstract <code>SingleBlockEntityEdgePoint</code> subclass maintaining directional <code>sidedSegments</code> and <code>dirty</code> flags; triggers <code>CustomTrackSegmentPropagator.propagate(graph, this, dir)</code> in <code>tick</code> and <code>onRemoved</code>.</td>
+</tr>
+<tr>
+<td><code>CustomTrackSegmentPropagator</code></td>
+<td><code>@Singleton</code> bean propagating segment IDs across the <code>TrackGraph</code> (<code>propagate</code>, <code>notifyNewNode</code>, <code>onRemoved</code>, <code>walk</code>) and notifying trains on affected edges via <code>TrainDeviceManager.onSegmentUpdated(segmentType)</code>.</td>
+</tr>
+<tr>
+<td><code>CustomSegmentUtil</code></td>
+<td><code>@Singleton</code> bean providing <code>getSegment(TrackGraph, TrackEdge, EdgePointType&lt;? extends CustomBoundary&gt;, double position)</code> and <code>getSegmentIdAt(...)</code>.</td>
+</tr>
+<tr>
+<td><code>SegmentPropagator</code>, <code>EdgePointFilter</code>, <code>ResourcePalette</code>, <code>SegmentUpdateListener</code></td>
+<td>Generic BFS graph traversal helper, filtered edge-point scanner, NBT <code>ResourceLocation</code> palette, and update listener marker interface.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-edgeextrapayloadregistry-railwaydata-and-railwaydatasyncmanager">2.3 <code>EdgeExtraPayloadRegistry</code>, <code>RailwayData</code>, and <code>RailwayDataSyncManager</code><a class="headerlink" href="#23-edgeextrapayloadregistry-railwaydata-and-railwaydatasyncmanager" title="Permanent link">&para;</a></h3>
+<p>Packages: <code>lib.kasuga.create.content.train.graph</code>, <code>lib.kasuga.create.content.train.graph.sync</code></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Core API</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EdgeExtraPayloadRegistry</code></td>
+<td><code>register(ResourceLocation id, EdgeExtraPayloadType&lt;T&gt; type)</code>, <code>get(ResourceLocation id)</code>, <code>getId(EdgeExtraPayloadType&lt;?&gt; type)</code></td>
+<td>Registry for custom per-edge payloads (normally registered via <code>EdgeDataReg</code> during <code>REGISTER_EVENT</code>).</td>
+</tr>
+<tr>
+<td><code>EdgeExtraPayloadType&lt;T&gt;</code>, <code>EdgeExtraPayload</code></td>
+<td><code>EdgeExtraPayloadType.Builder&lt;&gt;(supplier, reader).build()</code>, <code>write()</code>, <code>getType()</code></td>
+<td>Serialization contract for edge payloads.</td>
+</tr>
+<tr>
+<td><code>EdgeExtraData</code></td>
+<td><code>setBoundaryFeature</code>, <code>getBoundaryFeature</code>, <code>getEffectiveBoundaryFeature</code>, <code>setBoundaryFeaturePassive</code>, <code>setPayload</code>, <code>getPayload</code>, <code>getPayloadOptional</code></td>
+<td>Per-<code>TrackEdge</code> boundary group IDs (defaulting to <code>passiveBoundaryGroup</code>, the zero UUID) and lazily instantiated payload map.</td>
+</tr>
+<tr>
+<td><code>GraphExtraData</code></td>
+<td><code>withGraph</code>, <code>getEdgeData</code>, <code>getOrComputeEdgeData</code>, <code>createEdge</code>, <code>removeEdge</code>, <code>transfer</code>, <code>transferAll</code>, <code>syncWithExternal</code></td>
+<td>Kept synchronized across graph creation, removal, merging, transfers, and node edits by <code>TrackGraphMixin</code> and <code>GlobalRailwayManagerMixin</code>.</td>
+</tr>
+<tr>
+<td><code>RailwayManager</code> / <code>RailwayData</code></td>
+<td><code>RailwayManager.getData()</code>, <code>RailwayData.withGraph(TrackGraph)</code>, <code>addSegment</code> / <code>removeSegment</code> / <code>getSegment</code> / <code>hasSegment</code></td>
+<td>Persists all graph extra data and custom segment instances via <code>Saved&lt;RailwayData&gt;</code> (<code>Saved.Impl</code>) under <code>"kasuga_railway_data"</code>.</td>
+</tr>
+<tr>
+<td><code>RailwayDataSyncManager</code></td>
+<td><code>edgeExtraDataChanged(TrackGraph, TrackNode, TrackNode, TrackEdge, TrackEdge)</code>, <code>nodeExtraDataChanged(TrackGraph, TrackNode)</code></td>
+<td><strong>Currently a no-op stub</strong>: callers in <code>CustomTrackSegmentPropagator</code> are commented out and no network sync packets are implemented yet.</td>
+</tr>
+</tbody>
+</table>
+<p>Additional graph utilities in <code>content.train.graph</code>: <code>TrackEdgeLocation</code>, <code>GraphWalker</code>, <code>GraphSimplifier</code> (collapsed topology &amp; JSON export), and <code>TrainDistanceIntegrator</code>.</p>
+<h2 id="3-bogey-proxy-and-train-visual-integration">3. Bogey Proxy and Train Visual Integration<a class="headerlink" href="#3-bogey-proxy-and-train-visual-integration" title="Permanent link">&para;</a></h2>
+<p>Packages: <code>lib.kasuga.create.proxy</code>, <code>lib.kasuga.create.client.rendering</code></p>
+<p>KasugaLibNext shares one <code>BogeyModels</code> registry across placed bogey block entities and
+contraption-mounted train bogeys, driving both through the <code>ProxySession</code> kernel.</p>
+<pre class="mermaid"><code>flowchart LR
+    Placed["AbstractBogeyBlockEntity\n(placed bogey)"] --&gt; BP["BogeyProxy + BogeyRoots"]
+    Train["Create BogeyVisual hook"] --&gt; PBV["ProxyBogeyVisual\n(per-frame update / hide / delete)"]
+    PBV --&gt; CB["ContraptionBogey\n(HostFrame snapshot)"]
+    PBV --&gt; CBT["ContraptionBogeyTickers\n(ClientTickEvent.Post)"]
+    CB --&gt; CBP["ContraptionBogeyProxy\n(+ CREATE_ORIGIN_LIFT)"]
+    PBV --&gt; Adapter["CreateBogeyProxyAdapter"]
+    Adapter --&gt; Kernel["ProxyRuntime.GLOBAL / ProxySession\n+ RigidPartVisualStage"]</code></pre>
+<h3 id="31-bogeymodels-bogeyroots-and-contraptionbogeyproxy">3.1 <code>BogeyModels</code>, <code>BogeyRoots</code>, and <code>ContraptionBogeyProxy</code><a class="headerlink" href="#31-bogeymodels-bogeyroots-and-contraptionbogeyproxy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>BogeyModels</code>: thread-safe static registry (<code>ConcurrentHashMap</code>) mapping <code>(styleId, sizeId)</code> or style-wide <code>styleId</code> to <code>Placement(List&lt;ModelPart&gt; parts, float yOffset)</code>. Resolution order: exact <code>(style, size)</code> → style-wide → <code>null</code>. Also provides <code>styleIdOf(CompoundTag bogeyData)</code> reading Create's <code>"BogeyStyle"</code> NBT tag.</li>
+<li><code>BogeyRoots</code>: <code>CREATE_Y_OFFSET = -1.5f - 1f / 128f</code> (Create's bogey models place their origin at the rail plane rather than the block center). <code>BogeyRoots.of(element, yOffset)</code> builds the block-centered transform including <code>AbstractBogeyBlock.AXIS</code> rotation.</li>
+<li><code>BogeyProxy&lt;T extends AbstractBogeyBlockEntity&gt;</code>: implements <code>ElementProxy&lt;T&gt;</code> for placed bogeys; override <code>partsFor(T, BogeyModels.Placement)</code> to attach <code>ModelPart.Spin.tick(...)</code> or <code>pull</code> / <code>push</code> for an FSM.</li>
+<li><code>ContraptionBogey</code>: train-side host carrier storing an atomic immutable <code>record HostFrame(float wheelAngle, Transform root)</code> snapshot; <code>normalizedRoot()</code> applies <code>placementYOffset</code> exactly once.</li>
+<li><code>ContraptionBogeyProxy</code>: implements <code>ElementProxy&lt;ContraptionBogey&gt;</code> for train bogeys.</li>
+<li><code>CREATE_ORIGIN_LIFT = -BogeyRoots.CREATE_Y_OFFSET</code> (<code>1.5f + 1f / 128f</code>);</li>
+<li><code>rootOf(org.joml.Matrix4f pose, org.joml.Vector3i renderOrigin)</code> converts Flywheel's render-origin-relative <code>PoseStack</code> matrix into world-space placement coordinates by adding <code>renderOrigin</code> and lifting by <code>CREATE_ORIGIN_LIFT</code>;</li>
+<li><code>configure(ContraptionBogey)</code> looks up <code>BogeyModels.resolve(element.styleId(), element.sizeId())</code> and stores <code>element.placementYOffset(...)</code>; subclasses override <code>partsFor(...)</code> to attach <code>ModelPart.Spin.frame(...)</code>.</li>
+</ul>
+<h3 id="32-proxybogeyvisual-contraptionbogeytickers-and-createbogeyproxyadapter">3.2 <code>ProxyBogeyVisual</code>, <code>ContraptionBogeyTickers</code>, and <code>CreateBogeyProxyAdapter</code><a class="headerlink" href="#32-proxybogeyvisual-contraptionbogeytickers-and-createbogeyproxyadapter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ProxyBogeyVisual implements BogeyVisual</code>:</li>
+<li>Constructor: <code>new ProxyBogeyVisual(VisualizationContext context, BogeySizes.BogeySize size, ElementProxy&lt;ContraptionBogey&gt; template)</code> (registered in <code>ClientBogeyRendererRegistry</code>).</li>
+<li>Lazy creation: the first <code>update(CompoundTag bogeyData, float wheelAngle, PoseStack poseStack)</code> resolves the style ID from <code>bogeyData</code>, constructs <code>ContraptionBogey</code>, attaches a session via <code>CreateBogeyProxyAdapter.attach(...)</code>, and registers with <code>ContraptionBogeyTickers</code>.</li>
+<li>Strict tick/frame split: <code>update(...)</code> executes during Flywheel's <code>beginFrame</code> and only calls <code>session.publishFrame(...)</code> (calling <code>resume()</code> if <code>SUSPENDED</code>); logical stepping runs once per game tick in <code>ContraptionBogeyTickers</code> (<code>ClientTickEvent.Post</code> → <code>session.tick(gameTime, 1.0 / 20.0)</code>).</li>
+<li>Lifecycle &amp; threading: <code>hide()</code> calls <code>session.suspend()</code>; a style change or <code>delete()</code> (which Flywheel may invoke from a worker thread) schedules <code>session.close()</code> onto the client game thread via <code>DeferredGameThreadTask</code> and <code>ContraptionBogeyTickers</code>.</li>
+<li><code>ProxyBogeyVisual.NoopRenderer implements BogeyRenderer</code>: register alongside <code>ProxyBogeyVisual</code> in <code>ClientBogeyRendererRegistry</code> so Create's non-Flywheel fallback renderer does not draw a duplicate model.</li>
+<li><code>CreateBogeyProxyAdapter</code>:</li>
+<li><code>attach(ContraptionBogey element, ElementProxy&lt;ContraptionBogey&gt; template, ProxyIdentity identity, ProxyAttachToken token, @Nullable Level level)</code>:<ul>
+<li>Registers a temporary <code>ProxyDefinition</code> under <code>ProxyKey.external("kasuga_lib", "contraption_bogey/" + identity.discriminator() + "/" + token)</code> in <code>ProxyRuntime.GLOBAL</code> and attaches <code>element</code>;</li>
+<li>Builds a <code>RigidPartVisualStage</code> (plus an optional <code>FsmAnimatedModel</code> via <code>ProxyConfig.machine()</code> wrapped in <code>ProxyMachineController</code>) using <code>LogicalStepPolicy.fixed(1.0 / 20.0, 5)</code>;</li>
+<li>Forwards <code>isReady</code> / <code>bind</code> / <code>tick</code> / <code>publishFrame</code> / <code>suspend</code> / <code>resume</code> / <code>rebind</code> / <code>close</code> to <code>RigidPartVisualStage</code>;</li>
+<li>Guarantees single-shot <code>template.onDetach(element)</code> and definition unregistration on <code>close()</code> and on every attach/configure failure path.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-contraption-captured-proxy-models-and-interaction-shapes">4. Contraption-Captured Proxy Models and Interaction Shapes<a class="headerlink" href="#4-contraption-captured-proxy-models-and-interaction-shapes" title="Permanent link">&para;</a></h2>
+<p>Packages: <code>lib.kasuga.create.client.rendering</code>, <code>lib.kasuga.create.interaction</code>, <code>lib.kasuga.create.mixins.client</code></p>
+<h3 id="41-contraptionproxymodels">4.1 <code>ContraptionProxyModels</code><a class="headerlink" href="#41-contraptionproxymodels" title="Permanent link">&para;</a></h3>
+<p><code>@Context @CreateModBeans @BeanOnlyIn.Client</code>. Captured <code>ProxyModelBlockEntity</code> instances inside
+<code>Contraption.presentBlockEntities</code> have no world <code>BlockEntityTicker</code> or vanilla block entity
+renderer. <code>ContraptionProxyModels</code> drives their existing <code>ProxySession</code>s on the client:</p>
+<ul>
+<li>On <code>ClientTickEvent.Post</code>, scans <code>AbstractContraptionEntity</code> instances and creates an <code>Attachment</code> (backed by <code>CreateSceneHosts.contraption(entity)</code>) when <code>presentBlockEntities</code> contains any <code>ProxyModelBlockEntity</code>.</li>
+<li>Calls <code>refreshState(model, contraption.getBlocks().get(localPos))</code> each tick to apply Create packet <code>BlockState</code> updates without detaching the session or advancing the animation clock.</li>
+<li>Calls <code>model.bindVisualHost(instanceIdentity(entity.getUUID(), localPos), anchorTransform(pose, localPos))</code>, assigning stable identity <code>kasuga_lib:contraption_model/&lt;entityUuid&gt;/&lt;x&gt;/&lt;y&gt;/&lt;z&gt;</code> and host-local world anchor pose.</li>
+<li>Forwards <code>contraption.isHiddenInPortal(localPos)</code> to <code>session.suspend()</code> / <code>resume()</code>, and otherwise ticks the model via <code>ProxyTickers.tickClientBlockEntity(model)</code>.</li>
+<li>On <code>RenderFrameEvent.Pre</code> (<code>EventPriority.HIGHEST</code>, before shared model sampling), refreshes <code>anchorTransform</code> and calls <code>session.publishFrame(null)</code>.</li>
+<li>Calls <code>model.releaseVisualHost()</code> on <code>EntityLeaveLevelEvent</code>, contraption replacement, local block removal, or level change.</li>
+</ul>
+<h3 id="42-contraptionshapeprovider-contraptionblockview-and-contraptioninteractionshapes">4.2 <code>ContraptionShapeProvider</code>, <code>ContraptionBlockView</code>, and <code>ContraptionInteractionShapes</code><a class="headerlink" href="#42-contraptionshapeprovider-contraptionblockview-and-contraptioninteractionshapes" title="Permanent link">&para;</a></h3>
+<p>Provides opt-in contraption-local <code>BlockGetter</code> ownership context and extended raycast picking for
+blocks whose selection shape extends outside their anchor cell:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Package</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ContraptionShapeProvider</code></td>
+<td><code>interaction</code></td>
+<td>Opt-in <code>Block</code> interface: <code>VoxelShape getContraptionShape(BlockState state, BlockGetter localBlocks, BlockPos localPos)</code>.</td>
+</tr>
+<tr>
+<td><code>ContraptionBlockView</code></td>
+<td><code>interaction</code></td>
+<td>Read-only <code>BlockGetter</code> backed by <code>Contraption.getBlocks()</code> and <code>contraption.presentBlockEntities</code>: returns <code>Blocks.AIR.defaultBlockState()</code> for unoccupied coordinates and <code>null</code> from <code>getBlockEntity</code> when absent from <code>getBlocks()</code>; never falls through to the outer world; delegates height bounds to <code>dimensions</code>.</td>
+</tr>
+<tr>
+<td><code>ContraptionInteractionShapes</code></td>
+<td><code>interaction</code></td>
+<td><code>shape(...)</code> passes <code>ContraptionBlockView</code> to <code>ContraptionShapeProvider</code> blocks while leaving ordinary blocks on the original query; <code>pick(...)</code> scans non-portal-hidden <code>ContraptionShapeProvider</code> blocks across <code>contraption.getBlocks()</code> to pick extended shapes while preserving the closest ordinary native hit.</td>
+</tr>
+<tr>
+<td><code>ContraptionInteractionShapeMixin</code></td>
+<td><code>mixins.client</code></td>
+<td>Mixin on <code>ContraptionHandlerClient#rayTraceContraption</code> wrapping <code>BlockState.getShape</code> and injecting at <code>RETURN</code> for extended selection picking.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-common-configuration-and-default-overrides">5. Common Configuration and Default Overrides<a class="headerlink" href="#5-common-configuration-and-default-overrides" title="Permanent link">&para;</a></h2>
+<p><code>CreateConfig</code> (<code>config/kasuga_lib-common.toml</code>) and <code>KasugaLibCreateApi</code> (call during mod
+construction before configs load to override generated defaults):</p>
+<table>
+<thead>
+<tr>
+<th>Config Key</th>
+<th>Default</th>
+<th><code>KasugaLibCreateApi</code> Default Setter</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_multi_bogey_carriage</code></td>
+<td><code>false</code></td>
+<td><code>setMultiBogeyCarriageDefault(boolean)</code></td>
+<td>Enables multi-bogey carriage assembly, sync, and rendering</td>
+</tr>
+<tr>
+<td><code>max_bogey_offset</code></td>
+<td><code>1.0</code></td>
+<td>—</td>
+<td>Maximum lateral curve offset (in blocks) for interior bogeys</td>
+</tr>
+<tr>
+<td><code>derailed_on_bogey_offset_overflow</code></td>
+<td><code>false</code></td>
+<td><code>setDerailedOnBogeyOffsetDefault(boolean)</code></td>
+<td>Derails the train when required curve offset exceeds <code>max_bogey_offset</code></td>
+</tr>
+<tr>
+<td><code>enable_carriage_y_offset</code></td>
+<td><code>false</code></td>
+<td><code>setCarriageYOffsetDefault(boolean)</code></td>
+<td>Enables <a href="../../guides/create/carriage-posture/">Carriage Vertical Posture</a> (<code>ModifyCarriagePostureEvent</code>)</td>
+</tr>
+<tr>
+<td><code>max_carriage_y_offset</code></td>
+<td><code>0.5</code></td>
+<td>—</td>
+<td>Symmetric maximum carriage vertical offset (in blocks)</td>
+</tr>
+<tr>
+<td><code>enable_contraption_lod</code></td>
+<td><code>true</code></td>
+<td>—</td>
+<td>Syncs simplified distant meshes for active contraptions within 512 blocks</td>
+</tr>
+<tr>
+<td><code>enable_contraption_weather_filter</code></td>
+<td><code>true</code></td>
+<td><code>setContraptionWeatherFilterDefault(boolean)</code></td>
+<td>Automatically occludes rain and snow inside Create contraptions</td>
+</tr>
+<tr>
+<td><code>enable_sable_weather_filter</code></td>
+<td><code>true</code></td>
+<td>—</td>
+<td>Automatically occludes rain and snow inside Sable / Aeronautics sublevels</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

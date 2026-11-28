@@ -1,0 +1,3464 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/explanation/data-driven/05-content-sources/">
+      
+      
+      
+      
+        
+          <link rel="alternate" href="../../../../explanation/data-driven/05-content-sources/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Content Sources, Snapshots, and Security - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#content-sources-snapshots-and-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Content Sources, Snapshots, and Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../../explanation/data-driven/05-content-sources/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platform-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-contentsource-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ContentSource Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-indexing-main-and-parcel-roots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene Indexing, main, and parcel Roots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcesnapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ResourceSnapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixedresourcesource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FixedResourceSource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snapshotcontentsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SnapshotContentSource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resourcesources-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ResourceSources Adapters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ResourceSources Adapters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-only-non-default-nio-roots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read-Only Non-Default NIO Roots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mod-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mod Root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputpolicy-and-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputPolicy and Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streams-leases-and-closing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streams, Leases, and Closing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict JSON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-contentsource-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy ContentSource Adapters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-priority-and-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Priority and Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-mc-resource-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to MC Resource Projection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sourceaccessexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SourceAccessException
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="content-sources-snapshots-and-security">Content Sources, Snapshots, and Security<a class="headerlink" href="#content-sources-snapshots-and-security" title="Permanent link">&para;</a></h1>
+<p>In v2, registration sources have two layers:</p>
+<ol>
+<li><code>core</code>'s <code>ResourceSource</code> captures a physical source and returns an immutable <code>ResourceSnapshot</code>;</li>
+<li><code>data-driven</code>'s <code>ContentSource</code> exposes a concrete root as a manifest and JSON read view.</li>
+</ol>
+<p>Production wiring should follow <code>ResourceSource -&gt; ResourceSnapshot -&gt; ContentSourceFactory.snapshot(...) -&gt; DataDrivenBuildPipeline</code>. <code>ContentSourceFactory.directory</code>, <code>zip</code>, <code>modJar</code>, and <code>open</code>—which open directories or ZIPs directly—remain available for legacy entry points and test compatibility, and no longer represent the v2 fixed-startup-snapshot model.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSourceDescriptor</span><span class="w"> </span><span class="n">descriptor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ResourceSourceDescriptor</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"example"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"example-pack"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"main"</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ResourceSourceDescriptor</span><span class="p">.</span><span class="na">Origin</span><span class="p">.</span><span class="na">EXTERNAL</span>
+<span class="p">);</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResourceSource</span><span class="w"> </span><span class="n">fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">fixed</span><span class="p">(</span>
+<span class="w">             </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">             </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">mod</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span><span class="w"> </span><span class="n">modRoot</span><span class="p">,</span><span class="w"> </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">),</span>
+<span class="w">             </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">);</span>
+<span class="w">     </span><span class="n">ContentSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">snapshot</span><span class="p">(</span>
+<span class="w">             </span><span class="n">fixed</span><span class="p">.</span><span class="na">capture</span><span class="p">(),</span>
+<span class="w">             </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">             </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">"example"</span><span class="p">),</span>
+<span class="w">             </span><span class="s">"example pack root main"</span>
+<span class="w">     </span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PreparedContent</span><span class="w"> </span><span class="n">prepared</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipeline</span><span class="p">.</span><span class="na">prepare</span><span class="p">(</span>
+<span class="w">            </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">source</span><span class="p">),</span>
+<span class="w">            </span><span class="n">BuildOptions</span><span class="p">.</span><span class="na">STRICT</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="platform-identity">Platform Identity<a class="headerlink" href="#platform-identity" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSourceDescriptor(ownerId, sourceId, rootId, rank, origin)</code> is the single provider identity in <code>core</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Constraints</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ownerId</code></td>
+<td>Matches platform ID rule (<code>[A-Za-z0-9_-][A-Za-z0-9._-]{0,127}</code>, not <code>.</code> or <code>..</code>)</td>
+<td>Defines ownership, dependency visibility, and access grants</td>
+</tr>
+<tr>
+<td><code>sourceId</code></td>
+<td>Matches the same rule</td>
+<td>One logical host source, typically one pack</td>
+</tr>
+<tr>
+<td><code>rootId</code></td>
+<td>Matches the same rule</td>
+<td>Concrete root within the source</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>Non-negative integer</td>
+<td>Global resource layer order; higher values take higher priority</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td><code>EXTERNAL</code>, <code>MC_MANAGED</code>, <code>DERIVED</code></td>
+<td>Source category and projection restrictions</td>
+</tr>
+</tbody>
+</table>
+<p>Colons are disallowed in platform IDs. A business parcel ID such as <code>example_railway:m1</code> cannot be used directly as a <code>rootId</code>; the host must maintain a stable mapping such as <code>parcel-m1</code>.</p>
+<p><code>data-driven</code>'s <code>SourceDescriptor</code> retains both the four-argument legacy constructor and the platform-descriptor constructor. When created via <code>SourceDescriptor.of(ResourceSourceDescriptor, namespaces, label)</code>:</p>
+<ul>
+<li><code>sourceId()</code> and <code>ownerId()</code> match the platform descriptor;</li>
+<li><code>rootId()</code>, <code>rank()</code>, and <code>origin()</code> delegate directly to the platform descriptor;</li>
+<li><code>resource()</code> returns the underlying platform descriptor;</li>
+<li><code>namespaces</code> is the allowed set of namespaces for registration reads, required to be non-empty and stably sorted;</li>
+<li><code>diagnosticLabel</code> is used for human-readable diagnostic reporting only.</li>
+</ul>
+<p>For the legacy four-argument <code>SourceDescriptor.of(sourceId, ownerId, namespaces)</code>, <code>resource()</code> is <code>null</code>. Only for such legacy compatibility sources does the pipeline assign <code>sourceOrder</code> by input list position; platform sources always use their explicit <code>rank</code>.</p>
+<h2 id="the-contentsource-interface">The <code>ContentSource</code> Interface<a class="headerlink" href="#the-contentsource-interface" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ContentSource</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">AutoCloseable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SourceDescriptor</span><span class="w"> </span><span class="nf">descriptor</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">InputStream</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">exists</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedFile</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">files</span><span class="p">();</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedFile</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">indexes</span><span class="p">();</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">InputStream</span><span class="w"> </span><span class="nf">requireOpen</span><span class="p">(</span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>files()</code> returns the immutable file list fixed when the view was opened, sorted by logical path. <code>LocatedFile</code> holds the descriptor, <code>LogicalPath</code>, size, and—when backed by a platform snapshot—the <code>ResourceUri</code>, SHA-256 revision, and tags.</p>
+<p>By default, <code>indexes()</code> matches only files under declared namespaces at:</p>
+<div class="highlight"><pre><span></span><code>data/&lt;namespace&gt;/kasuga_lib/data_driven/&lt;name&gt;.json
+</code></pre></div>
+<p>Only direct children of <code>data_driven/</code> are matched, without recursion. The namespace segment in <code>data/&lt;namespace&gt;</code> must appear in <code>SourceDescriptor.namespaces</code>.</p>
+<p><code>ContentSource</code> is a read protocol, not a sandbox. While path traversal and archive layout are constrained by the implementations, handlers, JSON codecs, and factories still execute inside the host JVM; untrusted packs still require host-side restrictions on dependencies, resource budgets, and side effects.</p>
+<h2 id="scene-indexing-main-and-parcel-roots">Scene Indexing, <code>main</code>, and <code>parcel</code> Roots<a class="headerlink" href="#scene-indexing-main-and-parcel-roots" title="Permanent link">&para;</a></h2>
+<p>In these pages, "scene indexing" refers to selecting which roots participate in the current registration scene and which entry manifests each root exposes. It is a composition convention, not a separate Java or JSON type.</p>
+<p>At the platform level, a pack typically maps as:</p>
+<div class="highlight"><pre><span></span><code>pack owner/source
+├─ main       (lower rank; uses default indexes() or host-declared pack root entries)
+├─ parcel-m1  (higher rank; exposes only parcel.json.indexes)
+├─ parcel-m2  (even higher rank; exposes only parcel.json.indexes)
+└─ shared     (host-defined shared root, still with its own unique rank and index set)
+</code></pre></div>
+<p><code>main</code>, <code>parcel-*</code>, and <code>shared</code> are host conventions. KasugaLib requires only that:</p>
+<ul>
+<li>Each <code>(sourceId, rootId)</code> is unique within a single <code>prepare</code> call;</li>
+<li>Each root's <code>rank</code> is non-negative and unique across all roots in that <code>prepare</code> call;</li>
+<li><code>rootId</code> contains no colons;</li>
+<li>Registration, MC resource discovery, and reload consumers reference the same frozen root;</li>
+<li>Disabled roots are omitted from both the <code>ContentSource</code> list and MC <code>ApprovedResourcePacks</code> registration.</li>
+</ul>
+<p>Ranks must be allocated in global order across all packs. Restarting from 0 for each pack causes <code>ROUTING_CONFLICT</code> on shared paths and duplicate-rank errors in the pipeline. Dependency topology governs preparation and reference visibility, and must never reorder ranks.</p>
+<h2 id="resourcesnapshot"><code>ResourceSnapshot</code><a class="headerlink" href="#resourcesnapshot" title="Permanent link">&para;</a></h2>
+<p>The output of <code>ResourceSnapshot.capture()</code> is an immutable byte collection:</p>
+<ul>
+<li>Each file retains its captured bytes, size, detected type/subtype, SHA-256 revision, and logical path;</li>
+<li>Files up to <code>InputPolicy.memoryThresholdBytes</code> are kept in memory;</li>
+<li>Larger files are written to randomly named private temporary spool files;</li>
+<li>Per-JSON, per-file, total-byte, and file-count budgets are enforced byte-by-byte during capture;</li>
+<li>A snapshot forbids duplicate <code>ResourceUri</code>s, duplicate logical paths, and file/directory prefix conflicts.</li>
+</ul>
+<p>A <code>LocatedResourceFile</code> is identified by its concrete provider URI:</p>
+<div class="highlight"><pre><span></span><code>ksg://&lt;source&gt;/roots/&lt;root&gt;/&lt;path&gt;[#&lt;child&gt;]
+</code></pre></div>
+<p>When a <code>childKey</code> is present, the file descriptor's <code>origin</code> becomes <code>DERIVED</code> while <code>rank</code>, <code>owner</code>, <code>source</code>, and <code>root</code> inherit from the parent provider; <code>parentUri()</code> returns the URI without the child key. Runtime derived outputs therefore preserve provenance without impersonating a new external source.</p>
+<p><code>readBytes()</code> reads the full file contents once. <code>open()</code> acquires a temporary read lease, and <code>open(existingLease)</code> increments the snapshot reference count until the returned stream is closed.</p>
+<p>Calling <code>ResourceSnapshot.close()</code> retires the snapshot:</p>
+<ul>
+<li>No new leases can be acquired afterward;</li>
+<li>Existing valid leases and open streams can still finish reading;</li>
+<li>Memory buffers are cleared and private spool files are deleted only when the final reference releases;</li>
+<li><code>close()</code> is idempotent.</li>
+</ul>
+<p><code>ResourceSnapshot.Builder.copy(file)</code> preserves the original URI, logical path, type, subtype, and tags while re-capturing bytes and computing the revision. It accepts only files with the exact same <code>ownerId</code>, <code>sourceId</code>, and <code>rootId</code>, preventing foreign provider content from being re-attributed under another identity.</p>
+<h2 id="fixedresourcesource"><code>FixedResourceSource</code><a class="headerlink" href="#fixedresourcesource" title="Permanent link">&para;</a></h2>
+<p><code>ResourceSources.fixed(descriptor, liveSource, policy)</code> immediately executes <code>liveSource.capture()</code> on creation and then closes <code>liveSource</code>. The returned <code>FixedResourceSource</code> retains this baseline snapshot.</p>
+<p>On every subsequent <code>fixed.capture()</code>:</p>
+<ol>
+<li>A new <code>ResourceSnapshot.Builder</code> is created under the same descriptor;</li>
+<li><code>Builder.copy</code> copies every file from the baseline;</li>
+<li>An independent, closeable snapshot is returned.</li>
+</ol>
+<p>Consequently:</p>
+<ul>
+<li>Modifying the original directory or archive after pinning does not affect later reads;</li>
+<li>Closing one consumer's snapshot never causes <code>STALE_REFERENCE</code> in another consumer;</li>
+<li>Closing the <code>FixedResourceSource</code> itself causes future <code>capture()</code> calls to fail;</li>
+<li>Closing the fixed source retires the baseline, while snapshots already handed out keep independent reference counts and remain readable.</li>
+</ul>
+<p>If the baseline contains files from a different <code>ownerId</code>, <code>sourceId</code>, or <code>rootId</code>, capture fails rather than re-labeling a foreign provider.</p>
+<p>Every discovery pass in <code>ApprovedResourcePacks</code> and every <code>prepare</code> cycle calls <code>capture()</code>. Passing a fixed source ensures all consumers read the startup bytes; passing a live <code>ResourceSources.directory</code> or <code>archive</code> source instead re-reads the install location.</p>
+<h2 id="snapshotcontentsource"><code>SnapshotContentSource</code><a class="headerlink" href="#snapshotcontentsource" title="Permanent link">&para;</a></h2>
+<p><code>ContentSourceFactory.snapshot(...)</code> projects a <code>ResourceSnapshot</code> into a registration view and transfers ownership of that snapshot to the returned <code>SnapshotContentSource</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ContentSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">snapshot</span><span class="p">(</span>
+<span class="w">        </span><span class="n">snapshot</span><span class="p">,</span>
+<span class="w">        </span><span class="n">resourceDescriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">namespaces</span><span class="p">,</span>
+<span class="w">        </span><span class="n">diagnosticLabel</span><span class="p">,</span>
+<span class="w">        </span><span class="n">declaredIndexes</span><span class="w"> </span><span class="c1">// optional</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>Construction checks that:</p>
+<ul>
+<li>Every file in the snapshot belongs to the supplied <code>ownerId</code>, <code>sourceId</code>, and <code>rootId</code>;</li>
+<li>No logical path is duplicated;</li>
+<li>Files are sorted by path and expose URI, revision, tags, and size;</li>
+<li>The descriptor is built via <code>SourceDescriptor.of(resourceDescriptor, namespaces, label)</code>.</li>
+</ul>
+<p><code>declaredIndexes</code> has narrow semantics: it replaces the candidate set returned by <code>indexes()</code>, keeping those listed paths that exist in the snapshot sorted by path. It does <strong>not</strong>:</p>
+<ul>
+<li>Delete undeclared files from the snapshot;</li>
+<li>Restrict content paths opened later by <code>open()</code>;</li>
+<li>Automatically verify that declared indexes sit inside the standard directory;</li>
+<li>Automatically emit diagnostics for missing declared index paths.</li>
+</ul>
+<p>Passing an empty collection declares "explicitly zero indexes", suited for roots providing ordinary assets/data only; passing <code>null</code> restores standard index-directory discovery.</p>
+<p>Train-pack hosts should verify before building that every parcel index exists in its root snapshot; host components such as a pack resource snapshotter typically perform this check during slicing.</p>
+<p>Closing <code>SnapshotContentSource</code> closes the snapshot it owns. Callers must not pass the same snapshot instance to a second owner to close; capture separate snapshots from the <code>FixedResourceSource</code> when multiple consumers need independent lifetimes.</p>
+<h2 id="resourcesources-adapters"><code>ResourceSources</code> Adapters<a class="headerlink" href="#resourcesources-adapters" title="Permanent link">&para;</a></h2>
+<h3 id="directory">Directory<a class="headerlink" href="#directory" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">live</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">directory</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">directory</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><code>directory</code> inspects the root and the entire tree:</p>
+<ul>
+<li>Neither the root nor any descendant may be a symbolic link;</li>
+<li>Only directories and regular files are permitted;</li>
+<li>Entry count is capped;</li>
+<li>Each <code>capture()</code> enumerates/reads twice and compares file descriptors and revisions to detect mutations mid-capture.</li>
+</ul>
+<p>It reads through <code>DirectoryVfs</code>. Constructing that VFS may scan or hash the existing tree up front, so budget checks cannot undo that initial I/O cost; pin immutable startup inputs early with <code>ResourceSources.fixed(...)</code>.</p>
+<h3 id="read-only-non-default-nio-roots">Read-Only Non-Default NIO Roots<a class="headerlink" href="#read-only-non-default-nio-roots" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">readOnlyDirectory</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">unionFilesystemRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>This adapter handles read-only filesystem providers that do not support directory creation or <code>LinkOption.NOFOLLOW_LINKS</code> on stream open, such as NeoForge's union filesystem for expanded mods. It still rejects symbolic links and special files and performs the two-pass capture consistency check.</p>
+<h3 id="mod-root">Mod Root<a class="headerlink" href="#mod-root" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">mod</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">pathFromFindResource</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>Dispatch rules:</p>
+<ul>
+<li>Non-directory regular files use <code>archive</code>;</li>
+<li>Default-filesystem directories use <code>directory</code>;</li>
+<li>Non-default-filesystem directories use <code>readOnlyDirectory</code>.</li>
+</ul>
+<p>Expanded mods, ordinary JARs, and union filesystems therefore work without requiring the host to guess the backend from the path string.</p>
+<h3 id="archive">Archive<a class="headerlink" href="#archive" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ResourceSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSources</span><span class="p">.</span><span class="na">archive</span><span class="p">(</span>
+<span class="w">        </span><span class="n">descriptor</span><span class="p">,</span>
+<span class="w">        </span><span class="n">zipOrJar</span><span class="p">,</span>
+<span class="w">        </span><span class="n">InputPolicy</span><span class="p">.</span><span class="na">DEFAULT</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>The v2 <code>archive</code> entry copies the archive within size limits, validates the raw central directory, and inflates each entry while counting actual bytes. It rejects:</p>
+<ul>
+<li>Non-regular files, symlinks, encrypted archives, and split archives;</li>
+<li>ZIP64 archives;</li>
+<li>Duplicate raw paths or logical paths;</li>
+<li>File/directory path conflicts;</li>
+<li>Special Unix entries such as symlinks, devices, or FIFOs;</li>
+<li>Exceeding JSON, single-file, total-byte, or file-count budgets;</li>
+<li>Entry size or CRC mismatches.</li>
+</ul>
+<p>The archive is captured twice and descriptors/revisions are compared so a package modified mid-capture is never accepted silently.</p>
+<h3 id="vfs">VFS<a class="headerlink" href="#vfs" title="Permanent link">&para;</a></h3>
+<p><code>ResourceSources.vfs(descriptor, files, owned, sourcePrefix, logicalPrefix, policy)</code> captures a bounded snapshot from a host's existing <code>VirtualFileSystem</code>. <code>sourcePrefix</code> is the path inside the VFS root for the URI, while <code>logicalPrefix</code> is the path prefix exposed in the registration view; keep the two separate. Unless the VFS itself already performs strict archive/link validation, wrapping a generic VFS does not synthesize those guarantees.</p>
+<h2 id="inputpolicy-and-limits"><code>InputPolicy</code> and Limits<a class="headerlink" href="#inputpolicy-and-limits" title="Permanent link">&para;</a></h2>
+<p><code>InputPolicy.DEFAULT</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single JSON file (<code>maxJsonBytes</code>)</td>
+<td>8 MiB</td>
+</tr>
+<tr>
+<td>Single regular file (<code>maxFileBytes</code>)</td>
+<td>256 MiB</td>
+</tr>
+<tr>
+<td>Total per snapshot/root (<code>maxTotalBytes</code>)</td>
+<td>1 GiB</td>
+</tr>
+<tr>
+<td>File count (<code>maxFiles</code>)</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>JSON nesting depth (<code>maxJsonDepth</code>)</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Memory-to-spool threshold (<code>memoryThresholdBytes</code>)</td>
+<td>1 MiB</td>
+</tr>
+</tbody>
+</table>
+<p>Construction requires positive counts/sizes, <code>maxJsonBytes &lt;= maxFileBytes &lt;= maxTotalBytes</code>, depth between 1 and 256, and a spool threshold up to <code>Integer.MAX_VALUE</code>.</p>
+<p>Budgets apply per <code>ResourceSnapshot.Builder</code>—that is, per concrete root. If a host splits a pack across <code>main</code>, <code>parcel</code>, and <code>shared</code> roots, it should enforce pack-wide budgets explicitly, because separate valid roots do not share a single 1 GiB cap.</p>
+<p><code>StrictResourceJson</code> also enforces an 8 MiB text limit and a 100,000-node limit; inputs should still be bounded by <code>InputPolicy</code> before reaching that parser so unbounded reads cannot happen first.</p>
+<h2 id="streams-leases-and-closing">Streams, Leases, and Closing<a class="headerlink" href="#streams-leases-and-closing" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">InputStream</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">source</span><span class="p">.</span><span class="na">requireOpen</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="w">     </span><span class="n">Reader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// read while the source is open</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>open</code> returns <code>Optional.empty()</code> for missing paths;</li>
+<li><code>requireOpen</code> throws <code>SourceAccessException(NOT_FOUND)</code> for missing paths;</li>
+<li>Once a <code>SnapshotContentSource</code> is closed, <code>open</code>, <code>exists</code>, and <code>files</code> throw <code>IllegalStateException</code>;</li>
+<li>The pipeline never closes <code>ContentSource</code> instances;</li>
+<li>Standard definitions copy their parsed data during <code>prepare</code>, so <code>ContentSource</code> instances can usually be closed before <code>build</code>;</li>
+<li>Custom definitions that defer file reads must acquire and close their own streams/leases.</li>
+</ul>
+<h2 id="strict-json">Strict JSON<a class="headerlink" href="#strict-json" title="Permanent link">&para;</a></h2>
+<p>In STRICT mode, <code>DataDrivenBuildPipeline</code> decodes bytes with a strict UTF-8 decoder first and then calls <code>StrictResourceJson.parse</code>:</p>
+<ul>
+<li>Rejects malformed UTF-8;</li>
+<li>Disables Gson lenient mode, rejecting comments, single quotes, and trailing commas;</li>
+<li>Requires the file to contain exactly one JSON object;</li>
+<li>Rejects duplicate keys;</li>
+<li>Enforces default limits of 64 nesting levels and 100,000 nodes;</li>
+<li>Applies this path uniformly to manifests, registration content, and reload preflight.</li>
+</ul>
+<p>LEGACY mode uses <code>JsonParser.parseString</code> for tolerant compatibility. Note that runtime <code>ReloadOrchestrator</code> reads from Minecraft's <code>ResourceManager</code> using Gson's <code>JsonParser</code> rather than inheriting the provider's STRICT byte snapshot; pipeline reload preflight validates schema in the frozen sources, whereas runtime <code>/reload</code> reads whichever packs MC selects.</p>
+<h2 id="legacy-contentsource-adapters">Legacy <code>ContentSource</code> Adapters<a class="headerlink" href="#legacy-contentsource-adapters" title="Permanent link">&para;</a></h2>
+<p>The following APIs remain in the codebase:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">zip</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">modJar</span><span class="p">(</span><span class="n">IModFile</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+<span class="n">ContentSourceFactory</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">descriptor</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><code>DirectoryContentSource</code> fixes the file list on open, but reads live file bytes when streams are opened;</li>
+<li><code>ZipContentSource</code> supports ordinary archives and ZIP64 central-directory metadata bounded by <code>SourceLimits.maxFiles</code>, keeping the <code>ZipFile</code> handle open until closed;</li>
+<li><code>ModJarContentSource</code> reads <code>modFile.getSecureJar().getRootPath()</code> without closing the shared secure JAR filesystem.</li>
+</ul>
+<p>These adapters are suitable for legacy entry points, import tools, or compatibility tests. New registration providers that must guarantee registration, initial resource discovery, and reload never observe a changing install directory should use <code>core</code>'s <code>ResourceSources</code>, <code>ResourceSnapshot</code>, and <code>FixedResourceSource</code>.</p>
+<h2 id="source-priority-and-dependencies">Source Priority and Dependencies<a class="headerlink" href="#source-priority-and-dependencies" title="Permanent link">&para;</a></h2>
+<p>Shared platform sources are processed in ascending <code>ResourceSourceDescriptor.rank</code> order:</p>
+<div class="highlight"><pre><span></span><code>main rank 10
+parcel-m1 rank 11
+parcel-m2 rank 12
+next-pack main rank 13
+</code></pre></div>
+<p>Larger values have higher priority. Non-registration definitions select a winner by priority (unless using <code>OVERLAY</code>), while STRICT registration definitions retain all candidates and check final claims. Dependencies and priority are orthogonal dimensions:</p>
+<ul>
+<li><code>rank</code> determines override order and deterministic traversal order;</li>
+<li><code>dependencies</code> determines whether one owner can reference definitions and resources owned by another owner;</li>
+<li>Dependency topology never reorders ranks or promotes a source.</li>
+</ul>
+<h2 id="relationship-to-mc-resource-projection">Relationship to MC Resource Projection<a class="headerlink" href="#relationship-to-mc-resource-projection" title="Permanent link">&para;</a></h2>
+<p>The same <code>ResourceSnapshot</code> can feed both the registration view and MC pack layers:</p>
+<ul>
+<li>Registration side: <code>SnapshotContentSource</code>;</li>
+<li>MC side: <code>ApprovedResourcePacks</code> discovery via <code>MappedPackResources</code>, where each <code>(sourceId, rootId)</code> becomes a separate pack layer.</li>
+</ul>
+<p><code>MappedPackResources</code> holds snapshot leases for its files and exposes only host-routed <code>assets/</code>, <code>data/</code>, <code>pack.mcmeta</code>, and <code>pack.png</code> paths. When <code>pack.mcmeta</code> is absent, the projection layer synthesizes runtime metadata for the current <code>PackType</code> without altering the author's snapshot.</p>
+<p>Approved pack discovery is an independent consumer path that may invoke <code>capture()</code> repeatedly. Only a <code>FixedResourceSource</code> guarantees that every discovery uses startup bytes. Registration providers should update the single approved-root set only after strict preflight, dependency closure, and <code>build</code> succeed, before resource discovery publishes those roots.</p>
+<p>Source priority does not set Minecraft's resource pack order automatically, so both the root list, order, and ranks should derive from the same frozen snapshot selection. When using <code>MappedPackResources</code>, avoid materializing a second authoritative directory copy on disk to re-scan as a plain path pack.</p>
+<h2 id="sourceaccessexception"><code>SourceAccessException</code><a class="headerlink" href="#sourceaccessexception" title="Permanent link">&para;</a></h2>
+<p>Legacy <code>ContentSource</code> adapters report failures via <code>SourceAccessException.Reason</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT_FOUND</code></td>
+<td>Source or logical file does not exist</td>
+</tr>
+<tr>
+<td><code>ACCESS_DENIED</code></td>
+<td>Filesystem denied access</td>
+</tr>
+<tr>
+<td><code>OUT_OF_BOUNDS</code></td>
+<td>Reserved error reason for out-of-bounds paths</td>
+</tr>
+<tr>
+<td><code>SYMLINK_REJECTED</code></td>
+<td>Root, tree node, or archive entry is a symbolic link</td>
+</tr>
+<tr>
+<td><code>DUPLICATE_ENTRY</code></td>
+<td>Duplicate raw or logical entry</td>
+</tr>
+<tr>
+<td><code>INVALID_ENTRY</code></td>
+<td>Special file, malformed directory entry, invalid name, etc.</td>
+</tr>
+<tr>
+<td><code>LIMIT_EXCEEDED</code></td>
+<td>File count or byte budget exceeded</td>
+</tr>
+<tr>
+<td><code>CORRUPT_ARCHIVE</code></td>
+<td>Invalid ZIP structure or inflate failure</td>
+</tr>
+<tr>
+<td><code>SOURCE_CLOSED</code></td>
+<td><code>open</code> called after <code>close()</code></td>
+</tr>
+<tr>
+<td><code>IO_ERROR</code></td>
+<td>Other I/O failure</td>
+</tr>
+</tbody>
+</table>
+<p><code>core</code>'s <code>ResourceSources</code> throws <code>IOException</code> with stable message prefixes such as <code>SOURCE_UNAVAILABLE</code>, <code>UNSAFE_PATH</code>, <code>DUPLICATE_ENTRY</code>, <code>LIMIT_EXCEEDED</code>, and <code>INVALID_ARCHIVE</code>. Host error reporting should preserve the original message and source/root context rather than collapsing them into a generic "file not found".</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

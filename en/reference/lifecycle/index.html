@@ -1,0 +1,3347 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/en/reference/lifecycle/">
+      
+      
+        <link rel="prev" href="../fsm/">
+      
+      
+        <link rel="next" href="../minecraft-model-assembly/">
+      
+      
+        
+          <link rel="alternate" href="../../../reference/lifecycle/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lifecycle and Initialization Order - KasugaLibNext Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lifecycle-and-initialization-order" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-header__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lifecycle and Initialization Order
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../reference/lifecycle/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="KasugaLibNext Documentation" class="md-nav__button md-logo" aria-label="KasugaLibNext Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and Runtime Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal Example Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven getting started: from an empty directory to a moving block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Path 1: adding content with data-driven files (organization and best practices)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension guide: what you have to write Java for (How-to)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offscreen Output and Multi-Camera Rendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and Verification Entries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Asset Wardrobe Swap and MC Equipment Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor and Minecraft equipment attachment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camera Control and Animation Tracks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Registration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data-Driven Registration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven JSON format specification (schema)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven registration-phase API (JsonTreeBuilder, index, and content dispatch)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-driven extension API (TypeHandler, BuildContext, and property parsers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Diagnostics API (Diagnostics, Commands, and Error Classification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Driven Reload API (Including the Assertable Pure-Function Surface and Call Examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga Custom Rendering Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managed Effects and Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension Point Catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC final frame offscreen output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine and Animation Clip JSON Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lifecycle and Initialization Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-startup-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Startup Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-micronaut-di-bootstrap-and-context-startup-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Micronaut DI Bootstrap and @Context Startup Order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Micronaut DI Bootstrap and @Context Startup Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kasugalib-and-modapplicationcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 KasugaLib and ModApplicationContext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-core-context-bean-postconstruct-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Core @Context Bean @PostConstruct Wiring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-registrationstage-order-and-event-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. RegistrationStage Order and Event Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-client-setup-model-and-shader-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Client Setup, Model, and Shader Initialization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-registration-phase-vs-reload-phase-capability-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Registration Phase vs. Reload Phase Capability Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-world-runtime-and-shutdown-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. World Runtime and Shutdown Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft outfit resources and instance switching API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX and glTF Ragdoll Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model assembly and outfit cache API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generic model posing and animation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-camera output contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Variant Selection (Multiplexer) Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR Conversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics, IK, and ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Material Alpha Rendering Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model render scheduling (Render Scheduling)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendering backend integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sidedness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML rendering framework and backend interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sky Volumetric Clouds and Cumulonimbus Instances
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explanations and Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanations and Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How cameras and the shared animation timeline work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How data-driven registration works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How custom render pipelines work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How final frame output works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the layered animation state machine works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How MMD and glTF Ragdoll Adaptation Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Model subsystem format boundaries work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model variant selection works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How offscreen rendering, multi-camera, and shared output work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How PMX stylized PBR baking works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Native Physics and the Pose Pipeline Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model material alpha rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How model visibility and render scheduling work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the boundary between rendering modules and the graphics API works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How generic skeleton physics, IK, and closure constraints work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threading Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the UML render framework and resource ownership work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How multi-layer volumetric cloud rendering works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project and Version Information
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project and Version Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog and Version Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributor Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chinese-English Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License and Redistribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consumers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wardrobe Example Verification Record and Performance Baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-startup-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Startup Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-micronaut-di-bootstrap-and-context-startup-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Micronaut DI Bootstrap and @Context Startup Order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Micronaut DI Bootstrap and @Context Startup Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kasugalib-and-modapplicationcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 KasugaLib and ModApplicationContext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-core-context-bean-postconstruct-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Core @Context Bean @PostConstruct Wiring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-registrationstage-order-and-event-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. RegistrationStage Order and Event Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-client-setup-model-and-shader-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Client Setup, Model, and Shader Initialization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-registration-phase-vs-reload-phase-capability-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Registration Phase vs. Reload Phase Capability Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-world-runtime-and-shutdown-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. World Runtime and Shutdown Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lifecycle-and-initialization-order">Lifecycle and Initialization Order<a class="headerlink" href="#lifecycle-and-initialization-order" title="Permanent link">&para;</a></h1>
+<p>This page documents the startup, Micronaut DI bootstrap, <code>RegistrationStage</code> dispatch order, client and shader initialization, capability boundary between the registration phase and the reload phase, and shutdown cleanup in KasugaLibNext.</p>
+<hr />
+<h2 id="1-startup-overview">1. Startup Overview<a class="headerlink" href="#1-startup-overview" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    A["Class load KasugaLib: ModApplicationContext.create()"] --&gt; B["KasugaLib constructor: ModApplicationContext.init()"]
+    B --&gt; B1["Register modEventBus / forgeEventBus / modContainer singletons"]
+    B1 --&gt; B2["context.start(): instantiate @Context beans &amp; @PostConstruct"]
+    B2 --&gt; B3["Configurable.configure(): register NeoForge ModConfigSpec"]
+    B3 --&gt; C["Post KasugaLibStartupEvent on modEventBus"]
+    C --&gt; D["RegistrationStage sequence (Mod Event Bus)"]
+    D --&gt; E["FMLClientSetupEvent / Reload Listeners / Shader Registration"]
+    E --&gt; F["ServerStartingEvent / Resource Reload (/reload and F3 + T)"]
+    F --&gt; G["ServerStoppingEvent / GameShuttingDownEvent Cleanup"]</code></pre>
+<hr />
+<h2 id="2-micronaut-di-bootstrap-and-context-startup-order">2. Micronaut DI Bootstrap and <code>@Context</code> Startup Order<a class="headerlink" href="#2-micronaut-di-bootstrap-and-context-startup-order" title="Permanent link">&para;</a></h2>
+<h3 id="21-kasugalib-and-modapplicationcontext">2.1 <code>KasugaLib</code> and <code>ModApplicationContext</code><a class="headerlink" href="#21-kasugalib-and-modapplicationcontext" title="Permanent link">&para;</a></h3>
+<p>In the mod entry class <code>lib.kasuga.KasugaLib</code> (<code>@Mod("kasuga_lib")</code>):</p>
+<ol>
+<li><strong>Static initialization</strong>: <code>ModApplicationContext.create(KasugaLib.class)</code> builds the Micronaut <code>ApplicationContext</code>. In development (<code>!FMLLoader.isProduction()</code>), it wraps classloaders with <code>CombinedClassLoader(modMainClass.getClassLoader(), ApplicationContext.class.getClassLoader())</code> so bean definitions across classpath entries are discoverable.</li>
+<li><strong><code>KasugaLib(IEventBus, ModContainer)</code> constructor</strong>:</li>
+<li>Calls <code>ModApplicationContext.init(context, modEventBus, modContainer)</code>:<ol>
+<li>Registers named singletons: <code>IEventBus</code> (<code>"modEventBus"</code> and <code>"forgeEventBus"</code>) and <code>ModContainer</code> (<code>"modContainer"</code>).</li>
+<li>Calls <code>context.start()</code>, instantiating all active <code>@Context</code> beans that pass <code>@BeanOnlyIn</code>, <code>@CreateModBeans</code>, and related Micronaut conditions, and running their <code>@PostConstruct</code> hooks.</li>
+<li>Calls <code>Configurable.configure(context, modEventBus, modContainer)</code> to register every non-empty NeoForge <code>ModConfigSpec</code>.</li>
+</ol>
+</li>
+<li>Posts <code>new KasugaLibStartupEvent()</code> via <code>ModLoader.postEvent(...)</code>. Dependent mods can call <code>KasugaLib.afterRunning(modEventBus, hook)</code> to listen for <code>KasugaLibStartupEvent</code> (or run immediately if the context is already running). For example, <code>KasugaLibJavet</code> waits for both <code>KasugaLibStartupEvent</code> and native V8 library initialization before registering its <code>ScriptEngineType</code> and <code>BuiltinModuleRegistry</code> factories.</li>
+</ol>
+<h3 id="22-core-context-bean-postconstruct-wiring">2.2 Core <code>@Context</code> Bean <code>@PostConstruct</code> Wiring<a class="headerlink" href="#22-core-context-bean-postconstruct-wiring" title="Permanent link">&para;</a></h3>
+<p>During <code>context.start()</code>, <code>@Context</code> beans wire the registration and reload subsystems:</p>
+<ul>
+<li><strong>Common and client registry activation</strong>:</li>
+<li><code>KasugaLibApplication</code> (<code>lib.kasuga</code>): owns the root <code>REGISTRY = KasugaLibRegistry.getRegistryOf("kasuga_lib")</code> and calls <code>REGISTRY.register(modEventBus)</code> in <code>@PostConstruct</code>, registering <code>Side.COMMON</code> on <code>RegisterContextRegistry</code>.</li>
+<li><code>KasugaLibClientApplication</code> (<code>@BeanOnlyIn.Client</code>): calls <code>KasugaLibApplication.REGISTRY.registerClient(modEventBus)</code>, registering <code>Side.CLIENT</code>.</li>
+<li><strong>Stage dispatchers</strong>:</li>
+<li><code>DefaultRegisterContextDispatchers</code>: hooks <code>NewRegistryEvent</code>, <code>RegisterEvent</code> (<code>EventPriority.HIGHEST</code>), <code>RegisterPayloadHandlersEvent</code>, <code>RegisterCapabilitiesEvent</code>, and <code>BuildCreativeModeTabContentsEvent</code> onto <code>Side.COMMON</code>.</li>
+<li><code>DefaultClientRegisterContextDispatchers</code> (<code>@BeanOnlyIn.Client</code>): hooks <code>RegisterMenuScreensEvent</code>, <code>RegisterClientExtensionsEvent</code>, and <code>ModelEvent.BakingCompleted</code> onto <code>Side.CLIENT</code>.</li>
+<li><strong>Data-driven and Create wiring</strong>:</li>
+<li><code>JsonTreeIntegration</code>: subscribes to <code>RegisterContextRegistry.Side.COMMON</code> so every configured mod <code>Registry</code> queries <code>DataDrivenRegistrationProviders.find(modId)</code> first and falls back to <code>JsonTreeBuilder.buildForMod(modId)</code>, attaching the resulting <code>JsonRegistryGroup</code> as a child of <code>modRegistry</code>.</li>
+<li><code>CreateRegistrationDispatcher</code> (<code>@CreateModBeans</code>): calls <code>registerBefore(Side.COMMON, RegistrationStage.REGISTER_EVENT, ...)</code> so Create track and bogey entries are prepared and committed before any standard <code>Reg</code> handles <code>RegisterEvent</code>.</li>
+<li><code>ClientCreateRegistrationBridge</code> (<code>@CreateModBeans</code>, <code>@BeanOnlyIn.Client</code>): attaches itself to <code>Registry</code> under <code>CreateClientBridge.class</code> on <code>Side.CLIENT</code> (on dedicated servers, <code>CreateClientBridge.noop()</code> is used instead).</li>
+<li><strong>Reload and factory registration</strong>:</li>
+<li><code>FsmReloadHandlerRegistrar</code> registers <code>FsmReloadHandler</code> before <code>FsmClipsReloadHandler</code> in <code>ReloadHandlerRegistry</code>.</li>
+<li><code>ProxyModelBlockFactories</code> registers built-in <code>proxy_model</code> and <code>proxy_model_be</code> factories in <code>FactoryRegistry</code>.</li>
+<li><code>ResourceSystem</code> attaches listeners on <code>modEventBus</code> and <code>forgeEventBus</code>; <code>ReloadOrchestrator</code> and <code>ScriptingApplication</code> (injecting <code>ScriptingSystem</code>) register themselves via <code>ResourceSystem.registerConsumer(...)</code>.</li>
+</ul>
+<hr />
+<h2 id="3-registrationstage-order-and-event-mapping">3. <code>RegistrationStage</code> Order and Event Mapping<a class="headerlink" href="#3-registrationstage-order-and-event-mapping" title="Permanent link">&para;</a></h2>
+<p><code>lib.kasuga.registration.stages.RegistrationStage&lt;T&gt;</code> defines reference-identity tokens for registration phases. Each root <code>Registry</code> (<code>Reg</code> tree) dispatches <code>RegisterContext&lt;T&gt;</code> recursively down its child tree:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Stage Token</th>
+<th>Payload Type</th>
+<th>Dispatcher Side</th>
+<th>Underlying NeoForge Event / Trigger</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>RegistrationStage.NEW_REGISTRY</code></td>
+<td><code>NewRegistryEvent</code></td>
+<td><code>COMMON</code></td>
+<td><code>NewRegistryEvent</code></td>
+<td>Registers custom MC registries (<code>RegistryReg</code>, <code>DeviceRegistries</code>, <code>DocumentComponentRegistries</code>)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>CreateRegistrationStages.PREPARE</code></td>
+<td><code>CreateRegistrationEvent</code></td>
+<td><code>COMMON</code></td>
+<td><code>registerBefore(COMMON, REGISTER_EVENT, ...)</code></td>
+<td>Guards once-only idempotent preparation via <code>CreateRegistrationState</code> (<code>NEW → PREPARING → COMMITTED / FAILED</code>); validates then commits actions in fixed <code>Phase</code> order: <code>TRACK_MATERIAL</code> → <code>BOGEY_SIZE</code> → <code>BOGEY_BLOCK</code> → <code>BOGEY_STYLE</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>RegistrationStage.REGISTER_EVENT</code></td>
+<td><code>RegisterStageContext</code></td>
+<td><code>COMMON</code></td>
+<td><code>RegisterEvent</code> (<code>EventPriority.HIGHEST</code>)</td>
+<td>Populates vanilla/custom registries (blocks, items, block entities, entities, fluids, menus, sounds, data components)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>RegistrationStage.REGISTER_CAPABILITIES</code></td>
+<td><code>CapabilityRegistration</code></td>
+<td><code>COMMON</code></td>
+<td><code>RegisterCapabilitiesEvent</code></td>
+<td>Registers NeoForge capabilities for block entities or entities</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>RegistrationStage.PAYLOAD_REGISTRATION</code></td>
+<td><code>PayloadRegistrationStage</code></td>
+<td><code>COMMON</code></td>
+<td><code>RegisterPayloadHandlersEvent</code></td>
+<td>Registers network payloads via memoized <code>getRegistrar(version)</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>RegistrationStage.CREATIVE_TAB_CONTENT_REGISTRATION</code></td>
+<td><code>CreativeTabContentRegistration</code></td>
+<td><code>COMMON</code></td>
+<td><code>BuildCreativeModeTabContentsEvent</code></td>
+<td>Populates creative tabs</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>RegistrationStage.MENU_SCREEN_BINDING</code></td>
+<td><code>MenuScreenBindingStage</code></td>
+<td><code>CLIENT</code></td>
+<td><code>RegisterMenuScreensEvent</code></td>
+<td>Binds <code>MenuType</code> to client <code>Screen</code> factories</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>RegistrationStage.REGISTER_CLIENT_EXTENSIONS</code></td>
+<td><code>FluidClientExtensionsStage</code></td>
+<td><code>CLIENT</code></td>
+<td><code>RegisterClientExtensionsEvent</code></td>
+<td>Dispatched via <code>registry.dispatchRegister(...)</code> (does not run <code>beforeDispatchFunctions</code>)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>RegistrationStage.BAKING_COMPLETE</code></td>
+<td><code>BakingCompleteStage</code></td>
+<td><code>CLIENT</code></td>
+<td><code>ModelEvent.BakingCompleted</code></td>
+<td>Registers <code>BlockEntityRenderer</code>, <code>EntityRenderer</code>, and <code>DocumentComponentRenderer</code></td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>RegistrationStage.COMMON_SETUP</code></td>
+<td><code>RegisterStageContext</code></td>
+<td>—</td>
+<td>Not dispatched</td>
+<td>Declared on <code>RegistrationStage</code>, but <code>DefaultRegisterContextDispatchers</code> does not currently bind it to any NeoForge event (an unused <code>FMLCommonSetupStageContext</code> payload class also exists)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-client-setup-model-and-shader-initialization">4. Client Setup, Model, and Shader Initialization<a class="headerlink" href="#4-client-setup-model-and-shader-initialization" title="Permanent link">&para;</a></h2>
+<p>Client mod-bus events in <code>lib.kasuga.rendering.models.mc.Constants</code> and <code>ResourceSystem</code> proceed as follows:</p>
+<ol>
+<li><strong><code>FMLClientSetupEvent</code></strong>:</li>
+<li><code>Constants.onClientSetup</code>: applies <code>-Dkasuga.shaderPreparationWorkers</code> and prestarts workers (<code>ShaderPreparationScheduler</code>), initializes <code>ShaderParameterPersistence</code> (<code>&lt;configDir&gt;/kasuga_lib/shader-parameters.json</code>), creates <code>UIBackend</code>, and posts <code>RegisterRenderPipelinesEvent(CLIENT_RENDER_PIPELINES)</code> once so integrations can register client-lifetime pipelines, effects, post-process graphs, and generated shaders via <code>event.registrar(owner)</code>.</li>
+<li><code>ResourceSystem.onClientSetup</code>: wraps <code>Minecraft.getInstance().getResourceManager()</code> in a client <code>ScopedResourceManager</code>, registers it with <code>ReloadableResourceManager</code>, and notifies <code>ScopedResourceManagerConsumer</code>s (<code>ReloadOrchestrator</code>, <code>ScriptingSystem</code>).</li>
+<li><strong><code>RegisterClientReloadListenersEvent</code></strong>:</li>
+<li>Registers <code>ModelParticleRuntime.invalidateTextures()</code>, calls <code>IrisCompat.onStart()</code>, constructs <code>CombinedTextureManager</code>, calls <code>PipelineRegistry.registerBuiltins(basic)</code> and <code>PipelineRegistry.registerDefaultRoutes(router)</code>, and registers <code>KasugaModelManager</code>.</li>
+<li><strong><code>RegisterShadersEvent</code></strong>:</li>
+<li>Registers core UML shaders (<code>ksglib_main</code>, <code>ksglib_global_batch</code>, and optional <code>ksglib_oit_composite</code>; failure on <code>ksglib_oit_composite</code> logs a <code>WARN</code> and falls back to sorted translucent rendering).</li>
+<li>Calls <code>RenderShaderRegistry.registerShaders(event)</code>: <code>ShaderPreloadPolicy.EAGER</code> shaders await source preparation and compile synchronously; <code>ShaderPreloadPolicy.DEFERRED</code> shaders are rescheduled into <code>ShaderPreloadScheduler</code> for frame-budgeted compilation.</li>
+<li><strong><code>RegisterRenderBuffersEvent</code> and <code>RegisterNamedRenderTypesEvent</code></strong>:</li>
+<li>Registers model <code>RenderType</code>s (<code>OPAQUE</code> / <code>CUTOUT</code> / <code>TRANSLUCENT</code>, global batching, Iris compat, and OIT passes) and <code>RenderTypeGroup</code>s.</li>
+</ol>
+<hr />
+<h2 id="5-registration-phase-vs-reload-phase-capability-boundary">5. Registration Phase vs. Reload Phase Capability Boundary<a class="headerlink" href="#5-registration-phase-vs-reload-phase-capability-boundary" title="Permanent link">&para;</a></h2>
+<p>KasugaLibNext separates <strong>the two phases</strong> (see <a href="../../explanation/data-driven-registration/">How data-driven registration works</a> and <a href="../resource-platform/">Unified Resource Platform and Script Tickets</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Registration Phase</th>
+<th>Reload Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td>Mod startup through <code>RegisterEvent</code> (once per process)</td>
+<td><code>ServerStartingEvent</code>, <code>/reload</code>, client startup, and <code>F3 + T</code></td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Mod JAR (<code>JsonTreeBuilder</code>) or host-composed <code>ContentSource</code>s (<code>DataDrivenBuildPipeline</code>)</td>
+<td>Resource/data pack stack (<code>ResourceManager</code>) or <code>ResourceSource</code> snapshots (pack-stack overrides apply)</td>
+</tr>
+<tr>
+<td>Index Domain</td>
+<td><code>on_register</code> inside <code>data/&lt;ns&gt;/kasuga_lib/data_driven/*.json</code></td>
+<td><code>on_reload</code> in the same manifests, plus <code>ReloadHandler.globDirectories()</code> (e.g., <code>state_machines/</code>)</td>
+</tr>
+<tr>
+<td>Supported Objects</td>
+<td>Registry-frozen objects (<code>Block</code>, <code>Item</code>, <code>BlockEntityType</code>, <code>RegistryGroup</code>, etc.)</td>
+<td>FSM definitions, animation clips, models/textures, shader sources/parameters, script packages (<code>ScriptRuntime</code> / <code>ManagedScriptEntryPoint</code>)</td>
+</tr>
+<tr>
+<td>Validation &amp; Error Policy</td>
+<td><code>DataDrivenBuildPipeline</code> supports <code>BuildOptions.STRICT</code>: separates side-effect-free <code>prepare()</code> (parsing, validation, <code>RegistryClaim</code>) from <code>build()</code> (applies by <code>PHASE_GROUPS → PHASE_CONTENT → PHASE_EMBEDDED</code> and runs <code>BuildFinalizer</code>s)</td>
+<td><code>ReloadOrchestrator</code> isolates errors per participant: clears <code>Diagnostics.Domain.RELOAD_DATA</code>, then runs <code>clearBucket() → decode() → DuplicateIdResolver → register() → afterReload()</code> without aborting pack reload</td>
+</tr>
+<tr>
+<td>Atomic Publication</td>
+<td>Objects are committed to MC registries during <code>RegisterEvent</code></td>
+<td><code>KasugaModelManager</code> prepares models and PBR bakes asynchronously, then swaps atomically on the game thread via <code>ModelPublicationCoordinator</code> / <code>McModelAssemblies.publishResourceGeneration</code>; <code>ResourceCoordinator</code> follows <strong>prepare-then-publish</strong> per monotonic <code>generation</code> and retires the previous <code>ResourceGeneration</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-world-runtime-and-shutdown-sequence">6. World Runtime and Shutdown Sequence<a class="headerlink" href="#6-world-runtime-and-shutdown-sequence" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Server world lifecycle</strong>:</li>
+<li><code>ServerStartingEvent</code>: <code>ResourceSystem</code> creates and attaches a server-scoped <code>ScopedResourceManager</code>.</li>
+<li><code>ServerStartedEvent</code>: <code>Saved.Impl&lt;T&gt;</code> binds the active <code>MinecraftServer</code> (calling <code>Saved.get()</code> before this throws <code>IllegalStateException</code>).</li>
+<li><code>/reload</code> (<code>MinecraftServer.reloadResources</code>): <code>MinecraftServerMixin</code> invokes <code>ResourceSystem.onServerReloading(server)</code> and posts <code>ServerResourceReloadFinishEvent</code> (<code>ScriptingServerApplication</code> checks missing engines here).</li>
+<li><code>ServerStoppingEvent</code>: <code>Saved.Impl&lt;T&gt;</code> unloads its <code>MinecraftServer</code> and dimension cache; <code>ResourceSystem</code> notifies consumers (<code>onResourceManagerRemoved</code>, shutting down server <code>ScriptRuntime</code>) and closes server-managed closeables and <code>ResourceCoordinator</code> scopes.</li>
+<li><strong>Client world change and shutdown</strong>:</li>
+<li>Level switch / disconnect (<code>ClientTickEvent.Post</code> / <code>MinecraftWorldViews.worldChanged()</code>): <code>MinecraftModelRuntime</code> releases active drags and clears particle/light world state; <code>ClientEffectRuntime</code> clears live effects and <code>PostProcessTargetPool</code>; <code>MinecraftWorldViews</code> releases offscreen render targets and <code>CameraIrisSession</code>s while keeping subscriptions.</li>
+<li><code>GameShuttingDownEvent</code>: invokes <code>ResourceSystem.close()</code> while the client OpenGL context is still valid, closing client/server consumers, managed scopes, and <code>unifiedVfs</code> (<strong>never joining script threads</strong> so shutdown cannot stall on a hung engine).</li>
+</ul>
+<h2 id="related-pages">Related Pages<a class="headerlink" href="#related-pages" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../configuration/">Configuration Options</a></li>
+<li><a href="../extensions/">Extension Point Catalog</a></li>
+<li><a href="../sidedness/">Sidedness Model</a></li>
+<li><a href="../../explanation/threads/">Threading Model</a></li>
+<li><a href="../resource-platform/">Unified Resource Platform and Script Tickets</a></li>
+<li><a href="../data-driven/">Data-Driven Registration</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

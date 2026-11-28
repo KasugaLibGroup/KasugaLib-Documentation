@@ -1,0 +1,3955 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/data-driven/api-extension/">
+      
+      
+        <link rel="prev" href="../api-registration/">
+      
+      
+        <link rel="next" href="../api-diagnostics/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../../en/reference/data-driven/api-extension/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器） - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#数据驱动扩展-apitypehandlerbuildcontext-与属性解析器" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../en/reference/data-driven/api-extension/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8-typehandler-体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. TypeHandler 体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. TypeHandler 体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-typehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 TypeHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-typehandlerregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 TypeHandlerRegistry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-顶层与内嵌" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 顶层与内嵌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-regtypehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 RegTypeHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-内置-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 内置 handler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-新增一种类型v1-与-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 新增一种类型（v1 与 v2）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-contentstructure共享结构层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 ContentStructure（共享结构层）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-handlercapabilitydefinitionkey-与-registryclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8 HandlerCapability、DefinitionKey 与 RegistryClaim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.8 HandlerCapability、DefinitionKey 与 RegistryClaim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handlercapabilitypipelinehandlercapabilityjava6-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HandlerCapability（pipeline/HandlerCapability.java:6-26）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definitionkeypipelinedefinitionkeyjava11-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DefinitionKey（pipeline/DefinitionKey.java:11-30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryclaim-与-registrykeypipelineregistryclaimjava20-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryClaim 与 RegistryKey（pipeline/RegistryClaim.java:20-56）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryclaimsnapshotpipelineregistryclaimsnapshotjava15-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryClaimSnapshot（pipeline/RegistryClaimSnapshot.java:15-39）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-buildcontext-regbuildcontext-与-validationcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. BuildContext / RegBuildContext 与 ValidationContext
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. BuildContext / RegBuildContext 与 ValidationContext">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-buildcontext-与-regbuildcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 BuildContext 与 RegBuildContext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-validationcontext预检上下文" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 ValidationContext（预检上下文）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-factoryregistry-与内建模型工厂" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. FactoryRegistry 与内建模型工厂
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. FactoryRegistry 与内建模型工厂">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-factoryregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 FactoryRegistry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-内建方块与方块实体工厂" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 内建方块与方块实体工厂
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-属性解析器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 属性解析器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 属性解析器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-jsonpropertyparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 JsonPropertyParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-jsonitemparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 JsonItemParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-属性继承与覆盖" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 属性继承与覆盖
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8-typehandler-体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. TypeHandler 体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. TypeHandler 体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-typehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 TypeHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-typehandlerregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 TypeHandlerRegistry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-顶层与内嵌" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 顶层与内嵌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-regtypehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 RegTypeHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-内置-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 内置 handler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-新增一种类型v1-与-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 新增一种类型（v1 与 v2）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-contentstructure共享结构层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 ContentStructure（共享结构层）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-handlercapabilitydefinitionkey-与-registryclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8 HandlerCapability、DefinitionKey 与 RegistryClaim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.8 HandlerCapability、DefinitionKey 与 RegistryClaim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handlercapabilitypipelinehandlercapabilityjava6-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HandlerCapability（pipeline/HandlerCapability.java:6-26）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definitionkeypipelinedefinitionkeyjava11-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DefinitionKey（pipeline/DefinitionKey.java:11-30）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryclaim-与-registrykeypipelineregistryclaimjava20-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryClaim 与 RegistryKey（pipeline/RegistryClaim.java:20-56）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryclaimsnapshotpipelineregistryclaimsnapshotjava15-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryClaimSnapshot（pipeline/RegistryClaimSnapshot.java:15-39）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-buildcontext-regbuildcontext-与-validationcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. BuildContext / RegBuildContext 与 ValidationContext
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. BuildContext / RegBuildContext 与 ValidationContext">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-buildcontext-与-regbuildcontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 BuildContext 与 RegBuildContext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-validationcontext预检上下文" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 ValidationContext（预检上下文）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-factoryregistry-与内建模型工厂" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. FactoryRegistry 与内建模型工厂
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. FactoryRegistry 与内建模型工厂">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-factoryregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 FactoryRegistry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-内建方块与方块实体工厂" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 内建方块与方块实体工厂
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-属性解析器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 属性解析器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 属性解析器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-jsonpropertyparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 JsonPropertyParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-jsonitemparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 JsonItemParser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-属性继承与覆盖" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 属性继承与覆盖
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="数据驱动扩展-apitypehandlerbuildcontext-与属性解析器">数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）<a class="headerlink" href="#数据驱动扩展-apitypehandlerbuildcontext-与属性解析器" title="Permanent link">&para;</a></h1>
+<h2 id="8-typehandler-体系">8. TypeHandler 体系<a class="headerlink" href="#8-typehandler-体系" title="Permanent link">&para;</a></h2>
+<h3 id="81-typehandler">8.1 TypeHandler<a class="headerlink" href="#81-typehandler" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TypeHandler</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">                                                     </span><span class="c1">// TypeHandler.java:13</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PHASE_GROUPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                                                             </span><span class="c1">// :16</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PHASE_CONTENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">                                                            </span><span class="c1">// :19</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PHASE_EMBEDDED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">                                                           </span><span class="c1">// :22</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">getTypeName</span><span class="p">();</span><span class="w">                                                             </span><span class="c1">// :25</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPhase</span><span class="p">();</span><span class="w">                                                                   </span><span class="c1">// :32</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">                                                         </span><span class="c1">// :34</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">);</span><span class="w">                                   </span><span class="c1">// :36</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">HandlerCapability</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">capabilities</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w">                </span><span class="c1">// :42</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">strictValidationImplemented</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">                   </span><span class="c1">// :53</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">ValidationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">                 </span><span class="c1">// :61</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">RegistryClaim</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">claims</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">ValidationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// :69</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">DefinitionKey</span><span class="w"> </span><span class="nf">parentDefinition</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">             </span><span class="c1">// :77</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getParentTypeName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">                               </span><span class="c1">// :86</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getEmbeddedKeyName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">                              </span><span class="c1">// :96</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">JsonObject</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">extractEmbedded</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">parentJson</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// :98</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveIdentity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">       </span><span class="c1">// :112</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveIdentity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">strict</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="c1">// :118</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">resolveIdentity</span><span class="p">(</span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">definition</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>职责与约束</th>
+<th>失败行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getTypeName()</code></td>
+<td>声明的顶层 JSON 字段名；v1 在 <code>TypeHandlerRegistry</code> 中唯一，v2 <code>DataDrivenBuildPipeline</code> 额外拒绝重复 <code>typeName</code></td>
+<td>v1 同名后注册者静默覆盖先注册者；v2 <code>STRICT</code> 下报 <code>HANDLER_NOT_STRICT_READY</code></td>
+</tr>
+<tr>
+<td><code>getPhase()</code></td>
+<td>应用阶段：<code>PHASE_GROUPS(0)</code> → <code>PHASE_CONTENT(1)</code> → <code>PHASE_EMBEDDED(2)</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>parse(json)</code></td>
+<td>把 JSON 对象转成定义对象</td>
+<td>建议纯函数；v1 抛异常跳过单条并入桶；v2 记为 <code>PARSE_FAILED</code></td>
+</tr>
+<tr>
+<td><code>apply(definition, context)</code></td>
+<td>把定义注册进注册树或上下文</td>
+<td>v1 由 <code>applyUnchecked</code> 捕获入桶；v2 抛异常立即中止管线返回 <code>Status.FAILED</code></td>
+</tr>
+<tr>
+<td><code>capabilities()</code></td>
+<td>v2 声明预检能力、注册表 claim 语义与多来源覆盖保留行为（见 8.8）</td>
+<td>默认空集；在 <code>BuildOptions.STRICT</code> 下若被文件实际用到则触发 <code>HANDLER_NOT_STRICT_READY</code></td>
+</tr>
+<tr>
+<td><code>strictValidationImplemented()</code></td>
+<td>v2 显式确认已真正实现严格 <code>validate</code>（不能只挂 <code>STRICT_PREFLIGHT</code> 能力标记）</td>
+<td>默认 <code>false</code>；<code>STRICT</code> 下若未返回 <code>true</code> 报 <code>HANDLER_NOT_STRICT_READY</code></td>
+</tr>
+<tr>
+<td><code>validate(definition, context)</code></td>
+<td>v2 <code>STRICT</code> 模式预检，只在 <code>prepare</code> 期调用、不得触发任何注册副作用</td>
+<td>通过 <code>ValidationContext.error/warning</code> 写 <code>BuildDiagnostic</code></td>
+</tr>
+<tr>
+<td><code>claims(definition, context)</code></td>
+<td>v2 声明该定义将在哪些 MC 注册表占用的 <code>ResourceLocation</code>（见 8.8）</td>
+<td><code>BuildOptions.STRICT</code> 下冲突或异常产 <code>CLAIM_CONFLICT</code> / <code>CLAIM_FAILED</code></td>
+</tr>
+<tr>
+<td><code>parentDefinition(definition)</code></td>
+<td>v2 返回父级 <code>DefinitionKey</code>（用于 <code>GROUP_CYCLE</code> 环检测与 <code>stableApplyOrder</code> 父先子后拓扑序）</td>
+<td>默认 <code>null</code> 表示无显式父定义</td>
+</tr>
+<tr>
+<td><code>getParentTypeName()</code></td>
+<td>非 <code>null</code> 表示内嵌类型，值为父类型字段名</td>
+<td><code>null</code> 表示顶层类型</td>
+</tr>
+<tr>
+<td><code>getEmbeddedKeyName()</code></td>
+<td>内嵌类型在父条目里的键名，仅诊断提示用</td>
+<td><code>null</code> 时诊断少一段键名提示</td>
+</tr>
+<tr>
+<td><code>extractEmbedded(parentJson)</code></td>
+<td>从父条目抽取内嵌对象列表</td>
+<td>返回 <code>null</code> 表示没有内嵌；不参与顶层分发</td>
+</tr>
+<tr>
+<td><code>resolveIdentity(modId, definition)</code></td>
+<td>去重 / 选择阶段使用的规范化 identity</td>
+<td>默认 <code>null</code> 表示退出去重</td>
+</tr>
+<tr>
+<td><code>resolveIdentity(modId, definition, strict)</code></td>
+<td>按模式区分 identity（<code>strict=true</code> 时 <code>RegTypeHandler</code> 保留 <code>minecraft:</code>，否则使用 <code>ofLegacy</code>）</td>
+<td>默认转调双参重载</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-typehandlerregistry">8.2 TypeHandlerRegistry<a class="headerlink" href="#82-typehandlerregistry" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">TypeHandler</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span><span class="w">            </span><span class="c1">// TypeHandlerRegistry.java:11</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">TypeHandler</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeName</span><span class="p">);</span><span class="w">                  </span><span class="c1">// :15</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">TypeHandler</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">all</span><span class="p">();</span><span class="w">                     </span><span class="c1">// :19</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">TypeHandler</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="nf">findByParent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">parentType</span><span class="p">);</span><span class="w">       </span><span class="c1">// :23</span>
+</code></pre></div>
+<ul>
+<li>v1 入口（<code>JsonTreeBuilder</code>）共享的全局静态表（<code>LinkedHashMap</code>），无命名空间隔离。<code>all()</code> 返回保持注册顺序的不可变视图；<code>findByParent</code> 线性查找并返回第一个匹配项，故一个父类型当前最多挂一个内嵌子类型。</li>
+<li>v2 <code>DataDrivenBuildPipeline</code> <strong>不隐式读取</strong>该静态表，而由调用方在构造管线时显式传入 <code>Collection&lt;? extends TypeHandler&lt;?&gt;&gt;</code>（通常先调用 <code>JsonTreeBuilder.ensureHandlersRegistered()</code> 后读取 <code>TypeHandlerRegistry.all()</code>）。</li>
+</ul>
+<h3 id="83-顶层与内嵌">8.3 顶层与内嵌<a class="headerlink" href="#83-顶层与内嵌" title="Permanent link">&para;</a></h3>
+<p>顶层类型占一个顶层 JSON 字段（如 <code>blocks</code>、<code>items</code>、<code>registry_groups</code>）。内嵌类型不占顶层字段，只能经 <code>extractEmbedded</code> 从父条目进入。<code>BlockEntityTypeHandler</code> 是参考实现（<code>getParentTypeName</code> 返回 <code>"blocks"</code>，<code>getEmbeddedKeyName</code> 返回 <code>"block_entity"</code>，<code>BlockEntityTypeHandler.java:48-51</code>）：<code>extractEmbedded</code>（<code>:54-67</code>）把父条目的 <code>id</code> 拷入内嵌对象的 <code>_parent_block</code>，<code>apply</code> 时据此在 <code>context.getBlockReg(...)</code> 中找回父方块（<code>:137-170</code>）。若把 <code>block_entities</code> 误写为顶层字段，<code>dispatchContent</code>（v1）或 <code>DataDrivenBuildPipeline</code>（v2）会将其判为未知顶层字段并提示改写到 <code>blocks[].block_entity</code>，文件其余字段仍正常分发。</p>
+<h3 id="84-regtypehandler">8.4 RegTypeHandler<a class="headerlink" href="#84-regtypehandler" title="Permanent link">&para;</a></h3>
+<p><code>handler/RegTypeHandler.java</code> 是 <code>blocks</code> / <code>items</code> 共用的抽象基类，固化了 MC 注册表型条目的身份归一、严格预检、registry claim 与 apply 流程：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">protected</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveRawId</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">);</span><span class="w">                                    </span><span class="c1">// :26</span>
+<span class="kd">protected</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">createRegistration</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">);</span><span class="w">              </span><span class="c1">// :28</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveType</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">getTypeName</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w">                     </span><span class="c1">// :35</span>
+<span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configureTypeSpecific</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">                     </span><span class="c1">// :37</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveRegistryGroup</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">                     </span><span class="c1">// :39</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="nf">resolveItemProperties</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">                </span><span class="c1">// :41</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="nf">resolveCreativeTab</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">             </span><span class="c1">// :43</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">FactoryRegistry</span><span class="p">.</span><span class="na">FactoryType</span><span class="w"> </span><span class="nf">factoryType</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">                              </span><span class="c1">// :45</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">claimRegistry</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">                                       </span><span class="c1">// :49</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveNamespace</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">rawId</span><span class="p">)</span><span class="w">                                          </span><span class="c1">// :57</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolvePath</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">rawId</span><span class="p">)</span><span class="w">                                               </span><span class="c1">// :62</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveIdentity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">)</span><span class="w">                                </span><span class="c1">// :77</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">resolveIdentity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">strict</span><span class="p">)</span><span class="w">                </span><span class="c1">// :82</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">HandlerCapability</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">capabilities</span><span class="p">()</span><span class="w">                                             </span><span class="c1">// :89</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">strictValidationImplemented</span><span class="p">()</span><span class="w">                                             </span><span class="c1">// :97</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">ValidationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w">                            </span><span class="c1">// :102</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">RegistryClaim</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">claims</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">ValidationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w">               </span><span class="c1">// :144</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">definition</span><span class="p">,</span><span class="w"> </span><span class="n">BuildContext</span><span class="w"> </span><span class="n">baseContext</span><span class="p">)</span><span class="w">                                </span><span class="c1">// :155</span>
+</code></pre></div>
+<ul>
+<li><strong>能力声明</strong>：默认返回 <code>{HandlerCapability.STRICT_PREFLIGHT, HandlerCapability.REGISTRY_CLAIMS}</code>（<code>:89-93</code>），且 <code>strictValidationImplemented()</code> 返回 <code>true</code>（<code>:97-99</code>）。</li>
+<li><strong>identity 分叉</strong>：<code>resolveIdentity(modId, def)</code> 走 <code>EffectiveId.ofLegacy</code>（<code>:77-79</code>）；<code>resolveIdentity(modId, def, strict)</code> 在 <code>strict == true</code> 时走 <code>EffectiveId.of</code> 保留显式 <code>minecraft:</code>（<code>:82-86</code>）。</li>
+<li><strong>严格 <code>validate</code>（<code>:102-141</code>）</strong>：校验 <code>rawId</code> 非空、包含命名空间前缀（<code>rawId.indexOf(':') &gt; 0</code>，在 <code>STRICT</code> 下拒绝裸 ID）且满足 <code>ResourceLocation.tryParse</code>；通过 <code>context.factoryAvailable(factoryType(), resolveType(def))</code> 校验工厂存在；若声明了 <code>registry_group</code>，调用 <code>context.requireDefinition(new DefinitionKey("registry_groups", groupId), "/registry_group")</code> 验证分组可见性（缺失/未声明依赖/多依赖歧义会分别触发 <code>MISSING_REFERENCE</code> / <code>REFERENCE_NOT_DECLARED</code> / <code>REFERENCE_AMBIGUOUS</code>）。</li>
+<li><strong>严格 <code>claims</code>（<code>:144-151</code>）</strong>：按 <code>rawId</code> 与 <code>context.hostModId()</code> 解析有效 <code>ResourceLocation</code> 并提交 <code>claimRegistry(definition)</code> 声明；子类可扩展额外 claim（如 <code>BlockTypeHandler</code> 的伴生 <code>minecraft:item</code>）。</li>
+<li><strong><code>apply</code> 固定流程（<code>:155-202</code>）</strong>：</li>
+<li>拆分 namespace 与 path；无工厂时，若 <code>context.isStrict()</code> 抛出 <code>IllegalStateException</code>，否则打 WARN 并跳过（<code>:161-166</code>）。</li>
+<li>当 <code>rawId.indexOf(':') &gt;= 0 &amp;&amp; (context.isStrict() || !namespace.equals("minecraft"))</code> 时给 <code>Reg</code> 挂 <code>ResourceLocation</code> 命名空间重写（<code>:168-174</code>）——v2 <code>STRICT</code> 下由此允许覆写或显式指向 <code>minecraft:</code> 命名空间，而 <code>LEGACY</code> / v1 沿用历史行为。</li>
+<li>挂分组（找不到则回退根组）、绑定创造模式标签页（定义级优先，否则继承分组级）、执行 <code>configureTypeSpecific</code>、存入 <code>context.putReg(getTypeName(), ...)</code>（<code>:175-191</code>）。</li>
+<li>异常处理：<code>context.isStrict()</code> 时重抛异常使管线进入 <code>Status.FAILED</code>，非严格模式打 WARN 返回（<code>:192-201</code>）。</li>
+<li><strong>保留未用钩子</strong>：<code>resolveItemProperties</code>（<code>:41</code>）目前仍无调用点，<code>BlockTypeHandler</code> 与 <code>ItemTypeHandler</code> 各自仍在 <code>configureTypeSpecific</code> 中解析物品属性。</li>
+</ul>
+<h3 id="85-内置-handler">8.5 内置 handler<a class="headerlink" href="#85-内置-handler" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Handler</th>
+<th><code>getTypeName</code></th>
+<th><code>getPhase</code></th>
+<th>能力与严格支持</th>
+<th><code>parse</code> 产物</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RegistryGroupHandler</code></td>
+<td><code>registry_groups</code></td>
+<td><code>PHASE_GROUPS</code></td>
+<td><code>STRICT_PREFLIGHT</code>, <code>NON_REGISTRATION</code>, <code>strictValidationImplemented=true</code></td>
+<td><code>RegistryGroupDef(id, parent, properties, itemProperties)</code></td>
+<td><code>RegistryGroupHandler.java:26-108</code></td>
+</tr>
+<tr>
+<td><code>BlockTypeHandler</code></td>
+<td><code>blocks</code></td>
+<td><code>PHASE_CONTENT</code></td>
+<td><code>STRICT_PREFLIGHT</code>, <code>REGISTRY_CLAIMS</code>, <code>strictValidationImplemented=true</code></td>
+<td><code>BlockDef(id, type, registryGroup, properties, itemProperties, params, stateProperties)</code></td>
+<td><code>BlockTypeHandler.java:25-158</code></td>
+</tr>
+<tr>
+<td><code>ItemTypeHandler</code></td>
+<td><code>items</code></td>
+<td><code>PHASE_CONTENT</code></td>
+<td><code>STRICT_PREFLIGHT</code>, <code>REGISTRY_CLAIMS</code>, <code>strictValidationImplemented=true</code></td>
+<td><code>ItemDef(id, type, registryGroup, properties, params)</code></td>
+<td><code>ItemTypeHandler.java:19-91</code></td>
+</tr>
+<tr>
+<td><code>BlockEntityTypeHandler</code></td>
+<td><code>block_entities</code></td>
+<td><code>PHASE_EMBEDDED</code></td>
+<td><code>STRICT_PREFLIGHT</code>, <code>REGISTRY_CLAIMS</code>, <code>strictValidationImplemented=true</code></td>
+<td><code>BlockEntityDef(beType, parentBlockId, params)</code></td>
+<td><code>BlockEntityTypeHandler.java:29-175</code></td>
+</tr>
+</tbody>
+</table>
+<p>补充差异：</p>
+<ul>
+<li><strong><code>RegistryGroupHandler</code></strong>：<code>resolveIdentity</code> 保持原串（<code>:66-68</code>），<code>parentDefinition</code> 返回 <code>registry_groups:&lt;parent&gt;</code> 供 <code>GROUP_CYCLE</code> 检测与父先子后排序（<code>:101-106</code>），<code>validate</code> 调用 <code>JsonPropertyParser.validateStrict</code>、<code>JsonItemParser.validateStrict</code> 及 <code>requireDefinition</code> 检查 <code>parent</code>（<code>:71-98</code>）。</li>
+<li><strong><code>BlockTypeHandler</code></strong>：<code>validate</code>（<code>:70-105</code>）除基类校验外还运行 <code>JsonPropertyParser.validateStrict</code>、<code>JsonItemParser.validateStrict</code>，并在 <code>stateProperties != null</code> 时以 <code>ValidationContext.factorySupports(..., StatefulBlockFactory.class)</code> 要求工厂实现 <code>StatefulBlockFactory</code>；<code>claims</code>（<code>:108-123</code>）在 <code>FactoryRegistry.createsBlockItem(def.type())</code> 为 <code>true</code> 时同时声明 <code>minecraft:block</code> 与 <code>minecraft:item</code> 两条 <code>RegistryClaim</code>；<code>apply</code> 中当 <code>stateProperties != null</code> 且工厂未实现 <code>StatefulBlockFactory</code> 时抛异常（<code>:39-44</code>）。</li>
+<li><strong><code>ItemTypeHandler</code></strong>：<code>validate</code>（<code>:59-71</code>）调用 <code>JsonItemParser.validateStrict</code>。</li>
+<li><strong><code>BlockEntityTypeHandler</code></strong>：<code>validate</code>（<code>:99-121</code>）检查 <code>parentBlockId</code>、<code>factoryAvailable(BLOCK_ENTITY, def.beType())</code> 及 <code>requireDefinition(blocks:&lt;parent&gt;)</code>；<code>claims</code>（<code>:124-134</code>）在 <code>minecraft:block_entity_type</code> 下声明 <code>&lt;ns&gt;:&lt;path&gt;_be</code>；<code>apply</code> 在 <code>context.isStrict()</code> 下发现缺失父方块或工厂时直接抛异常（<code>:141-166</code>）。</li>
+</ul>
+<h3 id="86-新增一种类型v1-与-v2">8.6 新增一种类型（v1 与 v2）<a class="headerlink" href="#86-新增一种类型v1-与-v2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>实现 <code>TypeHandler&lt;T&gt;</code>；若产物要进入 Minecraft 注册表，优先继承 <code>RegTypeHandler&lt;T&gt;</code>。</li>
+<li>如需接入 v2 <code>BuildOptions.STRICT</code>：</li>
+<li>在 <code>capabilities()</code> 中声明 <code>HandlerCapability.STRICT_PREFLIGHT</code>，并在 <code>REGISTRY_CLAIMS</code> 与 <code>NON_REGISTRATION</code> 间二选一（按需附加 <code>OVERLAY</code>）；</li>
+<li>覆写 <code>strictValidationImplemented()</code> 返回 <code>true</code>；</li>
+<li>实现无副作用的 <code>validate(def, ValidationContext)</code>；若产生注册表条目，同时实现 <code>claims(def, ValidationContext)</code>；</li>
+<li>实现 <code>resolveIdentity(modId, def, strict)</code>（有父引用链时另实现 <code>parentDefinition</code>）。</li>
+<li>将工厂注册到 <code>FactoryRegistry</code>（见第 10 节）。</li>
+<li>集成路径：</li>
+<li><strong>v1</strong>：调用 <code>TypeHandlerRegistry.register(handler)</code>，由 <code>JsonTreeBuilder</code> 自动发现。</li>
+<li><strong>v2</strong>：在宿主构造 <code>DataDrivenBuildPipeline</code> 时显式把 handler 传入 <code>handlers</code> 集合（若调用 <code>TypeHandlerRegistry.register(handler)</code>，可统一通过 <code>TypeHandlerRegistry.all()</code> 收集）。</li>
+</ol>
+<p>示例骨架：<code>TestGenericFactory.java</code> 展示了自定义 handler + <code>FactoryRegistry.registerGeneric</code> 的最小结构；真实构建链由 <code>JsonTreeBuilder</code>（v1）或 <code>DataDrivenBuildPipeline</code>（v2）负责分发与 <code>apply</code>。</p>
+<h3 id="87-contentstructure共享结构层">8.7 ContentStructure（共享结构层）<a class="headerlink" href="#87-contentstructure共享结构层" title="Permanent link">&para;</a></h3>
+<p><code>structure/ContentStructure.java:30</code>。v1 注册域（<code>JsonTreeBuilder</code> 分派器）与 reload 域（<code>ReloadOrchestrator</code> 及两个 decoder）共用的<strong>结构判定层</strong>——纯函数，只依赖 Gson 与 <code>java.util</code>，无 Minecraft / 加载器类型。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ContentStructure</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Kind</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">BODY_NOT_OBJECT</span><span class="p">,</span><span class="w"> </span><span class="n">UNKNOWN_KEY</span><span class="p">,</span><span class="w"> </span><span class="n">MISSING_KEY</span><span class="p">,</span><span class="w"> </span><span class="n">VALUE_NOT_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="n">ELEMENT_NOT_OBJECT</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// :33</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Issue</span><span class="p">(</span><span class="n">Kind</span><span class="w"> </span><span class="n">kind</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">JsonElement</span><span class="w"> </span><span class="n">actual</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">   </span><span class="c1">// :55</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Field</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Element</span><span class="o">&gt;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Issue</span><span class="o">&gt;</span><span class="w"> </span><span class="n">issues</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">             </span><span class="c1">// :65</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Element</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fileIndex</span><span class="p">,</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">                       </span><span class="c1">// :76</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Issue</span><span class="w"> </span><span class="nf">body</span><span class="p">(</span><span class="n">JsonElement</span><span class="w"> </span><span class="n">raw</span><span class="p">);</span><span class="w">                                     </span><span class="c1">// :84</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Issue</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">unknownKeys</span><span class="p">(</span><span class="n">JsonElement</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">knownKeys</span><span class="p">);</span><span class="w"> </span><span class="c1">// :98</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="nf">field</span><span class="p">(</span><span class="n">JsonElement</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">typeKey</span><span class="p">);</span><span class="w">                   </span><span class="c1">// :123</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">joinWithOr</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">items</span><span class="p">);</span><span class="w">                           </span><span class="c1">// :162</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="n">JsonElement</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">                               </span><span class="c1">// :177</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>body</code>：文件 body 必须是 JSON 对象；<code>null</code> 视为非对象。返回 <code>null</code> 表示通过。</li>
+<li><code>unknownKeys</code>：逐键检查不在 <code>knownKeys</code> 里的顶层字段，各产一个 <code>UNKNOWN_KEY</code>；非对象 body 返回空列表。</li>
+<li><code>field</code>：拆一个顶层字段。缺键或值非数组各产<strong>一个</strong> issue 且无元素（调用方整字段拒绝）；非对象元素产 issue 而<strong>兄弟保留</strong>。</li>
+<li><code>describe</code>：共享的 JSON 类型描述（如 <code>"an array"</code> / <code>"a primitive (5)"</code>）。</li>
+</ul>
+<p><strong>判定唯一、渲染分侧</strong>：<code>ContentStructure</code> 只判定结构、从不产出面向用户的文案，由调用方用自己的模板渲染（包括注册域与重载域各自反方向的 D9 跨域提示）。v2 <code>DataDrivenBuildPipeline</code> 使用 <code>StrictResourceJson</code> 配合结构化 <code>BuildDiagnostic</code> 走独立解码与字段检查路径。</p>
+<h3 id="88-handlercapabilitydefinitionkey-与-registryclaim">8.8 HandlerCapability、DefinitionKey 与 RegistryClaim<a class="headerlink" href="#88-handlercapabilitydefinitionkey-与-registryclaim" title="Permanent link">&para;</a></h3>
+<p>这四个类型位于 <code>lib.kasuga.registration.data_driven.pipeline</code>，构成 v2 多来源管线的能力模型与跨来源占坑（claim）模型：</p>
+<h4 id="handlercapabilitypipelinehandlercapabilityjava6-26">HandlerCapability（<code>pipeline/HandlerCapability.java:6-26</code>）<a class="headerlink" href="#handlercapabilitypipelinehandlercapabilityjava6-26" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">HandlerCapability</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">STRICT_PREFLIGHT</span><span class="p">,</span><span class="w">   </span><span class="c1">// 支持 BuildOptions.STRICT 下的 validate(...) 预检</span>
+<span class="w">    </span><span class="n">NON_REGISTRATION</span><span class="p">,</span><span class="w">   </span><span class="c1">// apply 仅修改构建元数据（如 registry_groups），不向 MC 注册表注册</span>
+<span class="w">    </span><span class="n">REGISTRY_CLAIMS</span><span class="p">,</span><span class="w">    </span><span class="c1">// 通过 claims(...) 声明 MC 注册表占用键</span>
+<span class="w">    </span><span class="n">OVERLAY</span><span class="w">             </span><span class="c1">// 选择阶段保留同一 DefinitionKey 下的全部来源候选，不按 last-wins 折叠</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>DataDrivenBuildPipeline</code> 对能力声明有两项硬规则：</p>
+<ol>
+<li><strong>严格完备性校验（<code>checkStrictCapabilities</code>，<code>DataDrivenBuildPipeline.java:1101-1147</code>）</strong>：在 <code>BuildOptions.STRICT</code> 下，凡本轮被 <code>on_register</code> 文件实际用到的 handler（以及同一 <code>handlers</code> 列表中重复声明同一 <code>typeName</code> 的 handler），必须同时满足：</li>
+<li>包含 <code>STRICT_PREFLIGHT</code>；</li>
+<li><code>strictValidationImplemented()</code> 返回 <code>true</code>；</li>
+<li><code>NON_REGISTRATION</code> 与 <code>REGISTRY_CLAIMS</code> <strong>互斥且必具其一</strong>（即 <code>hasNonReg ^ hasClaims</code>）。
+   否则发射 <code>Stage.PARSE</code> / <code>Code.HANDLER_NOT_STRICT_READY</code> 的阻断错误。</li>
+<li><strong>多来源选择行为（<code>selectDefinitions</code>，<code>DataDrivenBuildPipeline.java:1149-1183</code>）</strong>：当同一 <code>DefinitionKey</code> 在多个来源或文件中出现多个候选时，若 handler 满足：
+   <code>capabilities.contains(HandlerCapability.OVERLAY) || (options.isStrict() &amp;&amp; capabilities.contains(HandlerCapability.REGISTRY_CLAIMS) &amp;&amp; !capabilities.contains(HandlerCapability.NON_REGISTRATION))</code>
+   则<strong>保留该 key 下的全部候选</strong>；其余情况仅保留按 <code>(sourceOrder, declarationOrder)</code> 最大的 last-wins 胜者。因此，任何带 <code>REGISTRY_CLAIMS</code> 的类型在 <code>STRICT</code> 下若不同 sources 重复定义同一逻辑 ID，所有候选都会保留并在随后进入 <code>validate</code> / <code>claims</code> 校验以报出重名 / claim 冲突，而不是被 silently override 掩盖。</li>
+</ol>
+<h4 id="definitionkeypipelinedefinitionkeyjava11-30">DefinitionKey（<code>pipeline/DefinitionKey.java:11-30</code>）<a class="headerlink" href="#definitionkeypipelinedefinitionkeyjava11-30" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">DefinitionKey</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeDomain</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">DefinitionKey</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>管线内标识单条逻辑定义的二元组，其中 <code>typeDomain</code> 为 <code>TypeHandler.getTypeName()</code>，<code>id</code> 为 <code>resolveIdentity(...)</code> 的返回值。</p>
+<h4 id="registryclaim-与-registrykeypipelineregistryclaimjava20-56">RegistryClaim 与 RegistryKey（<code>pipeline/RegistryClaim.java:20-56</code>）<a class="headerlink" href="#registryclaim-与-registrykeypipelineregistryclaimjava20-56" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">RegistryClaim</span><span class="p">(</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">        </span><span class="n">SourceDescriptor</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sourceOrder</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">definitionKey</span><span class="p">,</span>
+<span class="w">        </span><span class="n">LogicalPath</span><span class="w"> </span><span class="n">logicalPath</span><span class="p">,</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">jsonPointer</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RegistryKey</span><span class="w"> </span><span class="nf">registryKey</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RegistryKey</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">RegistryKey</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>每条 <code>RegistryClaim</code> 把「某个定义准备占据的 <code>(registry, id)</code>」精准定位到来源、逻辑路径和 JSON Pointer；不同来源、不同 <code>typeDomain</code>（如方块自带 item 占 <code>minecraft:item</code> 与同名独立 item 碰撞）或与 <code>reservedRegistryClaims</code> 发生 <code>(registry, id)</code> 碰撞时，均生成 <code>Stage.CLAIMS</code> / <code>Code.CLAIM_CONFLICT</code> 诊断。</p>
+<h4 id="registryclaimsnapshotpipelineregistryclaimsnapshotjava15-39">RegistryClaimSnapshot（<code>pipeline/RegistryClaimSnapshot.java:15-39</code>）<a class="headerlink" href="#registryclaimsnapshotpipelineregistryclaimsnapshotjava15-39" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">RegistryClaim</span><span class="p">.</span><span class="na">RegistryKey</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">collect</span><span class="p">(</span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w">   </span><span class="c1">// :19</span>
+</code></pre></div>
+<p>从已有的宿主 <code>Reg</code> 树做广度优先遍历，收集所有已启用分派分组（<code>RegistryGroup.isDispatchEnabled() == true</code>）下注册条目的 <code>(registry, id)</code> 键，构造传入 <code>DataDrivenBuildPipeline</code> 的 <code>reservedRegistryClaims</code>，避免数据驱动 JSON 与宿主 Java 代码硬编码注册项发生静默 ID 碰撞。</p>
+<hr />
+<h2 id="9-buildcontext-regbuildcontext-与-validationcontext">9. BuildContext / RegBuildContext 与 ValidationContext<a class="headerlink" href="#9-buildcontext-regbuildcontext-与-validationcontext" title="Permanent link">&para;</a></h2>
+<h3 id="91-buildcontext-与-regbuildcontext">9.1 BuildContext 与 RegBuildContext<a class="headerlink" href="#91-buildcontext-与-regbuildcontext" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// BuildContext（context/BuildContext.java:12-98）</span>
+<span class="n">String</span><span class="w"> </span><span class="nf">getModId</span><span class="p">();</span><span class="w">                                                                </span><span class="c1">// :34</span>
+<span class="n">String</span><span class="w"> </span><span class="nf">getHostModId</span><span class="p">();</span><span class="w">                                                            </span><span class="c1">// :36（默认同 getModId()）</span>
+<span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="nf">getRootGroup</span><span class="p">();</span><span class="w">                                                 </span><span class="c1">// :38</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">isStrict</span><span class="p">();</span><span class="w">                                                               </span><span class="c1">// :40（默认 false）</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">getCurrentDefinition</span><span class="p">();</span><span class="w">                            </span><span class="c1">// :42</span>
+<span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getSourceId</span><span class="p">();</span><span class="w">                                                   </span><span class="c1">// :47</span>
+<span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getOwnerId</span><span class="p">();</span><span class="w">                                                    </span><span class="c1">// :52</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getNamespaces</span><span class="p">();</span><span class="w">                                                      </span><span class="c1">// :56</span>
+<span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCurrentHandlerType</span><span class="p">();</span><span class="w">                                         </span><span class="c1">// :61</span>
+<span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCurrentLogicalPath</span><span class="p">();</span><span class="w">                                         </span><span class="c1">// :66</span>
+<span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCurrentJsonPointer</span><span class="p">();</span><span class="w">                                         </span><span class="c1">// :71</span>
+<span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="nf">withCurrentDefinition</span><span class="p">(</span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">def</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="n">work</span><span class="p">);</span><span class="c1">// :78</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">putMeta</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w">                            </span><span class="c1">// :89</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">getMeta</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                                        </span><span class="c1">// :94</span>
+
+<span class="c1">// RegBuildContext（context/RegBuildContext.java:10-57）</span>
+<span class="kd">public</span><span class="w"> </span><span class="nf">RegBuildContext</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="n">rootGroup</span><span class="p">);</span><span class="w">                </span><span class="c1">// :17（strict=false）</span>
+<span class="kd">public</span><span class="w"> </span><span class="nf">RegBuildContext</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modId</span><span class="p">,</span><span class="w"> </span><span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="n">rootGroup</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">strict</span><span class="p">);</span><span class="c1">// :21</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">putRegistryGroup</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="n">group</span><span class="p">);</span><span class="w">                        </span><span class="c1">// :26</span>
+<span class="n">JsonRegistryGroup</span><span class="w"> </span><span class="nf">getRegistryGroup</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                                    </span><span class="c1">// :30</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setRegistryGroupCreativeTab</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">groupId</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">tab</span><span class="p">);</span><span class="w">           </span><span class="c1">// :34</span>
+<span class="n">ResourceLocation</span><span class="w"> </span><span class="nf">getRegistryGroupCreativeTab</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">groupId</span><span class="p">);</span><span class="w">                     </span><span class="c1">// :38</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">putReg</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">reg</span><span class="p">);</span><span class="w">                           </span><span class="c1">// :44</span>
+<span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">getReg</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                                     </span><span class="c1">// :48</span>
+<span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getBlockReg</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                                             </span><span class="c1">// :54</span>
+</code></pre></div>
+<ul>
+<li><code>getRegistryGroup</code> / <code>getReg</code> 找不到返回 <code>null</code>，调用方在非严格模式下回退根组或跳过。</li>
+<li><code>putMeta</code> / <code>getMeta</code> 是自定义类型间建立引用关系的通用通道，不要求值是 <code>Reg</code>。</li>
+<li><code>putReg</code> / <code>getReg</code> 的 <code>typeName</code> 维度即 <code>getTypeName()</code>；<code>getBlockReg(id)</code> 等价 <code>getReg("blocks", id)</code>。</li>
+<li>v2 管线在 <code>apply</code> 每条定义时外包 <code>withCurrentDefinition(def, ...)</code>（<code>:78-87</code>），使得任何 handler 在 <code>apply</code> 期间都可通过 <code>getSourceId()</code> / <code>getOwnerId()</code> / <code>getNamespaces()</code> / <code>getCurrentJsonPointer()</code> 获取当前条目的来源归属，并在 <code>isStrict()</code> 为 <code>true</code> 时切换严格异常行为。</li>
+</ul>
+<h3 id="92-validationcontext预检上下文">9.2 ValidationContext（预检上下文）<a class="headerlink" href="#92-validationcontext预检上下文" title="Permanent link">&para;</a></h3>
+<p><code>validation/ValidationContext.java:18-112</code>（v2 管线实现为 <code>pipeline/PipelineValidationContext.java:20-273</code>），在 <code>DataDrivenBuildPipeline.prepare</code> 的 <code>VALIDATION</code>（调用 <code>TypeHandler.validate</code>）与 <code>CLAIMS</code>（调用 <code>TypeHandler.claims</code>）阶段传入，不提供写注册表的入口：</p>
+<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="nf">hostModId</span><span class="p">();</span><span class="w">                                                                </span><span class="c1">// :19</span>
+<span class="n">SourceDescriptor</span><span class="w"> </span><span class="nf">source</span><span class="p">();</span><span class="w">                                                         </span><span class="c1">// :21</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">sourceOrder</span><span class="p">();</span><span class="w">                                                                 </span><span class="c1">// :23</span>
+<span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="nf">currentDefinition</span><span class="p">();</span><span class="w">                                          </span><span class="c1">// :25</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">directDependencies</span><span class="p">();</span><span class="w">                                                  </span><span class="c1">// :27</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w">                            </span><span class="c1">// :33</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">findAllVisible</span><span class="p">(</span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w">                      </span><span class="c1">// :42</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">(</span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w">                             </span><span class="c1">// :51</span>
+<span class="k">default</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LocatedDefinition</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">typeDomain</span><span class="p">)</span><span class="w">                      </span><span class="c1">// :60（PipelineValidationContext 实现）</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">canReference</span><span class="p">(</span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w">                                           </span><span class="c1">// :65</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">requireDefinition</span><span class="p">(</span><span class="n">DefinitionKey</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">relPtr</span><span class="p">);</span><span class="w">                       </span><span class="c1">// :67</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">resourceExists</span><span class="p">(</span><span class="n">ResourceDomain</span><span class="w"> </span><span class="n">domain</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                </span><span class="c1">// :69</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">factoryAvailable</span><span class="p">(</span><span class="n">FactoryType</span><span class="w"> </span><span class="n">factoryType</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">factoryId</span><span class="p">);</span><span class="w">               </span><span class="c1">// :71</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">factorySupports</span><span class="p">(</span><span class="n">FactoryType</span><span class="w"> </span><span class="n">factoryType</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">factoryId</span><span class="p">,</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w"> </span><span class="c1">// :73</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="nf">isReserved</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">symbol</span><span class="p">);</span><span class="w">                                                 </span><span class="c1">// :75</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">reservedSymbols</span><span class="p">();</span><span class="w">                                                     </span><span class="c1">// :77</span>
+<span class="n">RegistryClaim</span><span class="w"> </span><span class="nf">claim</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">                         </span><span class="c1">// :79</span>
+<span class="k">default</span><span class="w"> </span><span class="n">RegistryClaim</span><span class="w"> </span><span class="nf">claimAt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">registry</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLocation</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">relPtr</span><span class="p">)</span><span class="w"> </span><span class="c1">// :81</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="n">Code</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">relPtr</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">sugg</span><span class="p">);</span><span class="w">                     </span><span class="c1">// :97</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">warning</span><span class="p">(</span><span class="n">Code</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">relPtr</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">sugg</span><span class="p">);</span><span class="w">                   </span><span class="c1">// :99</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="n">ResourceDomain</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ASSETS</span><span class="p">,</span><span class="w"> </span><span class="n">DATA</span><span class="w"> </span><span class="p">}</span><span class="w">                                               </span><span class="c1">// :101</span>
+<span class="kd">enum</span><span class="w"> </span><span class="n">FactoryType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">BLOCK</span><span class="p">,</span><span class="w"> </span><span class="n">ITEM</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_ENTITY</span><span class="p">,</span><span class="w"> </span><span class="n">GENERIC</span><span class="w"> </span><span class="p">}</span><span class="w">                            </span><span class="c1">// :106</span>
+</code></pre></div>
+<p>关键语义契约：</p>
+<ul>
+<li><strong>可见性与歧义规则</strong>：</li>
+<li><code>findAllVisible(key)</code> 只返回属于当前定义同一 <code>ownerId</code> 或其 <code>directDependencies()</code>（直接依赖、不传递）的候选列表，并保持会话声明顺序（<code>PipelineValidationContext.java:88-95</code>）。</li>
+<li><code>find(key)</code> 只在 <code>findAllVisible(key).size() == 1</code> 时返回 <code>Optional.of(...)</code>；存在 0 个或 <strong>2 个及以上</strong>可见候选时均返回 <code>Optional.empty()</code>（<code>:82-85</code>）。</li>
+<li><code>requireDefinition(key, relPtr)</code>（<code>:115-155</code>）：存在唯一可见定义时返回 <code>true</code>；若无可见候选则返回 <code>false</code> 并记错（全局 <code>findAll(key)</code> 也为空时报 <code>MISSING_REFERENCE</code>，否则报 <code>REFERENCE_NOT_DECLARED</code>）；若可见候选数 <code>&gt; 1</code> 则同样返回 <code>false</code> 并报 <code>REFERENCE_AMBIGUOUS</code>。</li>
+<li><code>findAll(String typeDomain)</code>（<code>ValidationContext.java:60-63</code>，<code>PipelineValidationContext.java:103-107</code>）：按会话声明顺序返回已解析定义中 <code>key.typeDomain().equals(typeDomain)</code> 的<strong>全部</strong>候选（跨所有 <code>id</code> 与来源），供消费侧做跨定义枚举校验；接口默认实现抛 <code>UnsupportedOperationException</code>。</li>
+<li><strong>资源可见域</strong>：<code>resourceExists(domain, id)</code>（<code>:158-184</code>）在当前 <code>ownerId</code> 与 <code>directDependencies()</code> 内查找 <code>assets/&lt;ns&gt;/...</code> 或 <code>data/&lt;ns&gt;/...</code>；当 <code>domain == ResourceDomain.ASSETS</code> 时还会额外检索 <code>prepare(..., sharedAssetOwners)</code> 中声明的共享资产 owner。</li>
+<li><strong>构造 <code>RegistryClaim</code></strong>：<code>PipelineValidationContext.claim(registry, id)</code> 与 <code>claimAt(registry, id, relPtr)</code>（<code>:218-240</code>）纯构造并<strong>返回</strong>一条附带当前来源与 JSON Pointer（经 <code>JsonPointers.append</code> 拼接）的 <code>RegistryClaim</code>，供 <code>TypeHandler.claims(...)</code> 返回给管线收集；在 <code>validate(...)</code> 中直接调用它们<strong>不会</strong>向管线记录任何占位副作用。</li>
+</ul>
+<hr />
+<h2 id="10-factoryregistry-与内建模型工厂">10. FactoryRegistry 与内建模型工厂<a class="headerlink" href="#10-factoryregistry-与内建模型工厂" title="Permanent link">&para;</a></h2>
+<h3 id="101-factoryregistry">10.1 FactoryRegistry<a class="headerlink" href="#101-factoryregistry" title="Permanent link">&para;</a></h3>
+<p><code>modules/core/src/main/java/lib/kasuga/registration/factory/FactoryRegistry.java:15-121</code>。data-driven 的 handler 从这里按 JSON <code>type</code> 字段查找并创建注册对象。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">BlockFactory</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Block</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// :18</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ItemFactory</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// :23</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">BlockEntityFactory</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Block</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">validBlocks</span><span class="p">,</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// :28</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">GenericFactory</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="n">Reg</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w">              </span><span class="c1">// :33</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">BlockFactory</span><span class="w"> </span><span class="n">factory</span><span class="p">);</span><span class="w">                                      </span><span class="c1">// :45（createsBlockItem=false）</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">BlockFactory</span><span class="w"> </span><span class="n">factory</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">createsBlockItem</span><span class="p">);</span><span class="w">            </span><span class="c1">// :52</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">BlockFactory</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                         </span><span class="c1">// :65</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                         </span><span class="c1">// :69</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">createsBlockItem</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                 </span><span class="c1">// :73</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerItem</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">ItemFactory</span><span class="w"> </span><span class="n">factory</span><span class="p">);</span><span class="w">                                   </span><span class="c1">// :79</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ItemFactory</span><span class="w"> </span><span class="nf">getItemFactory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                               </span><span class="c1">// :83</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">containsItem</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                     </span><span class="c1">// :87</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerBlockEntity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">BlockEntityFactory</span><span class="w"> </span><span class="n">factory</span><span class="p">);</span><span class="w">                     </span><span class="c1">// :95</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">BlockEntityFactory</span><span class="w"> </span><span class="nf">getBlockEntityFactory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                 </span><span class="c1">// :100</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">containsBlockEntity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                              </span><span class="c1">// :104</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getBlockEntityTypes</span><span class="p">();</span><span class="w">                                                     </span><span class="c1">// :108</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerGeneric</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">GenericFactory</span><span class="w"> </span><span class="n">factory</span><span class="p">);</span><span class="w">                             </span><span class="c1">// :114</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">GenericFactory</span><span class="w"> </span><span class="nf">getGeneric</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                </span><span class="c1">// :116</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">containsGeneric</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">);</span><span class="w">                                                  </span><span class="c1">// :118</span>
+</code></pre></div>
+<p>若方块需要支持 JSON 里的 <code>state_properties</code>，工厂必须实现 <code>lib.kasuga.registration.data_driven.state.StatefulBlockFactory</code>（扩展 <code>BlockFactory</code>，提供 <code>create(String id, @Nullable JsonObject params, StatePropertySet properties)</code>，<code>StatefulBlockFactory.java:10-19</code>）。</p>
+<ul>
+<li>内部使用 <code>ConcurrentHashMap</code>，同名注册静默覆盖。</li>
+<li><code>createsBlockItem</code> 标志：双参 <code>register(type, factory)</code> 默认设为 <code>false</code>；仅当传 <code>true</code>（如调用了 <code>.withDefaultBlockItem(id)</code> 的工厂）时，<code>BlockTypeHandler.claims</code> 才会在 <code>REGISTRY_CLAIMS</code> 预检阶段同步认领 <code>minecraft:item</code> 注册位。</li>
+<li><code>id</code> 参数只含 path，namespace 已由 handler 剥离并交由 <code>Reg</code> 重写；工厂内部不得再拼接 namespace。</li>
+<li><code>BlockEntityFactory.validBlocks</code> 为惰性 <code>Supplier&lt;Block[]&gt;</code>，不得在工厂构造方法内立即 <code>.get()</code>。</li>
+</ul>
+<h3 id="102-内建方块与方块实体工厂">10.2 内建方块与方块实体工厂<a class="headerlink" href="#102-内建方块与方块实体工厂" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>工厂类与模块</th>
+<th>注册的 <code>type</code></th>
+<th>能力与契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DataDrivenBlockFactory</code>（<code>modules/data-driven</code>）</td>
+<td>方块 <code>"data_driven_block"</code></td>
+<td>实现 <code>StatefulBlockFactory</code>（<code>createsBlockItem=true</code>），构建支持 <code>state_properties</code> 的 <code>DataDrivenBlock</code>；由 <code>JsonTreeBuilder.ensureHandlersRegistered()</code> 或显式调用 <code>DataDrivenBlockFactory.registerIfAbsent()</code> 注册</td>
+</tr>
+<tr>
+<td><code>FsmBlockEntityFactories</code>（<code>modules/modelling</code>）</td>
+<td>方块 <code>"fsm_block"</code>（<code>createsBlockItem=true</code>）；BE <code>"fsm_be"</code></td>
+<td><code>fsm_block</code> 绑定 <code>FsmBlock</code>（非 stateful）；<code>fsm_be</code> 绑定 <code>AnimationBlockEntity</code>，从 <code>params</code> 读取 <code>state_machine</code> / <code>model</code> / <code>model_name</code>。需显式触发类加载或调用 <code>FsmBlockEntityFactories.registerBuiltin()</code></td>
+</tr>
+<tr>
+<td><code>ProxyModelBlockFactories</code>（<code>modules/modelling</code>）</td>
+<td>方块 <code>"proxy_model"</code>（<code>BLOCK_TYPE</code>，<code>StatefulBlockFactory</code>，<code>createsBlockItem=true</code>）；BE <code>"proxy_model_be"</code>（<code>BLOCK_ENTITY_TYPE</code>）</td>
+<td><code>@Context</code> bean，在 <code>@PostConstruct init()</code> 自动调用幂等的 <code>registerBuiltin()</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ProxyModelBlockFactories</code>（<code>modules/modelling/.../proxies/ProxyModelBlockFactories.java:39-403</code>）关键契约与扩展接口：</p>
+<ul>
+<li><strong><code>proxy_model</code> 方块主机</strong>：<code>ProxyModelBlock</code> 实现 <code>EntityBlock</code>，通过 <code>StatePropertyContext</code> 自动挂载 <code>state_properties</code>，在 <code>onBlockStateChange</code> 转发 <code>StateProperty.notifyChanges(level, pos, oldState, newState)</code>，为水平 <code>facing</code> 与 <code>hinge</code> 提供原版放置/旋转/镜像行为，并以 <code>RenderShape.ENTITYBLOCK_ANIMATED</code>（实体渲染形态）避免烘培模型缺失时泄漏紫黑格贴图。若 JSON 方块条目带有非空 <code>params</code>，<code>validateBlockParams(params)</code> 会立即抛 <code>IllegalArgumentException</code>。</li>
+<li><strong><code>proxy_model_be</code> 模型解析公开入口</strong>：
+  <div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">ModelSettings</span><span class="p">(</span>
+<span class="w">        </span><span class="n">ProxyModelSelection</span><span class="w"> </span><span class="n">selection</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">yawOffset</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">facingYaw</span><span class="p">,</span>
+<span class="w">        </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">ModelLightingMode</span><span class="w"> </span><span class="n">lightingMode</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ModelSettings</span><span class="w"> </span><span class="nf">parseModelSettings</span><span class="p">(</span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">JsonObject</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w">  </span><span class="c1">// :131</span>
+</code></pre></div>
+  <code>parseModelSettings</code> 支持消费方在自定义代理宿主中复用与 <code>proxy_model_be</code> 完全一致的 <code>params</code> 解析逻辑（<code>model</code>、<code>model_name</code>、<code>default_model</code>、<code>yaw_offset</code>、<code>facing_yaw</code>、<code>lighting_mode</code>、<code>model_groups</code>、<code>model_by_state</code>；若出现已移除的 <code>params.animation</code> 则直接抛 <code>IllegalArgumentException</code>）。JSON 字段细节见 <a href="../schema/#29-内建-proxy_model-proxy_model_be-参数">schema.md</a>。</li>
+<li><strong>Java 动画与状态控制扩展点</strong>：消费 mod 不应在 JSON <code>proxy_model</code> 中声明交互或播放逻辑，而应继承 <code>ProxyModelBlock</code> 并覆写：
+  <div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">ProxyComposition</span><span class="o">&lt;</span><span class="n">ProxyModelBlockEntity</span><span class="p">,</span><span class="w"> </span><span class="n">ProxyModelInput</span><span class="p">,</span><span class="w"> </span><span class="n">Void</span><span class="p">,</span><span class="w"> </span><span class="n">Void</span><span class="p">,</span><span class="w"> </span><span class="n">Void</span><span class="o">&gt;</span>
+<span class="nf">createProxyComposition</span><span class="p">(</span><span class="n">ProxyModelBlockEntity</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+</code></pre></div>
+  同时将自定义 <code>StatefulBlockFactory</code> 注册为自有 <code>type</code>（可借助 <code>ProxyModelBlockEntity</code> 与 <code>ProxyModelProxy.builder(element)</code> 定制状态机、播控与局部动作）。</li>
+</ul>
+<hr />
+<h2 id="11-属性解析器">11. 属性解析器<a class="headerlink" href="#11-属性解析器" title="Permanent link">&para;</a></h2>
+<h3 id="111-jsonpropertyparser">11.1 JsonPropertyParser<a class="headerlink" href="#111-jsonpropertyparser" title="Permanent link">&para;</a></h3>
+<p><code>property/JsonPropertyParser.java:22-328</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">JsonPropertyParser</span><span class="w"> </span><span class="n">INSTANCE</span><span class="p">;</span><span class="w">                                                </span><span class="c1">// :24</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">JsonPropertyParser</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">();</span><span class="w">                                                 </span><span class="c1">// :325</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&lt;</span><span class="n">BlockBehaviour</span><span class="p">.</span><span class="na">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">BlockBehaviour</span><span class="p">.</span><span class="na">Properties</span><span class="o">&gt;&gt;</span>
+<span class="w">        </span><span class="nf">parseBlockProperties</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">                                                  </span><span class="c1">// :30</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StrictPropertyIssue</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">validateStrict</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">                               </span><span class="c1">// :45</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerCompiler</span><span class="p">(</span><span class="n">PropertyCompiler</span><span class="w"> </span><span class="n">compiler</span><span class="p">);</span><span class="w">                                        </span><span class="c1">// :298</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerCompiler</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span>
+<span class="w">        </span><span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">JsonElement</span><span class="p">,</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">BlockBehaviour</span><span class="p">.</span><span class="na">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">BlockBehaviour</span><span class="p">.</span><span class="na">Properties</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">supplier</span><span class="p">);</span><span class="w"> </span><span class="c1">// :302</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerStrictCompiler</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">JsonElement</span><span class="o">&gt;</span><span class="w"> </span><span class="n">validator</span><span class="p">);</span><span class="w">               </span><span class="c1">// :306</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">removeCompiler</span><span class="p">(</span><span class="n">PropertyCompiler</span><span class="w"> </span><span class="n">compiler</span><span class="p">);</span><span class="w">                                          </span><span class="c1">// :317</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compilerSize</span><span class="p">();</span><span class="w">                                                                      </span><span class="c1">// :321</span>
+</code></pre></div>
+<ul>
+<li><strong>非严格解析（<code>parseBlockProperties</code>）</strong>：<code>parseBlockProperties(null)</code> 返回空列表；按编译器列表顺序匹配，未知键或非法值仅打 WARN 并跳过（<code>:152-159, 181, 191</code>）。<code>buildCompilers</code>（<code>:248</code>）与 <code>buildSoundTypeMap</code>（<code>:197</code>）注册全部内置键。</li>
+<li><strong>严格校验（<code>validateStrict</code>，<code>:45-65</code>）</strong>：仅供 v2 <code>RegistryGroupHandler.validate</code> 与 <code>BlockTypeHandler.validate</code> 调用。依次先查 <code>strictExtensions</code>（经 <code>registerStrictCompiler(key, validator)</code> 登记，键名自动转小写），再通过 <code>StrictPropertyValues</code> 对所有内置键做精确 JSON 类型与范围校验（如拒绝数字写成字符串、<code>light_emission</code> 超出 <code>[0, 15]</code>、无效 <code>strength</code> 数组长度或非法 <code>sound_type</code>/<code>map_color</code> 等），发现问题返回 <code>List&lt;StrictPropertyIssue(relativeJsonPointer, message)&gt;</code>（<code>StrictPropertyIssue.java:9-11</code>），不会静默降级 WARN。</li>
+</ul>
+<h3 id="112-jsonitemparser">11.2 JsonItemParser<a class="headerlink" href="#112-jsonitemparser" title="Permanent link">&para;</a></h3>
+<p><code>property/JsonItemParser.java:15-166</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">JsonItemParser</span><span class="w"> </span><span class="n">INSTANCE</span><span class="p">;</span><span class="w">                                                    </span><span class="c1">// :17</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Item</span><span class="p">.</span><span class="na">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">Properties</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">parseItemProperties</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">   </span><span class="c1">// :42</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StrictPropertyIssue</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">validateStrict</span><span class="p">(</span><span class="n">JsonObject</span><span class="w"> </span><span class="n">json</span><span class="p">);</span><span class="w">                               </span><span class="c1">// :57</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerParser</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">ItemPropertyParser</span><span class="w"> </span><span class="n">parser</span><span class="p">);</span><span class="w">                              </span><span class="c1">// :151</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerStrictParser</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">JsonElement</span><span class="o">&gt;</span><span class="w"> </span><span class="n">validator</span><span class="p">);</span><span class="w">                 </span><span class="c1">// :155</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ItemPropertyParser</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Item</span><span class="p">.</span><span class="na">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="p">.</span><span class="na">Properties</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">JsonElement</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// :163</span>
+</code></pre></div>
+<ul>
+<li><strong>非严格解析（<code>parseItemProperties</code>）</strong>：<code>tab</code> 为保留键直接跳过（<code>:136</code>），由 handler 翻译为创造标签页；未知键打 WARN 并跳过（<code>:147</code>）；内置键为 <code>stacks_to</code>、<code>rarity</code>、<code>fire_resistant</code>、<code>durability</code>、<code>no_repair</code>（<code>:27-39</code>）。</li>
+<li><strong>严格校验（<code>validateStrict</code>，<code>:57-123</code>）</strong>：校验 <code>tab</code> 必须是合法的带命名空间 <code>ResourceLocation</code>（<code>:64-74</code>），再优先查 <code>strictExtensions</code>（<code>registerStrictParser</code>），随后精确检验内置键（如 <code>stacks_to</code> 为 <code>1..99</code> 整数、<code>durability &gt;= 1</code>、<code>rarity</code> 为已知枚举等），未识别的键一律产出 <code>StrictPropertyIssue</code>。</li>
+</ul>
+<h3 id="113-属性继承与覆盖">11.3 属性继承与覆盖<a class="headerlink" href="#113-属性继承与覆盖" title="Permanent link">&para;</a></h3>
+<p>属性生效顺序由 Reg 树的 property 链决定，父先子后，后应用者覆盖先应用者：根组属性、父分组、子分组、方块级，方块级最后应用因而优先级最高。物品属性同理，分组 <code>item_properties</code> 先于方块级 <code>item_properties</code>。这是靠应用顺序实现的覆盖，不做字段合并；同名键整键覆盖。</p>
+<blockquote>
+<p>数据驱动专题其它页：<a href="../api-registration/">注册期 API</a> · <a href="./">扩展 API</a> · <a href="../api-diagnostics/">诊断 API</a> · <a href="../api-reload/">重载 API</a> · <a href="../schema/">Schema 规范</a> · <a href="../block-state-properties/">方块状态属性</a> · <a href="../">专题索引</a></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

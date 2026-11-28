@@ -1,0 +1,3438 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://kasugalibgroup.github.io/KasugaLib-Documentation/reference/core-runtime/">
+      
+      
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../../en/reference/core-runtime/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Core 运行时基础设施与内容子系统（modules/core） - KasugaLibNext 文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-运行时基础设施与内容子系统modulescore" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="KasugaLibNext 文档" class="md-header__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KasugaLibNext 文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core 运行时基础设施与内容子系统（modules/core）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/reference/core-runtime/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KasugaLibNext 文档" class="md-nav__button md-logo" aria-label="KasugaLibNext 文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    KasugaLibNext 文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/KasugaLibGroup/KasugaLibNext" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLibNext 文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖与运行环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/minimal-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最小示例工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指南
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动上手：从空目录到方块动起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径 1：用数据驱动文件来添加内容（组织方式与最佳实践）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/data-driven/guide-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展指南：写 Java 才能做到的事（How-to）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/offline-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏输出与多机位渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建与验证入口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/wardrobe-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    真实素材换装与 MC 装备示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anchors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anchor 与 Minecraft 装备挂接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机控制与动画轨道
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cameras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Player / Free / Fixed Camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../data-driven/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册专题
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动注册专题
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动 JSON 格式规范（schema）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册期 API（JsonTreeBuilder、索引与内容分派）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动扩展 API（TypeHandler、BuildContext 与属性解析器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动诊断 API（Diagnostics、命令与错误分类）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-driven/api-reload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动重载 API（含可断言的纯函数面与调用示例）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kasuga 自定义渲染规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effects-and-postfx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    托管效果与后处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展点目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formula/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formula 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MC 最终画面离屏输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机与动画剪辑 JSON 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生命周期与初始化顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minecraft-model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minecraft 穿搭资源与实例切换 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 与 glTF 布娃娃配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 组装与穿搭缓存 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-posing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用模型姿态与动画 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling 模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-camera-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多机位输出契约
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择（Multiplexer）参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KasugaLib PMX → PBR 转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physics、IK 与 ModelTickLoop API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型渲染调度（Render Scheduling）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染后端接入参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shader-dsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Shader DSL 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sidedness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    侧边模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skeleton Dynamics API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染 framework 与后端接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    天空体积云与积雨云实例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../explanation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原理与设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原理与设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/camera-animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    摄像机与共享动画时间轴原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/data-driven-registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动注册原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/effect-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义渲染管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/frame-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最终画面输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分层动画状态机原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/mmd-ragdoll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MMD 与 glTF 布娃娃适配原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/model-subsystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model 子系统的格式边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/multiplexer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型变体选择原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/offline-rendering-and-multi-cam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    离屏、多机位与共享输出原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/pbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMX 风格化 PBR 烘焙原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原生物理与姿态管线原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-alpha-passes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型材质 Alpha 渲染
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/render-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模型可见性与渲染调度原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/rendering-backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    渲染模块与图形 API 的边界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/skeleton-dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用骨骼物理、IK 与闭环约束原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/uml-render-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UML 渲染框架与资源所有权原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explanation/volumetric-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多层体积云渲染原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../meta/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与版本信息
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目与版本信息
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志与版本策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献者文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英术语对照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证与再分发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知限制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meta/wardrobe-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    换装示例验证记录与性能基线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-网络-rpclibkasugacorenetworkingrpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 网络 RPC（lib.kasuga.core.networking.rpc）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 网络 RPC（lib.kasuga.core.networking.rpc）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-rpcapi-与单向调用-withoutresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 RpcApi 与单向调用 WithOutResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-请求-响应调用-rpcapiwithresponset-r-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 请求-响应调用 RpcApi.WithResponse&lt;T, R, S&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-会话管理与生成门面-rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 会话管理与生成门面 Rpc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-自定义存档与外部物品存储libkasugacoresaved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自定义存档与外部物品存储（lib.kasuga.core.saved）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-可选模组兼容探测libkasugacorecompat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可选模组兼容探测（lib.kasuga.core.compat）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-编解码器与生命周期句柄libkasugacorecodec-libkasugacoreholder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 编解码器与生命周期句柄（lib.kasuga.core.codec / lib.kasuga.core.holder）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 编解码器与生命周期句柄（lib.kasuga.core.codec / lib.kasuga.core.holder）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-kasugacodec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 KasugaCodec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-holdert-与-providert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Holder&lt;T&gt; 与 Provider&lt;T&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-核心渲染与-glsl-导入钩子libkasugacorerendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 核心渲染与 GLSL 导入钩子（lib.kasuga.core.rendering）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-早期加载与客户端钩子libkasugaearly-libkasugaclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 早期加载与客户端钩子（lib.kasuga.early / lib.kasuga.client）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 早期加载与客户端钩子（lib.kasuga.early / lib.kasuga.client）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-modloadingmanager-与-modloadingprogress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 ModLoadingManager 与 ModLoadingProgress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-loadingindicatorlibkasugaclientloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 LoadingIndicator（lib.kasuga.client.loading）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-clientblockupdatehookslibkasugaclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 ClientBlockUpdateHooks（lib.kasuga.client）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-内容子系统libkasugacontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 内容子系统（lib.kasuga.content）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 内容子系统（lib.kasuga.content）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-unmodeledblockpropertylibkasugacontentblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 UnModeledBlockProperty（lib.kasuga.content.block）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-全局设备管理与属性索引libkasugacontentdevice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 全局设备管理与属性索引（lib.kasuga.content.device）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-文档物品与组件系统libkasugacontentdocument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 文档物品与组件系统（lib.kasuga.content.document）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-动态连通图与环路检测libkasugacontentgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 动态连通图与环路检测（lib.kasuga.content.graph）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-二维码生成libkasugacontentqr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 二维码生成（lib.kasuga.content.qr）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="core-运行时基础设施与内容子系统modulescore">Core 运行时基础设施与内容子系统（modules/core）<a class="headerlink" href="#core-运行时基础设施与内容子系统modulescore" title="Permanent link">&para;</a></h1>
+<p>本页记录 <code>modules/core</code> 中除资源平台、VFS 与注册树之外的运行时核心基础设施与内容子系统：</p>
+<ul>
+<li>网络 RPC：<code>lib.kasuga.core.networking.rpc.*</code></li>
+<li>自定义存档与外部物品存储：<code>lib.kasuga.core.saved.*</code></li>
+<li>可选模组兼容探测：<code>lib.kasuga.core.compat.*</code></li>
+<li>编解码器与引用计数句柄：<code>lib.kasuga.core.codec.*</code>、<code>lib.kasuga.core.holder.*</code></li>
+<li>核心渲染与 GLSL 导入钩子：<code>lib.kasuga.core.rendering.*</code></li>
+<li>早期加载与客户端通知钩子：<code>lib.kasuga.early.*</code>、<code>lib.kasuga.client.*</code></li>
+<li>内容子系统：<code>lib.kasuga.content.{block,device,document,graph,qr}.*</code></li>
+</ul>
+<p>相关页面：<a href="../resource-platform/">统一资源平台与 Script Ticket</a>、<a href="../vfs/">虚拟文件系统（VFS）</a>、<a href="../core-registration/">Core 模组入口与注册系统</a>。</p>
+<hr />
+<h2 id="1-网络-rpclibkasugacorenetworkingrpc">1. 网络 RPC（<code>lib.kasuga.core.networking.rpc</code>）<a class="headerlink" href="#1-网络-rpclibkasugacorenetworkingrpc" title="Permanent link">&para;</a></h2>
+<p><code>RpcApi</code> 在 <code>PayloadReg</code> 之上提供单向与请求-响应（<code>CompletableFuture</code>）网络调用封装；代码生成器从 <code>codeTemplate</code> 下的 <code>Rpc</code> 模板生成支持 0–10 个参数的 <code>lib.kasuga.core.networking.rpc.Rpc</code> 门面。</p>
+<h3 id="11-rpcapi-与单向调用-withoutresponse">1.1 <code>RpcApi</code> 与单向调用 <code>WithOutResponse</code><a class="headerlink" href="#11-rpcapi-与单向调用-withoutresponse" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类 / 方法</th>
+<th>签名与行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>new RpcApi&lt;&gt;(String name)</code></td>
+<td>构造内部 <code>PayloadReg&lt;&gt;("rpc/" + name + "/request", ...)</code></td>
+</tr>
+<tr>
+<td><code>executeOnServer()</code> / <code>executeOnClient()</code></td>
+<td>绑定对应端侧处理器并标记可执行方向</td>
+</tr>
+<tr>
+<td><code>runOnMainThread()</code></td>
+<td>接收请求时通过 <code>context.enqueueWork(...)</code> 切换到主线程后再调用 <code>handle(...)</code></td>
+</tr>
+<tr>
+<td><code>register(Reg&lt;?, ?&gt; parent)</code></td>
+<td>将底层 <code>PayloadReg</code> 挂载到注册树（必须挂载到提供非 <code>"minecraft"</code> 命名空间的 <code>Registry</code>）</td>
+</tr>
+<tr>
+<td><code>call(T request)</code> / <code>call(T request, Player player)</code></td>
+<td>当 <code>player instanceof ServerPlayer</code> 时走 <code>PacketDistributor.sendToPlayer(...)</code>（要求 <code>executeOnClient()</code>）；否则走 <code>PacketDistributor.sendToServer(...)</code>（要求 <code>executeOnServer()</code>），方向不匹配抛出 <code>IllegalStateException</code></td>
+</tr>
+<tr>
+<td><code>WithOutResponse.call(T request, Player p)</code></td>
+<td>单向调用包装，服务端/客户端覆写 <code>handleInstant(T, IPayloadContext)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-请求-响应调用-rpcapiwithresponset-r-s">1.2 请求-响应调用 <code>RpcApi.WithResponse&lt;T, R, S&gt;</code><a class="headerlink" href="#12-请求-响应调用-rpcapiwithresponset-r-s" title="Permanent link">&para;</a></h3>
+<p><code>WithResponse</code> 注册 3 个通道：<code>rpc/&lt;name&gt;/request</code>、<code>rpc/&lt;name&gt;/response</code> 与 <code>rpc/&lt;name&gt;/error</code>（<code>Error</code> 载体为 UTF-8 字符串消息）。</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>行为与约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompletableFuture&lt;R&gt; run(T request)</code> / <code>run(T request, Player player)</code></td>
+<td>分配唯一 <code>VAR_LONG</code> 会话 ID（绑定 <code>accepts = player</code>），发送请求并返回异步 <code>CompletableFuture&lt;R&gt;</code></td>
+</tr>
+<tr>
+<td><code>handleInstant(T request, IPayloadContext context)</code> / <code>CompletableFuture&lt;R&gt; handle(T, IPayloadContext)</code></td>
+<td>接收方覆写其中一个；成功值或异常消息都会通过 <code>context.enqueueWork(() -&gt; context.reply(...))</code> 回到主线程发送回包</td>
+</tr>
+<tr>
+<td><code>setTimeout(Duration)</code> / <code>setTimeoutSeconds(long)</code> / <code>setTimeoutMillis(long)</code></td>
+<td>默认超时 <strong>30 秒</strong>；<code>setTimeout(null)</code> 重置为 30 秒；<code>setTimeout(long)</code> 已 <code>@Deprecated</code></td>
+</tr>
+<tr>
+<td><code>void tick()</code></td>
+<td>驱动 <code>sessionManager.checkTimeout()</code> 清理超时会话并使 future 以 <code>RpcTimeoutException</code> 失败。<strong>调用方必须在客户端/服务端 tick 中周期性调用 <code>tick()</code></strong>，否则未应答会话不会自动超时释放</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-会话管理与生成门面-rpc">1.3 会话管理与生成门面 <code>Rpc</code><a class="headerlink" href="#13-会话管理与生成门面-rpc" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>RpcSessionManager&lt;T&gt;</code></strong>：使用 <code>AtomicLong</code> 会话 ID、<code>PriorityQueue&lt;Session&lt;T&gt;&gt;</code>（按截止时间戳排序）与 <code>HashMap&lt;Long, Session&lt;T&gt;&gt;</code>。通过 <code>saturatedAdd</code> 防止超大超时值溢出（钳制到 <code>Long.MAX_VALUE</code>）；在内部锁外完成 <code>CompletableFuture</code> 回调以防止重入死锁；校验应答方 <code>player</code> 与会话 <code>accepts</code> 是否匹配（<code>accepts == null</code> 时接受任意端回复）。</li>
+<li><strong><code>IdentifiedRpcPacketType&lt;T&gt;</code></strong>：将 <code>VAR_LONG</code> 会话 ID 与用户 <code>StreamCodec&lt;? super FriendlyByteBuf, T&gt;</code> 组合为 <code>CustomPacketPayload</code>。</li>
+<li><strong><code>RpcTimeoutException</code></strong>：继承 <code>Exception</code>，会话超时后作为 <code>CompletableFuture</code> 异常原因。</li>
+<li><strong><code>Rpc</code>（代码生成门面）</strong>：</li>
+<li><code>Rpc.wrap(name, func, c1..cn)</code> -&gt; 返回 <code>RpcV0</code> .. <code>RpcV10&lt;T1..Tn&gt;</code>（继承 <code>WithOutResponse</code>，<code>call(Player, T1..Tn)</code>）。</li>
+<li><code>Rpc.wrap(name, func, responseCodec, c1..cn)</code> -&gt; 返回 <code>RpcR0&lt;R&gt;</code> .. <code>RpcR10&lt;R, T1..Tn&gt;</code>（继承 <code>WithResponse</code>，<code>call(Player, T1..Tn)</code> 返回 <code>CompletableFuture&lt;R&gt;</code>）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// 出自 TestMyRpc（客户端调用服务端并等待整数返回值）</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Rpc</span><span class="p">.</span><span class="na">RpcR1</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MY_RPC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rpc</span><span class="p">.</span><span class="na">wrap</span><span class="p">(</span>
+<span class="w">        </span><span class="s">"test_rpc_with_response"</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">i1</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ByteBufCodecs</span><span class="p">.</span><span class="na">VAR_INT</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ByteBufCodecs</span><span class="p">.</span><span class="na">VAR_INT</span>
+<span class="p">).</span><span class="na">executeOnServer</span><span class="p">().</span><span class="na">runOnMainThread</span><span class="p">().</span><span class="na">setTimeoutSeconds</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+
+<span class="c1">// 调用端：</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MY_RPC</span><span class="p">.</span><span class="na">call</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">);</span>
+<span class="c1">// 周期性驱动超时：</span>
+<span class="n">MY_RPC</span><span class="p">.</span><span class="na">tick</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h2 id="2-自定义存档与外部物品存储libkasugacoresaved">2. 自定义存档与外部物品存储（<code>lib.kasuga.core.saved</code>）<a class="headerlink" href="#2-自定义存档与外部物品存储libkasugacoresaved" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>按维度托管的原版 <code>SavedData</code> 注入见 <a href="../inject/">Inject 依赖注入与环境装配</a> 中的 <code>Saved&lt;T&gt;</code>；本包面向<strong>世界根目录</strong>自定义文件与基于 UUID 的外部物品数据绑定。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用域与核心 API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SavedSystem</code></td>
+<td><code>@Context</code> 单例；向 <code>KasugaLibApplication.REGISTRY</code> 注册持久且网络同步的组件 <code>ITEM_SAVE_ID</code>（<code>kasuga_lib:item_external_id</code>，<code>UUID</code>）</td>
+</tr>
+<tr>
+<td><code>CustomSavedData</code></td>
+<td>自定义存档基类，提供无参构造与 <code>save(Path path, HolderLookup.Provider provider)</code></td>
+</tr>
+<tr>
+<td><code>CustomSavedDataManager</code></td>
+<td><code>@Singleton</code>，监听 <code>forgeEventBus</code> 的 <code>ServerStartingEvent</code>（<code>HIGHEST</code>）、<code>LevelEvent.Save</code>（<code>LOWEST</code>）与 <code>ServerStoppingEvent</code>（<code>LOWEST</code>）。通过 <code>MinecraftServerAccess</code> 获取世界根目录 <code>Path</code>；提供 <code>get(Class&lt;T&gt;, SimpleFactory&lt;T&gt;)</code> 与 <code>get(Class&lt;T&gt;, Factory&lt;T&gt;)</code> 按类缓存并在世界保存时落盘</td>
+</tr>
+<tr>
+<td><code>ScopedNbtSavedData&lt;T extends SavedData&gt;</code></td>
+<td>继承 <code>CustomSavedData</code>，在 <code>&lt;worldDir&gt;/&lt;basePath&gt;/</code> 下委托 Minecraft <code>DimensionDataStorage</code> 按字符串键读写 <code>.nbt</code> 文件。提供 <code>get(key)</code>、<code>computeIfAbsent(key)</code>、<code>remove(key)</code>（记入 <code>pendingRemove</code> 并在下次 <code>save</code> 删除磁盘 <code>.nbt</code>）、<code>getAllSavedNames()</code></td>
+</tr>
+<tr>
+<td><code>ExternalSaveItem</code></td>
+<td>继承 <code>Item</code>：用 <code>initialize(ItemStack, Consumer&lt;UUID&gt;)</code> 或 <code>initializeOutputs(ItemStack, LivingEntity, Consumer&lt;UUID&gt;)</code> 为物品栈写入唯一 <code>ITEM_SAVE_ID</code>，用 <code>getSaveId(ItemStack)</code> 读取</td>
+</tr>
+<tr>
+<td><code>NbtDataStorage&lt;T extends SavedData&gt;</code></td>
+<td>当前仅含 <code>cache</code> / <code>directory</code> / <code>provider</code> 字段构造器的轻量骨架类</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-可选模组兼容探测libkasugacorecompat">3. 可选模组兼容探测（<code>lib.kasuga.core.compat</code>）<a class="headerlink" href="#3-可选模组兼容探测libkasugacorecompat" title="Permanent link">&para;</a></h2>
+<p><code>CompatCapability&lt;T&gt;</code> 为可选模组集成（如 <code>modules/iris-compat</code> 对 Iris/Sodium 的 ABI 校验与 OIT 回退）提供惰性、双重检查锁定缓存的探测原语：</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>new CompatCapability&lt;&gt;(String name, Probe&lt;T&gt; probe)</code></td>
+<td><code>Probe.run()</code> 允许抛出 <code>ReflectiveOperationException</code></td>
+</tr>
+<tr>
+<td><code>boolean isAvailable()</code> / <code>Result&lt;T&gt; result()</code></td>
+<td>首次调用时执行一次探测并缓存不可变 <code>Result&lt;T&gt;(boolean available, T value, String reason, Throwable cause)</code></td>
+</tr>
+<tr>
+<td><code>CompatCapability.requireClass(String className, ClassLoader loader)</code></td>
+<td>使用 <code>Class.forName(className, false, loader)</code> 检查类是否存在而不触发静态初始化</td>
+</tr>
+<tr>
+<td><code>CompatCapability.requireMethod(Class&lt;?&gt; owner, String methodName, Class&lt;?&gt; returnType, Class&lt;?&gt;... parameterTypes)</code></td>
+<td>查找 public 方法并严格校验 <code>method.getReturnType() == returnType</code>，可捕获方法签名漂移</td>
+</tr>
+</tbody>
+</table>
+<p>异常处理边界（由 <code>CompatCapabilityTest</code> 验证）：<code>ReflectiveOperationException</code>、<code>InaccessibleObjectException</code>、<code>LinkageError</code>、<code>SecurityException</code> 以及探测返回 <code>null</code> 均会记录为 <code>available == false</code>；而 <code>IllegalStateException</code> 等探测逻辑本身的应用程序异常会直接向外传播，不会被吞掉。</p>
+<div class="highlight"><pre><span></span><code><span class="n">CompatCapability</span><span class="o">&lt;</span><span class="n">Method</span><span class="o">&gt;</span><span class="w"> </span><span class="n">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CompatCapability</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">"iris_state"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">CompatCapability</span><span class="p">.</span><span class="na">requireMethod</span><span class="p">(</span><span class="n">CapturedRenderingState</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="s">"getCurrentRenderedEntity"</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">.</span><span class="na">class</span><span class="p">));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">api</span><span class="p">.</span><span class="na">isAvailable</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 安全使用 api.result().value()</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-编解码器与生命周期句柄libkasugacorecodec-libkasugacoreholder">4. 编解码器与生命周期句柄（<code>lib.kasuga.core.codec</code> / <code>lib.kasuga.core.holder</code>）<a class="headerlink" href="#4-编解码器与生命周期句柄libkasugacorecodec-libkasugacoreholder" title="Permanent link">&para;</a></h2>
+<h3 id="41-kasugacodec">4.1 <code>KasugaCodec</code><a class="headerlink" href="#41-kasugacodec" title="Permanent link">&para;</a></h3>
+<p><code>KasugaCodec.mapFunc</code> 构造键依赖的动态值编解码 <code>StreamCodec&lt;B, M&gt;</code>（在 <code>DocumentComponentRegistries.DOCUMENT_COMPONENT_BYTE_BUF</code> 中用于按组件类型分发网络编解码）：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="o">&lt;</span><span class="n">B</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ByteBuf</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">V</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">StreamCodec</span><span class="o">&lt;</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">mapFunc</span><span class="p">(</span>
+<span class="w">        </span><span class="n">IntFunction</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">M</span><span class="o">&gt;</span><span class="w"> </span><span class="n">factory</span><span class="p">,</span>
+<span class="w">        </span><span class="n">StreamCodec</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keyCodec</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">StreamCodec</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">V</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">valueCodecFunction</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSize</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">cacheValueCodecByKey</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="42-holdert-与-providert">4.2 <code>Holder&lt;T&gt;</code> 与 <code>Provider&lt;T&gt;</code><a class="headerlink" href="#42-holdert-与-providert" title="Permanent link">&para;</a></h3>
+<p>轻量级引用计数资源绑定接口（<code>Simple</code> 实现<strong>非线程安全</strong>）：</p>
+<ul>
+<li><code>Provider.simple(Supplier&lt;T&gt; creator, Consumer&lt;T&gt; disposer)</code>：首个 <code>Holder</code> 挂载（<code>hold</code>）时创建实例；最后一个 <code>Holder</code> 释放（<code>release</code>）或调用 <code>dispose()</code> 时触发 <code>disposer</code> 并清空实例；提供 <code>getValue()</code> 与 <code>ifPresent(Consumer&lt;T&gt;)</code>。</li>
+<li><code>Holder.simple(Consumer&lt;T&gt; applier, Consumer&lt;T&gt; disposer)</code>：<code>attach(Provider&lt;T&gt;)</code> 先从旧 <code>Provider</code> 分离，再持有并回调 <code>applier</code>；<code>detach()</code> 回调 <code>disposer</code> 并释放引用。</li>
+</ul>
+<hr />
+<h2 id="5-核心渲染与-glsl-导入钩子libkasugacorerendering">5. 核心渲染与 GLSL 导入钩子（<code>lib.kasuga.core.rendering</code>）<a class="headerlink" href="#5-核心渲染与-glsl-导入钩子libkasugacorerendering" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Mixin / 调用机制</th>
+<th>公开 API 与行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShaderFunctionImport</code></td>
+<td><code>MixinGlslPreprocessor</code> 重定向 <code>GlslPreprocessor#processImports</code></td>
+<td>对 <code>kasuga_lib:&lt;path&gt;</code> 导入映射至 <code>assets/kasuga_lib/shaders/&lt;path&gt;</code>，<code>ShaderFunctionImport.read(Reader)</code> 跳过前导 <code>in</code> / <code>out</code> / <code>uniform</code> 声明并在 <code>void main(</code> 处截断，从而把独立 transform shader 函数复用为 <code>#moj_import</code> 库函数。设置 <code>-Dkasuga.debugShaderImports=true</code> 可将结果导出至 <code>ksg_debug/</code></td>
+</tr>
+<tr>
+<td><code>SpecialRenderingRegistry</code>、<code>ISpecialRenderingItem</code>、<code>ISpecialItemRenderer</code></td>
+<td><code>MixinItemInHandRenderer</code> 拦截 <code>renderArmWithItem</code> 与 <code>evaluateWhichHandsToRender</code></td>
+<td>物品实现 <code>ISpecialRenderingItem</code> 后可覆写 <code>getRenderPriority(...)</code> 控制主副手绘制优先级，并通过 <code>SpecialRenderingRegistry.register(item, renderer)</code> 接管第一人称手持渲染（内部自动 <code>pushPose</code>/<code>popPose</code>）</td>
+</tr>
+<tr>
+<td><code>IBlurControl</code></td>
+<td><code>MixinScreen</code> 实现于原版 <code>Screen</code></td>
+<td><code>ksgB$isBlurEnabled()</code> / <code>ksg$SetBlurEnabled(boolean)</code>，用于按界面开关原版背景模糊</td>
+</tr>
+<tr>
+<td><code>BufferBuilderSupplier</code></td>
+<td>函数式接口</td>
+<td><code>@Nullable BufferBuilder init(ByteBufferBuilder buffer, VertexFormat.Mode mode, VertexFormat format)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-早期加载与客户端钩子libkasugaearly-libkasugaclient">6. 早期加载与客户端钩子（<code>lib.kasuga.early</code> / <code>lib.kasuga.client</code>）<a class="headerlink" href="#6-早期加载与客户端钩子libkasugaearly-libkasugaclient" title="Permanent link">&para;</a></h2>
+<h3 id="61-modloadingmanager-与-modloadingprogress">6.1 <code>ModLoadingManager</code> 与 <code>ModLoadingProgress</code><a class="headerlink" href="#61-modloadingmanager-与-modloadingprogress" title="Permanent link">&para;</a></h3>
+<p><code>ModLoadingManager.createTask(String label, int steps)</code> 按优先级倒序选择可用的 <code>ModLoadingProgressProvider</code>：</p>
+<ol>
+<li><code>ModLoadingProgressProvider.FML</code>（优先级 <code>255</code>）：反射探测 NeoForge <code>StartupNotificationManager.prependProgressBar</code> 与 <code>ProgressMeter</code>，返回 <code>NeoForgeFmlEarlyDisplayProgress</code>；在无 NeoForge 早期显示窗口的环境下自动不可用。</li>
+<li><code>ModLoadingProgressProvider.DEFAULT</code>（优先级 <code>-1000</code>）：回退为 <code>DefaultModLoadingProgress</code>，通过 SLF4J 输出 <code>"&lt;label&gt; [&lt;n&gt;/&lt;totalSteps&gt;]"</code> 进度日志。</li>
+</ol>
+<p><code>ModLoadingProgress</code> 接口方法：<code>increment()</code>、<code>complete()</code>、<code>set(int)</code>、<code>steps()</code>、<code>label(String)</code>。</p>
+<h3 id="62-loadingindicatorlibkasugaclientloading">6.2 <code>LoadingIndicator</code>（<code>lib.kasuga.client.loading</code>）<a class="headerlink" href="#62-loadingindicatorlibkasugaclientloading" title="Permanent link">&para;</a></h3>
+<p>线程安全的 <code>AtomicReference&lt;Snapshot&gt;</code> 状态持有器，由 <code>MixinLoadingOverlay</code> 在 Minecraft <code>LoadingOverlay#render</code> 尾部绘制实时进度文本与细进度条（如 <code>KasugaModelManager</code> / <code>CombinedTextureManager</code> 在模型与 PBR 图集重载期间使用）：</p>
+<ul>
+<li><code>LoadingIndicator.begin(String label, int total)</code></li>
+<li><code>LoadingIndicator.update(String label, int current, int total)</code></li>
+<li><code>LoadingIndicator.label(String label)</code></li>
+<li><code>LoadingIndicator.complete()</code></li>
+<li><code>LoadingIndicator.snapshot()</code> -&gt; 返回 <code>Snapshot(boolean active, String label, int current, int total)</code> 及 <code>progress()</code>（钳制到 <code>[0.0f, 1.0f]</code>）。</li>
+</ul>
+<h3 id="63-clientblockupdatehookslibkasugaclient">6.3 <code>ClientBlockUpdateHooks</code>（<code>lib.kasuga.client</code>）<a class="headerlink" href="#63-clientblockupdatehookslibkasugaclient" title="Permanent link">&para;</a></h3>
+<p>由 <code>MixinClientLevel</code> 注入 <code>ClientLevel#sendBlockUpdated</code> 尾部，在客户端主线程广播世界可见的单方块变更（网络同步、本地编辑或刻更新）：</p>
+<ul>
+<li><code>AutoCloseable addListener(Consumer&lt;Update&gt; listener)</code>：返回取消订阅句柄；监听器必须保持轻量。</li>
+<li><code>Update</code> 记录：<code>record Update(ClientLevel level, long packedPos, BlockState oldState, BlockState newState)</code>。</li>
+</ul>
+<hr />
+<h2 id="7-内容子系统libkasugacontent">7. 内容子系统（<code>lib.kasuga.content</code>）<a class="headerlink" href="#7-内容子系统libkasugacontent" title="Permanent link">&para;</a></h2>
+<h3 id="71-unmodeledblockpropertylibkasugacontentblock">7.1 <code>UnModeledBlockProperty</code>（<code>lib.kasuga.content.block</code>）<a class="headerlink" href="#71-unmodeledblockpropertylibkasugacontentblock" title="Permanent link">&para;</a></h3>
+<p><code>UnModeledBlockProperty&lt;J extends Comparable&lt;J&gt;, T extends Property&lt;J&gt;&gt; extends Property&lt;J&gt;</code>（工厂 <code>UnModeledBlockProperty.create(T prop)</code>）用于向 <code>BlockState</code> 附加逻辑状态但<strong>不参与原版 blockstate JSON 变体映射与 NBT 序列化</strong>：</p>
+<ul>
+<li><code>MixinBlockModelShaper</code> 覆写 <code>statePropertiesToString</code> 跳过 <code>UnModeledBlockProperty</code> 实例。</li>
+<li><code>MixinNbtUtils</code> 在 <code>NbtUtils#readBlockState</code> 查表时对 <code>UnModeledBlockProperty</code> 返回 <code>null</code>。</li>
+</ul>
+<h3 id="72-全局设备管理与属性索引libkasugacontentdevice">7.2 全局设备管理与属性索引（<code>lib.kasuga.content.device</code>）<a class="headerlink" href="#72-全局设备管理与属性索引libkasugacontentdevice" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>职责与主要 API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DeviceRegistries</code></td>
+<td>注册两个同步原版注册表：<code>kasuga_lib:device_attribute_type</code>（<code>DEVICE_ATTRIBUTE</code>）与 <code>kasuga_lib:device_type</code>（<code>DEVICE</code>）</td>
+</tr>
+<tr>
+<td><code>Device</code> / <code>DeviceType&lt;T&gt;</code></td>
+<td>设备逻辑实体基类，支持 <code>setDirty()</code> / <code>isDirty()</code> / <code>cleanDirty()</code>、<code>save(CompoundTag)</code>、<code>load(CompoundTag)</code>、<code>acceptMerge(Device)</code></td>
+</tr>
+<tr>
+<td><code>DeviceAttribute</code> / <code>DeviceAttributeType&lt;T&gt;</code></td>
+<td>属性实例与类型记录 <code>record DeviceAttributeType&lt;T&gt;(factory, isUnique, canIndex, persistent)</code>，通过 <code>DeviceAttributeType.Builder</code> 构建</td>
+</tr>
+<tr>
+<td><code>AttributeIndex</code></td>
+<td>为设备属性维护唯一主键索引 <code>primaryIndex</code>（<code>isUnique</code>）与多值倒排索引 <code>indexable</code>（<code>canIndex</code>），提供 <code>reindex(...)</code>、<code>notifyAttributeAdded</code>、<code>notifyAttributeRemoved</code>、<code>queryAttribute(DeviceAttribute)</code></td>
+</tr>
+<tr>
+<td><code>GlobalDeviceManager</code></td>
+<td><code>@Context</code> 单例；基于 <code>CustomSavedDataManager</code> 与 <code>GlobalDeviceSavedData.Customized</code> 将设备及属性存放在 <code>&lt;worldDir&gt;/devices/&lt;uuid&gt;.nbt</code>，提供 <code>addAttribute</code>、<code>removeAttribute</code>、<code>getAttributes</code>、<code>remove</code>、<code>merge</code>、<code>saveToData</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-文档物品与组件系统libkasugacontentdocument">7.3 文档物品与组件系统（<code>lib.kasuga.content.document</code>）<a class="headerlink" href="#73-文档物品与组件系统libkasugacontentdocument" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>职责与主要 API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DocumentComponentRegistries</code></td>
+<td><code>@Context</code> 单例；注册 <code>kasuga_lib:document_component_type</code> 注册表（<code>DOCUMENT_COMPONENT_REGISTRY</code>）与物品数据组件 <code>kasuga_lib:document_components</code>（<code>DOCUMENT_COMPONENT</code>，持久化用 <code>Codec.dispatchedMap</code>，网络同步用 <code>KasugaCodec.mapFunc</code>）</td>
+</tr>
+<tr>
+<td><code>DocumentComponentType&lt;T&gt;</code></td>
+<td>抽象组件类型，声明 <code>codec()</code>、<code>networkCodec()</code>、<code>convert(Object)</code>、<code>convertBack(T)</code>、<code>readable()</code></td>
+</tr>
+<tr>
+<td><code>DocumentItem</code></td>
+<td>继承 <code>Item</code> 并实现 <code>ISpecialRenderingItem</code>（<code>getRenderPriority</code> 返回 <code>2</code>）；当 <code>DOCUMENT_COMPONENT</code> map 非空时堆叠上限自动降为 <code>1</code></td>
+</tr>
+<tr>
+<td><code>DocumentItemRenderer</code> / <code>DocumentComponentRenderer&lt;T&gt;</code></td>
+<td>实现 <code>ISpecialItemRenderer</code>（单手/双手持握渲染）；通过 <code>registerComponentRenderer(DocumentComponentType&lt;T&gt;, DocumentComponentRenderer&lt;T&gt;)</code>（通常经 <code>DocumentComponentRendererReg</code> + <code>RenderingRegistry</code>）注册各组件绘制器</td>
+</tr>
+<tr>
+<td><code>DocumentComponentNode</code></td>
+<td>空占位类</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74-动态连通图与环路检测libkasugacontentgraph">7.4 动态连通图与环路检测（<code>lib.kasuga.content.graph</code>）<a class="headerlink" href="#74-动态连通图与环路检测libkasugacontentgraph" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>GraphManager&lt;K, V, E&gt;</code></strong>（依赖 <code>org.jgrapht:jgrapht-core:1.5.2</code>）：维护按连通分量划分的动态图集合（<code>HashMap&lt;K, Graph&lt;V, E&gt;&gt;</code>），子类实现 <code>createGraph()</code> 与 <code>createKey()</code>。</li>
+<li><code>createNode</code> / <code>removeNode</code>、<code>addConnection</code> / <code>removeConnection</code>、<code>synchronizeNode(vertex, connectionsSupplier)</code>、<code>getGraphIdByNode</code>、<code>getGraphByNode</code>。</li>
+<li>跨分量连边会自动合并两张图；删边或删点时调用 <code>GraphAlgo.split(...)</code> 按 <code>ConnectivityInspector</code> 自动拆分出新的连通子图（注意 <code>propagateSplit</code> 假设拆分后至少保留一个分量，删除单点图最后一个顶点时 <code>newGraphs.pop()</code> 会抛出 <code>NoSuchElementException</code>）。</li>
+<li><strong><code>GraphCycleDetector&lt;T&gt;</code></strong>（纯 JDK 集合实现，零 Minecraft 依赖）：</li>
+<li><code>GraphCycleDetector.dfs(Set&lt;T&gt; nodes, GraphAdapter&lt;T&gt; adapter)</code>：三色 DFS 检测有向图全部环路，返回 <code>CycleResult&lt;T&gt;</code>（<code>getCycles()</code>、<code>getNodesInCycles()</code>、<code>hasCycle()</code>）。</li>
+<li><code>GraphCycleDetector.topologicalSort(Set&lt;T&gt; nodes, GraphAdapter&lt;T&gt; adapter)</code>：Kahn 算法拓扑排序（内部对 <code>adapter</code> 边反向，使父级排在子级之前），返回 <code>TopoResult&lt;T&gt;</code>（<code>getSorted()</code>、<code>getNodesNotSorted()</code>、<code>hasCycle()</code>）。</li>
+</ul>
+<h3 id="75-二维码生成libkasugacontentqr">7.5 二维码生成（<code>lib.kasuga.content.qr</code>）<a class="headerlink" href="#75-二维码生成libkasugacontentqr" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>QrCodeCache.encodeBitMatrix(String content)</code>：使用 <code>com.google.zxing:core:3.5.3</code>（<code>MultiFormatWriter</code>）编码生成 <code>64 × 64</code> 的 <code>BitMatrix</code>（编码失败抛出 <code>WriterException</code>）。</li>
+<li><code>QrCodeTexture extends DynamicTexture</code>：由 <code>NativeImage</code> 构建动态 QR 纹理。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
